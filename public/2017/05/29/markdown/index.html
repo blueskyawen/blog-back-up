@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://blueskyawen.com">
   <title>Markdown语法及编辑工具 | bluesky个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="花了好几天搭建完博客是为了写东西记录学习和生活的点滴Hexo博客">
+  <meta name="description" content="花了好几天时间，终于把博客搭建好了。搭建博客是为了写点东西，记录下平时学习和生活的点滴，便于积累知识和查看。然而发现，记录文章是基于Markdown语法来书写的，所以在开始博客前先熟悉了下markdown语法，并对常用的一些语法作了下总结，基本可以满足平常的写作需求。">
 <meta name="keywords" content="写作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Markdown语法及编辑工具">
 <meta property="og:url" content="http://blueskyawen.com/2017/05/29/markdown/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
-<meta property="og:description" content="花了好几天搭建完博客是为了写东西记录学习和生活的点滴Hexo博客">
-<meta property="og:image" content="http://blueskyawen.com/images/favicon.jpg">
-<meta property="og:updated_time" content="2017-06-08T17:12:12.233Z">
+<meta property="og:description" content="花了好几天时间，终于把博客搭建好了。搭建博客是为了写点东西，记录下平时学习和生活的点滴，便于积累知识和查看。然而发现，记录文章是基于Markdown语法来书写的，所以在开始博客前先熟悉了下markdown语法，并对常用的一些语法作了下总结，基本可以满足平常的写作需求。">
+<meta property="og:image" content="http://blueskyawen.com/images/longmao01.jpg">
+<meta property="og:updated_time" content="2017-06-10T16:17:54.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown语法及编辑工具">
-<meta name="twitter:description" content="花了好几天搭建完博客是为了写东西记录学习和生活的点滴Hexo博客">
-<meta name="twitter:image" content="http://blueskyawen.com/images/favicon.jpg">
+<meta name="twitter:description" content="花了好几天时间，终于把博客搭建好了。搭建博客是为了写点东西，记录下平时学习和生活的点滴，便于积累知识和查看。然而发现，记录文章是基于Markdown语法来书写的，所以在开始博客前先熟悉了下markdown语法，并对常用的一些语法作了下总结，基本可以满足平常的写作需求。">
+<meta name="twitter:image" content="http://blueskyawen.com/images/longmao01.jpg">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
   
@@ -196,31 +196,87 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="花了好几天"><a href="#花了好几天" class="headerlink" title="花了好几天"></a>花了好几天</h1><h2 id="搭建完博客"><a href="#搭建完博客" class="headerlink" title="搭建完博客"></a>搭建完博客</h2><h3 id="是为了写东西"><a href="#是为了写东西" class="headerlink" title="是为了写东西"></a>是为了写东西</h3><h4 id="记录学习"><a href="#记录学习" class="headerlink" title="记录学习"></a>记录学习</h4><h5 id="和生活的点滴"><a href="#和生活的点滴" class="headerlink" title="和生活的点滴"></a>和生活的点滴</h5><h6 id="Hexo博客"><a href="#Hexo博客" class="headerlink" title="Hexo博客"></a>Hexo博客<a id="more"></a></h6><hr>
+        <p>花了好几天时间，终于把博客搭建好了。<br>搭建博客是为了写点东西，记录下平时学习和生活的点滴，便于积累知识和查看。<br>然而发现，记录文章是基于Markdown语法来书写的，所以在开始博客前先熟悉了下markdown语法，并对常用的一些语法作了下总结，基本可以满足平常的写作需求。<br><a id="more"></a></p>
+<h2 id="1-Markdown语法"><a href="#1-Markdown语法" class="headerlink" title="1. Markdown语法"></a>1. Markdown语法</h2><p>其实就是一种text to html的微语法，文本化的书写方式，最终还是由工具转化成html文档加以展示。</p>
+<h3 id="HTML兼容"><a href="#HTML兼容" class="headerlink" title="HTML兼容"></a>HTML兼容</h3><p>markdown语法对html标签是兼容的，在写作时可以随意使用html标签组织内容，但对于块级元素(比如:div)和行内元素标签(比如:span)和微语法的结合效果是不一样的:<strong>块级元素标签内markdown语法无效;而行内元素标签内markdown语法有效</strong>。</p>
+<h3 id="特殊字符的自动转化"><a href="#特殊字符的自动转化" class="headerlink" title="特殊字符的自动转化"></a>特殊字符的自动转化</h3><p>对于&amp; &lt; 这样的符号在html文档里有特殊意义的，但markdown会根据它们的使用场景进行自动转换，比如:当&lt;用于标签表示时工具不去理会，但是当只用于普通场景(3&lt;5)时会自动转化成对应的实体。</p>
+<h3 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h3><p>段落前后默认会有空行，如果需要在段落内换行，可敲2个空格加回车</p>
+<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>markdown里有两种标题形式:</p>
+<p><strong>1). Setext</strong></p>
+<pre><code># 标题1
+## 标题2
+### 标题3
+#### 标题4
+##### 标题5
+###### 标题6
+</code></pre><p>6级标题，#号越少，标题越高</p>
+<p><strong>2). atx</strong></p>
+<pre><code>一级标题
+====
+二级标题
+----
+</code></pre><h3 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h3><p>使用&gt;符号定义应用，可以多层嵌套</p>
+<pre><code>&gt; 外文引用
+&gt; &gt; 外文引用
+</code></pre><p>效果如下：</p>
 <blockquote>
-<p>用的是Markdown语法来<br>书写博文的，</p>
+<p>外文引用</p>
+<blockquote>
+<p>外文引用</p>
+</blockquote>
+</blockquote>
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p><strong>1). 无序列表:</strong>使用* + - 来构造无序列表</p>
+<pre><code>* 列表项目1
+* 列表项目2
++ 列表项目1
++ 列表项目2
+- 列表项目1
+- 列表项目2
+</code></pre><p>效果如下：</p>
 <ul>
-<li>所以在正式<em>写之前先</em></li>
-<li>熟悉下markdown<strong>语法</strong>，</li>
-<li>并对<strong><em>常用的一些</em></strong><blockquote>
-<p>二级引用\’</p>
-</blockquote>
-</li>
+<li>列表项目1</li>
+<li>列表项目2</li>
 </ul>
-</blockquote>
-<p>::: success<br>We provide email support to those who have purchased the apps: <strong>service@tylingsoft.com</strong><br>语法做作了下总结，基本可以满足平常的写作需求<br>:::</p>
-<p>::: warning<br>Adding many flowcharts will slow down the editor.<br>:::</p>
-<p>::: info<br>You have new mail.<br>:::</p>
-<p>::: danger<br>Staying up all night is bad for health.<br>:::</p>
-<p>百度联系： <a href="http://www.baidu.com" title="baidu.com" target="_blank" rel="external">Bai Du</a></p>
-<p>图像: <img src="/images/favicon.jpg" alt="my image" title="first image"></p>
-<p>有序列表：</p>
+<p><strong>2). 有序列表:</strong>使用数字.来构造有序列表</p>
+<pre><code>1 列表项目1
+2 列表项目2
+</code></pre><p>效果如下：</p>
 <ol>
-<li>Html标签兼容</li>
-<li>特殊字符的自动转换,尤其是&amp;和&lt;,&gt;</li>
-<li>段落前后需有空行</li>
+<li>列表项目1</li>
+<li>列表项目2</li>
 </ol>
-<h2 id="strikethrough"><a href="#strikethrough" class="headerlink" title="strikethrough"></a><del>strikethrough</del></h2><h2 id="insert"><a href="#insert" class="headerlink" title="++insert++"></a>++insert++</h2><h2 id="mark"><a href="#mark" class="headerlink" title="==mark=="></a>==mark==</h2><p>表格：<br>First Header | Second Header<br>———— | ————-<br>Content from cell 1 | Content from cell 2<br>Content in the first column | Content in the second column</p>
+<p>注意：列表标记符号和项目内容之间须至少1个空格，最多3个空格</p>
+<h3 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h3><p>使用反引号`包围代码块，或者缩进4个空格来构造代码块，当代码块作为列表或引用的子元素时，可缩进到5个空格<br>注意：代码块前后须加空行</p>
+<h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>使用多个* - _ 来制造分隔线</p>
+<pre><code>***
+---
+___
+</code></pre><h2 id="效果如下："><a href="#效果如下：" class="headerlink" title="效果如下："></a>效果如下：</h2><h3 id="插入链接"><a href="#插入链接" class="headerlink" title="插入链接"></a>插入链接</h3><p><strong>(1) 行内形式</strong></p>
+<pre><code>[百度一下，你就知道](http://www.baidu.com &quot;baidu&quot;)
+</code></pre><p>效果如下：<br><a href="http://www.baidu.com" title="baidu" target="_blank" rel="external">百度一下，你就知道</a></p>
+<p><strong>(2) 参考形式</strong></p>
+<pre><code>[百度一下，你就知道](1)
+[淘宝]()
+[1]: http://www.baidu.com &quot;baidu&quot;
+[淘宝]: http://www.taobao.com &quot;taobao&quot;
+</code></pre><p>效果如下：<br><a href="http://www.baidu.com" title="baidu" target="_blank" rel="external">百度一下，你就知道</a><br><a href="http://www.taobao.com" title="taobao" target="_blank" rel="external">淘宝</a></p>
+<p>注意：参考形式的url定义处和使用处须有空行，一般放在段落后面或文章最尾部</p>
+<h3 id="插入图像"><a href="#插入图像" class="headerlink" title="插入图像"></a>插入图像</h3><p>与链接类似，也分行内形式和参考形式</p>
+<pre><code>![text](url &quot;title&quot;)
+
+![text][id]
+[id]: url &quot;title&quot;
+</code></pre><p>效果如下:<br><img src="/images/longmao01.jpg" alt="longmao" title="longmao_01"></p>
+<h3 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h3><p>单个*斜体，俩个粗体</p>
+<pre><code>*斜体*
+**粗体**
+***斜体+粗体***
+</code></pre><p>效果如下：<br><em>斜体</em><br><strong>粗体</strong><br><strong><em>斜体+粗体</em></strong></p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><pre><code>| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+</code></pre><p>效果如下：</p>
 <table>
 <thead>
 <tr>
@@ -242,22 +298,17 @@
 </tr>
 </tbody>
 </table>
-<h2 id="Task-list"><a href="#Task-list" class="headerlink" title="Task list"></a>Task list</h2><ul>
-<li>[ ] a bigger project<ul>
-<li>[x] first subtask</li>
-<li>[x] follow up subtask</li>
-<li>[ ] final subtask</li>
+<p>其中，:—左对齐，:—:中间对齐，—:左对齐，</p>
+<h2 id="2-Markdown工具"><a href="#2-Markdown工具" class="headerlink" title="2. Markdown工具"></a>2. Markdown工具</h2><p>有许多的markdown语法转换工具，提供便捷书写和实时预览的功能，帮助方便的编辑文档，个人推荐以下，可在线编辑:</p>
+<ul>
+<li><a href="http://mdp.tylingsoft.com" target="_blank" rel="external">Markdown plus</a>: Markdown编辑器，可以支持添加任务列表、emoji、流程图等</li>
+<li><a href="http://mdp.tylingsoft.com" target="_blank" rel="external">作业部落</a>: 在线 Markdown 编辑器推出桌面版客户端啦，全平台支援。</li>
 </ul>
-</li>
-<li>[ ] a separate task</li>
-</ul>
-<h2 id="Abbreviation"><a href="#Abbreviation" class="headerlink" title="Abbreviation"></a>Abbreviation</h2><p>Markup is based on <a href="https://michelf.ca/projects/php-markdown/extra/#abbr" target="_blank" rel="external">php markdown extra</a> definition, but without multiline support:</p>
-<p><em>[HTML]: Hyper Text Markup Language
-</em>[W3C]:  World Wide Web Consortium<br>The HTML specification<br>is maintained by the W3C.</p>
-<h2 id="print-39-hello-code-39"><a href="#print-39-hello-code-39" class="headerlink" title="print &#39;hello code&#39;"></a><code>print &#39;hello code&#39;</code></h2><pre><code>evens = [1, 2, 3, 4, 5].collect do |item|
-  item * 2
-end
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  $(<span class="string">'pre code'</span>).each(<span class="function">(<span class="params">i, block</span>) =&gt;</span> &#123;</div><div class="line">    hljs.highlightBlock(block);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>参考：</p>
+<ol>
+<li><a href="http://www.appinn.com/markdown/" target="_blank" rel="external">Markdown 语法说明(简体中文版)-http://www.appinn.com/markdown/</a></li>
+</ol>
+
       
 
       
@@ -516,6 +567,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
