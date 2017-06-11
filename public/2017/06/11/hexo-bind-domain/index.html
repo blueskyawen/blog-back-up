@@ -15,10 +15,14 @@
 <meta property="og:url" content="http://blueskyawen.com/2017/06/11/hexo-bind-domain/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="之前搭建完博客并且部署到github上以后，已经可以通过github.io地址来访问我的博客页面但这个地址这是仓库地址，缺乏个性，也为注册其他插件带来问题">
-<meta property="og:updated_time" content="2017-06-10T16:41:10.031Z">
+<meta property="og:image" content="http://blueskyawen.com/images/2017-06-11-domain-name.png">
+<meta property="og:image" content="http://blueskyawen.com/images/2017-06-11-domain-jiexi.png">
+<meta property="og:image" content="http://blueskyawen.com/images/2017-06-11-domain-cname.png">
+<meta property="og:updated_time" content="2017-06-11T10:34:51.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo博客绑定个人域名">
 <meta name="twitter:description" content="之前搭建完博客并且部署到github上以后，已经可以通过github.io地址来访问我的博客页面但这个地址这是仓库地址，缺乏个性，也为注册其他插件带来问题">
+<meta name="twitter:image" content="http://blueskyawen.com/images/2017-06-11-domain-name.png">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
   
@@ -195,7 +199,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>之前搭建完博客并且部署到github上以后，已经可以通过github.io地址来访问我的博客页面<br>但这个地址这是仓库地址，缺乏个性，也为注册其他插件带来问题<br><a id="more"></a><br>我在想，如果有自己的域名就好了，说干就干，由于已经在阿里云有了账号，下面以阿里云为例描述绑定域名的过程</p>
-<h2 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h2><h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><h2 id="仓库配置"><a href="#仓库配置" class="headerlink" title="仓库配置"></a>仓库配置</h2><h2 id="配置文件修改"><a href="#配置文件修改" class="headerlink" title="配置文件修改"></a>配置文件修改</h2>
+<h2 id="1-购买域名"><a href="#1-购买域名" class="headerlink" title="1.购买域名"></a>1.购买域名</h2><p>进入<a href="https://www.aliyun.com/" target="_blank" rel="external">阿里云</a>官网，登录到域名购买页面<br>输入个性的域名，查询注册情况，只要没被注册即可使用<br><img src="/images/2017-06-11-domain-name.png" alt="domain name"></p>
+<h2 id="2-身份认证"><a href="#2-身份认证" class="headerlink" title="2.身份认证"></a>2.身份认证</h2><p>注册完域名后，进入到自己的域名列表后需要进行个人信息填写和实名认证，这一步很重要，不然不能进行解析，一段时间后会被挂起状态，不能正常使用，所以还是认证的好，认证步骤有详细的提示，这里就不赘述了</p>
+<h2 id="3-域名解析"><a href="#3-域名解析" class="headerlink" title="3.域名解析"></a>3.域名解析</h2><p>进入到自己的域名列表，点击域名操作的解析，进入域名解析页面<br><img src="/images/2017-06-11-domain-jiexi.png" alt="domain jiexi"><br>点击添加解析，填写配置：</p>
+<blockquote>
+<p>类型–选择CNAME<br>主机记录–@<br>线路–默认<br>记录值–填写博客仓库的名字：”your_github_name.github.io”</p>
+</blockquote>
+<p>点击保存即可</p>
+<h2 id="4-仓库配置"><a href="#4-仓库配置" class="headerlink" title="4.仓库配置"></a>4.仓库配置</h2><p>回到github仓库，在别根目录下增加名为CNAME的文件，内容为刚刚申请的域名<br><img src="/images/2017-06-11-domain-cname.png" alt="domain cname file"><br>为了防止以后部署提交会覆盖这个文件，可以在本地机子增加这个文件，然后PUSH到仓库里去</p>
+<h2 id="5-配置文件修改"><a href="#5-配置文件修改" class="headerlink" title="5.配置文件修改"></a>5.配置文件修改</h2><p>这个主要是要修改我们根目录的_config.yml，设置站点为/，否则如果存在子目录的话，部署后的主题会失效</p>
+<pre><code># URL
+## If your site is put in a subdirectory, set url as &apos;http://yoursite.com/child&apos; and root as &apos;/child/&apos;
+url: http://blueskyawen.com/
+root: /
+</code></pre><p>至此，域名更换和配置已经完全结束了，可以使用域名访问站点试试</p>
+
       
 
       
