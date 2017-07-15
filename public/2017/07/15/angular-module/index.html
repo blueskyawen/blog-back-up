@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://blueskyawen.com">
   <title>Angular-模块 | bluesky个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="应用模块化Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成模块化时一种设计模式，有着明显的优点:  打包特定领域/工作流的功能,隔离功能实现 方便组织应用，多个模块可独立开发 方便导入使用外部控件，很多Angular库和第三方库都是以模块形式提供，例如：FormsModule、HttpModule、Router">
+  <meta name="description" content="Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成 应用模块化模块化是一种设计模式，有着明显的优点:">
 <meta name="keywords" content="Augular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular-模块">
 <meta property="og:url" content="http://blueskyawen.com/2017/07/15/angular-module/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
-<meta property="og:description" content="应用模块化Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成模块化时一种设计模式，有着明显的优点:  打包特定领域/工作流的功能,隔离功能实现 方便组织应用，多个模块可独立开发 方便导入使用外部控件，很多Angular库和第三方库都是以模块形式提供，例如：FormsModule、HttpModule、Router">
+<meta property="og:description" content="Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成 应用模块化模块化是一种设计模式，有着明显的优点:">
 <meta property="og:image" content="http://blueskyawen.com/images/app-module-jimu.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/module-tree.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/app-construct.jpg">
-<meta property="og:updated_time" content="2017-07-15T08:44:31.736Z">
+<meta property="og:updated_time" content="2017-07-15T09:23:29.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular-模块">
-<meta name="twitter:description" content="应用模块化Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成模块化时一种设计模式，有着明显的优点:  打包特定领域/工作流的功能,隔离功能实现 方便组织应用，多个模块可独立开发 方便导入使用外部控件，很多Angular库和第三方库都是以模块形式提供，例如：FormsModule、HttpModule、Router">
+<meta name="twitter:description" content="Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成 应用模块化模块化是一种设计模式，有着明显的优点:">
 <meta name="twitter:image" content="http://blueskyawen.com/images/app-module-jimu.jpg">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
@@ -198,14 +198,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="应用模块化"><a href="#应用模块化" class="headerlink" title="应用模块化"></a>应用模块化</h2><p>Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成<br>模块化时一种设计模式，有着明显的优点:</p>
+        <p>Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成</p>
+<h2 id="应用模块化"><a href="#应用模块化" class="headerlink" title="应用模块化"></a>应用模块化</h2><p>模块化是一种设计模式，有着明显的优点:<br><a id="more"></a></p>
 <ul>
 <li>打包特定领域/工作流的功能,隔离功能实现</li>
 <li>方便组织应用，多个模块可独立开发</li>
-<li>方便导入使用外部控件，很多Angular库和第三方库都是以模块形式提供，例如：FormsModule、HttpModule、RouterModule，Material Design、 Ionic</li>
+<li>方便导入使用外部控件，很多Angular库和第三方库都是以模块形式提供，例如：FormsModule、HttpModule、RouterModule等</li>
 <li>方便把服务加到应用程序中</li>
 </ul>
-<p>模块化带来应用设计的简单化，应用组织就像搭积木一样方便，像这样：<br><img src="/images/app-module-jimu.jpg" alt="app-module-jimu"></p>
+<p>模块化带来应用设计的简易化，应用组织就像搭积木一样方便，像这样：<br><img src="/images/app-module-jimu.jpg" alt="app-module-jimu"></p>
 <h2 id="模块的组成"><a href="#模块的组成" class="headerlink" title="模块的组成"></a>模块的组成</h2><p>模块在angular里只是由@NgModule装饰器提供元数据的类，这个元数据对象指示如何编译和运行该模块，基本构成：</p>
 <pre><code>@NgModule({
 imports:[], //导入其它模块，从其它模块中获得本模块所需的组件、指令和管道
@@ -214,12 +215,7 @@ providers: []  //声明服务提供商
 exports: []  //公开某些类，以便其它的组件模板可以使用它们
 })
 export class ContactModule { }
-</code></pre><h4 id="1-imports模块"><a href="#1-imports模块" class="headerlink" title="(1) imports模块"></a>(1) imports模块</h4><p>导入支持模块，会发生几件事：</p>
-<ol>
-<li>被导入模块公开的组件/指令/管道将和导入目标模块declarations合并，并供目标模块使用，但导入的成员优先级没目标模块的高</li>
-<li>被导入模块的providers会累加到导入目标模块的提供商，追加到@NgModule.providers中，并把它们注入到目标模块一级的注入器，比如导入到根模块，则注入到根注入器</li>
-<li>被导入的模块的路由和导入目标模块路由将合并</li>
-</ol>
+</code></pre><h4 id="1-imports模块"><a href="#1-imports模块" class="headerlink" title="(1) imports模块"></a>(1) imports模块</h4><p>导入支持模块，会发生几件事：<br>1 . 被导入模块公开的组件/指令/管道将和导入目标模块declarations合并，并供目标模块使用，但导入的成员优先级没目标模块的高<br>2 . 被导入模块的providers会累加到导入目标模块的提供商，追加到@NgModule.providers中，并把它们注入到目标模块一级的注入器，比如导入到根模块，则注入到根注入器<br>3 . 被导入的模块的路由和导入目标模块路由将合并</p>
 <h4 id="2-declarations"><a href="#2-declarations" class="headerlink" title="(2) declarations[]"></a>(2) declarations[]</h4><p>该数组声明本模块所拥有的组件，指令，管道等成员，数组里成员有以下特点：</p>
 <ul>
 <li>数组里声明的成员默认都是私有的，除非放进exports公开他们</li>
@@ -239,11 +235,7 @@ export class ContactModule { }
 <li>imports数组中的模块</li>
 <li>不在imports数组中的其他模块(可不导入就直接导出)</li>
 </ul>
-<p>模块成员导入后有两种使用方式：</p>
-<ol>
-<li>通过选择器直接在模板中使用，使用于组件/指令/管道</li>
-<li>通过路由导航来使用，适用于导入的组件，不过更好的设计是将路由移至被导入模块，导入后合并路由即可</li>
-</ol>
+<p>模块成员导入后有两种使用方式：<br>1 . 通过选择器直接在模板中使用，使用于组件/指令/管道<br>2 . 通过路由导航来使用，适用于导入的组件，不过更好的设计是将路由移至被导入模块，导入后合并路由即可</p>
 <h2 id="模块树"><a href="#模块树" class="headerlink" title="模块树"></a>模块树</h2><p>模块树是组成angular的基本树之一，体现了应用的基本结构,angular一般可通过直接导入和懒加载两种方式来将各个模块联系在一起，下图是一个基本模块树的关联结构：<br><img src="/images/module-tree.jpg" alt="angular-module-tree"></p>
 <h2 id="应用模块的组建方式"><a href="#应用模块的组建方式" class="headerlink" title="应用模块的组建方式"></a>应用模块的组建方式</h2><p>一个angular应用一般有四种类型的模块：</p>
 <ul>
@@ -253,27 +245,15 @@ export class ContactModule { }
 <li>特性模块(FeatrueModule)，用于封装工作流和业务功能</li>
 </ul>
 <p>下图是一个应用中模块的典型组建方式<br><img src="/images/app-construct.jpg" alt="app-module-construct"></p>
-<hr>
-<h4 id="最后，一些需要注意的细节："><a href="#最后，一些需要注意的细节：" class="headerlink" title="最后，一些需要注意的细节："></a>最后，一些需要注意的细节：</h4><ol>
-<li><p>根模块和特性模块共享着相同的执行环境和同一个依赖注入器，在某个模块中定义的服务在所有其他模块中也都能用。特性模块通过自己提供的服务和对外公开的组件、指令、管道来与其它模块进行协同工作</p>
-</li>
-<li><p>在根注入器注册的提供商，每个服务均为单例，在全应用范围的组件都可使用，无论组件时主动导入还是惰性加载的</p>
-</li>
-<li><p>共享模块中不应出现providers服务商，否则如果一个惰性加载模块导入了此共享模块，就会相应生成一份服务的实例，这个在设计中时不被期望的</p>
-</li>
-<li><p>导入目标模块不会继承被导入模块中对组件、指令或管道的访问权，两个模块的imports数组是互不相干的，除非被导入模块将导入模块重新导出。所以，对公共模块的使用，并不是在根模块导入一次就可以了，而应该在每一个需要使用的模块中都需要导入</p>
-</li>
-<li><p>被导入模块的公开指令的优先级小于导入目标模块的指令，渲染时先执行导入的后执行本模块的，如果有同名指令存在，本模块的覆盖导入的；而如果在本模块的declarations如果有同名指令，后申明的覆盖先申明的</p>
-</li>
-<li><p>多次导入同一个指令是没问题的，Angular 会移除重复的类，只注册一次。但如果有两个不同的类，只是恰好有相同的名字，angular认为并没有重复，会同时保留这两个指令，只是在使用的时候两个指令都会先后调用到，优先级高的获最后结果</p>
-</li>
-<li><p>显式添加到AppModule中的那些提供商在优先级上要优于从其它模块中导入的提供商</p>
-</li>
-<li><p>立即模块加载是直接导入，在应用启动时加载它的路由和组件；懒加载模块是通过路由进行惰性加载，指的是用户第一次访问时异步获取加载文件，加载速度取决于浏览器一次加载文件的数量，比如：谷歌一般一次8个，所以要规划好懒加载模块的大小，以免加载时间过长</p>
-</li>
-<li><p>对于惰性加载模块，一般不要直接导入使用，因为一般这种模块都会有自己的路由配置，导入的同时也会导入它的路由，会对目标模块的路由导航造成影响，因为路由匹配是第一次匹配到即胜出的原则，如果惰性模块的路由和目标模块相似，会引起不必要的错误</p>
-</li>
-</ol>
+<h4 id="最后，一些需要注意的细节："><a href="#最后，一些需要注意的细节：" class="headerlink" title="最后，一些需要注意的细节："></a>最后，一些需要注意的细节：</h4><p>1 . 根模块和特性模块共享着相同的执行环境和同一个依赖注入器，在某个模块中定义的服务在所有其他模块中也都能用。特性模块通过自己提供的服务和对外公开的组件、指令、管道来与其它模块进行协同工作</p>
+<p>2 . 在根注入器注册的提供商，每个服务均为单例，在全应用范围的组件都可使用，无论组件时主动导入还是惰性加载的</p>
+<p>3 . 共享模块中不应出现providers服务商，否则如果一个惰性加载模块导入了此共享模块，就会相应生成一份服务的实例，这个在设计中时不被期望的</p>
+<p>4 . 导入目标模块不会继承被导入模块中对组件、指令或管道的访问权，两个模块的imports数组是互不相干的，除非被导入模块将导入模块重新导出。所以，对公共模块的使用，并不是在根模块导入一次就可以了，而应该在每一个需要使用的模块中都需要导入</p>
+<p>5 . 被导入模块的公开指令的优先级小于导入目标模块的指令，渲染时先执行导入的后执行本模块的，如果有同名指令存在，本模块的覆盖导入的；而如果在本模块的declarations如果有同名指令，后申明的覆盖先申明的</p>
+<p>6 . 多次导入同一个指令是没问题的，Angular 会移除重复的类，只注册一次。但如果有两个不同的类，只是恰好有相同的名字，angular认为并没有重复，会同时保留这两个指令，只是在使用的时候两个指令都会先后调用到，优先级高的获最后结果</p>
+<p>7 . 显式添加到AppModule中的那些提供商在优先级上要优于从其它模块中导入的提供商</p>
+<p>8 . 立即模块加载是直接导入，在应用启动时加载它的路由和组件；懒加载模块是通过路由进行惰性加载，指的是用户第一次访问时异步获取加载文件，加载速度取决于浏览器一次加载文件的数量，比如：谷歌一般一次8个，所以要规划好懒加载模块的大小，以免加载时间过长</p>
+<p>9 . 对于惰性加载模块，一般不要直接导入使用，因为一般这种模块都会有自己的路由配置，导入的同时也会导入它的路由，会对目标模块的路由导航造成影响，因为路由匹配是第一次匹配到即胜出的原则，如果惰性模块的路由和目标模块相似，会引起不必要的错误</p>
 
       
 
@@ -524,19 +504,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Augular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">写作</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Augular</a>
               </li>
             
             <div class="clearfix"></div>
