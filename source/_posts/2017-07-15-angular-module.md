@@ -23,10 +23,10 @@ Angular采用模块的形式来组织应用，将相关业务功能或者有内�
 模块在angular里只是由@NgModule装饰器提供元数据的类，这个元数据对象指示如何编译和运行该模块，基本构成：
 
     @NgModule({
-    imports:[], //导入其它模块，从其它模块中获得本模块所需的组件、指令和管道
-    declarations: [], // 声明哪些组件指令管道属于该模块
-    providers: []  //声明服务提供商
-    exports: []  //公开某些类，以便其它的组件模板可以使用它们
+        imports:[], //导入其它模块
+        declarations: [], // 声明组件指令管道
+        providers: []  //声明服务提供商
+        exports: []  //公开某些类
     })
     export class ContactModule { }
 

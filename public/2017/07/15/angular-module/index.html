@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://blueskyawen.com/images/app-module-jimu.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/module-tree.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/app-construct.jpg">
-<meta property="og:updated_time" content="2017-07-15T09:23:29.238Z">
+<meta property="og:updated_time" content="2017-07-16T09:16:08.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular-模块">
 <meta name="twitter:description" content="Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成 应用模块化模块化是一种设计模式，有着明显的优点:">
@@ -209,10 +209,10 @@
 <p>模块化带来应用设计的简易化，应用组织就像搭积木一样方便，像这样：<br><img src="/images/app-module-jimu.jpg" alt="app-module-jimu"></p>
 <h2 id="模块的组成"><a href="#模块的组成" class="headerlink" title="模块的组成"></a>模块的组成</h2><p>模块在angular里只是由@NgModule装饰器提供元数据的类，这个元数据对象指示如何编译和运行该模块，基本构成：</p>
 <pre><code>@NgModule({
-imports:[], //导入其它模块，从其它模块中获得本模块所需的组件、指令和管道
-declarations: [], // 声明哪些组件指令管道属于该模块
-providers: []  //声明服务提供商
-exports: []  //公开某些类，以便其它的组件模板可以使用它们
+    imports:[], //导入其它模块
+    declarations: [], // 声明组件指令管道
+    providers: []  //声明服务提供商
+    exports: []  //公开某些类
 })
 export class ContactModule { }
 </code></pre><h4 id="1-imports模块"><a href="#1-imports模块" class="headerlink" title="(1) imports模块"></a>(1) imports模块</h4><p>导入支持模块，会发生几件事：<br>1 . 被导入模块公开的组件/指令/管道将和导入目标模块declarations合并，并供目标模块使用，但导入的成员优先级没目标模块的高<br>2 . 被导入模块的providers会累加到导入目标模块的提供商，追加到@NgModule.providers中，并把它们注入到目标模块一级的注入器，比如导入到根模块，则注入到根注入器<br>3 . 被导入的模块的路由和导入目标模块路由将合并</p>
@@ -378,6 +378,15 @@ export class ContactModule { }
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/07/16/angular-Injector/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Angular-注入器
+        
+      </div>
+    </a>
   
   
     <a href="/2017/06/11/hexo-add-pinglun/" id="article-nav-older" class="article-nav-link-wrap">
