@@ -1,7 +1,9 @@
 ---
-title: angular-router
+title: Angular-路由器
 date: 2017-07-17 00:56:10
-tags:
+tags: Augular
+categories: 前端
+comments: true
 ---
 
 路由与导航是组织多页面应用的基本需求，也是angular最重要的几个特性之一。Angular提供了强大的路由机制来保证页面之间的跳转，根据配置的地址导航对应视图页面，并将地址值更新到浏览器地址栏中，将应用的所以页面有机的组织在了一起
@@ -207,58 +209,66 @@ CrisisListComponent的outlet位置，不行再往上匹配
 
 
 ##### 最后，一些好东西：
-1 ) RouterLinkActive指令会基于当前的RouterState对象来为激活的RouterLink切换CSS类,这会一直沿着路由树往下进行级联处理，所以父路由链接和子路由链接可能会同时激活。 要改变这种行为，可以把[routerLinkActiveOptions]绑定到{exact: true}表达式。
- 如果使用了{ exact: true }，那么只有在其URL与当前URL精确匹配时才会激活指定的RouterLink。
+1 ) RouterLinkActive指令会基于当前的RouterState对象来为激活的RouterLink切换CSS类,这会一直沿着路由树往下进行级联处理，所以父路由链接和子路由链接可能会同时激活。使用routerLinkActiveOptions属性可以改变这种行为，比如：
 
-2 ) 路由器中的一些关键词汇：
-Router（路由器）--为激活的URL显示应用组件。管理从一个组件到另一个组件的导航
-RouterModule（路由器模块）--一个独立的Angular模块，用于提供所需的服务提供商，以及用来在应用视图之间进行导航的指令。
-Routes（路由数组）-定义了一个路由数组，每一个都会把一个URL路径映射到一个组件。
-Route（路由）-定义路由器该如何根据URL模式（pattern）来导航到组件。大多数路由都由路径和组件类构成。
-RouterOutlet（路由出口）--<router-outlet>该指令（<router-outlet>）用来标记出路由器该在哪里显示视图。
-RouterLink（路由链接）--routerLink该指令用来把一个可点击的HTML元素绑定到路由。 点击带有绑定到字符串或链接参数数组的routerLink指令的元素就会触发一次导航。
-RouterLinkActive（活动路由链接）--routerLinkActive当HTML元素上或元素内的routerLink变为激活或非激活状态时，该指令为这个HTML元素添加或移除CSS类。
-ActivatedRoute（激活的路由）--为每个路由组件提供提供的一个服务，它包含特定于路由的信息，比如路由参数、静态数据、解析数据、全局查询参数和全局碎片（fragment）。
-RouterState（路由器状态）--路由器的当前状态包含了一棵由程序中激活的路由构成的树。它包含一些用于遍历路由树的快捷方法。
-链接参数数组--这个数组会被路由器解释成一个路由操作指南。我们可以把一个RouterLink绑定到该数组，或者把它作为参数传给Router.navigate方法。
-路由组件--一个带有RouterOutlet的Angular组件，它根据路由器的导航来显示相应的视图。
+    <a routerLink="/contact" routerLinkActive="Active"
+          [routerLinkActiveOptions]="{exact: true}">
+    </a>
+如上设置可以限制只有在其URL与当前URL精确匹配时才会激活指定的RouterLink
 
-3 ) 特性领域的特征：
-把每个特性放在自己的目录中。
-每个特性都有自己的Angular特性模块。
-每个特性区都有自己的根组件。
-每个特性区的根组件中都有自己的路由出口及其子路由。
-特性区的路由很少（或完全不）与其它特性区的路由交叉
+2 ) 路由器中的一些关键词
+- Router，路由器，为激活的URL显示应用组件，并管理从组件之间的导航
+- RouterModule，路由器模块，一个独立的Angular模块，用于提供所需的服务提供商，以及用来在应用视图之间进行导航的指令
+- Routes，路由数组，数组里每个成员都会把一个URL路径映射到一个组件。
+- Route，路由成员，定义路由器该如何根据URL模式（pattern）来导航到组件，大多数路由都由路径和组件类构成
+- RouterOutlet，路由出口<router-outlet>，用来标记出路由器该在哪里显示视图
+- RouterLink，路由链接routerLink，该指令用来把一个可点击的HTML元素绑定到路由，点击带有绑定到字符串或链接参数数组的routerLink指令的元素就会触发一次导航
+- RouterLinkActiv，活动路由链接routerLinkActive，当HTML元素上或元素内的routerLink变为激活或非激活状态时，该指令为这个HTML元素添加或移除CSS类
+- ActivatedRoute，激活的路由，为每个路由组件提供提供的一个服务，它包含特定于路由的信息，比如路由参数、静态数据、解析数据、全局查询参数和全局碎片（fragment）
+- RouterState，路由器状态，路由器的当前状态包含了一棵由程序中激活的路由构成的树。它包含一些用于遍历路由树的快捷方法
+- 链接参数数组，这个数组会被路由器解释成一个路由操作指南。我们可以把一个RouterLink绑定到该数组，或者把它作为参数传给Router.navigate方法
+- 路由组件，一个带有RouterOutlet的Angular组件，它根据路由器的导航来显示相应的视图
+
+3 ) 特性领域的路由特征：
+- 每个特性都有自己的路由模块。
+- 每个特性区都有自己的根组件。
+- 每个特性区的根组件中都有自己的路由出口及其子路由。
+- 特性区的路由很少（或完全不）与其它特性区的路由交叉
 
 4 ) 多路由出口
-在模板中，路由器只能支持一个无名主路由出口,但可以有多个命名的路由出口。
+在模板中，路由器只能支持一个无名主路由出口,但可以有多个命名的路由出口
 每个命名出口都自己有一组带组件的路由。多重出口可以在同一时间根据不同的路由来显示不同的内容
-<router-outlet></router-outlet>
-<router-outlet name="popup1"></router-outlet>
-<router-outlet name="popup2"></router-outlet>
-配置路由对象：
-{
-  path: 'compose',
-  component: ComposeMessageComponent,
-  outlet: 'popup'
-},
-使用：
-<a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
-链接参数数组包含一个只有一个outlets属性的对象，它的值是另一个对象，这个对象以一个或多个路由的出口名作为属性名。 在这里，它只有一个出口名“popup”，它的值则是
-另一个链接参数数组，用于指定compose路由。
-注意：
+
+**出口定义: **
+
+    <router-outlet></router-outlet>
+    <router-outlet name="popup1"></router-outlet>
+    <router-outlet name="popup2"></router-outlet>
+**配置路由对象：**
+
+    {
+      path: 'compose',
+      component: ComposeMessageComponent,
+      outlet: 'popup'
+    }
+
+**使用方式：**
+
+    <a [routerLink]="[{ outlets: { popup: ['compose'] } }]">Contact</a>
+
+链接参数数组包含一个只有一个outlets属性的对象，它的值是另一个对象，这个对象以一个或多个路由的出口名作为属性名。 在这里，它只有一个出口名“popup”，它的值则是另一个链接参数数组，用于指定compose路由
+>注意：
 当有且只有一个无名出口时，外部对象中的这个outlets对象不是必须的，路由器假设这个路由指向了无名的主出口，并为我们创建这些对象。
 当路由到一个命名出口时，我们就会发现这个隐藏的真相
-关闭命名出口：
-this.router.navigate([{ outlets: { popup: null }}]);
-各个outlet出口独立导航：
+
+**关闭命名出口：**
+
+    this.router.navigate([{ outlets: { popup: null }}]);
+
+**各个outlet出口独立导航：**
 路由器在导航树中可以对多个独立的分支保持追踪，并在URL中对这棵树进行表达。
 我们可以添加更多出口和更多路由（无论是在顶层还是在嵌套的子层）来创建一个带有多个分支的导航树， 路由器将会生成相应的URL。
 通过像前面那样填充outlets对象，我们可以告诉路由器立即导航到一棵完整的树。 然后把这个对象通过一个链接参数数组传给router.navigate方法
-栗子：
-导航到危机中心并点击“Contact”，我们将会在浏览器的地址栏看到如下URL
-http://.../heroes(popup:compose)
-主导航的部分变化了，而第二路由没有变。
 
 
 

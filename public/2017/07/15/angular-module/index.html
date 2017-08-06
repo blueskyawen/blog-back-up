@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://blueskyawen.com/images/app-module-jimu.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/module-tree.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/app-construct.jpg">
-<meta property="og:updated_time" content="2017-07-16T09:16:08.973Z">
+<meta property="og:updated_time" content="2017-07-22T16:14:04.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular-模块">
 <meta name="twitter:description" content="Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成 应用模块化模块化是一种设计模式，有着明显的优点:">
@@ -54,7 +54,7 @@
 			<img src="/images/touxiang.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">黑眼圈的猫</a></h1>
+		  <h1 class="header-author"><a href="/">凌晨破晓</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">发现世界的美好</p>
@@ -120,7 +120,7 @@
 				<img src="/images/touxiang.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">黑眼圈的猫</h1>
+			  <h1 class="header-author js-header-author">凌晨破晓</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>发现世界的美好<i class="icon icon-quo-right"></i></p>
@@ -236,6 +236,9 @@ export class ContactModule { }
 <li>不在imports数组中的其他模块(可不导入就直接导出)</li>
 </ul>
 <p>模块成员导入后有两种使用方式：<br>1 . 通过选择器直接在模板中使用，使用于组件/指令/管道<br>2 . 通过路由导航来使用，适用于导入的组件，不过更好的设计是将路由移至被导入模块，导入后合并路由即可</p>
+<blockquote>
+<p>如果是在本模块路由到导入模块的某个组件时，该组件不必公开，私有属性直接导入即可</p>
+</blockquote>
 <h2 id="模块树"><a href="#模块树" class="headerlink" title="模块树"></a>模块树</h2><p>模块树是组成angular的基本树之一，体现了应用的基本结构,angular一般可通过直接导入和懒加载两种方式来将各个模块联系在一起，下图是一个基本模块树的关联结构：<br><img src="/images/module-tree.jpg" alt="angular-module-tree"></p>
 <h2 id="应用模块的组建方式"><a href="#应用模块的组建方式" class="headerlink" title="应用模块的组建方式"></a>应用模块的组建方式</h2><p>一个angular应用一般有四种类型的模块：</p>
 <ul>
@@ -431,7 +434,7 @@ export class ContactModule { }
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 黑眼圈的猫
+    		&copy; 2017 凌晨破晓
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -600,7 +603,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">就职于通信大厂&lt;br&gt;C系出道，熟悉C和C++&lt;br&gt;初涉前端，前路漫漫&lt;br&gt;年轻无为，卖马为生</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">就职于通信大厂&lt;br&gt;熟悉C/C++，了解Java/Scala&lt;br&gt;前端学徒，前路漫漫&lt;br&gt;年轻无为，卖马为生</div>
   	  	
     	</section>
     
