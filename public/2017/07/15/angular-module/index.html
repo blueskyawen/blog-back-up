@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://blueskyawen.com/images/app-module-jimu.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/module-tree.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/app-construct.jpg">
-<meta property="og:updated_time" content="2017-07-22T16:14:04.291Z">
+<meta property="og:updated_time" content="2017-08-27T10:52:31.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular-模块">
 <meta name="twitter:description" content="Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成 应用模块化模块化是一种设计模式，有着明显的优点:">
@@ -93,13 +93,9 @@
 				
 					<a class="github" target="_blank" href="https://github.com/blueskyawen" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
-					<a class="qq" target="_blank" href="#" title="qq"><i class="icon-qq"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -142,13 +138,9 @@
 					
 						<a class="github" target="_blank" href="https://github.com/blueskyawen" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-			        
-						<a class="qq" target="_blank" href="#" title="qq"><i class="icon-qq"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -256,7 +248,27 @@ export class ContactModule { }
 <p>6 . 多次导入同一个指令是没问题的，Angular 会移除重复的类，只注册一次。但如果有两个不同的类，只是恰好有相同的名字，angular认为并没有重复，会同时保留这两个指令，只是在使用的时候两个指令都会先后调用到，优先级高的获最后结果</p>
 <p>7 . 显式添加到AppModule中的那些提供商在优先级上要优于从其它模块中导入的提供商</p>
 <p>8 . 立即模块加载是直接导入，在应用启动时加载它的路由和组件；懒加载模块是通过路由进行惰性加载，指的是用户第一次访问时异步获取加载文件，加载速度取决于浏览器一次加载文件的数量，比如：谷歌一般一次8个，所以要规划好懒加载模块的大小，以免加载时间过长</p>
-<p>9 . 对于惰性加载模块，一般不要直接导入使用，因为一般这种模块都会有自己的路由配置，导入的同时也会导入它的路由，会对目标模块的路由导航造成影响，因为路由匹配是第一次匹配到即胜出的原则，如果惰性模块的路由和目标模块相似，会引起不必要的错误</p>
+<p>9 . 对于惰性加载模块，一般不要直接导入使用，因为一般这种模块都会有自己的路由配置，导入的同时也会导入它的路由，会对目标模块的路由导航造成影响，因为路由匹配是第一次匹配到即胜出的原则，<br>如果惰性模块的路由和目标模块相似，会引起不必要的错误</p>
+<p>10 . 只能在根模块AppModule中导入BrowserModule,在其它任何模块中都不要导入BrowserModule。特性模块和惰性加载模块应该改成导入CommonModule, 它们需要通用的指令,它们不需要重新初始化全应用级的提供商。<br>如果你在惰性加载模块中导入BrowserModule，Angular就会抛出一个错误, 特性模块中导入CommonModule可以让它能用在任何目标平台上。</p>
+<p>11 . Angular不允许模块之间出现循环依赖，所以不要让模块’A’导入模块’B’，而模块’B’又导入模块’A’</p>
+<p>12 . 静态方法forRoot和forChild是一个约定，它可以让开发人员更轻松的配置模块的提供商。<br>RouterModule.forRoot就是一个很好的例子,应用把一个Routes对象传给forRoot（），为的就是使用路由配置全应用级的Router服务。只能在应用的根模块AppModule中调用并导入.forRoot的结果。 在其它模块中导入它，特别是惰性加载模块中，是违反设计目标的并会导致一个运行时错误。<br>RouterModule也提供了静态方法forChild，用于配置惰性加载模块的路由。</p>
+<p>13 . 导入的提供商很容易被由其它导入模块中的提供商替换<br>假设模块需要一个定制过的HttpBackend，它为所有的Http请求添加一个特别的请求头。 如果应用中其它地方的另一个模块也定制了HttpBackend或仅仅导入了HttpModule，它就会改写当前模块的HttpBackend提供商，丢掉了这个特别的请求头。 这样服务器就会拒绝来自该模块的请求。<br>如果你必须防范这种“提供商腐化”现象，那就不要依赖于“启动时加载”模块的providers。</p>
+<p>14 . 如何知道一个模块或服务是否已经加载过了？</p>
+<pre><code>src/app/core/core.module.ts (Constructor)
+
+constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
+  if (parentModule) {
+    throw new Error(
+      &apos;CoreModule is already loaded. Import it in the AppModule only&apos;);
+  }
+}
+</code></pre><p>15 . Angular总是会动态加载AppComponent,无论把它的类型列在了@NgModule.bootstrap函数中，还是命令式的调用该模块的ngDoBootstrap方法来引导它。<br>在路由定义中用到的组件也同样是入口组件,路由定义根据类型来引用组件,忽略路由组件的选择器（即使它有选择器），并且把该组件动态加载到RouterOutlet中。<br>编译器无法通过在其它组件的模板中查找来发现这些入口组件。 我们必须通过把它们加入entryComponents列表中来让编译器知道它们的存在。<br>Angular会自动把下列类型的组件添加到模块的entryComponents(入口组件)中：</p>
+<ul>
+<li>那些出现在@NgModule.bootstrap列表中的组件。</li>
+<li>那些被路由定义引用的组件。</li>
+</ul>
+<p>我们并不需要显式的引用这些组件,虽然引用了也没坏处。</p>
+<p>16 . 引导组件是入口组件的一种。 它是被Angular的引导（应用启动）过程加载到DOM中的入口组件。 其它入口组件则是被其它方式动态加载的，比如被路由器加载。<br>@NgModule.bootstrap属性告诉编译器这是一个入口组件，同时它应该生成一些代码来用该组件引导此应用。<br>不需要把组件同时列在bootstrap和entryComponent列表中 —— 虽然这样做也没坏处</p>
 
       
 
@@ -406,19 +418,9 @@ export class ContactModule { }
   
 
   
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-<script>
-  var cloudTieConfig = {
-    url: document.location.href,
-    sourceId: "",
-    productKey: "1444d79450bb4440970022124b049995",
-    target: "cloud-tie-wrapper"
-  };
-  var yunManualLoad = true;
-  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
-</script>
-
+  <div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2146592"></script>
+<!-- UY END -->
 
   
 
@@ -434,7 +436,7 @@ export class ContactModule { }
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 凌晨破晓
+    		&copy; 2018 凌晨破晓
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -530,6 +532,34 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Augular</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Typescript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">设计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Jqury</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Jquery</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -593,6 +623,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           
             <li class="search-li">
               <a href="http://www.zte.com.cn" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ZTE</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://jsrun.net/user" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Jsrun</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://runjs.cn" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>runjs</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://blueskyawen.com/ng-Cat" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ngCat</a>
             </li>
           
         </ul>

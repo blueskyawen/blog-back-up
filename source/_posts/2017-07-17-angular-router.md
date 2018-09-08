@@ -30,11 +30,12 @@ angular使用pushState方式构造url，必须设置基准地址，pushState才�
 
         providers: [{provide: APP_BASE_HREF, useValue: '/my/app'}]
 
-
+> 当两种方式同时都有设置的时候，provide注入的优先级更高
 
 **配置作用：**
 - 告诉路由器该如何合成导航用的url
 - 方便引用CSS文件、脚本和图片，浏览器会用基准地址的值作为相对URL的前缀
+
 
 #### 2. 路由列表配置
 路由列表以路由模块的方式来提供，下面是一个典型的简单路由列表：
@@ -74,17 +75,28 @@ angular使用pushState方式构造url，必须设置基准地址，pushState才�
 
 假如要导航到一个英雄的详情页面，下面3中方式是等效的
 
-    <button routerLink="{{'/hero/' + crisis.id}}" routerLinkActive="Active">
+    <button type="button" routerLink="{{'/hero/' + crisis.id}}" routerLinkActive="Active">
     </button>
 
-    <button [routerLink]="['/hero', hero.id]"
+    <button type="button" [routerLink]="['/hero', hero.id]"
     [routerLinkActive]="['Active','classA']"></button>
 
-    <button (click)="gotoDetail()" routerLinkActive="Active"></button>
+    <button type="button" (click)="gotoDetail()" routerLinkActive="Active"></button>
     gotoDetail() {this.router.navigate(['/hero', hero.id]);}
 
 （1） routerLinkActive:RouterLinkActive指令属性绑定，用于在路由激活时把CSS类添加到该元素上,反之则移除
 （2）RouterLinkActive可以绑定到一个CSS类组成的数组，绑定方式有[routerLinkActive]="['A','B']" 或 routerLinkActive=“A B”
+
+> 注意：当使用button标签进行路由时，务必制定type="button",如果不指定默认是“submit”类型，会默认出发表单提交
+
+（3）RouterLinkActive还可以绑定到多个链接组里，当其中一个匹配到就添加样式类，适合用于菜单项的激活显示
+
+    <div outerLinkActiver="Active">
+       <button type="button" routerLink="{{'/hero/'}}" >
+        </button>
+       <button type="button" routerLink="{{'/power/'}}">
+        </button>
+    </div>
 
 #### 4. 路由参数提取
 
@@ -104,6 +116,14 @@ ActivatedRoute，可以通过注入此路由服务来获取路由的路径和参
 
 > 注意：当在组件中订阅一个可观察对象时，我们通常总是要在组件销毁时取消这个订阅,但是也有少数例外情况不需要取消订阅，而ActivateRoute中的各种可观察对象就是属于这种情况。ActivateRoute及其可观察对象都是由Router本身负责管理的。 Router会在不再需要时销毁这个路由组件，而注入进去的ActivateRoute也随之销毁了
 
+**注意：**
+
+> 新版本使用paramsMap替代params，queryParamsMap替代queryParams，它们拥有如下方法:
+> - has(key)-> 判断是否有此参数，true/false
+> - get(key)-> 获取参数值，value/null
+> - getAll(key) -> 获取所以参数值数组，[value,...] / []
+> - key --> 获取所以键值数组，[key,...] / []
+> 比如：router.snapshot.params.get('id');
 
 ##### （2）提取参数的方式
 使用可观察对象订阅的方式，下面两种方式效果相同
@@ -270,7 +290,32 @@ CrisisListComponent的outlet位置，不行再往上匹配
 我们可以添加更多出口和更多路由（无论是在顶层还是在嵌套的子层）来创建一个带有多个分支的导航树， 路由器将会生成相应的URL。
 通过像前面那样填充outlets对象，我们可以告诉路由器立即导航到一棵完整的树。 然后把这个对象通过一个链接参数数组传给router.navigate方法
 
+5 ) 各类路由参数的定义提取的区别
 
+- path参数：url/:id
+  使用方式：router.navigate([url,123]); [routerLink]="[url, 123]"
+  表现形式：url/123
+  提取方式：
+  this.activateRoute.params.subscribe((params: Params)) => { let id = params['id']; });
 
+- 可选参数
+  使用方式：router.navigate([url,{id: 123}]); [routerLink]="[url, {id: 123}]"
+  表现形式：url;id=123
+  提取方式：
+  this.activateRoute.params.subscribe((params: Params)) => { let id = params['id']; });
+
+- 查询参数
+  使用方式：router.navigate([url], {queryParams: {id: 123}}); [routerLink]="[url]"  [queryParams]="{id: 123}"
+  表现形式：url?id=123
+  提取方式：
+  this.activateRoute.queryParams.subscribe((params: queryParams)) => { let id = params['id']; });
+
+6 ) navigate和navigateByUrl
+相同点：底层都是调用的相同的方法router.scheduleNavigation()进行处理和导航
+不同点：
+a. 使用方式不同：navigate([]) ; navigateByUrl(url)
+  比如下面两个效果是一样:
+  navigate([url, 123]);navigateByUrl('url/123');
+b. navigate可以实现相对路由，而navigateByUrl不行
 
 

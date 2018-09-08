@@ -120,7 +120,23 @@ ngular 为此提供一种特殊的双向数据绑定语法：[(x)]，该语法�
     <input [ngModel]="name" (ngModelChange)="name=$event">
 
    当一个元素拥有可以设置的属性x和对应的事件xChange时，解释[(x)]语法就容易的多，而ngModel指令即使通过自己的输入属性ngModel和输出属性ngModelChange隐藏了那些细节
+   [ngModel]指令的实现如下：
 
+    @Directive({
+     selector:"[ngModel]",
+     host: {
+       "[value]": "ngModel",
+       "(input)": "ngModelChange.next($event.target.value)"
+     }
+    })
+    class ngModelDirective {
+      @Input() ngModel : any;
+      @Output() ngModelChange = new EventEmitter();
+    }
+绑定的写法:
+> [value] 或 bind-aa : 属性绑定
+(oper) 或 on-oper : 事件绑定
+[(value)] 或 bindon-value : 双向绑定
 
 **（4）自定义双向绑定指令**
 根据[(x)]语法的特点，可以实现自己双向绑定,使用方式ngModel类似

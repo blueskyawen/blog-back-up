@@ -44,6 +44,16 @@ comments: true
 
 **（3）OnChanges**
 一般用于父子组件的交互和通讯，可用于子组件对输入变量的变更检测，以便采取一定的行动，当然变更检测能检测到的也只是常规变量引用的值变化，对于对象/组件这种结构型变量的成员变化则无法检测
+ngOnChanges（）钩子函数接受一个数组变量，存放所有输入变量的变化信息，每个变量有3个字段：
+"输入变量名" : {"当前值"："","是否首次变更": true,"上一次的值"：""}
+
+    import { Component, OnInit, Input, SimpleChanges} from '@angular/core';
+    @Input() inputValue : any = '';
+    ngOnChanges(changes: SimpleChanges) {
+        console.log(changes);
+    }
+控制台打印：
+![onchanges--](/images/onchanges.png)
 
 **（4）DoCheck**
 每个变更周期都会调用，可用于检测各种变量的变化，但调用次数频繁，且大部分是无用调用，所以使用时需谨慎，实现逻辑需简单

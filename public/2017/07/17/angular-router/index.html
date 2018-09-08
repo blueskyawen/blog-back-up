@@ -17,7 +17,7 @@
 <meta property="og:description" content="路由与导航是组织多页面应用的基本需求，也是angular最重要的几个特性之一。Angular提供了强大的路由机制来保证页面之间的跳转，根据配置的地址导航对应视图页面，并将地址值更新到浏览器地址栏中，将应用的所以页面有机的组织在了一起">
 <meta property="og:image" content="http://blueskyawen.com/images/route-tree.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/route-url-tree.jpg">
-<meta property="og:updated_time" content="2017-07-17T17:33:13.742Z">
+<meta property="og:updated_time" content="2017-12-01T15:42:53.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular-路由器">
 <meta name="twitter:description" content="路由与导航是组织多页面应用的基本需求，也是angular最重要的几个特性之一。Angular提供了强大的路由机制来保证页面之间的跳转，根据配置的地址导航对应视图页面，并将地址值更新到浏览器地址栏中，将应用的所以页面有机的组织在了一起">
@@ -92,13 +92,9 @@
 				
 					<a class="github" target="_blank" href="https://github.com/blueskyawen" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
-					<a class="qq" target="_blank" href="#" title="qq"><i class="icon-qq"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -141,13 +137,9 @@
 					
 						<a class="github" target="_blank" href="https://github.com/blueskyawen" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-			        
-						<a class="qq" target="_blank" href="#" title="qq"><i class="icon-qq"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -204,7 +196,10 @@
 <h4 id="1-基准地址配置"><a href="#1-基准地址配置" class="headerlink" title="1. 基准地址配置"></a>1. 基准地址配置</h4><p>angular使用pushState方式构造url，必须设置基准地址，pushState才能正常工作<br><strong>设置方式：</strong></p>
 <p>1 ). 如果app目录是应用的根目录，可以在index.html设置：<code>&lt;base href=&quot;/&quot;&gt;</code><br>2 ). 在根模块中使用适当的APP_BASE_HREF值配置provide路由器，不过这种配置方式，应用中图片、CSS文件等的引用要使用绝对路径，比如:</p>
 <pre><code>providers: [{provide: APP_BASE_HREF, useValue: &apos;/my/app&apos;}]
-</code></pre><p><strong>配置作用：</strong></p>
+</code></pre><blockquote>
+<p>当两种方式同时都有设置的时候，provide注入的优先级更高</p>
+</blockquote>
+<p><strong>配置作用：</strong></p>
 <ul>
 <li>告诉路由器该如何合成导航用的url</li>
 <li>方便引用CSS文件、脚本和图片，浏览器会用基准地址的值作为相对URL的前缀</li>
@@ -239,16 +234,26 @@ export class AppRoutingModule {}
 <li>命令式，<code>this.router.navigate([&#39;/hero&#39;, hero.id])</code></li>
 </ul>
 <p>假如要导航到一个英雄的详情页面，下面3中方式是等效的</p>
-<pre><code>&lt;button routerLink=&quot;{{'/hero/' + crisis.id}}&quot; routerLinkActive=&quot;Active&quot;&gt;
+<pre><code>&lt;button type=&quot;button&quot; routerLink=&quot;{{'/hero/' + crisis.id}}&quot; routerLinkActive=&quot;Active&quot;&gt;
 &lt;/button&gt;
 
-&lt;button [routerLink]=&quot;[&apos;/hero&apos;, hero.id]&quot;
+&lt;button type=&quot;button&quot; [routerLink]=&quot;[&apos;/hero&apos;, hero.id]&quot;
 [routerLinkActive]=&quot;[&apos;Active&apos;,&apos;classA&apos;]&quot;&gt;&lt;/button&gt;
 
-&lt;button (click)=&quot;gotoDetail()&quot; routerLinkActive=&quot;Active&quot;&gt;&lt;/button&gt;
+&lt;button type=&quot;button&quot; (click)=&quot;gotoDetail()&quot; routerLinkActive=&quot;Active&quot;&gt;&lt;/button&gt;
 gotoDetail() {this.router.navigate([&apos;/hero&apos;, hero.id]);}
 </code></pre><p>（1） routerLinkActive:RouterLinkActive指令属性绑定，用于在路由激活时把CSS类添加到该元素上,反之则移除<br>（2）RouterLinkActive可以绑定到一个CSS类组成的数组，绑定方式有[routerLinkActive]=”[‘A’,’B’]” 或 routerLinkActive=“A B”</p>
-<h4 id="4-路由参数提取"><a href="#4-路由参数提取" class="headerlink" title="4. 路由参数提取"></a>4. 路由参数提取</h4><h5 id="1-参数提取对象"><a href="#1-参数提取对象" class="headerlink" title="(1) 参数提取对象"></a>(1) 参数提取对象</h5><p>ActivatedRoute，可以通过注入此路由服务来获取路由的路径和参数，它有很多有用的信息：</p>
+<blockquote>
+<p>注意：当使用button标签进行路由时，务必制定type=”button”,如果不指定默认是“submit”类型，会默认出发表单提交</p>
+</blockquote>
+<p>（3）RouterLinkActive还可以绑定到多个链接组里，当其中一个匹配到就添加样式类，适合用于菜单项的激活显示</p>
+<pre><code>&lt;div outerLinkActiver=&quot;Active&quot;&gt;
+   &lt;button type=&quot;button&quot; routerLink=&quot;{{'/hero/'}}&quot; &gt;
+    &lt;/button&gt;
+   &lt;button type=&quot;button&quot; routerLink=&quot;{{'/power/'}}&quot;&gt;
+    &lt;/button&gt;
+&lt;/div&gt;
+</code></pre><h4 id="4-路由参数提取"><a href="#4-路由参数提取" class="headerlink" title="4. 路由参数提取"></a>4. 路由参数提取</h4><h5 id="1-参数提取对象"><a href="#1-参数提取对象" class="headerlink" title="(1) 参数提取对象"></a>(1) 参数提取对象</h5><p>ActivatedRoute，可以通过注入此路由服务来获取路由的路径和参数，它有很多有用的信息：</p>
 <pre><code>url //路由路径的Observable对象，它的值是一个由路径中各个部件组成的字符串数组
 data //该路由提供的data对象的一个Observable对象，还包含从resolve守卫中解析出来的值
 params //包含该路由的必选参数和可选参数的Observable对象
@@ -261,6 +266,16 @@ firstChild //包含子路由列表中的第一个ActivatedRoute对象。
 children //包含当前路由下激活的全部子路由。
 </code></pre><blockquote>
 <p>注意：当在组件中订阅一个可观察对象时，我们通常总是要在组件销毁时取消这个订阅,但是也有少数例外情况不需要取消订阅，而ActivateRoute中的各种可观察对象就是属于这种情况。ActivateRoute及其可观察对象都是由Router本身负责管理的。 Router会在不再需要时销毁这个路由组件，而注入进去的ActivateRoute也随之销毁了</p>
+</blockquote>
+<p><strong>注意：</strong></p>
+<blockquote>
+<p>新版本使用paramsMap替代params，queryParamsMap替代queryParams，它们拥有如下方法:</p>
+<ul>
+<li>has(key)-&gt; 判断是否有此参数，true/false</li>
+<li>get(key)-&gt; 获取参数值，value/null</li>
+<li>getAll(key) -&gt; 获取所以参数值数组，[value,…] / []</li>
+<li>key –&gt; 获取所以键值数组，[key,…] / []<br>比如：router.snapshot.params.get(‘id’);</li>
+</ul>
 </blockquote>
 <h5 id="（2）提取参数的方式"><a href="#（2）提取参数的方式" class="headerlink" title="（2）提取参数的方式"></a>（2）提取参数的方式</h5><p>使用可观察对象订阅的方式，下面两种方式效果相同<br><strong>switchMap</strong><br>switchMap允许你在Observable的当前值上执行一个动作，并将它映射一个新的Observable,然后再使用subscribe方法解析Observable对象获取值<br>    import { ActivateRoute }  from ‘@angular/router’;</p>
 <pre><code>constructor(private route: ActivateRoute) {
@@ -378,6 +393,16 @@ this.router.navigate([&apos;../&apos;, { id: crisisId, foo: &apos;foo&apos; }], 
 <p><strong>关闭命名出口：</strong></p>
 <pre><code>this.router.navigate([{ outlets: { popup: null }}]);
 </code></pre><p><strong>各个outlet出口独立导航：</strong><br>路由器在导航树中可以对多个独立的分支保持追踪，并在URL中对这棵树进行表达。<br>我们可以添加更多出口和更多路由（无论是在顶层还是在嵌套的子层）来创建一个带有多个分支的导航树， 路由器将会生成相应的URL。<br>通过像前面那样填充outlets对象，我们可以告诉路由器立即导航到一棵完整的树。 然后把这个对象通过一个链接参数数组传给router.navigate方法</p>
+<p>5 ) 各类路由参数的定义提取的区别</p>
+<ul>
+<li><p>path参数：url/:id<br>使用方式：router.navigate([url,123]); [routerLink]=”[url, 123]”<br>表现形式：url/123<br>提取方式：<br>this.activateRoute.params.subscribe((params: Params)) =&gt; { let id = params[‘id’]; });</p>
+</li>
+<li><p>可选参数<br>使用方式：router.navigate([url,{id: 123}]); [routerLink]=”[url, {id: 123}]”<br>表现形式：url;id=123<br>提取方式：<br>this.activateRoute.params.subscribe((params: Params)) =&gt; { let id = params[‘id’]; });</p>
+</li>
+<li><p>查询参数<br>使用方式：router.navigate([url], {queryParams: {id: 123}}); [routerLink]=”[url]”  [queryParams]=”{id: 123}”<br>表现形式：url?id=123<br>提取方式：<br>this.activateRoute.queryParams.subscribe((params: queryParams)) =&gt; { let id = params[‘id’]; });</p>
+</li>
+</ul>
+<p>6 ) navigate和navigateByUrl<br>相同点：底层都是调用的相同的方法router.scheduleNavigation()进行处理和导航<br>不同点：<br>a. 使用方式不同：navigate([]) ; navigateByUrl(url)<br>  比如下面两个效果是一样:<br>  navigate([url, 123]);navigateByUrl(‘url/123’);<br>b. navigate可以实现相对路由，而navigateByUrl不行</p>
 
       
 
@@ -527,19 +552,9 @@ this.router.navigate([&apos;../&apos;, { id: crisisId, foo: &apos;foo&apos; }], 
   
 
   
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-<script>
-  var cloudTieConfig = {
-    url: document.location.href,
-    sourceId: "",
-    productKey: "1444d79450bb4440970022124b049995",
-    target: "cloud-tie-wrapper"
-  };
-  var yunManualLoad = true;
-  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
-</script>
-
+  <div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2146592"></script>
+<!-- UY END -->
 
   
 
@@ -555,7 +570,7 @@ this.router.navigate([&apos;../&apos;, { id: crisisId, foo: &apos;foo&apos; }], 
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 凌晨破晓
+    		&copy; 2018 凌晨破晓
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -651,6 +666,34 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Augular</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Typescript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">设计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Jqury</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Jquery</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -714,6 +757,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           
             <li class="search-li">
               <a href="http://www.zte.com.cn" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ZTE</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://jsrun.net/user" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Jsrun</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://runjs.cn" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>runjs</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://blueskyawen.com/ng-Cat" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ngCat</a>
             </li>
           
         </ul>

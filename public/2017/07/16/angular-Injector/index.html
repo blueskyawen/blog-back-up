@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://blueskyawen.com/images/inector-design.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/injector-tree.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/angular-inject-config.jpg">
-<meta property="og:updated_time" content="2017-07-16T10:32:59.687Z">
+<meta property="og:updated_time" content="2017-08-13T17:19:36.473Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular-注入器">
 <meta name="twitter:description" content="依赖注入是一种程序设计模式，指的是在应用构建里将所需的服务或者部件委托给第三方厂商提供，自身只关注应用逻辑，需要什么服务只需从厂商请求即可，而不用关心服务具体的创建过程和升级相对于以前大而全的设计方式，这种思路的转变，可以使应用本身和所需的服务相对独立的开发和升级，而不用存在太大的耦合，下面是简单的示意图：">
@@ -93,13 +93,9 @@
 				
 					<a class="github" target="_blank" href="https://github.com/blueskyawen" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo"><i class="icon-weibo"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
-					<a class="qq" target="_blank" href="#" title="qq"><i class="icon-qq"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
 			</div>
 		</nav>
@@ -142,13 +138,9 @@
 					
 						<a class="github" target="_blank" href="https://github.com/blueskyawen" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="weibo" target="_blank" href="https://weibo.com/" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
-			        
-						<a class="qq" target="_blank" href="#" title="qq"><i class="icon-qq"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
 			</nav>
@@ -251,7 +243,7 @@ providers：[{ provide: Logger, useValue: silentLogger}]
 <h4 id="3-服务注入请求"><a href="#3-服务注入请求" class="headerlink" title="3. 服务注入请求"></a>3. 服务注入请求</h4><p>作为重要的一步是用户如何进行注入请求，因为服务最终是要用于应用中，否则前面的配置都没有什么意义，服务注入分为隐式注入和显式注入两种</p>
 <h5 id="（1）隐式注入"><a href="#（1）隐式注入" class="headerlink" title="（1）隐式注入"></a>（1）隐式注入</h5><p>最常见的注入配置时在我们组件构造函数里通过供应商令牌进行服务申请，比如：</p>
 <pre><code>constructor(private logger: Logger) {}
-</code></pre><p>constructor声明 + @component + provide供应商数组 共同指示注入器要注入服务实例，以及怎么进行注入<br>注意，我们在请求时是使用的供应商令牌来向注入器请求的，即上一节中的provide字段，而不管对应的实际供应商类或对象时哪个，注入器会自动根据令牌匹配一个服务实例来给组件使用，如果匹配不到，则创建一个<br>实际上，在angular实现中，向注入器注册提供商时，会把这个提供商和一个DI令牌关联起来了，注入器自身会维护一个内部的令牌-提供商映射表，在请求依赖会从这个映射表查找提供商实例，而令牌就是这个表的键值，这就是为什么请求时使用的是令牌</p>
+</code></pre><p>constructor声明 + @component + provide供应商数组 共同指示注入器要注入服务实例，以及怎么进行注入<br>注意，我们在请求时是使用的供应商令牌来向注入器请求的，即上一节中的provide字段，而不管对应的实际供应商类或对象时哪个，注入器会自动根据令牌匹配一个服务实例来给组件使用，如果匹配不到，则创建一个,并将实例引用赋予变量logger<br>实际上，在angular实现中，向注入器注册提供商时，会把这个提供商和一个DI令牌关联起来了，注入器自身会维护一个内部的令牌-提供商映射表，在请求依赖会从这个映射表查找提供商实例，而令牌就是这个表的键值，这就是为什么请求时使用的是令牌</p>
 <h5 id="（2）显式注入"><a href="#（2）显式注入" class="headerlink" title="（2）显式注入"></a>（2）显式注入</h5><p>有两种显示注入方式，不过不提倡这么使用<br>方式一：直接创建注入器</p>
 <pre><code>injector : any;
 constructor() {
@@ -308,6 +300,76 @@ providers: [{ provide: APP_CONFIG, useValue: HERO_DI_CONFIG }]
 constructor(@Inject(APP_CONFIG) config: AppConfig) {
   this.title = config.title;
 }
+</code></pre><p>5 . getter值可直接作为变量应用于模板中，比如：</p>
+<pre><code>get hero() {return service.getOneHero();}
+</code></pre><p>hero可直接作为变量应用于模板表达式中</p>
+<p>6 . @host,用于组件的服务注入只能从上一级父组件查找实例，不再往更上一级的冒泡</p>
+<pre><code>constructor(@host() private logger: Logger) {
+  if (this.logger) {
+    this.logger.log(some_message);
+  }
+}
+</code></pre><p>7 . 在根组件和根模块提供服务的区别</p>
+<ul>
+<li>根组件，注册的服务可在应用全局所有子组件内使用</li>
+<li>根组件，注册的服务可在全应用范围内有效，并且可在应用启动前提供部分服务</li>
+</ul>
+<p>8 . 不同级别的组件和模块可声明同名的服务，使用时注入器会根据冒泡的规则来进行第一匹配；通常，通过基类来作为令牌，派生的各个子类作为各级的真正供应商;</p>
+<pre><code>export class loger {
+    log : string;
+    get log() { return this.log;}
+    set log();
+}
+
+export class Deploger extends loger {
+    set log() {}
+}
+
+providers[{ provide: loger, useclass: Deploger}]
+providers[{ provide: loger, useExsiting: Deploger}]
+</code></pre><p>使用这个方式还能控制服务API暴露的接口数</p>
+<p>9 . 注入服务到子类</p>
+<pre><code>export class baseHero {
+    constructor(private serviceA : ServiceA) {
+    }
+}
+
+export class Hero extends baseHero {
+    constructor(private service_A : ServiceA,private service_B : ServiceB) {
+        super(service_A);//初始化基类服务参数
+    }
+}
+</code></pre><p>初始化时OnInit()的调用顺序：<strong><em>子类 –&gt; 基类</em></strong></p>
+<p>10 . 子组件注入父组件<br>先认识下面两点：</p>
+<ul>
+<li>不能用基类注入父组件实例</li>
+<li>组件总是优先在自身的注入器中添加组件自己的实例的，所以理论上子组件可从注入中获取任何组件实例，包括父组件</li>
+</ul>
+<p>使用方式：</p>
+<pre><code>//父组件通过前向引用声明自己
+providers[{ provide: Parent, useExsiting: forwardRef(() =&gt; ParentComponent)}]
+constructor(@skipself() private parent: Parent) {
+      if (this.parent) {
+        this.parent.log(some_message);
+      }
+}
+
+//子组件注入使用
+    constructor(@host() private parent: Parent) {
+      if (this.parent) {
+        this.parent.log(some_message);
+      }
+    }
+</code></pre><p>@skipself()忽略自己</p>
+<p>可以使用const声名全局变量或或者方法：</p>
+<pre><code>const MAX_NUM = 10000；
+
+//重构上面对父组件的注入声明
+const provideParent =
+  (component: any, parentType?: any) =&gt; {
+    return { provide: parentType || Parent, useExisting: forwardRef(() =&gt; component) };
+  };
+providers:  [ provideParent(BethComponent, DifferentParent) ]
 </code></pre>
       
 
@@ -457,19 +519,9 @@ constructor(@Inject(APP_CONFIG) config: AppConfig) {
   
 
   
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
-<script>
-  var cloudTieConfig = {
-    url: document.location.href,
-    sourceId: "",
-    productKey: "1444d79450bb4440970022124b049995",
-    target: "cloud-tie-wrapper"
-  };
-  var yunManualLoad = true;
-  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
-</script>
-
+  <div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2146592"></script>
+<!-- UY END -->
 
   
 
@@ -485,7 +537,7 @@ constructor(@Inject(APP_CONFIG) config: AppConfig) {
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 凌晨破晓
+    		&copy; 2018 凌晨破晓
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -581,6 +633,34 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Augular</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Typescript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">设计</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Jqury</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Jquery</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -644,6 +724,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           
             <li class="search-li">
               <a href="http://www.zte.com.cn" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ZTE</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://jsrun.net/user" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Jsrun</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://runjs.cn" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>runjs</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://blueskyawen.com/ng-Cat" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ngCat</a>
             </li>
           
         </ul>

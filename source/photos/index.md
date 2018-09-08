@@ -31,8 +31,6 @@ div.img img:hover {
 
  <img src="/images/IMG_1426.JPG" alt="图片文本描述" width="300" height="200">
 
- <img src="/images/IMG_1491.JPG" alt="图片文本描述" width="300" height="200">
-
  <img src="/images/IMG_1494.JPG" alt="图片文本描述" width="300" height="200">
 
  <img src="/images/IMG_1497.JPG" alt="图片文本描述" width="300" height="200">
