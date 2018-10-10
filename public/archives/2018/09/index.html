@@ -6,19 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blueskyawen.com">
-  <title>JQuery-插件 | bluesky个人小站</title>
+  <title>Archives: 2018/9 | bluesky个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JQuery插件是对jquery函数库的一种扩展，以便在不同地方可以复用JQuery插件主要有三种：">
-<meta name="keywords" content="Jquery">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JQuery-插件">
-<meta property="og:url" content="http://blueskyawen.com/2018/07/31/jq-plugin/index.html">
+  <meta name="description" content="初涉前端，懵懂无知，且行且进">
+<meta property="og:type" content="website">
+<meta property="og:title" content="bluesky个人小站">
+<meta property="og:url" content="http://blueskyawen.com/archives/2018/09/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
-<meta property="og:description" content="JQuery插件是对jquery函数库的一种扩展，以便在不同地方可以复用JQuery插件主要有三种：">
-<meta property="og:updated_time" content="2018-08-02T15:13:38.113Z">
+<meta property="og:description" content="初涉前端，懵懂无知，且行且进">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JQuery-插件">
-<meta name="twitter:description" content="JQuery插件是对jquery函数库的一种扩展，以便在不同地方可以复用JQuery插件主要有三种：">
+<meta name="twitter:title" content="bluesky个人小站">
+<meta name="twitter:description" content="初涉前端，懵懂无知，且行且进">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
   
@@ -166,185 +164,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jq-plugin" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      JQuery-插件
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/09/15/jq-plugin-dev2/" class="archive-article-date">
+  	<time datetime="2018-09-15T15:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-15</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/09/15/jq-plugin-dev2/">前端插件包-BootShadow</a>
     </h1>
   
 
-        
-        <a href="/2018/07/31/jq-plugin/" class="archive-article-date">
-  	<time datetime="2018-07-31T04:15:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>JQuery插件是对jquery函数库的一种扩展，以便在不同地方可以复用<br>JQuery插件主要有三种：<br><a id="more"></a></p>
-<ul>
-<li>对象方法的插件：封装对象的操作，插件函数可直接应用与jq对象，改变对象的外观和行为等</li>
-<li>全局方法的插件：封装操作进jquery命名空间，可理解为给jquery添加静态函数，处理能力和一般的全局函数差不多,典型的是$.ajax()方法</li>
-<li>选择器插件：封装属于自己的新的jquery选择器</li>
-</ul>
-<p>在编写插件之前，先介绍一下两个重要的方法，在后面的插件书写中有重要的作用</p>
-<h3 id="闭包注册"><a href="#闭包注册" class="headerlink" title="闭包注册"></a>闭包注册</h3><p>闭包是js的特色，相比大家比较熟悉，在插件中有着很好的应用</p>
-<pre><code>;(function($) {
-    ....插件扩展代码
- })(JQuery);
-</code></pre><p>这里有两个作用：</p>
-<ul>
-<li>闭包函数自运行，将插件方注册金jquery里</li>
-<li>以$为入参，传入jquery，这样在插件内部就可以直接使用$</li>
-</ul>
-<h3 id="extend"><a href="#extend" class="headerlink" title="$.extend"></a>$.extend</h3><p>$.extend方法用于合并扩展对象</p>
-<pre><code>$.extend(targetObj,object1,object2,...)
-</code></pre><p>后面的对象同名成员将覆盖前面对象的成员，否则就合并起来,targetObj是合并后的对象，举个例子：</p>
-<pre><code>$.extend({},{name:&apos;jack&apos;,age:18,sex:&apos;man&apos;});
-结果：{name:&apos;jack&apos;,age:18,sex:&apos;man&apos;}
-
-$.extend({name:&apos;jack&apos;,age:18},{name:&apos;tom&apos;,sex:&apos;man&apos;});
-结果：{name:&apos;tom&apos;,age:18,sex:&apos;man&apos;}
-</code></pre><h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><h3 id="1-对象方法的插件"><a href="#1-对象方法的插件" class="headerlink" title="1 对象方法的插件"></a>1 对象方法的插件</h3><p>此类插件使用$.fn来扩展，比如：</p>
-<pre><code>$.fn.valitor = function(object) {...} 或
-$.fn.extend({valitor: function(object) {...}))
-</code></pre><p>其实查看jquery的源码，可以看到</p>
-<pre><code>$.fn = $.prototype
-</code></pre><p>所以这样做就相当于添加方法到jquery的原型对象上，所有对象都可使用这些方法<br>下面是一个简单的例子，给元素添加颜色</p>
-<pre><code>;(function($) {
-    $.fn.color = function(value) {
-        return this.css(&quot;color&quot;,value);
-    }
-
-    $.fn.extend({
-        back: function(value) {
-            return this.css(&quot;background&quot;,value);
-        },
-        border: function(value) {
-            return this.css(&quot;border&quot;,value);
-        }
-    });
-})(jQuery);
-</code></pre><p>使用方式：</p>
-<pre><code>&lt;div class=&quot;tagcontain&quot;&gt;
-&lt;button&gt;改变颜色&lt;/button&gt;
-&lt;/div&gt;
-&lt;span class=&quot;blue&quot;&gt;速率类&lt;/span&gt;
-&lt;span class=&quot;red&quot;&gt;百分比&lt;/span&gt;
-&lt;span class=&quot;black&quot;&gt;峰值比&lt;/span&gt;
-
-$(function() {
-    $(&quot;button&quot;).click(function() {
-        $(&quot;span&quot;).back(&quot;#999&quot;).color(&quot;black&quot;)
-                .border(&quot;solid 2px red&quot;);
-     });
-});
-</code></pre><p>效果见：<a href="https://sandbox.runjs.cn/show/jpnvtrkv" target="_blank" rel="external">color插件</a></p>
-<p><strong>注意：</strong></p>
-<blockquote>
-<p>在插件方法内部的this值得是应用此插件的jq对象，可以使用jq的一些方法，比如：this.each();<br>最后要返回jq对象本身，为了后续的链式调用</p>
-</blockquote>
-<p>此外，还可以暴露插件的一些属性和方法，供使用者自定义，比如：</p>
-<pre><code>$.fn.default = {..};
-$.fn.format = function() {..}
-</code></pre><p>这里也有个例子，是模仿bootstrapTable插件渲染表格的<br>使用方式：</p>
-<pre><code>&lt;table id=&quot;table1&quot;&gt;&lt;/table&gt;
-
-$(function() {
-    var columnDefs = [{checkbox: true},
-                                        {field: &apos;name&apos;,title: &apos;姓名&apos;},
-                                        {field: &apos;sex&apos;,title: &apos;性别&apos;},
-                                        {field: &apos;address&apos;,title: &apos;地址&apos;}];
-    var rowData = [{name:&apos;张山&apos;,sex:&apos;男&apos;,address:&apos;上海&apos;},
-                                {name:&apos;李四&apos;,sex:&apos;男&apos;,address:&apos;苏州&apos;},
-                                {name:&apos;王五&apos;,sex:&apos;女&apos;,address:&apos;嘉兴&apos;},
-                                {name:&apos;张麻子&apos;,sex:&apos;男&apos;,address:&apos;宁波&apos;},
-                                {name:&apos;赵六&apos;,sex:&apos;男&apos;,address:&apos;长沙&apos;}];
-    $.fn.bootTable.defaultOptions = {odd: &apos;odd&apos;,
-                                     even: &apos;even&apos;,selected:&apos;checked&apos;};
-    $(&quot;#table1&quot;).bootTable({id: &apos;table1&apos;,
-                            caption: &apos;表格标题&apos;,
-                            column: columnDefs,
-                            data: rowData,
-                            option: {odd: &apos;odd2&apos;, even: &apos;even2&apos;}});
-     //获取已选记录
-     var selection = $(&quot;#table1&quot;).bootTable(&apos;getSelection&apos;);
-
-});
-</code></pre><p>效果见：<a href="https://sandbox.runjs.cn/show/e3pqshbw" target="_blank" rel="external">bootTable插件</a></p>
-<p>当然，也可以隐藏私有方法，只要是在插件书写时直接这样生命方法即可</p>
-<pre><code>function privateFunc() {...}
-</code></pre><h3 id="2-全局方法的插件"><a href="#2-全局方法的插件" class="headerlink" title="2 全局方法的插件"></a>2 全局方法的插件</h3><p>此类插件使用$.extend()来扩展，其实可以理解为jquery命名空间添加静态方法，比如</p>
-<pre><code>$.Fuc = function() {...}；
-$.extend({
-    add: function(x,y) {
-        return x+y;
-    }
-});
-</code></pre><p>使用</p>
-<pre><code>var num = $.add(3,5);
-</code></pre><p>这个比较简单, 也可以给jquery添加自定义命名空间来减少命名冲突</p>
-<pre><code>$.myName = {
-    Fuc: function() {...}
-};
-
-$.myName.Fuc();
-</code></pre>
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content" style="bottom: -150%;">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>请随意打赏<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/images/IMG_zhifubao.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/images/IMG_weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Jquery</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Jquery，plugin</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -357,101 +218,17 @@ $.myName.Fuc();
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://blueskyawen.com/2018/07/31/jq-plugin/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/08/02/jq-plugins-dev/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JQuery-自写插件集
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/07/28/JSON-xuliehua/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JSON-序列化和反序列化</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
+    </div></section>
   
 
-  
-  <div id="uyan_frame"></div>
-<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2146592"></script>
-<!-- UY END -->
-
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -474,8 +251,8 @@ $.myName.Fuc();
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

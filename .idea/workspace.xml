@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e023f85f-57d3-410b-a586-633aa1d901b0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/IMG_1491.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/source/images/IMG_1491.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/2018/08/02/jq-plugin-dev2/index.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.deploy_git" afterPath="$PROJECT_DIR$/.deploy_git" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/yilia" afterPath="$PROJECT_DIR$/themes/yilia" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/05/29/markdown/index.html" afterPath="$PROJECT_DIR$/public/2017/05/29/markdown/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/06/01/hexo-build-blok/index.html" afterPath="$PROJECT_DIR$/public/2017/06/01/hexo-build-blok/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/06/11/hexo-add-pinglun/index.html" afterPath="$PROJECT_DIR$/public/2017/06/11/hexo-add-pinglun/index.html" />
@@ -23,32 +21,90 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/23/angular-lifecysle-hook/index.html" afterPath="$PROJECT_DIR$/public/2017/07/23/angular-lifecysle-hook/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/28/angular-pipe/index.html" afterPath="$PROJECT_DIR$/public/2017/07/28/angular-pipe/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/31/angular-structDirective/index.html" afterPath="$PROJECT_DIR$/public/2017/07/31/angular-structDirective/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/08/27/anular-http/index.html" afterPath="$PROJECT_DIR$/public/2017/08/27/anular-http/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/09/03/angular-aot/index.html" afterPath="$PROJECT_DIR$/public/2017/09/03/angular-aot/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/09/10/angular-zujiantonxing/index.html" afterPath="$PROJECT_DIR$/public/2017/09/10/angular-zujiantonxing/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/10/07/class-and-interface/index.html" afterPath="$PROJECT_DIR$/public/2017/10/07/class-and-interface/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/10/15/angular-jianceqi/index.html" afterPath="$PROJECT_DIR$/public/2017/10/15/angular-jianceqi/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/11/10/angular-directive/index.html" afterPath="$PROJECT_DIR$/public/2017/11/10/angular-directive/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/11/19/Angular-Form/index.html" afterPath="$PROJECT_DIR$/public/2017/11/19/Angular-Form/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/11/22/Form-templateForm/index.html" afterPath="$PROJECT_DIR$/public/2017/11/22/Form-templateForm/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/11/26/reactive-form/index.html" afterPath="$PROJECT_DIR$/public/2017/11/26/reactive-form/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/12/01/router-guard/index.html" afterPath="$PROJECT_DIR$/public/2017/12/01/router-guard/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/12/24/rxjs/index.html" afterPath="$PROJECT_DIR$/public/2017/12/24/rxjs/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/12/27/rxjs-operators/index.html" afterPath="$PROJECT_DIR$/public/2017/12/27/rxjs-operators/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/11/forkjoin-zip/index.html" afterPath="$PROJECT_DIR$/public/2018/01/11/forkjoin-zip/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/14/css3-2D/index.html" afterPath="$PROJECT_DIR$/public/2018/01/14/css3-2D/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/14/css3-3D/index.html" afterPath="$PROJECT_DIR$/public/2018/01/14/css3-3D/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/14/css3-animation/index.html" afterPath="$PROJECT_DIR$/public/2018/01/14/css3-animation/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/14/css3-border-box/index.html" afterPath="$PROJECT_DIR$/public/2018/01/14/css3-border-box/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/18/css3-gradients/index.html" afterPath="$PROJECT_DIR$/public/2018/01/18/css3-gradients/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/21/css3-box/index.html" afterPath="$PROJECT_DIR$/public/2018/01/21/css3-box/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/21/css3-flex/index.html" afterPath="$PROJECT_DIR$/public/2018/01/21/css3-flex/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/24/css3-modia/index.html" afterPath="$PROJECT_DIR$/public/2018/01/24/css3-modia/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/03/09/design-pattern-1/index.html" afterPath="$PROJECT_DIR$/public/2018/03/09/design-pattern-1/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/03/17/design-pattern-2/index.html" afterPath="$PROJECT_DIR$/public/2018/03/17/design-pattern-2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/03/18/design-pattern-3/index.html" afterPath="$PROJECT_DIR$/public/2018/03/18/design-pattern-3/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/04/25/Javascript-ECMAScript/index.html" afterPath="$PROJECT_DIR$/public/2018/04/25/Javascript-ECMAScript/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/05/05/ECMAScript-mianxiangduixiang/index.html" afterPath="$PROJECT_DIR$/public/2018/05/05/ECMAScript-mianxiangduixiang/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/05/06/javascipt-bibao-and-this/index.html" afterPath="$PROJECT_DIR$/public/2018/05/06/javascipt-bibao-and-this/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/07/27/jquery-daoru/index.html" afterPath="$PROJECT_DIR$/public/2018/07/27/jquery-daoru/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/07/28/JSON-xuliehua/index.html" afterPath="$PROJECT_DIR$/public/2018/07/28/JSON-xuliehua/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/07/31/jq-plugin/index.html" afterPath="$PROJECT_DIR$/public/2018/07/31/jq-plugin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/08/02/jq-plugins-dev/index.html" afterPath="$PROJECT_DIR$/public/2018/08/02/jq-plugins-dev/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/about-me/index.html" afterPath="$PROJECT_DIR$/public/about-me/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/05/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/05/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/06/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/06/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/07/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/07/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/08/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/08/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/09/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/09/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/10/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/10/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/11/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/11/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/12/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/12/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/page/2/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/page/2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2017/page/3/index.html" afterPath="$PROJECT_DIR$/public/archives/2017/page/3/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2018/01/index.html" afterPath="$PROJECT_DIR$/public/archives/2018/01/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2018/03/index.html" afterPath="$PROJECT_DIR$/public/archives/2018/03/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2018/04/index.html" afterPath="$PROJECT_DIR$/public/archives/2018/04/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2018/05/index.html" afterPath="$PROJECT_DIR$/public/archives/2018/05/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2018/07/index.html" afterPath="$PROJECT_DIR$/public/archives/2018/07/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2018/08/index.html" afterPath="$PROJECT_DIR$/public/archives/2018/08/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2018/index.html" afterPath="$PROJECT_DIR$/public/archives/2018/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/2018/page/2/index.html" afterPath="$PROJECT_DIR$/public/archives/2018/page/2/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/index.html" afterPath="$PROJECT_DIR$/public/archives/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/page/2/index.html" afterPath="$PROJECT_DIR$/public/archives/page/2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/page/3/index.html" afterPath="$PROJECT_DIR$/public/archives/page/3/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/page/4/index.html" afterPath="$PROJECT_DIR$/public/archives/page/4/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/archives/page/5/index.html" afterPath="$PROJECT_DIR$/public/archives/page/5/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/categories/前端/index.html" afterPath="$PROJECT_DIR$/public/categories/前端/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/categories/前端/page/2/index.html" afterPath="$PROJECT_DIR$/public/categories/前端/page/2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/categories/前端/page/3/index.html" afterPath="$PROJECT_DIR$/public/categories/前端/page/3/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/categories/前端/page/4/index.html" afterPath="$PROJECT_DIR$/public/categories/前端/page/4/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/categories/前端工具/index.html" afterPath="$PROJECT_DIR$/public/categories/前端工具/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/categories/博客/index.html" afterPath="$PROJECT_DIR$/public/categories/博客/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/categories/后端/index.html" afterPath="$PROJECT_DIR$/public/categories/后端/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/content.json" afterPath="$PROJECT_DIR$/public/content.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/page/2/index.html" afterPath="$PROJECT_DIR$/public/page/2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/page/3/index.html" afterPath="$PROJECT_DIR$/public/page/3/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/page/4/index.html" afterPath="$PROJECT_DIR$/public/page/4/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/page/5/index.html" afterPath="$PROJECT_DIR$/public/page/5/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/photos/index.html" afterPath="$PROJECT_DIR$/public/photos/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/Augular/index.html" afterPath="$PROJECT_DIR$/public/tags/Augular/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/Augular/page/2/index.html" afterPath="$PROJECT_DIR$/public/tags/Augular/page/2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/CSS/index.html" afterPath="$PROJECT_DIR$/public/tags/CSS/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/Hexo/index.html" afterPath="$PROJECT_DIR$/public/tags/Hexo/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/Jquery/index.html" afterPath="$PROJECT_DIR$/public/tags/Jquery/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/Jqury/index.html" afterPath="$PROJECT_DIR$/public/tags/Jqury/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/Typescript/index.html" afterPath="$PROJECT_DIR$/public/tags/Typescript/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/hexo/index.html" afterPath="$PROJECT_DIR$/public/tags/hexo/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/js/index.html" afterPath="$PROJECT_DIR$/public/tags/js/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/rxjs/index.html" afterPath="$PROJECT_DIR$/public/tags/rxjs/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/写作/index.html" afterPath="$PROJECT_DIR$/public/tags/写作/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2017-07-15-angular-module.md" afterPath="$PROJECT_DIR$/source/_posts/2017-07-15-angular-module.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2017-07-16-angular-Injector.md" afterPath="$PROJECT_DIR$/source/_posts/2017-07-16-angular-Injector.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2017-07-17-angular-router.md" afterPath="$PROJECT_DIR$/source/_posts/2017-07-17-angular-router.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2017-07-20-angular-component-styles.md" afterPath="$PROJECT_DIR$/source/_posts/2017-07-20-angular-component-styles.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2017-07-21-angular-attr-directive.md" afterPath="$PROJECT_DIR$/source/_posts/2017-07-21-angular-attr-directive.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2017-07-23-angular-lifecysle-hook.md" afterPath="$PROJECT_DIR$/source/_posts/2017-07-23-angular-lifecysle-hook.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/photos/index.md" afterPath="$PROJECT_DIR$/source/photos/index.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/tags/设计/index.html" afterPath="$PROJECT_DIR$/public/tags/设计/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2018-08-02-jq-plugins-dev.md" afterPath="$PROJECT_DIR$/source/_posts/2018-08-02-jq-plugins-dev.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2018-08-31-jq-plugin-dev2.md" afterPath="$PROJECT_DIR$/source/_posts/2018-08-31-jq-plugin-dev2.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -66,26 +122,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="2018-03-18-design-pattern-3.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/2018-03-18-design-pattern-3.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="5" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2017-07-28-angular-pipe.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/2017-07-28-angular-pipe.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="54" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="2018-01-14-css3-2D.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/2018-01-14-css3-2D.md">
           <provider selected="true" editor-type-id="text-editor">
@@ -136,21 +172,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2018-08-02-jq-plugins-dev.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/2018-08-02-jq-plugins-dev.md">
+      <file leaf-file-name="_config.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/themes/yilia/_config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+            <state relative-caret-position="274">
+              <caret line="122" column="29" lean-forward="true" selection-start-line="122" selection-start-column="29" selection-end-line="122" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2018-08-31-jq-plugin-dev2.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2018-08-02-jq-plugins-dev.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/source/_posts/2018-08-02-jq-plugins-dev.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="369" column="51" lean-forward="false" selection-start-line="369" selection-start-column="51" selection-end-line="369" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2018-08-31-jq-plugin-dev2.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/2018-08-31-jq-plugin-dev2.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="270" column="18" lean-forward="true" selection-start-line="270" selection-start-column="18" selection-end-line="270" selection-end-column="18" />
+            <state relative-caret-position="30">
+              <caret line="2" column="15" lean-forward="false" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -238,12 +284,12 @@
         <option value="$PROJECT_DIR$/source/_posts/2018-05-05-ECMAScript-mianxiangduixiang.md" />
         <option value="$PROJECT_DIR$/source/_posts/2018-04-25-Javascript-ECMAScript.md" />
         <option value="$PROJECT_DIR$/source/_posts/2018-05-06-javascipt-bibao-and-this.md" />
-        <option value="$PROJECT_DIR$/themes/yilia/_config.yml" />
         <option value="$PROJECT_DIR$/source/_posts/2018-07-28-JSON-xuliehua.md" />
         <option value="$PROJECT_DIR$/source/_posts/2018-07-31-jq-plugin.md" />
         <option value="$PROJECT_DIR$/source/_posts/2018-07-27-jquery-daoru.md" />
         <option value="$PROJECT_DIR$/source/_posts/2018-08-02-jq-plugins-dev.md" />
         <option value="$PROJECT_DIR$/source/_posts/2018-08-31-jq-plugin-dev2.md" />
+        <option value="$PROJECT_DIR$/themes/yilia/_config.yml" />
       </list>
     </option>
   </component>
@@ -299,6 +345,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yilia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="source" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -329,7 +407,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Code_project/webpack" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -495,14 +573,20 @@
       <workItem from="1535034151987" duration="3088000" />
       <workItem from="1535553658269" duration="450000" />
       <workItem from="1535723123797" duration="958000" />
+      <workItem from="1537369668191" duration="455000" />
+      <workItem from="1537455190861" duration="24000" />
+      <workItem from="1537977148738" duration="30000" />
+      <workItem from="1538059730084" duration="671000" />
+      <workItem from="1539175514665" duration="1464000" />
+      <workItem from="1539184080573" duration="255000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="203601000" />
+    <option name="totallyTimeSpent" value="206500000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="681" extended-state="6" />
+    <frame x="0" y="24" width="1366" height="681" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.304769" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -792,7 +876,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="54" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -800,7 +883,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="5" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -828,32 +910,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/yilia/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="119" column="38" lean-forward="true" selection-start-line="119" selection-start-column="38" selection-end-line="119" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="48" column="9" lean-forward="true" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/2018-05-06-javascipt-bibao-and-this.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="5" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/2018-07-28-JSON-xuliehua.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -873,18 +933,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/2018-08-02-jq-plugins-dev.md">
+    <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+        <state relative-caret-position="18">
+          <caret line="48" column="9" lean-forward="true" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2018-07-28-JSON-xuliehua.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/2018-08-31-jq-plugin-dev2.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="270" column="18" lean-forward="true" selection-start-line="270" selection-start-column="18" selection-end-line="270" selection-end-column="18" />
+        <state relative-caret-position="30">
+          <caret line="2" column="15" lean-forward="false" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/source/_posts/2018-08-02-jq-plugins-dev.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="369" column="51" lean-forward="false" selection-start-line="369" selection-start-column="51" selection-end-line="369" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/yilia/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="122" column="29" lean-forward="true" selection-start-line="122" selection-start-column="29" selection-end-line="122" selection-end-column="29" />
           <folding />
         </state>
       </provider>
