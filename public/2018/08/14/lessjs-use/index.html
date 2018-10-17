@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blueskyawen.com">
-  <title>JQuery-自写插件集 | bluesky个人小站</title>
+  <title>less.js用法（译） | bluesky个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在熟悉了jquery和插件写法之后，作者将之前使用原生js和jquery写的一些组件，封装成插件">
-<meta name="keywords" content="Jquery">
+  <meta name="description" content="待补充">
+<meta name="keywords" content="Less">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JQuery-自写插件集">
-<meta property="og:url" content="http://blueskyawen.com/2018/08/02/jq-plugins-dev/index.html">
+<meta property="og:title" content="less.js用法（译）">
+<meta property="og:url" content="http://blueskyawen.com/2018/08/14/lessjs-use/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
-<meta property="og:description" content="在熟悉了jquery和插件写法之后，作者将之前使用原生js和jquery写的一些组件，封装成插件">
-<meta property="og:updated_time" content="2018-10-10T12:47:13.259Z">
+<meta property="og:description" content="待补充">
+<meta property="og:updated_time" content="2018-10-17T13:17:15.739Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JQuery-自写插件集">
-<meta name="twitter:description" content="在熟悉了jquery和插件写法之后，作者将之前使用原生js和jquery写的一些组件，封装成插件">
+<meta name="twitter:title" content="less.js用法（译）">
+<meta name="twitter:description" content="待补充">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
   
@@ -166,334 +166,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-jq-plugins-dev" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-lessjs-use" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JQuery-自写插件集
+      less.js用法（译）
     </h1>
   
 
         
-        <a href="/2018/08/02/jq-plugins-dev/" class="archive-article-date">
-  	<time datetime="2018-08-02T15:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-02</time>
+        <a href="/2018/08/14/lessjs-use/" class="archive-article-date">
+  	<time datetime="2018-08-13T16:00:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在熟悉了jquery和插件写法之后，作者将之前使用原生js和jquery写的一些组件，封装成插件<br><a id="more"></a></p>
-<h3 id="switch开关"><a href="#switch开关" class="headerlink" title="switch开关"></a>switch开关</h3><p><a href="https://runjs.cn/code/0eao8cw2" target="_blank" rel="external">插件代码</a></p>
-<p>使用方式：</p>
-<pre><code>&lt;div id=&quot;switch1&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;switch2&quot;&gt;&lt;/div&gt;
-
-$(function() {
-    $(&quot;#switch1&quot;).bootSwitch({titles: [],
-                            defalutCheck: true});
-    $(&quot;#switch2&quot;).bootSwitch({titles:[&apos;开&apos;,&apos;关&apos;],
-                            defalutCheck: true});
-
-    $(&quot;.tips button&quot;).click(function() {
-    $(&quot;.tips span&quot;).text($(&quot;#switch1&quot;).bootSwitch(&apos;getChecked&apos;));
-    });
-
-    //获取开关状态
-    $(&quot;#switch1&quot;).bootSwitch(&apos;getChecked&apos;);
-    //添加自定义事件
-    $(&quot;#switch1&quot;).on(&quot;change.bc.switch&quot;,function() {
-        console.log(&apos;switch1 change&apos;);
-    });
-});
-</code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/0eao8cw2" target="_blank" rel="external">switch开关</a></p>
-<h3 id="select下拉选择"><a href="#select下拉选择" class="headerlink" title="select下拉选择"></a>select下拉选择</h3><p><a href="https://runjs.cn/code/3gpjwzds" target="_blank" rel="external">插件代码</a></p>
-<p>使用方式：</p>
-<pre><code>&lt;div id=&quot;select-normal&quot;&gt;&lt;/div&gt;   //正常下拉选择
-&lt;div id=&quot;select-small&quot;&gt;&lt;/div&gt;    //正常下拉选择--小尺寸
-&lt;div id=&quot;select-disable&quot;&gt;&lt;/div&gt;  //禁止下拉选择
-
-$(function() {
-    var options1 = [
-        {value: &apos;paletxUI&apos;,name: &apos;paletxUI&apos;},
-        {value: &apos;Iaas&apos;,name: &apos;Iaas&apos;},
-        {value: &apos;Paas&apos;,name: &apos;Paas&apos;},
-        {value: &apos;Saas&apos;,name: &apos;Saas&apos;},
-        {value: &apos;CMS&apos;,name: &apos;CMS&apos;}
-    ];
-    $(&quot;#select-normal&quot;).bootSelect({id: &apos;select-normal&apos;,
-                                options: options1,
-                                defalutChecked: &apos;&apos;,
-                                placeholder: &apos;请选择&apos;});
-    $(&quot;#select-small&quot;).bootSelect({id: &apos;select-normal&apos;,
-                                options: options1,
-                                defalutChecked: &apos;&apos;,
-                                placeholder: &apos;请选择&apos;,
-                                width: 220});
-    $(&quot;#select-disable&quot;).bootSelect({id: &apos;select-disable&apos;,
-                                options: options1,
-                                defalutChecked: &apos;&apos;,
-                                placeholder: &apos;请选择&apos;,
-                                disable: true});
-});
-</code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/3gpjwzds" target="_blank" rel="external">下拉选择</a></p>
-<h3 id="multilSelect多选下拉选择"><a href="#multilSelect多选下拉选择" class="headerlink" title="multilSelect多选下拉选择"></a>multilSelect多选下拉选择</h3><p><a href="https://runjs.cn/code/byn8l5d7" target="_blank" rel="external">插件代码</a></p>
-<p>使用方式：</p>
-<pre><code>&lt;div id=&quot;mutil-select01&quot;&gt;&lt;/div&gt;    //多选下拉选择框
-&lt;div id=&quot;mutil-select02&quot;&gt;&lt;/div&gt;    //禁止多选下拉选择
-&lt;div id=&quot;mutil-select03&quot;&gt;&lt;/div&gt;    //带复选框的下拉选择
-&lt;div id=&quot;mutil-select04&quot;&gt;&lt;/div&gt;    //带全选的下拉选择
-&lt;div id=&quot;mutil-select05&quot;&gt;&lt;/div&gt;    //显示选择个数的-带复选框
-&lt;div id=&quot;mutil-select06&quot;&gt;&lt;/div&gt;    //显示选择个数的-普通
-&lt;div id=&quot;mutil-small&quot;&gt;&lt;/div&gt;    //多选下拉选择框-小尺寸
-&lt;div id=&quot;mutil-big&quot;&gt;&lt;/div&gt;    //多选下拉选择框-大尺寸
-
-$(function() {
-var optionsss = [
-        {value: &apos;paletxUI-paletxUI-paletxUI-paletxUI-paletxUI-paletxUI-paletxUI-paletxUI&apos;,
-         name: &apos;paletxUI-paletxUI-paletxUI-paletxUI-paletxUI-paletxUI-paletxUI-paletxUI&apos;},
-        {value: &apos;Paas-Paas&apos;,name: &apos;Paas-Paas&apos;},
-        {value: &apos;Iaas-Iaas&apos;,name: &apos;Iaas-Iaas&apos;},
-        {value: &apos;Saas-Saas&apos;,name: &apos;Saas-Saas&apos;},
-        {value: &apos;CMS-CMS&apos;,name: &apos;CMS-CMS&apos;}
-];
-    var defaultSelects = [
-        {value: &apos;Iaas-Iaas&apos;,name: &apos;Iaas-Iaas&apos;},
-        {value: &apos;CMS-CMS&apos;,name: &apos;CMS-CMS&apos;}
-];
-var disableOptions = [
-        {value: &apos;CMS-CMS&apos;,name: &apos;CMS-CMS&apos;}
-];
-$(&quot;#mutil-select01&quot;).bootMultilSelect({options: optionsss,                                                defalutSelected: defaultSelects,
-                                    disable: disableOptions});
-$(&quot;#mutil-select02&quot;).bootMultilSelect({options: optionsss,
-                defalutSelected: defaultSelects,
-                disable: disableOptions,
-                disabled:true});
-$(&quot;#mutil-select03&quot;).bootMultilSelect({options: optionsss,
-                defalutSelected: defaultSelects,
-                disable: disableOptions,
-                checkbox:true});
-$(&quot;#mutil-select04&quot;).bootMultilSelect({options: optionsss,
-                defalutSelected: defaultSelects,
-                disable: disableOptions,
-                checkbox:true,
-                allcheck:true});
-$(&quot;#mutil-select05&quot;).bootMultilSelect({options: optionsss,
-                defalutSelected: defaultSelects,
-                disable: [],
-                checkbox:true,
-                allcheck:true,
-                showNum:true});
-$(&quot;#mutil-select06&quot;).bootMultilSelect({options: optionsss,
-                defalutSelected: defaultSelects,
-                disable: [],
-                showNum:true});
-$(&quot;#mutil-small&quot;).bootMultilSelect({options: optionsss,
-                defalutSelected: defaultSelects,
-                disable: [],
-                width: 220});
-$(&quot;#mutil-big&quot;).bootMultilSelect({options: optionsss,
-                defalutSelected: defaultSelects,
-                disable: [],
-                checkbox:true,
-                width: 620});
-
-    //添加选择变更事件
-    $(&quot;#mutil-select01&quot;).on(&quot;change.bc.multilselect&quot;,function() {
-        console.log(&apos;multilselect change&apos;);
-    });
-    //获取已选记录
-    var selection = $(&quot;#mutil-select01&quot;).bootMultilSelect(&apos;getSelection&apos;);
-});
-</code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/byn8l5d7" target="_blank" rel="external">multil多选下拉框</a></p>
-<h3 id="transfer穿梭框"><a href="#transfer穿梭框" class="headerlink" title="transfer穿梭框"></a>transfer穿梭框</h3><p><a href="https://runjs.cn/code/szon4uz2" target="_blank" rel="external">插件代码</a></p>
-<p>使用方式：</p>
-<pre><code>&lt;div id=&quot;myTranfer&quot;&gt;&lt;/div&gt;
-
-$(function() {
-    var sourceItems = [{value:&apos;content01&apos;,name:&apos;content01&apos;},
-                        {value:&apos;content02&apos;,name:&apos;content02&apos;},
-                        {value:&apos;content03&apos;,name:&apos;content03&apos;},
-                        {value:&apos;content04&apos;,name:&apos;content04&apos;},
-                        {value:&apos;content05&apos;,name:&apos;content05&apos;},
-                        {value:&apos;content06&apos;,name:&apos;content06&apos;},
-                        {value:&apos;content07&apos;,name:&apos;content07&apos;},
-                        {value:&apos;content08&apos;,name:&apos;content08&apos;}];
-    var targetItems = [{value:&apos;content09&apos;,name:&apos;content09&apos;},
-                        {value:&apos;content10&apos;,name:&apos;content10&apos;}];
-
-    $(&quot;#myTranfer&quot;).bootTransfer({sourOptions: sourceItems,
-                                targOptions: targetItems,
-                                disableItems: [],
-                                itemText:&apos;项目&apos;,
-                                sourceText:&apos;源&apos;,
-                                targetText:&apos;目标&apos;});
-
-    //获取源记录
-    $(&quot;#myTranfer&quot;).bootTransfer(&apos;getSource&apos;);
-    //获取目标记录
-    $(&quot;#myTranfer&quot;).bootTransfer(&apos;getTarget&apos;);
-});
-</code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/szon4uz2" target="_blank" rel="external">transfer穿梭框</a></p>
-<h3 id="Info通知"><a href="#Info通知" class="headerlink" title="Info通知"></a>Info通知</h3><p><a href="https://runjs.cn/code/hckrhfgi" target="_blank" rel="external">插件代码</a></p>
-<p>使用方式：</p>
-<pre><code>&lt;div id=&quot;success&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;error&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;warn&quot;&gt;&lt;/div&gt;
-
-$(function() {
-    var $successInfo = $(&quot;#success&quot;).bootInfo({type: &apos;success&apos;,
-                                         title: &apos;操作成功,2s后自动消失&apos;,
-                                         timelen: 2000});
-    var $warnInfo = $(&quot;#warn&quot;).bootInfo({type: &apos;warn&apos;,
-                                        title: &apos;我是警告消息!&apos;});
-    var $errorInfo = $(&quot;#error&quot;).bootInfo({type: &apos;error&apos;,
-                                        title: &apos;我是错误消息!&apos;});
-
-    //展现通知
-    $successInfo.bootInfo(&apos;show&apos;);
-    $warnInfo.bootInfo(&apos;show&apos;);
-    $errorInfo.bootInfo(&apos;show&apos;);
-    //隐藏通知
-    $warnInfo.bootInfo(&apos;hide&apos;);
-    $errorInfo.bootInfo(&apos;hide&apos;);
-});
-</code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/hckrhfgi" target="_blank" rel="external">Info通知</a></p>
-<h3 id="Collapse折叠面板"><a href="#Collapse折叠面板" class="headerlink" title="Collapse折叠面板"></a>Collapse折叠面板</h3><p><a href="https://runjs.cn/code/lmfma6gm" target="_blank" rel="external">插件代码</a></p>
-<p>使用方式：</p>
-<pre><code>&lt;div class=&quot;collapseset&quot; id=&quot;collapset1&quot;&gt;
-    &lt;div class=&quot;collapse&quot;&gt;
-        &lt;header&gt;&lt;span&gt;&lt;/span&gt;
-        杨过&lt;/header&gt;
-        &lt;article&gt;杨过，名过，字改之，是金庸武侠小说《神雕侠侣》[1]  中的主人公，前作《射雕英雄传》中杨康与穆念慈之子，西毒欧阳锋的义子。名字为郭靖、黄蓉所取，取“有过则改之”之意。&lt;/article&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;collapse&quot;&gt;
-        &lt;header&gt;&lt;span&gt;&lt;/span&gt;
-        小龙女&lt;/header&gt;
-        &lt;article&gt;小龙女，是金庸小说《神雕侠侣》的女主角，金庸笔下广受读者喜爱的女角之一。容貌秀美若仙、清丽绝俗。性格宽容恬淡、天真可爱。武功轻灵飘逸，于婀娜妩媚中击敌制胜。&lt;/article&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;collapse&quot;&gt;
-        &lt;header&gt;&lt;span&gt;&lt;/span&gt;
-        黄药师&lt;/header&gt;
-        &lt;article&gt;黄药师，外号“东邪”，天下“五绝”之一，是金庸武侠小说《射雕英雄传》和《神雕侠侣》中的角色。是黄蓉之父，对其妻冯氏（小字阿衡）一往情深。。  &lt;/article&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-$(function() {
-    $(&quot;#collapset1&quot;).bootCollapse({type: &apos;normal&apos;});
-    $(&quot;#collapset2&quot;).bootCollapse({type: &apos;eachOne&apos;});
-});
-</code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/lmfma6gm" target="_blank" rel="external">折叠面板</a></p>
-<h3 id="轮播图"><a href="#轮播图" class="headerlink" title="轮播图"></a>轮播图</h3><p><a href="https://runjs.cn/code/tbziv3gx" target="_blank" rel="external">插件代码</a></p>
-<p>使用方式：</p>
-<pre><code>&lt;div id=&quot;carousel-fade&quot;&gt;&lt;/div&gt;      //渐变
-&lt;div id=&quot;carousel-slide&quot;&gt;&lt;/div&gt;     //滑动
-&lt;div id=&quot;carousel-slide-data-api&quot;&gt;&lt;/div&gt;   //使用data-api
-
-$(function() {
-var optionss = [
-        {name: &apos;fuzhi&apos;,
-         url: &apos;http://dimg04.c-ctrip.com/images/t1/vacations/203000/202469/ef1ae815bbef4a0698d4fa2ac15614e0.jpg&apos;},
-        {name: &apos;qingshuisi&apos;,
-         url: &apos;http://upload.shunwang.com/2014/0625/1403670070972.JPG&apos;},
-        {name: &apos;xiaodao&apos;,
-         url: &apos;http://digitalphoto.cocolog-nifty.com/photos/uncategorized/2008/08/02/dsc_d300_0006950_2.jpg&apos;},
-        {name: &apos;xiaodao2&apos;,
-         url: &apos;http://f4.topitme.com/4/b3/e5/1118294546054e5b34o.jpg&apos;},
-        {name: &apos;xiaodao3&apos;,
-         url: &apos;http://img17.3lian.com/d/file/201701/19/fd92ea2409b6b157c247b78ce4eda95a.jpg&apos;}
-];
-
-$(&quot;#carousel-fade&quot;).bootCarousel({options: optionss,type: &apos;fade&apos;});
-$(&quot;#carousel-slide&quot;).bootCarousel({options: optionss,type: &apos;slide&apos;，
-                                    interval:5000,pause:true});
-$(&quot;#carousel-slide-data-api&quot;).bootCarousel({options: optionss,
-                                            type: &apos;fade&apos;,
-                                            dataApi:true});
-
-//手动切换项目
-$(&quot;#carousel-fade&quot;).bootCarousel(&apos;prev&apos;);
-$(&quot;#carousel-fade&quot;).bootCarousel(&apos;next&apos;);
-$(&quot;#carousel-fade&quot;).bootCarousel(Num);
-
-//手动启停自动循环播放
-$(&quot;#carousel-slide&quot;).bootCarousel(&apos;cycle&apos;); //启动
-$(&quot;#carousel-slide&quot;).bootCarousel(&apos;pause&apos;); //停止
-
-//自定义事件
-$(&quot;#carousel-slide&quot;).on(&quot;change.bc.carousel&quot;,function() {
-    count++;
-});
-$(&quot;#carousel-slide&quot;).on(&quot;changed.bc.carousel&quot;,function() {
-    count++;
-});
-</code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/tbziv3gx" target="_blank" rel="external">轮播图</a></p>
-<h3 id="dropdown下拉菜单"><a href="#dropdown下拉菜单" class="headerlink" title="dropdown下拉菜单"></a>dropdown下拉菜单</h3><p><a href="https://runjs.cn/code/j5y0shd5" target="_blank" rel="external">插件代码</a></p>
-<p>使用方式：</p>
-<pre><code>&lt;div class=&quot;dropdown&quot; id=&quot;dropdown1&quot;&gt;
-    &lt;button class=&quot;dropbtn dropdown-toggle&quot;&gt;下拉菜单
-        &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;
-    &lt;/button&gt;
-    &lt;ul class=&quot;dropdown-content menu-width&quot;&gt;
-        &lt;li class=&quot;dropdown-item&quot;&gt;
-        &lt;a tabindex=&quot;-1&quot; href=&quot;javascript:void(0);&quot;&gt;新浪&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;li class=&quot;dropdown-item&quot;&gt;
-        &lt;a tabindex=&quot;-1&quot; href=&quot;javascript:void(0);&quot;&gt;搜狐&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;li  class=&quot;divider&quot;&gt;&lt;/li&gt;
-        &lt;li class=&quot;dropdown-item&quot;&gt;
-        &lt;a tabindex=&quot;-1&quot; href=&quot;javascript:void(0);&quot;&gt;小米&lt;/a&gt;
-        &lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/div&gt;
-
-$(function() {
-$(&quot;#dropdown1&quot;).bootDropdown();
-$(&quot;#dropdown2&quot;).bootDropdown({place:&apos;right&apos;});
-$(&quot;#dropdown3&quot;).bootDropdown({place:&apos;up&apos;});
-$(&quot;#dropdown4&quot;).bootDropdown({type: &apos;click&apos;,place:&apos;left&apos;});
-$(&quot;#dropdown5&quot;).bootDropdown({type: &apos;hover&apos;,place:&apos;down&apos;});
-$(&quot;#dropdown6&quot;).bootDropdown({type: &apos;hover&apos;,place:&apos;right&apos;});
-$(&quot;#dropdown7&quot;).bootDropdown({type: &apos;hover&apos;,place:&apos;up&apos;});
-$(&quot;#dropdown8&quot;).bootDropdown({type: &apos;hover&apos;,place:&apos;left&apos;});
-
-   //手动切换菜单
-$(&quot;#dropdown1&quot;).bootDropdown(&apos;toggle&apos;);
-});
-</code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/j5y0shd5" target="_blank" rel="external">dropdown下拉菜单</a></p>
-<h3 id="TAB选项卡"><a href="#TAB选项卡" class="headerlink" title="TAB选项卡"></a>TAB选项卡</h3><p><a href="https://runjs.cn/code/0gamemrt" target="_blank" rel="external">插件代码</a></p>
-<p>使用方式：</p>
-<pre><code>&lt;div class=&quot;nav-tabs&quot; id=&quot;tab1&quot;&gt;
-    &lt;ul class=&quot;tab-bars&quot;&gt;
-        &lt;li  class=&quot;disabled&quot; name=&quot;html&quot;&gt;html&lt;/li&gt;
-        &lt;li name=&quot;css&quot;&gt;css&lt;/li&gt;
-        &lt;li name=&quot;dom&quot;&gt;dom&lt;/li&gt;
-        &lt;li name=&quot;javascript&quot;&gt;javascript&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;div class=&quot;tab-content&quot; &gt;
-        &lt;div name=&quot;html&quot;&gt;Html&lt;/div&gt;
-        &lt;div name=&quot;css&quot;&gt;Css&lt;/div&gt;
-        &lt;div name=&quot;dom&quot;&gt;Dom&lt;/div&gt;
-        &lt;div name=&quot;javascript&quot;&gt;Javascript&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-
-$(function() {
-    $(&quot;#tab1&quot;).bootTab();
-    $(&quot;#tab2&quot;).bootTab({defaultActive: 0});
-    $(&quot;#tab3&quot;).bootTab({defaultActive: ‘css’});
-
-    //手动激活选项卡
-    $(&quot;#tab3&quot;).bootTab(0);
-    $(&quot;#tab3&quot;).bootTab(&apos;javascript&apos;);
-});
-</code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/0gamemrt" target="_blank" rel="external">TAB选项卡</a></p>
-
+        <h1 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h1>
       
 
       
@@ -537,7 +230,7 @@ $(function() {
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Jquery</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Less</a>
         		</li>
       		
 		</ul>
@@ -604,7 +297,7 @@ $(function() {
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://blueskyawen.com/2018/08/02/jq-plugins-dev/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blueskyawen.com/2018/08/14/lessjs-use/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -618,18 +311,18 @@ $(function() {
   
 <nav id="article-nav">
   
-    <a href="/2018/09/15/jq-plugin-dev2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/20/lessjs-use-depth/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          前端插件包-BootShadow
+          详解javascript和jquery里的各种尺寸和偏移
         
       </div>
     </a>
   
   
-    <a href="/2018/07/31/jq-plugin/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JQuery-插件</div>
+    <a href="/2018/08/10/less-common/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">less.js用法（译）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -788,6 +481,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Jquery，plugin</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Less</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -858,7 +555,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
             </li>
           
             <li class="search-li">
-              <a href="http://blueskyawen.com/ng-Cat" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ngCat</a>
+              <a href="http://blueskyawen.com/ng-shadow-cat/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ngCat</a>
             </li>
           
             <li class="search-li">
