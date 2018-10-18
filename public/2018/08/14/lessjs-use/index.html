@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blueskyawen.com">
-  <title>less.js用法（译） | bluesky个人小站</title>
+  <title>less深入指南（译） | bluesky个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="待补充">
+  <meta name="description" content="这是有关LESS语言功能的深入指南，有关Less的简单概念和语法，请参阅less概述。有关安装和设置Less环境的深入指南，以及有关Less开发的文档，可查看上一篇译文less.js用法">
 <meta name="keywords" content="Less">
 <meta property="og:type" content="article">
-<meta property="og:title" content="less.js用法（译）">
+<meta property="og:title" content="less深入指南（译）">
 <meta property="og:url" content="http://blueskyawen.com/2018/08/14/lessjs-use/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
-<meta property="og:description" content="待补充">
-<meta property="og:updated_time" content="2018-10-17T13:17:15.739Z">
+<meta property="og:description" content="这是有关LESS语言功能的深入指南，有关Less的简单概念和语法，请参阅less概述。有关安装和设置Less环境的深入指南，以及有关Less开发的文档，可查看上一篇译文less.js用法">
+<meta property="og:updated_time" content="2018-10-18T14:35:32.209Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="less.js用法（译）">
-<meta name="twitter:description" content="待补充">
+<meta name="twitter:title" content="less深入指南（译）">
+<meta name="twitter:description" content="这是有关LESS语言功能的深入指南，有关Less的简单概念和语法，请参阅less概述。有关安装和设置Less环境的深入指南，以及有关Less开发的文档，可查看上一篇译文less.js用法">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
   
@@ -173,7 +173,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      less.js用法（译）
+      less深入指南（译）
     </h1>
   
 
@@ -186,7 +186,649 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="待补充"><a href="#待补充" class="headerlink" title="待补充"></a>待补充</h1>
+        <p>这是有关LESS语言功能的深入指南，有关Less的简单概念和语法，请参阅<a href="https://less.bootcss.com/#" target="_blank" rel="external">less概述</a>。<br>有关安装和设置Less环境的深入指南，以及有关Less开发的文档，可查看上一篇译文<a href="http://blueskyawen.com/2018/08/10/less-common/">less.js用法</a><br><a id="more"></a></p>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><p>使用单个变量控制常用值</p>
+<h3 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h3><p>在样式表中看到相同的值重复数十甚至数百次，这种情况并不罕见，比如下面的颜色值：</p>
+<pre><code>a,
+.link {
+  color: #428bca;
+}
+.widget {
+  color: #fff;
+  background: #428bca;
+}
+</code></pre><p>通过使用变量可以使您的代码更易于维护：</p>
+<pre><code>// Variables
+@link-color:        #428bca; // sea blue
+@link-color-hover:  darken(@link-color, 10%);
+
+// Usage
+a,
+.link {
+  color: @link-color;
+}
+a:hover {
+  color: @link-color-hover;
+}
+.widget {
+  color: #fff;
+  background: @link-color;
+}
+</code></pre><h3 id="变量插值"><a href="#变量插值" class="headerlink" title="变量插值"></a>变量插值</h3><p>上面的示例着重于使用变量来控制CSS规则中的值，但它们也可以在其他地方使用，例如选择器名称，属性名称，URL和@import语句，相当于其他语言里的一个<strong>宏替代</strong>。<br><strong>应用于选择器</strong></p>
+<pre><code>// Variables
+@my-selector: banner;
+
+// Usage
+.@{my-selector} {
+  font-weight: bold;
+  line-height: 40px;
+  margin: 0 auto;
+}
+</code></pre><p>编译后：</p>
+<pre><code>.banner {
+  font-weight: bold;
+  line-height: 40px;
+  margin: 0 auto;
+}
+</code></pre><p><strong>应用于属性</strong></p>
+<pre><code>@property: color;
+
+.widget {
+  @{property}: #0ee;
+  background-@{property}: #999;
+}
+</code></pre><p>编译后：</p>
+<pre><code>.widget {
+  color: #0ee;
+  background-color: #999;
+}
+</code></pre><p><strong>应用于URL</strong></p>
+<pre><code>@images: &quot;../img&quot;;
+
+// Usage
+body {
+  color: #444;
+  background: url(&quot;@{images}/white-sand.png&quot;);
+}
+</code></pre><p><strong>应用于@import语句</strong><br><em>请注意，在v2.0.0之前，只考虑在根或当前作用域中声明的变量，并且在查找变量时仅考虑当前文件和调用文件。</em></p>
+<pre><code>@themes: &quot;../../src/themes&quot;;
+
+// Usage
+@import &quot;@{themes}/tidal-wave.less&quot;;
+</code></pre><h3 id="变量的变量"><a href="#变量的变量" class="headerlink" title="变量的变量"></a>变量的变量</h3><p>在Less中，您可以使用变量来定义另一个变量的名称，进行间接替代</p>
+<pre><code>@primary:  green;
+@secondary: blue;
+
+.section {
+  @color: primary;
+
+  .element {
+    color: @@color;
+  }
+}
+</code></pre><p>编译后：</p>
+<pre><code>.section .element {
+  color: green;
+}
+</code></pre><h3 id="懒评估"><a href="#懒评估" class="headerlink" title="懒评估"></a>懒评估</h3><p>在less中变量可以后向声明，即变量可以先使用，后声明</p>
+<pre><code>.lazy-eval {
+  width: @var;
+}
+
+@var: @a;
+@a: 9%;
+</code></pre><p>编译后：</p>
+<pre><code>.lazy-eval {
+  width: 9%;
+}
+</code></pre><p>当定义相同变量两次时，在一个作用域内使用变量的最后一个定义，这与css本身类似，其中定义中的最后一个属性用于确定最后的替代值，比如：</p>
+<pre><code>@var: 0;
+.class {
+  @var: 1;
+  .brass {
+    @var: 2;
+    three: @var;
+    @var: 3;
+  }
+  one: @var;
+}
+</code></pre><p>编译后：</p>
+<pre><code>.class {
+  one: 1;
+}
+.class .brass {
+  three: 3;
+}
+</code></pre><p>实质上，每个作用域范围都有一个“最终”值，类似于浏览器中的属性，就像使用自定义属性的示例：</p>
+<pre><code>.header {
+  --color: white;
+  color: var(--color);  // the color is black
+  --color: black;
+}
+</code></pre><p>这意味着，与其他CSS预处理语言不同，Less变量的行为与CSS非常相似。</p>
+<h3 id="属性即变量（新特性）"><a href="#属性即变量（新特性）" class="headerlink" title="属性即变量（新特性）"></a>属性即变量（新特性）</h3><p>在最新的V3.0.0版本中，你可以直接把css属性名当作“变量”来使用，只要利用$符号，这样有时候可以使你的代码更加轻量化，比使用@事先定义变量要方便，例如：</p>
+<pre><code>.widget {
+  color: #efefef;
+  background-color: $color;
+}
+</code></pre><p>编译后：</p>
+<pre><code>.widget {
+  color: #efefef;
+  background-color: #efefef;
+}
+</code></pre><p>请注意，与变量一样，Less将选择当前/父范围内的最后一个属性作为“最终”值。</p>
+<pre><code>.block {
+  color: red;
+  .inner {
+    background-color: $color; //使用的blue
+  }
+  color: blue;
+}
+</code></pre><h3 id="默认变量"><a href="#默认变量" class="headerlink" title="默认变量"></a>默认变量</h3><p>我们有时会收到默认变量的请求 - 只有在尚未设置变量时才能设置变量。 此功能不是必需的，因为您可以通过后面的定义轻松覆盖变量。</p>
+<pre><code>// library
+@base-color: green;
+@dark-color: darken(@base-color, 10%);
+
+// use of library
+@import &quot;library.less&quot;;
+@base-color: red;
+</code></pre><p>其中，@base-color被重写了，最后生效的是red</p>
+<h1 id="父选择器"><a href="#父选择器" class="headerlink" title="父选择器"></a>父选择器</h1><p>使用＆引用父选择器<br>＆运算符表示嵌套规则的父选择器，在将链接类或伪类应用于现有选择器时最常用：</p>
+<pre><code>a {
+  color: blue;
+  &amp;:hover {
+    color: green;
+  }
+  &amp;.b {
+    color: black;
+  }
+}
+</code></pre><p>编译后：</p>
+<pre><code>a {
+  color: blue;
+}
+
+a:hover {
+  color: green;
+}
+a.b {
+    color: black;
+}
+</code></pre><p>可以看到，＆就是代表父选择器a,编译后作了替换链接<br>“父选择器”运算符具有多种用途，本上，只要您需要嵌套规则的选择器以默认的其他方式组合。 例如，＆的另一个典型用法是产生重复的类名：</p>
+<pre><code>.button {
+  &amp;-ok {
+    background-image: url(&quot;ok.png&quot;);
+  }
+  &amp;-cancel {
+    background-image: url(&quot;cancel.png&quot;);
+  }
+
+  &amp;-custom {
+    background-image: url(&quot;custom.png&quot;);
+  }
+}
+</code></pre><p>编译后：</p>
+<pre><code>.button-ok {
+  background-image: url(&quot;ok.png&quot;);
+}
+.button-cancel {
+  background-image: url(&quot;cancel.png&quot;);
+}
+.button-custom {
+  background-image: url(&quot;custom.png&quot;);
+}
+</code></pre><h3 id="多次使用-amp"><a href="#多次使用-amp" class="headerlink" title="多次使用&amp;"></a>多次使用&amp;</h3><p>＆可能会在选择器中出现多次。，这使得可以重复引用父选择器而不重复其名称。</p>
+<pre><code>.link {
+  &amp; + &amp; {
+    color: red;
+  }
+  &amp; &amp; {
+    color: green;
+  }
+  &amp;&amp; {
+    color: blue;
+  }
+  &amp;, &amp;ish {
+    color: cyan;
+  }
+}
+</code></pre><p>编译后：</p>
+<pre><code>.link + .link {
+  color: red;
+}
+.link .link {
+  color: green;
+}
+.link.link {
+  color: blue;
+}
+.link, .linkish {
+  color: cyan;
+}
+</code></pre><p>请注意，＆表示的多层嵌套的父选择器（不仅仅是最近的祖先），因此以下示例：</p>
+<pre><code>.grand {
+  .parent {
+    &amp; &gt; &amp; {
+      color: red;
+    }
+    &amp; &amp; {
+      color: green;
+    }
+    &amp;&amp; {
+      color: blue;
+    }
+    &amp;, &amp;ish {
+      color: cyan;
+    }
+  }
+}
+</code></pre><p>输出：</p>
+<pre><code>.grand .parent &gt; .grand .parent {
+  color: red;
+}
+.grand .parent .grand .parent {
+  color: green;
+}
+.grand .parent.grand .parent {
+  color: blue;
+}
+.grand .parent,
+.grand .parentish {
+  color: cyan;
+}
+</code></pre><h3 id="更改选择器顺序"><a href="#更改选择器顺序" class="headerlink" title="更改选择器顺序"></a>更改选择器顺序</h3><p>将选择器添加到继承的（父）选择器可能很有用。 这可以通过放置＆after当前选择器来完成。 例如，使用Modernizr时，您可能希望根据支持的功能指定不同的规则：</p>
+<pre><code>.header {
+  .menu {
+    border-radius: 5px;
+    .no-borderradius &amp; {
+      background-image: url(&apos;images/button-background.png&apos;);
+    }
+  }
+}
+</code></pre><p>编译输出：</p>
+<pre><code>.header .menu {
+  border-radius: 5px;
+}
+.no-borderradius .header .menu {
+  background-image: url(&apos;images/button-background.png&apos;);
+}
+</code></pre><h3 id="组合选择器"><a href="#组合选择器" class="headerlink" title="组合选择器"></a>组合选择器</h3><p>＆还可用于生成逗号分隔列表中每个可能的选择器排列：</p>
+<pre><code>p, a, ul, li {
+  &amp; + &amp; {
+    border-top: 0;
+  }
+}
+</code></pre><p>编译输出：</p>
+<pre><code>p + p,
+p + a,
+p + ul,
+p + li,
+a + p,
+a + a,
+a + ul,
+a + li,
+ul + p,
+ul + a,
+ul + ul,
+ul + li,
+li + p,
+li + a,
+li + ul,
+li + li {
+  border-top: 0;
+}
+</code></pre><h1 id="Extend伪类"><a href="#Extend伪类" class="headerlink" title="Extend伪类"></a>Extend伪类</h1><blockquote>
+<p>发布v1.4.0</p>
+</blockquote>
+<p>Extend是一个Less伪类，它将放置的选择器与它引用的选择器相匹配。</p>
+<pre><code>nav ul {
+  &amp;:extend(.inline);
+  background: blue;
+}
+.inline {
+  color: red;
+}
+</code></pre><p>在上面的规则集中，:extend选择器将“扩展选择器”（nav ul）应用到.inline类，即将.inline的css属性扩展到父选择器“nav ul”。<br>编译输出：</p>
+<pre><code>nav ul {
+  background: blue;
+}
+.inline,
+nav ul {
+  color: red;
+}
+</code></pre><p>注意，nav ul:extend(.inline）选择器如何作为nav ul输出 - 在输出之前删除extend并且选择器块保持原样。 如果没有属性放入该块，则它将从输出中删除（但扩展仍可能影响其他选择器）</p>
+<h3 id="扩展语法"><a href="#扩展语法" class="headerlink" title="扩展语法"></a>扩展语法</h3><p>extend可以附加到选择器，也可以放在规则集中。</p>
+<pre><code>.a:extend(.b) {}
+
+.a {
+  &amp;:extend(.b);
+}
+// the above blocks does the same thing
+</code></pre><p>它看起来像一个带有selector参数的伪类，后面可以跟可选的关键字all：</p>
+<pre><code>.c:extend(.d all) {
+  // extends all instances of &quot;.d&quot; e.g. &quot;.x.d&quot; or &quot;.d.x&quot;
+}
+.d { color: red; }
+.d.classX { font-size: 12px; }
+.classY.d { font-weight: 800; }
+
+//输出
+.c,.d { color: red; }
+.c.classX,.d.classX { font-size: 12px; }
+.classY.c,.classY.d { font-weight: 800; }
+</code></pre><p>它可以包含一个或多个要扩展的类，用逗号分隔,下面的例子实现的效果相同</p>
+<pre><code>.e:extend(.f) {}
+.e:extend(.g) {}
+
+// the above an the below do the same thing
+.e:extend(.f, .g) {}
+</code></pre><h3 id="扩展附加到选择器"><a href="#扩展附加到选择器" class="headerlink" title="扩展附加到选择器"></a>扩展附加到选择器</h3><p>附加到选择器的扩展看起来像普通的伪类，选择器作为参数。 选择器可以包含多个extend子句，但所有extends都必须位于选择器的末尾。</p>
+<pre><code>pre:extend(div pre) { ... }
+同
+pre {
+    ...
+    &amp;:extend(div pre)；
+}
+</code></pre><ul>
+<li>在伪类后扩展,比如 pre:hover:extend(div pre)</li>
+<li>允许选择器和扩展之间的空间,比如pre:hover :extend(div pre)</li>
+<li>允许多个扩展,pre:hover:extend(div pre):extend(.bucket tr) - 注意这与下面表示效果相同: pre:hover:extend（div pre，.bucket tr）</li>
+<li>下面这样是不允许的：pre：hover：extend（div pre）.nth-child（odd）,因为extend必须在最后。</li>
+</ul>
+<p>如果规则集包含多个选择器，则其中任何一个都可以包含extend关键字,比如：</p>
+<pre><code>.big-division,
+.big-bag:extend(.bag),
+.big-bucket:extend(.bucket) {
+  // body
+}
+</code></pre><h3 id="扩展内部规则集"><a href="#扩展内部规则集" class="headerlink" title="扩展内部规则集"></a>扩展内部规则集</h3><p>可以使用＆:extend（selector）语法将Extend放入规则集的正文中。 将extend放置到body中是将其放入该规则集的每个选择器的快捷方式。比如，下面两个例子的效果是一样的</p>
+<pre><code>pre:hover, .some-class {
+  &amp;:extend(div pre);
+}
+
+pre:hover:extend(div pre),
+.some-class:extend(div pre) {}
+</code></pre><h3 id="扩展嵌套选择器"><a href="#扩展嵌套选择器" class="headerlink" title="扩展嵌套选择器"></a>扩展嵌套选择器</h3><p>Extend能够匹配嵌套选择器,例如：</p>
+<pre><code>.bucket {
+  tr { // nested ruleset with target selector
+    color: blue;
+  }
+}
+.some-class:extend(.bucket tr) {} // nested ruleset is recognized
+</code></pre><p>输出</p>
+<pre><code>.bucket tr, .some-class {
+  color: blue;
+}
+</code></pre><p>本质上，扩展会查看已编译的css，而不是原始的less</p>
+<pre><code>.bucket {
+  tr &amp; { // nested ruleset with target selector
+    color: blue;
+  }
+}
+.some-class:extend(tr .bucket) {} // nested ruleset is recognized
+</code></pre><p>输出</p>
+<pre><code>tr .bucket,
+.some-class {
+  color: blue;
+}
+</code></pre><h3 id="与Extend完全匹配"><a href="#与Extend完全匹配" class="headerlink" title="与Extend完全匹配"></a>与Extend完全匹配</h3><p>默认情况下，扩展会查找选择器之间的完全匹配。选择器是否使用前导星比较重要。 两个第n个表达式具有相同的含义并不重要，它们需要具有相同的形式才能匹配。 唯一的例外是属性选择器中的引号，较少知道它们具有相同的含义并匹配它们。</p>
+<pre><code>.a.class,
+.class.a,
+.class &gt; .a {
+  color: blue;
+}
+.test:extend(.class) {} // this will NOT match the any selectors above
+
+*.class {
+  color: blue;
+}
+.noStar:extend(.class) {} // this will NOT match the *.class selector
+</code></pre><p>伪类的顺序很重要。 选择器链接：hover：visited和link：visited：hover匹配相同的元素集，但extend将它们视为不同：</p>
+<pre><code>link:hover:visited {
+  color: blue;
+}
+.selector:extend(link:visited:hover) {} //NOT match link:hover:visite
+</code></pre><h3 id="nth表达式"><a href="#nth表达式" class="headerlink" title="nth表达式"></a>nth表达式</h3><p>表示第N个表达形式很重要。 第N个表达式1n + 3和n+3是等价的，但是extend不匹配它们</p>
+<pre><code>:nth-child(1n+3) {
+  color: blue;
+}
+.child:extend(:nth-child(n+3)) {} //NOT match
+</code></pre><p>属性选择器中的引用类型无关紧要，以下所有内容都是等效的。</p>
+<pre><code>[title=identifier] {
+  color: blue;
+}
+[title=&apos;identifier&apos;] {
+  color: blue;
+}
+[title=&quot;identifier&quot;] {
+  color: blue;
+}
+
+.noQuote:extend([title=identifier]) {}
+.singleQuote:extend([title=&apos;identifier&apos;]) {}
+.doubleQuote:extend([title=&quot;identifier&quot;]) {}
+</code></pre><p>输出</p>
+<pre><code>[title=identifier],
+.noQuote,
+.singleQuote,
+.doubleQuote {
+  color: blue;
+}
+
+[title=&apos;identifier&apos;],
+.noQuote,
+.singleQuote,
+.doubleQuote {
+  color: blue;
+}
+
+[title=&quot;identifier&quot;],
+.noQuote,
+.singleQuote,
+.doubleQuote {
+  color: blue;
+}
+</code></pre><h3 id="扩展所有all"><a href="#扩展所有all" class="headerlink" title="扩展所有all"></a>扩展所有all</h3><p>当你在extend参数中指定all关键字时，它会告诉Less将该选择器与另一个选择器的一部分相匹配。 将复制选择器，然后仅使用extend替换选择器的匹配部分，从而生成新的选择器。</p>
+<pre><code>.a.b.test,
+.test.c {
+  color: orange;
+}
+.test {
+  &amp;:hover {
+    color: green;
+  }
+}
+
+.replacement:extend(.test all) {}
+</code></pre><p>输出</p>
+<pre><code>.a.b.test,
+.test.c,
+.a.b.replacement,
+.replacement.c {
+  color: orange;
+}
+.test:hover,
+.replacement:hover {
+  color: green;
+}
+</code></pre><p>您可以将此操作模式视为基本上进行非破坏性搜索和替换。</p>
+<h3 id="具有扩展的选择器插值"><a href="#具有扩展的选择器插值" class="headerlink" title="具有扩展的选择器插值"></a>具有扩展的选择器插值</h3><p>Extend无法将选择器不能匹配变量，也不能匹配被变量代表的选择器。 比如下面的情况将不生效：</p>
+<pre><code>@variable: .bucket;
+@{variable} { // interpolated selector
+  color: blue;
+}
+.some-class:extend(.bucket) {} // does nothing, no match is found
+
+.bucket {
+  color: blue;
+}
+.some-class:extend(@{variable}) {} // interpolated selector matches nothing
+@variable: .bucket;
+</code></pre><p>但是，extend可以附加到插值选择器上，即插值选择器可以作为extend的父，不能作为extend的子,比如：</p>
+<pre><code>.bucket {
+  color: blue;
+}
+@{variable}:extend(.bucket) {}
+@variable: .selector;
+
+//编译后
+.bucket, .selector {
+  color: blue;
+}
+</code></pre><h3 id="在-media媒体查询内扩展"><a href="#在-media媒体查询内扩展" class="headerlink" title="在@media媒体查询内扩展"></a>在@media媒体查询内扩展</h3><p>目前，在@media声明中扩展只会匹配同一媒体声明中的选择器：</p>
+<pre><code>@media print {
+  .screenClass:extend(.selector) {} // extend inside media
+  .selector { // this will be matched - it is in the same media
+    color: black;
+  }
+}
+.selector { // ruleset on top of style sheet - extend ignores it
+  color: red;
+}
+@media screen {
+  .selector {  // ruleset inside another media - extend ignores it
+    color: blue;
+  }
+}
+</code></pre><p>编译后：</p>
+<pre><code>@media print {
+  .selector,
+  .screenClass { /*  ruleset inside the same media was extended */
+    color: black;
+  }
+}
+.selector { /* ruleset on top of style sheet was ignored */
+  color: red;
+}
+@media screen {
+  .selector { /* ruleset inside another media was ignored */
+    color: blue;
+  }
+}
+</code></pre><blockquote>
+<p>注意：扩展与嵌套的@media声明中的选择器不匹配：</p>
+</blockquote>
+<pre><code>@media screen {
+  .screenClass:extend(.selector) {} // extend inside media
+  @media (min-width: 1023px) {
+    .selector {  // ruleset inside nested media - extend ignores it
+      color: blue;
+    }
+  }
+}
+//extend不生效
+</code></pre><p>最外层顶级扩展,可以匹配嵌套媒体内的选择器在内的所有内容：</p>
+<pre><code>@media screen {
+  .selector {  /* ruleset inside nested media - top level extend works */
+    color: blue;
+  }
+  @media (min-width: 1023px) {
+    .selector {  /* ruleset inside nested media - top level extend works */
+      color: blue;
+    }
+  }
+}
+
+.topLevel:extend(.selector) {} /* top level extend matches everything */
+</code></pre><p>编译后：</p>
+<pre><code>@media screen {
+  .selector,
+  .topLevel { /* ruleset inside media was extended */
+    color: blue;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .selector,
+  .topLevel { /* ruleset inside nested media was extended */
+    color: blue;
+  }
+}
+</code></pre><h3 id="复制检测"><a href="#复制检测" class="headerlink" title="复制检测"></a>复制检测</h3><p>目前没有重复检测。</p>
+<pre><code>.alert-info,
+.widget {
+  /* declarations */
+}
+
+.alert:extend(.alert-info, .widget) {}
+</code></pre><p>输出</p>
+<pre><code>.alert-info,
+.widget,
+.alert,
+.alert {
+  /* declarations */
+}
+</code></pre><h3 id="用例扩展"><a href="#用例扩展" class="headerlink" title="用例扩展"></a>用例扩展</h3><p><strong>经典用例</strong><br>经典用例是避免添加基类，比如：</p>
+<pre><code>.animal {
+  background-color: black;
+  color: white;
+}
+</code></pre><p>并且您希望拥有一个覆盖背景颜色的动物子类型，那么您有两个选项，首先更改您的HTML</p>
+<pre><code>&lt;a class=&quot;animal bear&quot;&gt;Bear&lt;/a&gt;
+
+.animal {
+  background-color: black;
+  color: white;
+}
+.bear {
+  background-color: brown;
+}
+</code></pre><p>或者简化了html并使用了更少的扩展。 例如</p>
+<pre><code>&lt;a class=&quot;bear&quot;&gt;Bear&lt;/a&gt;
+
+.animal {
+  background-color: black;
+  color: white;
+}
+.bear {
+  &amp;:extend(.animal);
+  background-color: brown;
+}
+</code></pre><p><strong>减少CSS大小</strong><br>Mixins将所有属性复制到选择器中，这可能导致不必要的重复。 因此，您可以使用extends而不是mixins将选择器移动到您希望使用的属性，从而减少生成的CSS。</p>
+<pre><code>.my-inline-block() {
+  display: inline-block;
+  font-size: 0;
+}
+.thing1 {
+  .my-inline-block;
+}
+.thing2 {
+  .my-inline-block;
+}
+</code></pre><p>输出</p>
+<pre><code>.thing1 {
+  display: inline-block;
+  font-size: 0;
+}
+.thing2 {
+  display: inline-block;
+  font-size: 0;
+}
+</code></pre><p>又例如</p>
+<pre><code>.my-inline-block {
+  display: inline-block;
+  font-size: 0;
+}
+.thing1 {
+  &amp;:extend(.my-inline-block);
+}
+.thing2 {
+  &amp;:extend(.my-inline-block);
+}
+</code></pre><p>输出</p>
+<pre><code>.my-inline-block,
+.thing1,
+.thing2 {
+  display: inline-block;
+  font-size: 0;
+}
+</code></pre><p><strong>结合样式/更高级的Mixin</strong><br>另一个用例是mixin的替代方案 - 因为mixins只能用于简单的选择器，如果你有两个不同的html块，但是需要将相同的样式应用于两者，你可以使用extends来关联两个区域。</p>
+<pre><code>li.list &gt; a {
+  // list styles
+}
+button.list-style {
+  &amp;:extend(li.list &gt; a); // use the same list styles
+}
+</code></pre>
       
 
       

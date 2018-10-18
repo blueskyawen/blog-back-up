@@ -1,5 +1,5 @@
 ---
-title: less深入指南（译）
+title: less深入指南一（译）
 date: 2018-08-14 00:00:30
 tags: Less
 categories: 前端
@@ -9,9 +9,6 @@ comments: true
 这是有关LESS语言功能的深入指南，有关Less的简单概念和语法，请参阅[less概述](https://less.bootcss.com/#)。
 有关安装和设置Less环境的深入指南，以及有关Less开发的文档，可查看上一篇译文[less.js用法](http://blueskyawen.com/2018/08/10/less-common/)
 <!--more-->
-
-这是有关LESS语言功能的深入指南，有关Less的简单概念和语法，请参阅[less概述](https://less.bootcss.com/#)。
-有关安装和设置Less环境的深入指南，以及有关Less开发的文档，请参阅上一篇译文[less.js用法](http://blueskyawen.com/2018/08/10/less-common/).
 
 # 变量
 使用单个变量控制常用值
@@ -430,14 +427,8 @@ extend可以附加到选择器，也可以放在规则集中。
 
     //输出
     .c,.d { color: red; }
-    .c,.d.classX { font-size: 12px; }
-    .c,.classY.d { font-weight: 800; }
-    //从而合成的.c
-    .c {
-        color: red;
-        font-size: 12px;
-        font-weight: 800;
-    }
+    .c.classX,.d.classX { font-size: 12px; }
+    .classY.c,.classY.d { font-weight: 800; }
 
 它可以包含一个或多个要扩展的类，用逗号分隔,下面的例子实现的效果相同
 
@@ -448,6 +439,387 @@ extend可以附加到选择器，也可以放在规则集中。
     .e:extend(.f, .g) {}
 
 ### 扩展附加到选择器
+附加到选择器的扩展看起来像普通的伪类，选择器作为参数。 选择器可以包含多个extend子句，但所有extends都必须位于选择器的末尾。
+
+    pre:extend(div pre) { ... }
+    同
+    pre {
+        ...
+        &:extend(div pre)；
+    }
+
+- 在伪类后扩展,比如 pre:hover:extend(div pre)
+- 允许选择器和扩展之间的空间,比如pre:hover :extend(div pre)
+- 允许多个扩展,pre:hover:extend(div pre):extend(.bucket tr) - 注意这与下面表示效果相同: pre:hover:extend（div pre，.bucket tr）
+- 下面这样是不允许的：pre：hover：extend（div pre）.nth-child（odd）,因为extend必须在最后。
+
+如果规则集包含多个选择器，则其中任何一个都可以包含extend关键字,比如：
+
+    .big-division,
+    .big-bag:extend(.bag),
+    .big-bucket:extend(.bucket) {
+      // body
+    }
+
+### 扩展内部规则集
+可以使用＆:extend（selector）语法将Extend放入规则集的正文中。 将extend放置到body中是将其放入该规则集的每个选择器的快捷方式。比如，下面两个例子的效果是一样的
+
+    pre:hover, .some-class {
+      &:extend(div pre);
+    }
+
+    pre:hover:extend(div pre),
+    .some-class:extend(div pre) {}
+
+### 扩展嵌套选择器
+Extend能够匹配嵌套选择器,例如：
+
+    .bucket {
+      tr { // nested ruleset with target selector
+        color: blue;
+      }
+    }
+    .some-class:extend(.bucket tr) {} // nested ruleset is recognized
+
+输出
+
+    .bucket tr, .some-class {
+      color: blue;
+    }
+
+本质上，扩展会查看已编译的css，而不是原始的less
+
+    .bucket {
+      tr & { // nested ruleset with target selector
+        color: blue;
+      }
+    }
+    .some-class:extend(tr .bucket) {} // nested ruleset is recognized
+
+输出
+
+    tr .bucket,
+    .some-class {
+      color: blue;
+    }
+
+### 与Extend完全匹配
+
+默认情况下，扩展会查找选择器之间的完全匹配。选择器是否使用前导星比较重要。 两个第n个表达式具有相同的含义并不重要，它们需要具有相同的形式才能匹配。 唯一的例外是属性选择器中的引号，较少知道它们具有相同的含义并匹配它们。
+
+    .a.class,
+    .class.a,
+    .class > .a {
+      color: blue;
+    }
+    .test:extend(.class) {} // this will NOT match the any selectors above
+
+    *.class {
+      color: blue;
+    }
+    .noStar:extend(.class) {} // this will NOT match the *.class selector
+
+伪类的顺序很重要。 选择器链接：hover：visited和link：visited：hover匹配相同的元素集，但extend将它们视为不同：
+
+    link:hover:visited {
+      color: blue;
+    }
+    .selector:extend(link:visited:hover) {} //NOT match link:hover:visite
+
+### nth表达式
+表示第N个表达形式很重要。 第N个表达式1n + 3和n+3是等价的，但是extend不匹配它们
+
+    :nth-child(1n+3) {
+      color: blue;
+    }
+    .child:extend(:nth-child(n+3)) {} //NOT match
+
+属性选择器中的引用类型无关紧要，以下所有内容都是等效的。
+
+    [title=identifier] {
+      color: blue;
+    }
+    [title='identifier'] {
+      color: blue;
+    }
+    [title="identifier"] {
+      color: blue;
+    }
+
+    .noQuote:extend([title=identifier]) {}
+    .singleQuote:extend([title='identifier']) {}
+    .doubleQuote:extend([title="identifier"]) {}
+
+输出
+
+    [title=identifier],
+    .noQuote,
+    .singleQuote,
+    .doubleQuote {
+      color: blue;
+    }
+
+    [title='identifier'],
+    .noQuote,
+    .singleQuote,
+    .doubleQuote {
+      color: blue;
+    }
+
+    [title="identifier"],
+    .noQuote,
+    .singleQuote,
+    .doubleQuote {
+      color: blue;
+    }
+
+### 扩展所有all
+当你在extend参数中指定all关键字时，它会告诉Less将该选择器与另一个选择器的一部分相匹配。 将复制选择器，然后仅使用extend替换选择器的匹配部分，从而生成新的选择器。
+
+    .a.b.test,
+    .test.c {
+      color: orange;
+    }
+    .test {
+      &:hover {
+        color: green;
+      }
+    }
+
+    .replacement:extend(.test all) {}
+
+输出
+
+    .a.b.test,
+    .test.c,
+    .a.b.replacement,
+    .replacement.c {
+      color: orange;
+    }
+    .test:hover,
+    .replacement:hover {
+      color: green;
+    }
+
+您可以将此操作模式视为基本上进行非破坏性搜索和替换。
+
+### 具有扩展的选择器插值
+Extend无法将选择器不能匹配变量，也不能匹配被变量代表的选择器。 比如下面的情况将不生效：
+
+    @variable: .bucket;
+    @{variable} { // interpolated selector
+      color: blue;
+    }
+    .some-class:extend(.bucket) {} // does nothing, no match is found
+
+    .bucket {
+      color: blue;
+    }
+    .some-class:extend(@{variable}) {} // interpolated selector matches nothing
+    @variable: .bucket;
+
+但是，extend可以附加到插值选择器上，即插值选择器可以作为extend的父，不能作为extend的子,比如：
+
+    .bucket {
+      color: blue;
+    }
+    @{variable}:extend(.bucket) {}
+    @variable: .selector;
+
+    //编译后
+    .bucket, .selector {
+      color: blue;
+    }
+
+### 在@media媒体查询内扩展
+目前，在@media声明中扩展只会匹配同一媒体声明中的选择器：
+
+    @media print {
+      .screenClass:extend(.selector) {} // extend inside media
+      .selector { // this will be matched - it is in the same media
+        color: black;
+      }
+    }
+    .selector { // ruleset on top of style sheet - extend ignores it
+      color: red;
+    }
+    @media screen {
+      .selector {  // ruleset inside another media - extend ignores it
+        color: blue;
+      }
+    }
+
+编译后：
+
+    @media print {
+      .selector,
+      .screenClass { /*  ruleset inside the same media was extended */
+        color: black;
+      }
+    }
+    .selector { /* ruleset on top of style sheet was ignored */
+      color: red;
+    }
+    @media screen {
+      .selector { /* ruleset inside another media was ignored */
+        color: blue;
+      }
+    }
+
+
+> 注意：扩展与嵌套的@media声明中的选择器不匹配：
+
+    @media screen {
+      .screenClass:extend(.selector) {} // extend inside media
+      @media (min-width: 1023px) {
+        .selector {  // ruleset inside nested media - extend ignores it
+          color: blue;
+        }
+      }
+    }
+    //extend不生效
+
+最外层顶级扩展,可以匹配嵌套媒体内的选择器在内的所有内容：
+
+    @media screen {
+      .selector {  /* ruleset inside nested media - top level extend works */
+        color: blue;
+      }
+      @media (min-width: 1023px) {
+        .selector {  /* ruleset inside nested media - top level extend works */
+          color: blue;
+        }
+      }
+    }
+
+    .topLevel:extend(.selector) {} /* top level extend matches everything */
+
+编译后：
+
+    @media screen {
+      .selector,
+      .topLevel { /* ruleset inside media was extended */
+        color: blue;
+      }
+    }
+    @media screen and (min-width: 1023px) {
+      .selector,
+      .topLevel { /* ruleset inside nested media was extended */
+        color: blue;
+      }
+    }
+
+### 复制检测
+目前没有重复检测。
+
+    .alert-info,
+    .widget {
+      /* declarations */
+    }
+
+    .alert:extend(.alert-info, .widget) {}
+
+输出
+
+    .alert-info,
+    .widget,
+    .alert,
+    .alert {
+      /* declarations */
+    }
+
+### 用例扩展
+**经典用例**
+经典用例是避免添加基类，比如：
+
+    .animal {
+      background-color: black;
+      color: white;
+    }
+
+并且您希望拥有一个覆盖背景颜色的动物子类型，那么您有两个选项，首先更改您的HTML
+
+    <a class="animal bear">Bear</a>
+
+    .animal {
+      background-color: black;
+      color: white;
+    }
+    .bear {
+      background-color: brown;
+    }
+
+或者简化了html并使用了更少的扩展。 例如
+
+    <a class="bear">Bear</a>
+
+    .animal {
+      background-color: black;
+      color: white;
+    }
+    .bear {
+      &:extend(.animal);
+      background-color: brown;
+    }
+
+**减少CSS大小**
+Mixins将所有属性复制到选择器中，这可能导致不必要的重复。 因此，您可以使用extends而不是mixins将选择器移动到您希望使用的属性，从而减少生成的CSS。
+
+    .my-inline-block() {
+      display: inline-block;
+      font-size: 0;
+    }
+    .thing1 {
+      .my-inline-block;
+    }
+    .thing2 {
+      .my-inline-block;
+    }
+
+输出
+
+    .thing1 {
+      display: inline-block;
+      font-size: 0;
+    }
+    .thing2 {
+      display: inline-block;
+      font-size: 0;
+    }
+
+又例如
+
+    .my-inline-block {
+      display: inline-block;
+      font-size: 0;
+    }
+    .thing1 {
+      &:extend(.my-inline-block);
+    }
+    .thing2 {
+      &:extend(.my-inline-block);
+    }
+
+输出
+
+    .my-inline-block,
+    .thing1,
+    .thing2 {
+      display: inline-block;
+      font-size: 0;
+    }
+
+**结合样式/更高级的Mixin**
+另一个用例是mixin的替代方案 - 因为mixins只能用于简单的选择器，如果你有两个不同的html块，但是需要将相同的样式应用于两者，你可以使用extends来关联两个区域。
+
+    li.list > a {
+      // list styles
+    }
+    button.list-style {
+      &:extend(li.list > a); // use the same list styles
+    }
+
+
 
 
 
