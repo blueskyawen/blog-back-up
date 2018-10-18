@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blueskyawen.com">
-  <title>Category: 前端 | bluesky个人小站</title>
+  <title>less深入指南二（译） | bluesky个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="初涉前端，懵懂无知，且行且进">
-<meta property="og:type" content="website">
-<meta property="og:title" content="bluesky个人小站">
-<meta property="og:url" content="http://blueskyawen.com/categories/前端/page/3/index.html">
+  <meta name="description" content="合并合并功能允许将多个属性中的值聚合到单个属性下的逗号或空格分隔列表中。 merge对于背景和变换等属性很有用。">
+<meta name="keywords" content="Less">
+<meta property="og:type" content="article">
+<meta property="og:title" content="less深入指南二（译）">
+<meta property="og:url" content="http://blueskyawen.com/2018/08/14/lessjs-use-depth/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
-<meta property="og:description" content="初涉前端，懵懂无知，且行且进">
+<meta property="og:description" content="合并合并功能允许将多个属性中的值聚合到单个属性下的逗号或空格分隔列表中。 merge对于背景和变换等属性很有用。">
+<meta property="og:updated_time" content="2018-10-18T14:52:07.249Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bluesky个人小站">
-<meta name="twitter:description" content="初涉前端，懵懂无知，且行且进">
+<meta name="twitter:title" content="less深入指南二（译）">
+<meta name="twitter:description" content="合并合并功能允许将多个属性中的值聚合到单个属性下的逗号或空格分隔列表中。 merge对于背景和变换等属性很有用。">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
   
@@ -164,525 +166,238 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-lessjs-use-depth" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      less深入指南二（译）
+    </h1>
+  
+
+        
+        <a href="/2018/08/14/lessjs-use-depth/" class="archive-article-date">
+  	<time datetime="2018-08-13T16:00:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h1><p>合并功能允许将多个属性中的值聚合到单个属性下的逗号或空格分隔列表中。 merge对于背景和变换等属性很有用。<br><a id="more"></a></p>
+<h3 id="使用逗号附加属性值"><a href="#使用逗号附加属性值" class="headerlink" title="使用逗号附加属性值"></a>使用逗号附加属性值</h3><blockquote>
+<p>Released v1.5.0</p>
+</blockquote>
+<pre><code>.mixin() {
+  box-shadow+: inset 0 0 10px #555;
+}
+.myclass {
+  .mixin();
+  box-shadow+: 0 0 20px black;
+}
+</code></pre><p>输出</p>
+<pre><code>.myclass {
+  box-shadow: inset 0 0 10px #555, 0 0 20px black;
+}
+</code></pre><h3 id="使用空格附加属性值"><a href="#使用空格附加属性值" class="headerlink" title="使用空格附加属性值"></a>使用空格附加属性值</h3><blockquote>
+<p>Released v1.7.0</p>
+</blockquote>
+<pre><code>.mixin() {
+  transform+_: scale(2);
+}
+.myclass {
+  .mixin();
+  transform+_: rotate(15deg);
+}
+</code></pre><p>输出</p>
+<pre><code>.myclass {
+  transform: scale(2) rotate(15deg);
+}
+</code></pre><blockquote>
+<p>为了避免任何无意的连接，merge需要在每个连接挂起声明上使用显式的+或+ _标志。</p>
+</blockquote>
+<h1 id="Mixins混合"><a href="#Mixins混合" class="headerlink" title="Mixins混合"></a>Mixins混合</h1><p>您可以混合使用类选择器和id选择器，例如：</p>
+<pre><code>.a, #b {
+  color: red;
+}
+.mixin-class {
+  .a();
+}
+.mixin-id {
+  #b();
+}
+</code></pre><p>输出</p>
+<pre><code>.a, #b {
+  color: red;
+}
+.mixin-class {
+  color: red;
+}
+.mixin-id {
+  color: red;
+}
+</code></pre><p>目前和历史上，mixin调用中的括号是可选的，但是不推荐使用可选括号，并且在将来的版本中将需要这些括号。</p>
+<pre><code>.a();
+.a;  // currently works, but deprecated; don&apos;t use
+</code></pre>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content" style="bottom: -150%;">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>请随意打赏<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/IMG_zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/IMG_weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/11/forkjoin-zip/" class="archive-article-date">
-  	<time datetime="2018-01-11T15:18:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/11/forkjoin-zip/">Rxjs-forkjoin/zip/combineLatestde的相似与区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">rxjs</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Less</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/27/rxjs-operators/" class="archive-article-date">
-  	<time datetime="2017-12-27T14:47:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/27/rxjs-operators/">Rxjs-操作符</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">rxjs</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blueskyawen.com/2018/08/14/lessjs-use-depth/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/24/rxjs/" class="archive-article-date">
-  	<time datetime="2017-12-24T11:00:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-24</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/24/rxjs/">Rxjs-响应式流编程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">rxjs</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/01/router-guard/" class="archive-article-date">
-  	<time datetime="2017-12-01T14:11:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/01/router-guard/">Angular-路由器守卫</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Augular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/26/reactive-form/" class="archive-article-date">
-  	<time datetime="2017-11-26T10:09:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/26/reactive-form/">表单-响应式构建表单</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Augular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/22/Form-templateForm/" class="archive-article-date">
-  	<time datetime="2017-11-21T16:36:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/22/Form-templateForm/">表单-模板驱动构建表单</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Augular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/19/Angular-Form/" class="archive-article-date">
-  	<time datetime="2017-11-19T14:28:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/19/Angular-Form/">Angular-表单</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Augular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/10/angular-directive/" class="archive-article-date">
-  	<time datetime="2017-11-09T16:13:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/10/angular-directive/">Angular-指令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Augular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/15/angular-jianceqi/" class="archive-article-date">
-  	<time datetime="2017-10-15T10:34:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/15/angular-jianceqi/">Angular-变更检测</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Augular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/07/class-and-interface/" class="archive-article-date">
-  	<time datetime="2017-10-06T17:09:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/07/class-and-interface/">类与接口</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Typescript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <a href="/2018/08/14/lessjs-use/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          less深入指南一（译）
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/08/10/less-common/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">less.js用法（译）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/前端/page/2/">&laquo; Prev</a><a class="page-number" href="/categories/前端/">1</a><a class="page-number" href="/categories/前端/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/categories/前端/page/4/">4</a><a class="page-number" href="/categories/前端/page/5/">5</a><a class="extend next" rel="next" href="/categories/前端/page/4/">Next &raquo;</a>
-    </nav>
+  
+  <div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2146592"></script>
+<!-- UY END -->
+
+  
+
+  
+
   
 
 
@@ -706,10 +421,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		root: "/",
 		innerArchive: true,
