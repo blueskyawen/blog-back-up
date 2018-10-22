@@ -698,3 +698,205 @@ mixin中定义的变量和mixin是可见的，可以在调用者的范围内使�
       }
     }
 
+# 分离的规则集
+将整个css规则集当作变量使用
+> 发布v1.7.0
+
+分离的规则集是一组css属性/嵌套规则集/媒体声明或存储在变量中的任何其他内容。 您可以将其包含在规则集或其他结构中，并将其所有属性复制到那里。 您也可以将它用作mixin参数变量进行传递。
+
+    @detached-ruleset: { background: red; }; // semi-colon is optional in 3.5.0+
+
+    // use detached ruleset
+    .top {
+        @detached-ruleset();
+    }
+
+输出
+
+    .top {
+      background: red;
+    }
+
+分离的规则集调用后的括号是必需的，调用@ detached-ruleset; 是不行的。
+
+当您想要定义一个在媒体查询中或者从不支持的浏览器类名中抽象出来的mixin时，它非常有用，例如，
+
+    .desktop-and-old-ie(@rules) {
+      @media screen and (min-width: 1200px) { @rules(); }
+      html.lt-ie9 &                         { @rules(); }
+    }
+
+    header {
+      background-color: blue;
+
+      .desktop-and-old-ie({
+        background-color: red;
+      });
+    }
+
+这里的desktop-and-old-ie定义了媒体查询和根类，以便您可以使用mixin来包装一段代码。 这将输出
+
+    header {
+      background-color: blue;
+    }
+    @media screen and (min-width: 1200px) {
+      header {
+        background-color: red;
+      }
+    }
+    html.lt-ie9 header {
+      background-color: red;
+    }
+
+此外，还可以带代表完整的Less规则集，例如，
+
+    @my-ruleset: {
+        .my-selector {
+          background-color: black;
+        }
+    };
+
+甚至可以利用媒体查询冒泡
+
+    @my-ruleset: {
+        .my-selector {
+          @media tv {
+            background-color: black;
+          }
+        }
+    };
+    @media (orientation:portrait) {
+        @my-ruleset();
+    }
+
+    //output
+    @media (orientation: portrait) and tv {
+      .my-selector {
+        background-color: black;
+      }
+    }
+
+分离规则集的调用以与mixin调用相同的方式解锁（返回）其所有mixin到调用者，但是，它不返回变量。
+
+    // detached ruleset with a mixin
+    @detached-ruleset: {
+        .mixin() {
+            color:blue;
+        }
+    };
+    // call detached ruleset
+    .caller {
+        @detached-ruleset();
+        .mixin();
+    }
+
+输出
+
+    .caller {
+      color: blue;
+    }
+
+私有变量：
+
+    @detached-ruleset: {
+        @color:blue; // this variable is private
+    };
+    .caller {
+        color: @color; // syntax error
+    }
+
+### 作用域
+分离的规则集可访问变量和mixin的范围，包括定义它的位子以及调用它的位置。如果两个范围包含相同的变量或mixin，则声明范围值优先。
+声明范围是定义分离规则集主体的范围。 规则集仅通过引用访问，将分离的规则集从一个变量复制到另一个变量而不能修改其范围。
+最后，分离的规则集可以通过解锁（导入）到范围来获得对范围的访问。
+
+**定义范围可见性**
+分离的规则集可以看到调用者的变量和mixins：
+
+    @detached-ruleset: {
+      caller-variable: @caller-variable; // variable is undefined here
+      .caller-mixin(); // mixin is undefined here
+    };
+
+    selector {
+      // use detached ruleset
+      @detached-ruleset();
+
+      // define variable and mixin needed inside the detached ruleset
+      @caller-variable: value;
+      .caller-mixin() {
+        variable: declaration;
+      }
+    }
+
+编译输出：
+
+    selector {
+      caller-variable: value;
+      variable: declaration;
+    }
+
+变量和mixins可访问的同名变量定义胜过调用者中可用的那些：
+
+    @variable: global;
+    @detached-ruleset: {
+      variable: @variable;
+    };
+
+    selector {
+      @detached-ruleset();
+      @variable: value;
+    }
+
+编译输出
+
+    selector {
+      variable: global;
+    }
+
+
+**引用不会修改分离的规则集范围**
+规则集仅通过在那里引用而无法访问新范围：
+
+    @detached-1: { scope-detached: @one @two; };
+    .one {
+      @one: visible;
+      .two {
+        @detached-2: @detached-1; // copying/renaming ruleset
+        @two: visible; // ruleset can not see this variable
+      }
+    }
+
+    .use-place {
+      .one > .two();
+      @detached-2();
+    }
+
+throws an error:
+*ERROR 1:32 The variable "@one" was not declared.*
+
+**解锁将修改分离的规则集范围**
+分离的规则集通过在作用域内解锁（导入）来获得访问权限：
+
+    #space {
+      .importer-1() {
+        @detached: { scope-detached: @variable; }; // define detached ruleset
+      }
+    }
+
+    .importer-2() {
+      @variable: value; // unlocked detached ruleset CAN see this variable
+      #space > .importer-1(); // unlock/import detached ruleset
+    }
+
+    .use-place {
+      .importer-2(); // unlock/import detached ruleset second time
+       @detached();
+    }
+
+    compiles into:
+
+    .use-place {
+      scope-detached: value;
+    }
+
