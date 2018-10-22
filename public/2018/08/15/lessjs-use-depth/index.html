@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blueskyawen.com/2018/08/15/lessjs-use-depth/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="合并合并功能允许将多个属性中的值聚合到单个属性下的逗号或空格分隔列表中。 merge对于背景和变换等属性很有用。">
-<meta property="og:updated_time" content="2018-10-21T13:48:08.984Z">
+<meta property="og:updated_time" content="2018-10-22T14:34:10.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="less深入指南二（译）">
 <meta name="twitter:description" content="合并合并功能允许将多个属性中的值聚合到单个属性下的逗号或空格分隔列表中。 merge对于背景和变换等属性很有用。">
@@ -725,6 +725,167 @@ output:
     color: blue;
   }
 }
+</code></pre><h1 id="分离的规则集"><a href="#分离的规则集" class="headerlink" title="分离的规则集"></a>分离的规则集</h1><p>将整个css规则集当作变量使用</p>
+<blockquote>
+<p>发布v1.7.0</p>
+</blockquote>
+<p>分离的规则集是一组css属性/嵌套规则集/媒体声明或存储在变量中的任何其他内容。 您可以将其包含在规则集或其他结构中，并将其所有属性复制到那里。 您也可以将它用作mixin参数变量进行传递。</p>
+<pre><code>@detached-ruleset: { background: red; }; // semi-colon is optional in 3.5.0+
+
+// use detached ruleset
+.top {
+    @detached-ruleset();
+}
+</code></pre><p>输出</p>
+<pre><code>.top {
+  background: red;
+}
+</code></pre><p>分离的规则集调用后的括号是必需的，调用@ detached-ruleset; 是不行的。</p>
+<p>当您想要定义一个在媒体查询中或者从不支持的浏览器类名中抽象出来的mixin时，它非常有用，例如，</p>
+<pre><code>.desktop-and-old-ie(@rules) {
+  @media screen and (min-width: 1200px) { @rules(); }
+  html.lt-ie9 &amp;                         { @rules(); }
+}
+
+header {
+  background-color: blue;
+
+  .desktop-and-old-ie({
+    background-color: red;
+  });
+}
+</code></pre><p>这里的desktop-and-old-ie定义了媒体查询和根类，以便您可以使用mixin来包装一段代码。 这将输出</p>
+<pre><code>header {
+  background-color: blue;
+}
+@media screen and (min-width: 1200px) {
+  header {
+    background-color: red;
+  }
+}
+html.lt-ie9 header {
+  background-color: red;
+}
+</code></pre><p>此外，还可以带代表完整的Less规则集，例如，</p>
+<pre><code>@my-ruleset: {
+    .my-selector {
+      background-color: black;
+    }
+};
+</code></pre><p>甚至可以利用媒体查询冒泡</p>
+<pre><code>@my-ruleset: {
+    .my-selector {
+      @media tv {
+        background-color: black;
+      }
+    }
+};
+@media (orientation:portrait) {
+    @my-ruleset();
+}
+
+//output
+@media (orientation: portrait) and tv {
+  .my-selector {
+    background-color: black;
+  }
+}
+</code></pre><p>分离规则集的调用以与mixin调用相同的方式解锁（返回）其所有mixin到调用者，但是，它不返回变量。</p>
+<pre><code>// detached ruleset with a mixin
+@detached-ruleset: {
+    .mixin() {
+        color:blue;
+    }
+};
+// call detached ruleset
+.caller {
+    @detached-ruleset();
+    .mixin();
+}
+</code></pre><p>输出</p>
+<pre><code>.caller {
+  color: blue;
+}
+</code></pre><p>私有变量：</p>
+<pre><code>@detached-ruleset: {
+    @color:blue; // this variable is private
+};
+.caller {
+    color: @color; // syntax error
+}
+</code></pre><h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>分离的规则集可访问变量和mixin的范围，包括定义它的位子以及调用它的位置。如果两个范围包含相同的变量或mixin，则声明范围值优先。<br>声明范围是定义分离规则集主体的范围。 规则集仅通过引用访问，将分离的规则集从一个变量复制到另一个变量而不能修改其范围。<br>最后，分离的规则集可以通过解锁（导入）到范围来获得对范围的访问。</p>
+<p><strong>定义范围可见性</strong><br>分离的规则集可以看到调用者的变量和mixins：</p>
+<pre><code>@detached-ruleset: {
+  caller-variable: @caller-variable; // variable is undefined here
+  .caller-mixin(); // mixin is undefined here
+};
+
+selector {
+  // use detached ruleset
+  @detached-ruleset();
+
+  // define variable and mixin needed inside the detached ruleset
+  @caller-variable: value;
+  .caller-mixin() {
+    variable: declaration;
+  }
+}
+</code></pre><p>编译输出：</p>
+<pre><code>selector {
+  caller-variable: value;
+  variable: declaration;
+}
+</code></pre><p>变量和mixins可访问的同名变量定义胜过调用者中可用的那些：</p>
+<pre><code>@variable: global;
+@detached-ruleset: {
+  variable: @variable;
+};
+
+selector {
+  @detached-ruleset();
+  @variable: value;
+}
+</code></pre><p>编译输出</p>
+<pre><code>selector {
+  variable: global;
+}
+</code></pre><p><strong>引用不会修改分离的规则集范围</strong><br>规则集仅通过在那里引用而无法访问新范围：</p>
+<pre><code>@detached-1: { scope-detached: @one @two; };
+.one {
+  @one: visible;
+  .two {
+    @detached-2: @detached-1; // copying/renaming ruleset
+    @two: visible; // ruleset can not see this variable
+  }
+}
+
+.use-place {
+  .one &gt; .two();
+  @detached-2();
+}
+</code></pre><p>throws an error:<br><em>ERROR 1:32 The variable “@one” was not declared.</em></p>
+<p><strong>解锁将修改分离的规则集范围</strong><br>分离的规则集通过在作用域内解锁（导入）来获得访问权限：</p>
+<pre><code>#space {
+  .importer-1() {
+    @detached: { scope-detached: @variable; }; // define detached ruleset
+  }
+}
+
+.importer-2() {
+  @variable: value; // unlocked detached ruleset CAN see this variable
+  #space &gt; .importer-1(); // unlock/import detached ruleset
+}
+
+.use-place {
+  .importer-2(); // unlock/import detached ruleset second time
+   @detached();
+}
+
+compiles into:
+
+.use-place {
+  scope-detached: value;
+}
 </code></pre>
       
 
@@ -850,11 +1011,11 @@ output:
   
 <nav id="article-nav">
   
-    <a href="/2018/08/22/the-offset-of-javascript-and-jquery/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/16/less-import/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          详解javascript和jquery里的各种尺寸和偏移
+          less深入指南三-@import导入（译）
         
       </div>
     </a>
