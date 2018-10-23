@@ -15,10 +15,14 @@
 <meta property="og:url" content="http://blueskyawen.com/2018/08/22/the-offset-of-javascript-and-jquery/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="最近在写jquery的滚动监听和附加导航的插件的时候，把元素的尺寸，定位和偏移等各种参数和计算捋了一遍，包括js原生的和jquery的计算方法，以及之间的区别，想总结下来，怕忘记，方便以后翻阅">
-<meta property="og:updated_time" content="2018-10-22T16:46:46.032Z">
+<meta property="og:image" content="http://blueskyawen.com/images/2018-10-23-dom-offset2.png">
+<meta property="og:image" content="http://blueskyawen.com/images/2018-10-23-dom-offset1.png">
+<meta property="og:image" content="http://blueskyawen.com/images/2018-10-23-dom-offset3.png">
+<meta property="og:updated_time" content="2018-10-23T14:54:17.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详解javascript和jquery里的各种尺寸和偏移">
 <meta name="twitter:description" content="最近在写jquery的滚动监听和附加导航的插件的时候，把元素的尺寸，定位和偏移等各种参数和计算捋了一遍，包括js原生的和jquery的计算方法，以及之间的区别，想总结下来，怕忘记，方便以后翻阅">
+<meta name="twitter:image" content="http://blueskyawen.com/images/2018-10-23-dom-offset2.png">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
   
@@ -186,15 +190,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <head><br><script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"><br></script><br></head>
-
-<p>最近在写jquery的滚动监听和附加导航的插件的时候，把元素的尺寸，定位和偏移等各种参数和计算捋了一遍，包括js原生的和jquery的计算方法，以及<br>之间的区别，想总结下来，怕忘记，方便以后翻阅<br><a id="more"></a></p>
+        <p>最近在写jquery的滚动监听和附加导航的插件的时候，把元素的尺寸，定位和偏移等各种参数和计算捋了一遍，包括js原生的和jquery的计算方法，以及<br>之间的区别，想总结下来，怕忘记，方便以后翻阅<br><a id="more"></a></p>
 <h1 id="1-Dom元素的位置呈现"><a href="#1-Dom元素的位置呈现" class="headerlink" title="1 Dom元素的位置呈现"></a>1 Dom元素的位置呈现</h1><p>一个Dom元素在页面的位置涉及到多个参数：视口，父包含容器以及元素本身，一般的呈现形式是下面这样的：</p>
-<div class="container22 container-screen "><br>        <div class="head"><br>            文档滚动到视口外的部分<br>        </div><br>  <div class="viewScreen"><br>    <span>视口</span><br>        <div class="body"><br>            <div class="content"><br>                容器<br>                <div class="elemz" id="target"><br>                    目标元素<br>                </div><br>            </div><br>    </div></div><br>        <div class="foot"><br>            文档未进入视口的部分<br>        </div><br></div>
-
+<p><img src="/images/2018-10-23-dom-offset2.png" alt="dom-offset2"></p>
 <p>可以看到，Dom元素的呈现分为好几个部分，文档的尺寸是任意的，在视口或父包含容器尺寸一定的时候也能正常显示<br>当容器缺失的时候，整个视口就元素的容器，是一般位置的特殊形式</p>
-<div class="container22"><br>        <div class="head"><br>            文档滚动到视口外的部分<br>        </div><br>        <div class="body"><br>            <div class="content"><br>                视口<br>                <div class="elemz" id="target"><br>                    目标元素<br>                </div><br>            </div><br>        </div><br>        <div class="foot"><br>            文档未进入视口的部分<br>        </div><br></div>
-
+<p><img src="/images/2018-10-23-dom-offset1.png" alt="dom-offset1"></p>
 <h1 id="2-Dom元素的尺寸和偏移"><a href="#2-Dom元素的尺寸和偏移" class="headerlink" title="2 Dom元素的尺寸和偏移"></a>2 Dom元素的尺寸和偏移</h1><p>从上一节的元素位置图可以看到，要描述一个元素以及其位置需要许多的参数：height,width,offsetTop,offsetLeft…等，<br>以及包含它的每一层级的容器元素，而每一层元素都拥有自己的属性和特性</p>
 <h2 id="jquery表示"><a href="#jquery表示" class="headerlink" title="jquery表示"></a>jquery表示</h2><h4 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h4><p><strong>$(‘targetSelector’).height()/width()</strong><br>元素内容区的宽和高，不包括padding</p>
 <p><strong>$(‘targetSelector’).innnerHeight()/innnerWidth()</strong><br>元素内边距区的宽和高，包括padding,但不包括border</p>
@@ -235,8 +235,7 @@ var element = $elem.get(0);
 <li>$elem.scrollTop(100)/scrollLeft(100) 同 element.scrollTop/scrollLeft = 100</li>
 </ul>
 <h1 id="3-尺寸和偏移观察测试"><a href="#3-尺寸和偏移观察测试" class="headerlink" title="3 尺寸和偏移观察测试"></a>3 尺寸和偏移观察测试</h1><p>观察的元素属性，大概是这个样子</p>
-<div class="container-screen2"><br>  <span class="shihou">视口</span><br>  <span class="shihou2">20</span><br>  <span class="shihou3">10</span><br>  <div class="container3"><br>    <span class="shihou4">5</span><br>    <span class="shihou5">50</span><br>    <span class="shihou6">容器</span><br>    <span class="shihou7">content</span><br>    <div class="content3"><br>      <div class="etemz3"><br>        <div class="etemz3-content">元素</div><br>      </div><br>      <div class="etemz3"><br>        <div class="etemz3-content">元素</div><br>      </div><br>    </div><br>  </div><br></div>
-
+<p><img src="/images/2018-10-23-dom-offset3.png" alt="dom-offset3"></p>
 <p>各个尺寸css如下</p>
 <pre><code>.container {
     box-sizing: border-box;
@@ -257,165 +256,6 @@ var element = $elem.get(0);
 }
 </code></pre><p>点击链接可以操作查看各种尺寸和偏移：</p>
 <p><a href="http://jsrun.net/hfhKp" target="_blank" rel="external">尺寸和偏移观察</a></p>
-<style>
-.container22 {
-    display:flex;
-    flex-direction:column;
-    width:420px;
-    align-items:center;
-    margin-top:20px;
-}
-.container22 .head {
-  background:#ff8566;
-  width:98%;
-  height:100px;
-}
-.container-screen .head {
-  width:50%;
-}
-.container-screen .viewScreen {
-      width:100%;
-        border:solid 1px blue;
-        opacity：0;
-        height:160px;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-    position:relative;
-}
-.container22 .body {
-        width:100%;
-        border:solid 1px;
-        opacity：0;
-        height:160px;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-    }
-.container-screen .body {
-  width:50%;
-  height:120px;
-}
-    .container22 .body .content {
-        width:98%;
-        height:100%;
-        background: #ccc;
-        position:relative;
-        overflow-y:scroll;
-        //overflow:visible;
-        //overflow:visible;
-    z-index:100p
-    }
- .elemz {
-        height:40px;
-        width:150px;
-        background:#006600;
-        position:absolute;
-        top:30px;
-        left:50px;
-        color:#fff;
-        padding:5px;
-        margin:10px 5px;
-        border:solid 5px #999;
-    }
-    .container22 .foot {
-        background:#4da6ff;
-        width:98%;
-        height:60px;
-    }
-.container-screen .foot {
-  width:50%;
-}
-
-.container-screen span{
-  position:absolute;
-  top:10px;
-  left:10px;
-}
-.container-screen .elemz {
-      height:30px;
-        width:100px;
-}
-
-
-.container-screen2 {
-  border:solid 1px;
-  background:#f2f2f2;
-  position:relative;
-}
-.container-screen2 .shihou {
-  position:absolute;
-}
-.container-screen2 .shihou2 {
-  position:absolute;
-  left:100px;
-  top:10px;
-}
-.container-screen2 .shihou3 {
-  position:absolute;
-  top:100px;
-}
-.container3 {
-  display:flex;
-    flex-direction:column;
-    width:420px;
-  height:160px;
-    align-items:center;
-    margin:40px 20px;
-  border:solid 1px blue;
-  box-sizing:border-box;
-  background:#ffe5b3;
-  padding:8px 60px;
-  position:relative;
-  left:20px;
-  top:-80px;
-}
-.container3 .shihou4 {
-  position:absolute;
-  top:0;
-  left:40px;
-}
-.container3 .shihou5 {
-  position:absolute;
-  left:0;
-  top:60px;
-}
-.container3 .shihou6 {
-  position:absolute;
-  left:10px;
-  bottom:10px;
-}
-.container3 .shihou7 {
-  position:absolute;
-  right:80px;
-  bottom:30px;
-}
-.container3 .content3 {
-  width:100%;
-  height:100%;
-  background:#bbff99;
-}
-.container3 .content3 .etemz3 {
-  width:150px;
-  height:40px;
-  background:#ff80ff;
-  box-sizing:border-box;
-  border:solid 5px #3366ff;
-  padding:5px;
-  margin:10px;
-  position:relative;
-  top:-30px;
-}
-.container3 .content3 .etemz3 .etemz3-content {
-  width:90%;
-  height:70%;
-  background:#e5ffff;
-  position:absolute;
-  top:5px;
-  left:6px;
-}
-</style>
-
 
       
 
@@ -541,18 +381,18 @@ var element = $elem.get(0);
   
 <nav id="article-nav">
   
-    <a href="/2018/09/12/jq-plugins-dev/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/08/23/less-import/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          JQuery-自写插件集
+          less深入指南三-@import导入（译）
         
       </div>
     </a>
   
   
-    <a href="/2018/08/16/less-import/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">less深入指南三-@import导入（译）</div>
+    <a href="/2018/08/15/lessjs-use-depth/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">less深入指南二（译）</div>
       <i class="icon-circle-right"></i>
     </a>
   

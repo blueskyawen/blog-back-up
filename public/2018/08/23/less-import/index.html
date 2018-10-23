@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://blueskyawen.com">
   <title>less深入指南三-@import导入（译） | bluesky个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {  background: #900;}@import “this-is-valid.less”;">
+  <meta name="description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
 <meta name="keywords" content="Less">
 <meta property="og:type" content="article">
 <meta property="og:title" content="less深入指南三-@import导入（译）">
-<meta property="og:url" content="http://blueskyawen.com/2018/08/16/less-import/index.html">
+<meta property="og:url" content="http://blueskyawen.com/2018/08/23/less-import/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
-<meta property="og:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {  background: #900;}@import “this-is-valid.less”;">
-<meta property="og:updated_time" content="2018-10-22T14:42:16.080Z">
+<meta property="og:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
+<meta property="og:updated_time" content="2018-10-23T14:32:17.490Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="less深入指南三-@import导入（译）">
-<meta name="twitter:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {  background: #900;}@import “this-is-valid.less”;">
+<meta name="twitter:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
   
@@ -178,8 +178,8 @@
   
 
         
-        <a href="/2018/08/16/less-import/" class="archive-article-date">
-  	<time datetime="2018-08-15T16:00:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-16</time>
+        <a href="/2018/08/23/less-import/" class="archive-article-date">
+  	<time datetime="2018-08-22T16:00:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
 </a>
         
       </header>
@@ -187,8 +187,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="import导入"><a href="#import导入" class="headerlink" title="@import导入"></a>@import导入</h1><p>在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置</p>
-<p>.foo {<br>  background: #900;<br>}<br>@import “this-is-valid.less”;</p>
-<a id="more"></a>
+<pre><code>.foo {
+  background: #900;
+}
+@import &quot;this-is-valid.less&quot;;
+</code></pre><a id="more"></a>
+<h3 id="识别文件扩展名"><a href="#识别文件扩展名" class="headerlink" title="识别文件扩展名"></a>识别文件扩展名</h3><p>根据文件扩展名的不同，Less在处理@import导入的时候的方式也有所不同</p>
+<ul>
+<li>如果文件具有.css扩展名，则将其视为CSS文件，并将@import语句保留为原样（请参阅下面的内联选项）。</li>
+<li>如果它有任何其他扩展名，它将被视为less文件并导入。</li>
+<li><p>如果它没有扩展名，则会附加.less，它将作为导入的Less文件包含在内。<br>例子：</p>
+<p>  @import “foo”;      // foo.less is imported<br>  @import “foo.less”; // foo.less is imported<br>  @import “foo.php”;  // foo.php imported as a Less file<br>  @import “foo.css”;  // statement left in place, as-is</p>
+</li>
+</ul>
+<p>下面要讲到的选项可以覆盖此行为。</p>
 
       
 
@@ -300,7 +312,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://blueskyawen.com/2018/08/16/less-import/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blueskyawen.com/2018/08/23/less-import/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -314,18 +326,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/08/22/the-offset-of-javascript-and-jquery/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/09/12/jq-plugins-dev/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          详解javascript和jquery里的各种尺寸和偏移
+          JQuery-自写插件集
         
       </div>
     </a>
   
   
-    <a href="/2018/08/15/lessjs-use-depth/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">less深入指南二（译）</div>
+    <a href="/2018/08/22/the-offset-of-javascript-and-jquery/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">详解javascript和jquery里的各种尺寸和偏移</div>
       <i class="icon-circle-right"></i>
     </a>
   
