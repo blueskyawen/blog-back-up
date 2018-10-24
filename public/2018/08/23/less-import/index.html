@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blueskyawen.com/2018/08/23/less-import/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
-<meta property="og:updated_time" content="2018-10-23T16:06:46.166Z">
+<meta property="og:updated_time" content="2018-10-24T13:19:37.552Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="less深入指南三-@import导入（译）">
 <meta name="twitter:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
@@ -281,8 +281,230 @@
 <p>Released v2.5.0</p>
 </blockquote>
 <p>可以通过导入JavaScript插件以添加Less.js函数和功能</p>
-<h5 id="编写你的第一个插件"><a href="#编写你的第一个插件" class="headerlink" title="编写你的第一个插件"></a>编写你的第一个插件</h5><p>使用@plugin的方式类似于使用@import导入.less文件。</p>
+<h3 id="编写你的第一个插件"><a href="#编写你的第一个插件" class="headerlink" title="编写你的第一个插件"></a>编写你的第一个插件</h3><p>使用@plugin的方式类似于使用@import导入.less文件。</p>
+<pre><code>@plugin &quot;my-plugin&quot;;  // 字段添加.js后缀，如果不带扩展名
+</code></pre><p>由于Less插件是在Less作用域范围内评估的，因此插件定义可以非常简单，比如：</p>
+<pre><code>registerPlugin({
+    install: function(less, pluginManager, functions) {
+        functions.add(&apos;pi&apos;, function() {
+            return Math.PI;
+        });
+    }
+})
+</code></pre><p>或者你可以使用module.exports（在浏览器和Node.js中工作）。</p>
+<pre><code>module.exports = {
+    install: function(less, pluginManager, functions) {
+        functions.add(&apos;pi&apos;, function() {
+            return Math.PI;
+        });
+    }
+};
+</code></pre><blockquote>
+<p>请注意，浏览器中不支持其他Node.js库比如CommonJS的使用方式，例如require（）。 编写跨平台插件时请记住这一点。</p>
+</blockquote>
+<p>你能用插件做什么？ 很多，但让我们从基础开始。我们将首先关注您可能放在插件中放置的内容：</p>
+<pre><code>// my-plugin.js
+install: function(less, pluginManager, functions) {
+    functions.add(&apos;pi&apos;, function() {
+        return Math.PI;
+    });
+}
+</code></pre><p>恭喜！ 你写了一个Less插件！您可以在样式表中这样使用它：</p>
+<pre><code>@plugin &quot;my-plugin&quot;;
+.show-me-pi {
+  value: pi();
+}
+</code></pre><p>输出：</p>
+<pre><code>.show-me-pi {
+  value: 3.141592653589793;
+}
+</code></pre><p>但是，如果您希望将其与其他值相乘或执行其他Less操作，则需要返回正确的Less节点。 否则，在样式表中的输出是纯文本。</p>
+<pre><code>functions.add(&apos;pi&apos;, function() {
+    return less.dimension(Math.PI);
+});
+</code></pre><blockquote>
+<p>注意：dimension的参数可以带单位，也可以不带单位，比如：dimension(10) 或 dimension(10,”px”)。</p>
+</blockquote>
+<p>现在您可以在运算操作中使用您的插件：</p>
+<pre><code>@plugin &quot;my-plugin&quot;;
+.show-me-pi {
+  value: pi() * 2;
+}
+</code></pre><p>您可能已经注意到插件文件有可用的全局变量，即函数注册表（函数对象）和较少的对象。 这些都是为了方便起见。</p>
+<h3 id="插件作用域范围"><a href="#插件作用域范围" class="headerlink" title="插件作用域范围"></a>插件作用域范围</h3><p>在使用@plugin添加函数的时候，是遵循Less作用域规则的。 这对于想要在不引入命名冲突的情况下添加函数的Less库作者来说非常有用。<br>例如，假设您有两个来自两个第三方库的插件，这两个插件都有一个名为“foo”的函数。</p>
+<pre><code>// lib1.js
+// ...
+    functions.add(&apos;foo&apos;, function() {
+        return &quot;foo&quot;;
+    });
+// ...
 
+// lib2.js
+// ...
+    functions.add(&apos;foo&apos;, function() {
+        return &quot;bar&quot;;
+    });
+// ...
+</code></pre><p>没关系！ 您可以选择哪个库的功能创建哪个输出。</p>
+<pre><code>.el-1 {
+    @plugin &quot;lib1&quot;;
+    value: foo();
+}
+.el-2 {
+    @plugin &quot;lib2&quot;;
+    value: foo();
+}
+</code></pre><p>输出：</p>
+<pre><code>.el-1 {
+    value: foo;
+}
+.el-2 {
+    value: bar;
+}
+</code></pre><p>对于共享插件的插件作者，这意味着您还可以通过将私有函数放在特定范围内来有效地创建私有函数。 所以，如下的使用方式是错误的：</p>
+<pre><code>.el {
+    @plugin &quot;lib1&quot;;
+}
+@value: foo();
+</code></pre><p>从Less 3.0开始，函数可以返回任何类型的Node类型，并且可以在任何级别调用。<br>但是，这会在2.x中引发错误，因为在2.x中函数必须是属性或变量赋值的一部分：</p>
+<pre><code>.block {
+    color: blue;
+    my-function-rules();
+}
+</code></pre><p>在3.x中，不再是这种情况，函数可以返回At-Rules，Rulesets，任何其他Less节点，字符串和数字（后两个转换为匿名节点）。</p>
+<h3 id="空函数"><a href="#空函数" class="headerlink" title="空函数"></a>空函数</h3><p>有时您可能想要调用一个函数，但是您不需要任何输出（例如存储值以供以后使用）。 在这种情况下，您只需要从函数返回false。</p>
+<pre><code>var collection = [];
+functions.add(&apos;store&apos;, function(val) {
+    collection.push(val);  // imma store this for later
+    return false;
+});
+//输出
+@plugin &quot;collections&quot;;
+@var: 32;
+store(@var);
+</code></pre><p>或者可以这么写</p>
+<pre><code>functions.add(&apos;retrieve&apos;, function(val) {
+    return less.value(collection);
+});
+//输出
+.get-my-values {
+    @plugin &quot;collections&quot;;
+    values: retrieve();
+}
+</code></pre><h3 id="Less-js插件对象"><a href="#Less-js插件对象" class="headerlink" title="Less.js插件对象"></a>Less.js插件对象</h3><p>Less.js插件应该导出具有一个或多个属性的对象。</p>
+<pre><code>{
+    /* Called immediately after the plugin is
+     * first imported, only once. */
+    install: function(less, pluginManager, functions) { },
+
+    /* Called for each instance of your @plugin. */
+    use: function(context) { },
+
+    /* Called for each instance of your @plugin,
+     * when rules are being evaluated.
+     * It&apos;s just later in the evaluation lifecycle */
+    eval: function(context) { },
+
+    /* Passes an arbitrary string to your plugin
+     * e.g. @plugin (args) &quot;file&quot;;
+     * This string is not parsed for you,
+     * so it can contain (almost) anything */
+    setOptions: function(argumentString) { },
+
+    /* Set a minimum Less compatibility string
+     * You can also use an array, as in [3, 0] */
+    minVersion: [&apos;3.0&apos;],
+
+    /* Used for lessc only, to explain
+     * options in a Terminal */
+    printUsage: function() { },
+
+}
+</code></pre><p>PluginManager为 install() function作实例化，并且提供了添加访问者，文件管理器和后处理器的方法。<br>以下是一些显示不同插件类型的示例，可分别链接查看。</p>
+<p><a href="https：//github.com/less/less-plugin-clean-css">后处理器</a><br><a href="https：//github.com/less/less-plugin-inline-urls">访问者</a><br><a href="https：//github.com/less/less-plugin-npm-import">文件管理器</a>  </p>
+<h3 id="预加载插件"><a href="#预加载插件" class="headerlink" title="预加载插件"></a>预加载插件</h3><p>虽然@plugin调用适用于大多数情况，但有时您可能希望在解析开始之前加载插件。<br>请参阅：“使用Less.js”部分中的预加载插件，了解如何执行此操作。</p>
+<h1 id="Maps-新"><a href="#Maps-新" class="headerlink" title="Maps (新)"></a>Maps (新)</h1><blockquote>
+<p>Released v3.5.0-beta.4</p>
+</blockquote>
+<p>使用规则集和mixins作为值的映射<br>通过将命名空间与[]语法相结合，您可以将规则集/ mixin转换为映射，比如：</p>
+<pre><code>@sizes: {
+  mobile: 320px;
+  tablet: 768px;
+  desktop: 1024px;
+}
+
+.navbar {
+  display: block;
+
+  @media (min-width: @sizes[tablet]) {
+    display: inline-block;
+  }
+}
+</code></pre><p>输出：</p>
+<pre><code>.navbar {
+  display: block;
+}
+@media (min-width: 768px) {
+  .navbar {
+    display: inline-block;
+  }
+}
+</code></pre><p>由于命名空间和重载混合的能力，Mixins比Map更具通用性。</p>
+<pre><code>#library() {
+  .colors() {
+    primary: green;
+    secondary: blue;
+  }
+}
+
+#library() {
+  .colors() { primary: grey; }
+}
+
+.button {
+  color: #library.colors[primary];
+  border-color: #library.colors[secondary];
+}
+</code></pre><p>输出：</p>
+<pre><code>.button {
+  color: grey;
+  border-color: blue;
+}
+</code></pre><p>此外，你还可以通过别名访问mixins，那是个更容易的方式。</p>
+<pre><code>.button {
+  @colors: #library.colors();
+  color: @colors[primary];
+  border-color: @colors[secondary];
+}
+</code></pre><p>请注意，当存在多个嵌套的规则集的时候，可以使用多个[]来进行查找访问，如下所示：</p>
+<pre><code>@config: {
+  @options: {
+    library-on: true
+  }
+}
+
+&amp; when (@config[@options][library-on] = true) {
+  .produce-ruleset {
+    prop: val;
+  }
+}
+</code></pre><p>通过这种方式，规则集和变量调用可以模拟一种类型的“命名空间”，类似于mixins</p>
+<p>至于是否将分配给变量的mixins或规则集用作映射，这取决于您。 您可能希望通过重新声明分配给rulset的变量来替换整个Map来使用； 或者您可能想要“合并”单个键/值对，在这种情况下，把mixins作为Map可能更合适。</p>
+<h3 id="在-中使用变量的变量"><a href="#在-中使用变量的变量" class="headerlink" title="在[]中使用变量的变量"></a>在[]中使用变量的变量</h3><p>有一件重要的事情需要注意，查找表达式[@lookup]中的@lookup是查找的主键，一般只接受常量，不能使用变量来访问，但是可以使用变量的变量来作为索引键值<br>例子：</p>
+<pre><code>.foods() {
+  @dessert: ice cream;
+}
+
+@key-to-lookup: dessert;
+
+.lunch {
+  treat: .foods[@@key-to-lookup];
+}
+</code></pre><p>编译输出:</p>
+<pre><code>.lunch {
+  treat: ice cream;
+}
+</code></pre>
       
 
       

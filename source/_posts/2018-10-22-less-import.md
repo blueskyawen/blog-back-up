@@ -321,9 +321,9 @@ Less.js插件应该导出具有一个或多个属性的对象。
 PluginManager为 install() function作实例化，并且提供了添加访问者，文件管理器和后处理器的方法。
 以下是一些显示不同插件类型的示例，可分别链接查看。
 
-- [后处理器](https：//github.com/less/less-plugin-clean-css)
-- [访问者](https：//github.com/less/less-plugin-inline-urls)
-- [文件管理器](https：//github.com/less/less-plugin-npm-import)
+- [后处理器](https://github.com/less/less-plugin-clean-css)
+- [访问者](https://github.com/less/less-plugin-inline-urls)
+- [文件管理器](https://github.com/less/less-plugin-npm-import)
 
 ### 预加载插件
 虽然@plugin调用适用于大多数情况，但有时您可能希望在解析开始之前加载插件。
