@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blueskyawen.com/2018/08/23/less-import/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
-<meta property="og:updated_time" content="2018-10-23T14:32:17.490Z">
+<meta property="og:updated_time" content="2018-10-23T16:06:46.166Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="less深入指南三-@import导入（译）">
 <meta name="twitter:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
@@ -201,6 +201,87 @@
 </li>
 </ul>
 <p>下面要讲到的选项可以覆盖此行为。</p>
+<h3 id="导入选项"><a href="#导入选项" class="headerlink" title="导入选项"></a>导入选项</h3><p>Less为CSS的@import提供了几个扩展，比使用外部文件具有更多的灵活性。<br>语法：</p>
+<pre><code>@import（keyword）“filename”;
+</code></pre><p>以下是支持的导入选项：</p>
+<ul>
+<li>reference: 使用Less文件但不输出</li>
+<li>inline: 在输出中包含源文件但不处理它</li>
+<li>less: 无论文件扩展名是什么，都将文件视为Less文件</li>
+<li>css: 无论文件扩展名是什么，都将文件视为CSS文件</li>
+<li>once: 只包含文件一次（默认行为）</li>
+<li>multiple: 多次包含该文件</li>
+<li>optional: 在找不到文件时继续编译</li>
+</ul>
+<p>每个@import允许使用多个关键字，关键字之间使用逗号分隔，比如：</p>
+<pre><code>@import (optional, reference) &quot;foo.less&quot;;
+</code></pre><h5 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h5><blockquote>
+<p>Released v1.5.0</p>
+</blockquote>
+<pre><code>@import（reference）“foo.less”;
+</code></pre><p>导入外部文件，但不将引入的样式添加到已编译的输出，只是引用它们。</p>
+<p>想象一下，在导入的文件中，reference使用一个引用来标记每一个at-rule和selector，就像正常导入一样。但是当生成CSS时，却不输出“reference”选择器，甚至是任何仅仅包含引用选择器的媒体查询。<br>除非参考样式被用作mixins或extend，否则引用样式不会显示在生成的CSS中。根据使用的方法（mixin或extend）不同，会产生不同的结果。</p>
+<ul>
+<li>extend：当使用扩展选择器时，只有新选择器被标记为未引用，并且它将被引入到@import引用语句的位置。</li>
+<li>mixins：当参考样式被用作隐式mixin时，其规则是混合的，标记为“非引用”，并且正常显示在引用的位置。</li>
+</ul>
+<p>例子：<br>允许您通过执行以下操作从Bootstrap等库中仅提取特定的，有针对性的样式：</p>
+<pre><code>.navbar：extend（.navbar all）{}
+</code></pre><p>并且您将仅从Bootstrap中提取.navbar相关样式。</p>
+<h5 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h5><blockquote>
+<p>Released v1.5.0</p>
+</blockquote>
+<pre><code>@import (inline) &quot;not-less-compatible.css&quot;;
+</code></pre><p>在输出中包含源文件但不处理它<br>当CSS文件可能不兼容时，您将使用此选项; 这是因为虽然Less支持大多数已知标准CSS，但它不支持某些注释，并且不支持所有已知的CSS补丁，它是不修改CSS的。</p>
+<p>您可以使用它将文件包含在输出中，以便所有CSS都在一个文件中。</p>
+<h5 id="less"><a href="#less" class="headerlink" title="less"></a>less</h5><blockquote>
+<p>Released v1.4.0</p>
+</blockquote>
+<pre><code>@import (less) &quot;foo.css&quot;;
+</code></pre><p>将导入的文件视为Less，无论文件扩展名如何。</p>
+<h5 id="css"><a href="#css" class="headerlink" title="css"></a>css</h5><blockquote>
+<p>Released v1.4.0</p>
+</blockquote>
+<pre><code>@import (css) &quot;foo.less&quot;;
+
+//outputs
+
+@import &quot;foo.less&quot;;
+</code></pre><p>将导入的文件视为常规CSS，无论文件扩展名如何。 这意味着import语句将保持原样。</p>
+<h5 id="once"><a href="#once" class="headerlink" title="once"></a>once</h5><blockquote>
+<p>Released v1.4.0</p>
+</blockquote>
+<p>@import语句的默认行为。 这意味着文件仅导入一次，并且将忽略该文件的后续导入语句。</p>
+<pre><code>@import (once) &quot;foo.less&quot;;
+@import (once) &quot;foo.less&quot;; // this statement will be ignored
+</code></pre><h5 id="multiple"><a href="#multiple" class="headerlink" title="multiple"></a>multiple</h5><blockquote>
+<p>Released v1.4.0</p>
+</blockquote>
+<p>使用@import（multiple）可以导入多个相同名称的文件，这是和once相反的行为。</p>
+<pre><code>// file: foo.less
+.a {
+  color: green;
+}
+// file: main.less
+@import (multiple) &quot;foo.less&quot;;
+@import (multiple) &quot;foo.less&quot;;
+</code></pre><p>输出</p>
+<pre><code>.a {
+  color: green;
+}
+.a {
+  color: green;
+}
+</code></pre><h5 id="optional"><a href="#optional" class="headerlink" title="optional"></a>optional</h5><blockquote>
+<p>Released v2.3.0</p>
+</blockquote>
+<pre><code>@import (optional) &quot;foo.less&quot;;
+</code></pre><p>使用@import（optional）仅允许在文件存在时导入文件，在没有optional关键字时，Less会抛出FileError并在导入无法找到的文件时停止编译。</p>
+<h3 id="plugin插件"><a href="#plugin插件" class="headerlink" title="@plugin插件"></a>@plugin插件</h3><blockquote>
+<p>Released v2.5.0</p>
+</blockquote>
+<p>可以通过导入JavaScript插件以添加Less.js函数和功能</p>
+<h5 id="编写你的第一个插件"><a href="#编写你的第一个插件" class="headerlink" title="编写你的第一个插件"></a>编写你的第一个插件</h5><p>使用@plugin的方式类似于使用@import导入.less文件。</p>
 
       
 
