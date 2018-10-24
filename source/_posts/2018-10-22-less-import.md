@@ -432,7 +432,111 @@ PluginManager为 install() function作实例化，并且提供了添加访问者
     }
 
 
+<span class="nc-post-nav1" style="display:none;">
+  <span class="eye"></span>
+  <span class="nc-post-navbars1">
+    文章导航
+  </span>
+</span>
+<span class="nc-post-nav2">
+  <span class="nc-navbar-head"><span>x</span></span>
+  <span class="nc-navbar-body">
+    <a class="nc-navbar-item" href="#import导入">1. @import导入</a>
+    <a class="nc-navbar-item" href="#plugin插件">2. @plugin插件</a>
+    <a class="nc-navbar-item" href="#Maps-新">3. Maps (新)</a>
+  </span>
+</span>
 
+<style>
+.nc-post-nav1,.nc-post-nav2 {
+  display:inline-flex;
+  border:solid 2px #999;
+  padding:5px;
+  flex-direction:column;
+  position:fixed;
+  top:100px;
+  right:38px;
+  background:#fff;
+  box-shadow: 2px 5px 5px #f2f2f2;
+}
+.nc-post-nav1 .nc-post-navbars1 {
+  width:24px;
+  text-align:center;
+}
+.nc-post-nav1 .eye {
+  display:inline-block;
+  height:14px;
+  width:24px;
+  border:solid 2px #666666;
+  border-radius:50%;
+  position:relative;
+}
+.nc-post-nav1 .eye:after {
+  content:"";
+  display:inline-block;
+  position:absolute;
+  height:12px;
+  width:12px;
+  border-radius:50%;
+  background:#666666;
+  left:50%;
+  transform:translateX(-50%);
+}
+.nc-post-nav1 .eye:before {
+  content:"";
+  display:inline-block;
+  position:absolute;
+  height:6px;
+  width:6px;
+  border-radius:50%;
+  background:#fff;
+  left:42%;
+  top:3px;
+  transform:translateX(-50%);
+  z-index:1;
+}
+.nc-post-nav1:hover {
+  cursor:pointer;
+  border-color:#0039e6;
+}
+.nc-post-nav1:hover .eye {
+  border-color:#0039e6;
+}
+.nc-post-nav1:hover .nc-post-navbars1 {
+  color:#0039e6;
+}
+.nc-post-nav1:hover .eye:after {
+  background:#0039e6;
+}
+.nc-post-nav2 .nc-navbar-head {
+  width:200px;
+  display:inline-flex;
+  justify-content:flex-end;
+  padding-right:10px;
+}
+.nc-post-nav2 .nc-navbar-head span:hover {
+  cursor:pointer;
+  color:#00061a;
+}
+.nc-post-nav2 .nc-navbar-body {
+  display:inline-flex;
+  flex-direction:column;
+  padding:5px 10px;
+}
+.nc-post-nav2 .nc-navbar-body .nc-navbar-item {
+  padding:5px;
+}
+.nc-post-nav2 .nc-navbar-body .nc-navbar-item:hover {
+  color:#0039e6;
+  text-decoration:underline;
+  cursor:pointer;
+}
+</style>
 
-
-
+<script>
+    var navDom1 = document.getElementsByName("nc-post-nav1")[0];
+    var navDom2 = document.getElementsByName("nc-post-nav2")[0];
+    navDom1.addEventListener("click", function(){
+        navDom2.;
+    });
+</script>

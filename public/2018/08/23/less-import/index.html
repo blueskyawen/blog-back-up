@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blueskyawen.com/2018/08/23/less-import/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
-<meta property="og:updated_time" content="2018-10-24T13:19:37.552Z">
+<meta property="og:updated_time" content="2018-10-24T17:06:29.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="less深入指南三-@import导入（译）">
 <meta name="twitter:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
@@ -421,7 +421,11 @@ store(@var);
 
 }
 </code></pre><p>PluginManager为 install() function作实例化，并且提供了添加访问者，文件管理器和后处理器的方法。<br>以下是一些显示不同插件类型的示例，可分别链接查看。</p>
-<p><a href="https：//github.com/less/less-plugin-clean-css">后处理器</a><br><a href="https：//github.com/less/less-plugin-inline-urls">访问者</a><br><a href="https：//github.com/less/less-plugin-npm-import">文件管理器</a>  </p>
+<ul>
+<li><a href="https://github.com/less/less-plugin-clean-css" target="_blank" rel="external">后处理器</a></li>
+<li><a href="https://github.com/less/less-plugin-inline-urls" target="_blank" rel="external">访问者</a></li>
+<li><a href="https://github.com/less/less-plugin-npm-import" target="_blank" rel="external">文件管理器</a></li>
+</ul>
 <h3 id="预加载插件"><a href="#预加载插件" class="headerlink" title="预加载插件"></a>预加载插件</h3><p>虽然@plugin调用适用于大多数情况，但有时您可能希望在解析开始之前加载插件。<br>请参阅：“使用Less.js”部分中的预加载插件，了解如何执行此操作。</p>
 <h1 id="Maps-新"><a href="#Maps-新" class="headerlink" title="Maps (新)"></a>Maps (新)</h1><blockquote>
 <p>Released v3.5.0-beta.4</p>
@@ -504,7 +508,100 @@ store(@var);
 <pre><code>.lunch {
   treat: ice cream;
 }
-</code></pre>
+</code></pre><p><span class="nc-post-nav1" style="display:none;"><br>  <span class="eye"></span><br>  <span class="nc-post-navbars1"><br>    文章导航<br>  </span><br></span><br><span class="nc-post-nav2"><br>  <span class="nc-navbar-head"><span>x</span></span><br>  <span class="nc-navbar-body"><br>    <a class="nc-navbar-item" href="#import导入">1. @import导入</a><br>    <a class="nc-navbar-item" href="#plugin插件">2. @plugin插件</a><br>    <a class="nc-navbar-item" href="#Maps-新">3. Maps (新)</a><br>  </span><br></span></p>
+<style>
+.nc-post-nav1,.nc-post-nav2 {
+  display:inline-flex;
+  border:solid 2px #666666;
+  padding:5px;
+  flex-direction:column;
+  position:fixed;
+  top:100px;
+  right:38px;
+  background:#fff;
+  box-shadow: 2px 5px 5px #999;
+}
+.nc-post-nav1 .nc-post-navbars1 {
+  width:24px;
+  text-align:center;
+}
+.nc-post-nav1 .eye {
+  display:inline-block;
+  height:14px;
+  width:24px;
+  border:solid 2px #666666;
+  border-radius:50%;
+  position:relative;
+}
+.nc-post-nav1 .eye:after {
+  content:"";
+  display:inline-block;
+  position:absolute;
+  height:12px;
+  width:12px;
+  border-radius:50%;
+  background:#666666;
+  left:50%;
+  transform:translateX(-50%);
+}
+.nc-post-nav1 .eye:before {
+  content:"";
+  display:inline-block;
+  position:absolute;
+  height:6px;
+  width:6px;
+  border-radius:50%;
+  background:#fff;
+  left:42%;
+  top:3px;
+  transform:translateX(-50%);
+  z-index:1;
+}
+.nc-post-nav1:hover {
+  cursor:pointer;
+  border-color:#0039e6;
+}
+.nc-post-nav1:hover .eye {
+  border-color:#0039e6;
+}
+.nc-post-nav1:hover .nc-post-navbars1 {
+  color:#0039e6;
+}
+.nc-post-nav1:hover .eye:after {
+  background:#0039e6;
+}
+.nc-post-nav2 .nc-navbar-head {
+  width:200px;
+  display:inline-flex;
+  justify-content:flex-end;
+  padding-right:10px;
+}
+.nc-post-nav2 .nc-navbar-head span:hover {
+  cursor:pointer;
+  color:#00061a;
+}
+.nc-post-nav2 .nc-navbar-body {
+  display:inline-flex;
+  flex-direction:column;
+  padding:5px 10px;
+}
+.nc-post-nav2 .nc-navbar-body .nc-navbar-item {
+  padding:5px;
+}
+.nc-post-nav2 .nc-navbar-body .nc-navbar-item:hover {
+  color:#0039e6;
+  text-decoration:underline;
+  cursor:pointer;
+}
+</style>
+
+<script>
+    var navDom1 = document.getElementsByName("nc-post-nav1")[0];
+    var navDom2 = document.getElementsByName("nc-post-nav2")[0];
+    navDom1.addEventListener("click", function(){
+        navDom2.;
+    });
+</script>
       
 
       
