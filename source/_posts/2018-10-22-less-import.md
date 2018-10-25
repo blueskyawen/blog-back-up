@@ -4,6 +4,7 @@ date: 2018-08-23 00:00:30
 tags: Less
 categories: 前端
 comments: true
+toc: true
 ---
 
 # @import导入
@@ -16,7 +17,7 @@ comments: true
 
 <!--more-->
 
-### 识别文件扩展名
+## 识别文件扩展名
 根据文件扩展名的不同，Less在处理@import导入的时候的方式也有所不同
 
 - 如果文件具有.css扩展名，则将其视为CSS文件，并将@import语句保留为原样（请参阅下面的内联选项）。
@@ -31,7 +32,7 @@ comments: true
 
 下面要讲到的选项可以覆盖此行为。
 
-### 导入选项
+## 导入选项
 Less为CSS的@import提供了几个扩展，比使用外部文件具有更多的灵活性。
 语法：
 
@@ -51,7 +52,7 @@ Less为CSS的@import提供了几个扩展，比使用外部文件具有更多的
 
     @import (optional, reference) "foo.less";
 
-##### reference
+### reference
 > Released v1.5.0
 
     @import（reference）“foo.less”;
@@ -71,7 +72,7 @@ Less为CSS的@import提供了几个扩展，比使用外部文件具有更多的
 
 并且您将仅从Bootstrap中提取.navbar相关样式。
 
-##### inline
+### inline
 > Released v1.5.0
 
     @import (inline) "not-less-compatible.css";
@@ -81,14 +82,14 @@ Less为CSS的@import提供了几个扩展，比使用外部文件具有更多的
 
 您可以使用它将文件包含在输出中，以便所有CSS都在一个文件中。
 
-##### less
+### less
 > Released v1.4.0
 
     @import (less) "foo.css";
 
 将导入的文件视为Less，无论文件扩展名如何。
 
-##### css
+### css
 > Released v1.4.0
 
     @import (css) "foo.less";
@@ -99,7 +100,7 @@ Less为CSS的@import提供了几个扩展，比使用外部文件具有更多的
 
 将导入的文件视为常规CSS，无论文件扩展名如何。 这意味着import语句将保持原样。
 
-##### once
+### once
 > Released v1.4.0
 
 @import语句的默认行为。 这意味着文件仅导入一次，并且将忽略该文件的后续导入语句。
@@ -107,7 +108,7 @@ Less为CSS的@import提供了几个扩展，比使用外部文件具有更多的
     @import (once) "foo.less";
     @import (once) "foo.less"; // this statement will be ignored
 
-##### multiple
+### multiple
 > Released v1.4.0
 
 使用@import（multiple）可以导入多个相同名称的文件，这是和once相反的行为。
@@ -129,14 +130,14 @@ Less为CSS的@import提供了几个扩展，比使用外部文件具有更多的
       color: green;
     }
 
-##### optional
+### optional
 > Released v2.3.0
 
     @import (optional) "foo.less";
 
 使用@import（optional）仅允许在文件存在时导入文件，在没有optional关键字时，Less会抛出FileError并在导入无法找到的文件时停止编译。
 
-### @plugin插件
+## @plugin插件
 > Released v2.5.0
 
 可以通过导入JavaScript插件以添加Less.js函数和功能
@@ -329,7 +330,7 @@ PluginManager为 install() function作实例化，并且提供了添加访问者
 虽然@plugin调用适用于大多数情况，但有时您可能希望在解析开始之前加载插件。
 请参阅：“使用Less.js”部分中的预加载插件，了解如何执行此操作。
 
-# Maps (新)
+# Maps(新)
 > Released v3.5.0-beta.4
 
 使用规则集和mixins作为值的映射
@@ -411,7 +412,7 @@ PluginManager为 install() function作实例化，并且提供了添加访问者
 
 至于是否将分配给变量的mixins或规则集用作映射，这取决于您。 您可能希望通过重新声明分配给rulset的变量来替换整个Map来使用； 或者您可能想要“合并”单个键/值对，在这种情况下，把mixins作为Map可能更合适。
 
-### 在[]中使用变量的变量
+## 在[]中使用变量的变量
 有一件重要的事情需要注意，查找表达式[@lookup]中的@lookup是查找的主键，一般只接受常量，不能使用变量来访问，但是可以使用变量的变量来作为索引键值
 例子：
 
@@ -430,113 +431,3 @@ PluginManager为 install() function作实例化，并且提供了添加访问者
     .lunch {
       treat: ice cream;
     }
-
-
-<span class="nc-post-nav1" style="display:none;">
-  <span class="eye"></span>
-  <span class="nc-post-navbars1">
-    文章导航
-  </span>
-</span>
-<span class="nc-post-nav2">
-  <span class="nc-navbar-head"><span>x</span></span>
-  <span class="nc-navbar-body">
-    <a class="nc-navbar-item" href="#import导入">1. @import导入</a>
-    <a class="nc-navbar-item" href="#plugin插件">2. @plugin插件</a>
-    <a class="nc-navbar-item" href="#Maps-新">3. Maps (新)</a>
-  </span>
-</span>
-
-<style>
-.nc-post-nav1,.nc-post-nav2 {
-  display:inline-flex;
-  border:solid 2px #999;
-  padding:5px;
-  flex-direction:column;
-  position:fixed;
-  top:100px;
-  right:38px;
-  background:#fff;
-  box-shadow: 2px 5px 5px #f2f2f2;
-}
-.nc-post-nav1 .nc-post-navbars1 {
-  width:24px;
-  text-align:center;
-}
-.nc-post-nav1 .eye {
-  display:inline-block;
-  height:14px;
-  width:24px;
-  border:solid 2px #666666;
-  border-radius:50%;
-  position:relative;
-}
-.nc-post-nav1 .eye:after {
-  content:"";
-  display:inline-block;
-  position:absolute;
-  height:12px;
-  width:12px;
-  border-radius:50%;
-  background:#666666;
-  left:50%;
-  transform:translateX(-50%);
-}
-.nc-post-nav1 .eye:before {
-  content:"";
-  display:inline-block;
-  position:absolute;
-  height:6px;
-  width:6px;
-  border-radius:50%;
-  background:#fff;
-  left:42%;
-  top:3px;
-  transform:translateX(-50%);
-  z-index:1;
-}
-.nc-post-nav1:hover {
-  cursor:pointer;
-  border-color:#0039e6;
-}
-.nc-post-nav1:hover .eye {
-  border-color:#0039e6;
-}
-.nc-post-nav1:hover .nc-post-navbars1 {
-  color:#0039e6;
-}
-.nc-post-nav1:hover .eye:after {
-  background:#0039e6;
-}
-.nc-post-nav2 .nc-navbar-head {
-  width:200px;
-  display:inline-flex;
-  justify-content:flex-end;
-  padding-right:10px;
-}
-.nc-post-nav2 .nc-navbar-head span:hover {
-  cursor:pointer;
-  color:#00061a;
-}
-.nc-post-nav2 .nc-navbar-body {
-  display:inline-flex;
-  flex-direction:column;
-  padding:5px 10px;
-}
-.nc-post-nav2 .nc-navbar-body .nc-navbar-item {
-  padding:5px;
-}
-.nc-post-nav2 .nc-navbar-body .nc-navbar-item:hover {
-  color:#0039e6;
-  text-decoration:underline;
-  cursor:pointer;
-}
-</style>
-
-<script>
-    var navDom1 = document.getElementsByName("nc-post-nav1")[0];
-    var navDom2 = document.getElementsByName("nc-post-nav2")[0];
-    navDom1.addEventListener("click", function(){
-        navDom2.;
-    });
-</script>

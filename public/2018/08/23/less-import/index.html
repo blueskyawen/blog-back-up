@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blueskyawen.com/2018/08/23/less-import/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
-<meta property="og:updated_time" content="2018-10-24T17:06:29.607Z">
+<meta property="og:updated_time" content="2018-10-25T16:16:26.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="less深入指南三-@import导入（译）">
 <meta name="twitter:description" content="@import导入在标准CSS中，@import语句必须在所有其他类型的规则之前声明，但Less并不关心你放置@import语句的位置 .foo {   background: #900; } @import &amp;quot;this-is-valid.less&amp;quot;;">
@@ -166,7 +166,24 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-less-import" class="article article-type-post " itemscope itemprop="blogPost">
+            <!-- 目录内容 -->
+ <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:block"> <span class="btn-bg"></span> <span class="btn-text">文章导航</span> </p> <div id="toc-article" class="toc-article" style="display:none"> <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span> <strong class="toc-title">文章目录</strong> <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#import导入"><span class="toc-number">1.</span> <span class="toc-text">@import导入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#识别文件扩展名"><span class="toc-number">1.1.</span> <span class="toc-text">识别文件扩展名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导入选项"><span class="toc-number">1.2.</span> <span class="toc-text">导入选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#reference"><span class="toc-number">1.2.1.</span> <span class="toc-text">reference</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inline"><span class="toc-number">1.2.2.</span> <span class="toc-text">inline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#less"><span class="toc-number">1.2.3.</span> <span class="toc-text">less</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css"><span class="toc-number">1.2.4.</span> <span class="toc-text">css</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#once"><span class="toc-number">1.2.5.</span> <span class="toc-text">once</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#multiple"><span class="toc-number">1.2.6.</span> <span class="toc-text">multiple</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#optional"><span class="toc-number">1.2.7.</span> <span class="toc-text">optional</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#plugin插件"><span class="toc-number">1.3.</span> <span class="toc-text">@plugin插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#编写你的第一个插件"><span class="toc-number">1.3.1.</span> <span class="toc-text">编写你的第一个插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插件作用域范围"><span class="toc-number">1.3.2.</span> <span class="toc-text">插件作用域范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空函数"><span class="toc-number">1.3.3.</span> <span class="toc-text">空函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Less-js插件对象"><span class="toc-number">1.3.4.</span> <span class="toc-text">Less.js插件对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预加载插件"><span class="toc-number">1.3.5.</span> <span class="toc-text">预加载插件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Maps-新"><span class="toc-number">2.</span> <span class="toc-text">Maps(新)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在-中使用变量的变量"><span class="toc-number">2.1.</span> <span class="toc-text">在[]中使用变量的变量</span></a></li></ol></li></ol> </div> <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+  };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+  };
+</script> 
+<!-- 目录内容结束 -->
+
+<article id="post-less-import" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -192,7 +209,7 @@
 }
 @import &quot;this-is-valid.less&quot;;
 </code></pre><a id="more"></a>
-<h3 id="识别文件扩展名"><a href="#识别文件扩展名" class="headerlink" title="识别文件扩展名"></a>识别文件扩展名</h3><p>根据文件扩展名的不同，Less在处理@import导入的时候的方式也有所不同</p>
+<h2 id="识别文件扩展名"><a href="#识别文件扩展名" class="headerlink" title="识别文件扩展名"></a>识别文件扩展名</h2><p>根据文件扩展名的不同，Less在处理@import导入的时候的方式也有所不同</p>
 <ul>
 <li>如果文件具有.css扩展名，则将其视为CSS文件，并将@import语句保留为原样（请参阅下面的内联选项）。</li>
 <li>如果它有任何其他扩展名，它将被视为less文件并导入。</li>
@@ -201,7 +218,7 @@
 </li>
 </ul>
 <p>下面要讲到的选项可以覆盖此行为。</p>
-<h3 id="导入选项"><a href="#导入选项" class="headerlink" title="导入选项"></a>导入选项</h3><p>Less为CSS的@import提供了几个扩展，比使用外部文件具有更多的灵活性。<br>语法：</p>
+<h2 id="导入选项"><a href="#导入选项" class="headerlink" title="导入选项"></a>导入选项</h2><p>Less为CSS的@import提供了几个扩展，比使用外部文件具有更多的灵活性。<br>语法：</p>
 <pre><code>@import（keyword）“filename”;
 </code></pre><p>以下是支持的导入选项：</p>
 <ul>
@@ -215,7 +232,7 @@
 </ul>
 <p>每个@import允许使用多个关键字，关键字之间使用逗号分隔，比如：</p>
 <pre><code>@import (optional, reference) &quot;foo.less&quot;;
-</code></pre><h5 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h5><blockquote>
+</code></pre><h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><blockquote>
 <p>Released v1.5.0</p>
 </blockquote>
 <pre><code>@import（reference）“foo.less”;
@@ -228,18 +245,18 @@
 <p>例子：<br>允许您通过执行以下操作从Bootstrap等库中仅提取特定的，有针对性的样式：</p>
 <pre><code>.navbar：extend（.navbar all）{}
 </code></pre><p>并且您将仅从Bootstrap中提取.navbar相关样式。</p>
-<h5 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h5><blockquote>
+<h3 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h3><blockquote>
 <p>Released v1.5.0</p>
 </blockquote>
 <pre><code>@import (inline) &quot;not-less-compatible.css&quot;;
 </code></pre><p>在输出中包含源文件但不处理它<br>当CSS文件可能不兼容时，您将使用此选项; 这是因为虽然Less支持大多数已知标准CSS，但它不支持某些注释，并且不支持所有已知的CSS补丁，它是不修改CSS的。</p>
 <p>您可以使用它将文件包含在输出中，以便所有CSS都在一个文件中。</p>
-<h5 id="less"><a href="#less" class="headerlink" title="less"></a>less</h5><blockquote>
+<h3 id="less"><a href="#less" class="headerlink" title="less"></a>less</h3><blockquote>
 <p>Released v1.4.0</p>
 </blockquote>
 <pre><code>@import (less) &quot;foo.css&quot;;
 </code></pre><p>将导入的文件视为Less，无论文件扩展名如何。</p>
-<h5 id="css"><a href="#css" class="headerlink" title="css"></a>css</h5><blockquote>
+<h3 id="css"><a href="#css" class="headerlink" title="css"></a>css</h3><blockquote>
 <p>Released v1.4.0</p>
 </blockquote>
 <pre><code>@import (css) &quot;foo.less&quot;;
@@ -248,13 +265,13 @@
 
 @import &quot;foo.less&quot;;
 </code></pre><p>将导入的文件视为常规CSS，无论文件扩展名如何。 这意味着import语句将保持原样。</p>
-<h5 id="once"><a href="#once" class="headerlink" title="once"></a>once</h5><blockquote>
+<h3 id="once"><a href="#once" class="headerlink" title="once"></a>once</h3><blockquote>
 <p>Released v1.4.0</p>
 </blockquote>
 <p>@import语句的默认行为。 这意味着文件仅导入一次，并且将忽略该文件的后续导入语句。</p>
 <pre><code>@import (once) &quot;foo.less&quot;;
 @import (once) &quot;foo.less&quot;; // this statement will be ignored
-</code></pre><h5 id="multiple"><a href="#multiple" class="headerlink" title="multiple"></a>multiple</h5><blockquote>
+</code></pre><h3 id="multiple"><a href="#multiple" class="headerlink" title="multiple"></a>multiple</h3><blockquote>
 <p>Released v1.4.0</p>
 </blockquote>
 <p>使用@import（multiple）可以导入多个相同名称的文件，这是和once相反的行为。</p>
@@ -272,12 +289,12 @@
 .a {
   color: green;
 }
-</code></pre><h5 id="optional"><a href="#optional" class="headerlink" title="optional"></a>optional</h5><blockquote>
+</code></pre><h3 id="optional"><a href="#optional" class="headerlink" title="optional"></a>optional</h3><blockquote>
 <p>Released v2.3.0</p>
 </blockquote>
 <pre><code>@import (optional) &quot;foo.less&quot;;
 </code></pre><p>使用@import（optional）仅允许在文件存在时导入文件，在没有optional关键字时，Less会抛出FileError并在导入无法找到的文件时停止编译。</p>
-<h3 id="plugin插件"><a href="#plugin插件" class="headerlink" title="@plugin插件"></a>@plugin插件</h3><blockquote>
+<h2 id="plugin插件"><a href="#plugin插件" class="headerlink" title="@plugin插件"></a>@plugin插件</h2><blockquote>
 <p>Released v2.5.0</p>
 </blockquote>
 <p>可以通过导入JavaScript插件以添加Less.js函数和功能</p>
@@ -427,7 +444,7 @@ store(@var);
 <li><a href="https://github.com/less/less-plugin-npm-import" target="_blank" rel="external">文件管理器</a></li>
 </ul>
 <h3 id="预加载插件"><a href="#预加载插件" class="headerlink" title="预加载插件"></a>预加载插件</h3><p>虽然@plugin调用适用于大多数情况，但有时您可能希望在解析开始之前加载插件。<br>请参阅：“使用Less.js”部分中的预加载插件，了解如何执行此操作。</p>
-<h1 id="Maps-新"><a href="#Maps-新" class="headerlink" title="Maps (新)"></a>Maps (新)</h1><blockquote>
+<h1 id="Maps-新"><a href="#Maps-新" class="headerlink" title="Maps(新)"></a>Maps(新)</h1><blockquote>
 <p>Released v3.5.0-beta.4</p>
 </blockquote>
 <p>使用规则集和mixins作为值的映射<br>通过将命名空间与[]语法相结合，您可以将规则集/ mixin转换为映射，比如：</p>
@@ -494,7 +511,7 @@ store(@var);
 }
 </code></pre><p>通过这种方式，规则集和变量调用可以模拟一种类型的“命名空间”，类似于mixins</p>
 <p>至于是否将分配给变量的mixins或规则集用作映射，这取决于您。 您可能希望通过重新声明分配给rulset的变量来替换整个Map来使用； 或者您可能想要“合并”单个键/值对，在这种情况下，把mixins作为Map可能更合适。</p>
-<h3 id="在-中使用变量的变量"><a href="#在-中使用变量的变量" class="headerlink" title="在[]中使用变量的变量"></a>在[]中使用变量的变量</h3><p>有一件重要的事情需要注意，查找表达式[@lookup]中的@lookup是查找的主键，一般只接受常量，不能使用变量来访问，但是可以使用变量的变量来作为索引键值<br>例子：</p>
+<h2 id="在-中使用变量的变量"><a href="#在-中使用变量的变量" class="headerlink" title="在[]中使用变量的变量"></a>在[]中使用变量的变量</h2><p>有一件重要的事情需要注意，查找表达式[@lookup]中的@lookup是查找的主键，一般只接受常量，不能使用变量来访问，但是可以使用变量的变量来作为索引键值<br>例子：</p>
 <pre><code>.foods() {
   @dessert: ice cream;
 }
@@ -508,100 +525,7 @@ store(@var);
 <pre><code>.lunch {
   treat: ice cream;
 }
-</code></pre><p><span class="nc-post-nav1" style="display:none;"><br>  <span class="eye"></span><br>  <span class="nc-post-navbars1"><br>    文章导航<br>  </span><br></span><br><span class="nc-post-nav2"><br>  <span class="nc-navbar-head"><span>x</span></span><br>  <span class="nc-navbar-body"><br>    <a class="nc-navbar-item" href="#import导入">1. @import导入</a><br>    <a class="nc-navbar-item" href="#plugin插件">2. @plugin插件</a><br>    <a class="nc-navbar-item" href="#Maps-新">3. Maps (新)</a><br>  </span><br></span></p>
-<style>
-.nc-post-nav1,.nc-post-nav2 {
-  display:inline-flex;
-  border:solid 2px #666666;
-  padding:5px;
-  flex-direction:column;
-  position:fixed;
-  top:100px;
-  right:38px;
-  background:#fff;
-  box-shadow: 2px 5px 5px #999;
-}
-.nc-post-nav1 .nc-post-navbars1 {
-  width:24px;
-  text-align:center;
-}
-.nc-post-nav1 .eye {
-  display:inline-block;
-  height:14px;
-  width:24px;
-  border:solid 2px #666666;
-  border-radius:50%;
-  position:relative;
-}
-.nc-post-nav1 .eye:after {
-  content:"";
-  display:inline-block;
-  position:absolute;
-  height:12px;
-  width:12px;
-  border-radius:50%;
-  background:#666666;
-  left:50%;
-  transform:translateX(-50%);
-}
-.nc-post-nav1 .eye:before {
-  content:"";
-  display:inline-block;
-  position:absolute;
-  height:6px;
-  width:6px;
-  border-radius:50%;
-  background:#fff;
-  left:42%;
-  top:3px;
-  transform:translateX(-50%);
-  z-index:1;
-}
-.nc-post-nav1:hover {
-  cursor:pointer;
-  border-color:#0039e6;
-}
-.nc-post-nav1:hover .eye {
-  border-color:#0039e6;
-}
-.nc-post-nav1:hover .nc-post-navbars1 {
-  color:#0039e6;
-}
-.nc-post-nav1:hover .eye:after {
-  background:#0039e6;
-}
-.nc-post-nav2 .nc-navbar-head {
-  width:200px;
-  display:inline-flex;
-  justify-content:flex-end;
-  padding-right:10px;
-}
-.nc-post-nav2 .nc-navbar-head span:hover {
-  cursor:pointer;
-  color:#00061a;
-}
-.nc-post-nav2 .nc-navbar-body {
-  display:inline-flex;
-  flex-direction:column;
-  padding:5px 10px;
-}
-.nc-post-nav2 .nc-navbar-body .nc-navbar-item {
-  padding:5px;
-}
-.nc-post-nav2 .nc-navbar-body .nc-navbar-item:hover {
-  color:#0039e6;
-  text-decoration:underline;
-  cursor:pointer;
-}
-</style>
-
-<script>
-    var navDom1 = document.getElementsByName("nc-post-nav1")[0];
-    var navDom2 = document.getElementsByName("nc-post-nav2")[0];
-    navDom1.addEventListener("click", function(){
-        navDom2.;
-    });
-</script>
+</code></pre>
       
 
       

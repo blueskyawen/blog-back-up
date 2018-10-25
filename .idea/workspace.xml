@@ -6,8 +6,68 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/yilia" afterPath="$PROJECT_DIR$/themes/yilia" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.json" afterPath="$PROJECT_DIR$/db.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/05/29/markdown/index.html" afterPath="$PROJECT_DIR$/public/2017/05/29/markdown/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/06/01/hexo-build-blok/index.html" afterPath="$PROJECT_DIR$/public/2017/06/01/hexo-build-blok/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/06/11/hexo-add-pinglun/index.html" afterPath="$PROJECT_DIR$/public/2017/06/11/hexo-add-pinglun/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/06/11/hexo-bind-domain/index.html" afterPath="$PROJECT_DIR$/public/2017/06/11/hexo-bind-domain/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/06/11/hexo-theme/index.html" afterPath="$PROJECT_DIR$/public/2017/06/11/hexo-theme/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/15/angular-module/index.html" afterPath="$PROJECT_DIR$/public/2017/07/15/angular-module/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/16/angular-Injector/index.html" afterPath="$PROJECT_DIR$/public/2017/07/16/angular-Injector/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/17/angular-router/index.html" afterPath="$PROJECT_DIR$/public/2017/07/17/angular-router/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/20/angular-component-styles/index.html" afterPath="$PROJECT_DIR$/public/2017/07/20/angular-component-styles/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/21/angular-attr-directive/index.html" afterPath="$PROJECT_DIR$/public/2017/07/21/angular-attr-directive/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/23/angular-cli-comand/index.html" afterPath="$PROJECT_DIR$/public/2017/07/23/angular-cli-comand/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/23/angular-cli-install-deploy/index.html" afterPath="$PROJECT_DIR$/public/2017/07/23/angular-cli-install-deploy/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/23/angular-lifecysle-hook/index.html" afterPath="$PROJECT_DIR$/public/2017/07/23/angular-lifecysle-hook/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/28/angular-pipe/index.html" afterPath="$PROJECT_DIR$/public/2017/07/28/angular-pipe/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/07/31/angular-structDirective/index.html" afterPath="$PROJECT_DIR$/public/2017/07/31/angular-structDirective/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/08/27/anular-http/index.html" afterPath="$PROJECT_DIR$/public/2017/08/27/anular-http/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/09/03/angular-aot/index.html" afterPath="$PROJECT_DIR$/public/2017/09/03/angular-aot/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/09/10/angular-zujiantonxing/index.html" afterPath="$PROJECT_DIR$/public/2017/09/10/angular-zujiantonxing/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/10/07/class-and-interface/index.html" afterPath="$PROJECT_DIR$/public/2017/10/07/class-and-interface/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/10/15/angular-jianceqi/index.html" afterPath="$PROJECT_DIR$/public/2017/10/15/angular-jianceqi/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/11/10/angular-directive/index.html" afterPath="$PROJECT_DIR$/public/2017/11/10/angular-directive/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/11/19/Angular-Form/index.html" afterPath="$PROJECT_DIR$/public/2017/11/19/Angular-Form/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/11/22/Form-templateForm/index.html" afterPath="$PROJECT_DIR$/public/2017/11/22/Form-templateForm/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/11/26/reactive-form/index.html" afterPath="$PROJECT_DIR$/public/2017/11/26/reactive-form/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/12/01/router-guard/index.html" afterPath="$PROJECT_DIR$/public/2017/12/01/router-guard/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/12/24/rxjs/index.html" afterPath="$PROJECT_DIR$/public/2017/12/24/rxjs/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2017/12/27/rxjs-operators/index.html" afterPath="$PROJECT_DIR$/public/2017/12/27/rxjs-operators/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/11/forkjoin-zip/index.html" afterPath="$PROJECT_DIR$/public/2018/01/11/forkjoin-zip/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/14/css3-2D/index.html" afterPath="$PROJECT_DIR$/public/2018/01/14/css3-2D/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/14/css3-3D/index.html" afterPath="$PROJECT_DIR$/public/2018/01/14/css3-3D/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/14/css3-animation/index.html" afterPath="$PROJECT_DIR$/public/2018/01/14/css3-animation/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/14/css3-border-box/index.html" afterPath="$PROJECT_DIR$/public/2018/01/14/css3-border-box/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/18/css3-gradients/index.html" afterPath="$PROJECT_DIR$/public/2018/01/18/css3-gradients/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/21/css3-box/index.html" afterPath="$PROJECT_DIR$/public/2018/01/21/css3-box/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/21/css3-flex/index.html" afterPath="$PROJECT_DIR$/public/2018/01/21/css3-flex/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/01/24/css3-modia/index.html" afterPath="$PROJECT_DIR$/public/2018/01/24/css3-modia/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/03/09/design-pattern-1/index.html" afterPath="$PROJECT_DIR$/public/2018/03/09/design-pattern-1/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/03/17/design-pattern-2/index.html" afterPath="$PROJECT_DIR$/public/2018/03/17/design-pattern-2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/03/18/design-pattern-3/index.html" afterPath="$PROJECT_DIR$/public/2018/03/18/design-pattern-3/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/04/25/Javascript-ECMAScript/index.html" afterPath="$PROJECT_DIR$/public/2018/04/25/Javascript-ECMAScript/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/05/05/ECMAScript-mianxiangduixiang/index.html" afterPath="$PROJECT_DIR$/public/2018/05/05/ECMAScript-mianxiangduixiang/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/05/06/javascipt-bibao-and-this/index.html" afterPath="$PROJECT_DIR$/public/2018/05/06/javascipt-bibao-and-this/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/07/27/jquery-daoru/index.html" afterPath="$PROJECT_DIR$/public/2018/07/27/jquery-daoru/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/07/28/JSON-xuliehua/index.html" afterPath="$PROJECT_DIR$/public/2018/07/28/JSON-xuliehua/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/07/31/jq-plugin/index.html" afterPath="$PROJECT_DIR$/public/2018/07/31/jq-plugin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/08/10/less-common/index.html" afterPath="$PROJECT_DIR$/public/2018/08/10/less-common/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/08/14/lessjs-use/index.html" afterPath="$PROJECT_DIR$/public/2018/08/14/lessjs-use/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/08/15/lessjs-use-depth/index.html" afterPath="$PROJECT_DIR$/public/2018/08/15/lessjs-use-depth/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/08/22/the-offset-of-javascript-and-jquery/index.html" afterPath="$PROJECT_DIR$/public/2018/08/22/the-offset-of-javascript-and-jquery/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/08/23/less-import/index.html" afterPath="$PROJECT_DIR$/public/2018/08/23/less-import/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/09/12/jq-plugins-dev/index.html" afterPath="$PROJECT_DIR$/public/2018/09/12/jq-plugins-dev/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/2018/09/26/jq-plugin-dev2/index.html" afterPath="$PROJECT_DIR$/public/2018/09/26/jq-plugin-dev2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/about-me/index.html" afterPath="$PROJECT_DIR$/public/about-me/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/content.json" afterPath="$PROJECT_DIR$/public/content.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/main.b3331d.css" afterPath="$PROJECT_DIR$/public/main.b3331d.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/page/2/index.html" afterPath="$PROJECT_DIR$/public/page/2/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/page/3/index.html" afterPath="$PROJECT_DIR$/public/page/3/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/page/4/index.html" afterPath="$PROJECT_DIR$/public/page/4/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/page/5/index.html" afterPath="$PROJECT_DIR$/public/page/5/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/page/6/index.html" afterPath="$PROJECT_DIR$/public/page/6/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/photos/index.html" afterPath="$PROJECT_DIR$/public/photos/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/source/_posts/2018-10-22-less-import.md" afterPath="$PROJECT_DIR$/source/_posts/2018-10-22-less-import.md" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,16 +86,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="2018-10-16-lessjs-use.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/2018-10-16-lessjs-use.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="2018-10-16-lessjs-use-depth.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/2018-10-16-lessjs-use-depth.md">
           <provider selected="true" editor-type-id="text-editor">
@@ -46,12 +96,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2018-10-22-less-import.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2018-10-22-less-import.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/source/_posts/2018-10-22-less-import.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="458" column="18" lean-forward="true" selection-start-line="458" selection-start-column="18" selection-end-line="458" selection-end-column="18" />
+            <state relative-caret-position="253">
+              <caret line="421" column="0" lean-forward="false" selection-start-line="421" selection-start-column="0" selection-end-line="421" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.b3331d.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/themes/yilia/source/main.b3331d.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="0" column="30486" lean-forward="false" selection-start-line="0" selection-start-column="30486" selection-end-line="0" selection-end-column="30486" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="article.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/themes/yilia/layout/_partial/article.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="15" lean-forward="false" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,7 +142,7 @@
       <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/themes/hexo-theme-believe/layout/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-311">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -116,16 +189,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2018-01-21-css3-flex.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/source/_posts/2018-01-21-css3-flex.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -145,6 +208,8 @@
       <find>tooltip-item</find>
       <find>tooltip-east</find>
       <find>tooltip</find>
+      <find>article-info</find>
+      <find>article-header</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -153,8 +218,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/source/_posts/2017-07-23-angular-structural-directive.md" />
-        <option value="$PROJECT_DIR$/source/_posts/2017-07-23-angular-cli-comand.md" />
         <option value="$PROJECT_DIR$/source/_posts/2017-07-28-angular-pipe.md" />
         <option value="$PROJECT_DIR$/source/_posts/2017-07-31-angular-structDirective.md" />
         <option value="$PROJECT_DIR$/source/_posts/2017-07-23-angular-lifecysle-hook.md" />
@@ -203,7 +266,9 @@
         <option value="$PROJECT_DIR$/source/_posts/2018-10-16-lessjs-use.md" />
         <option value="$PROJECT_DIR$/db.json" />
         <option value="$PROJECT_DIR$/source/_posts/2018-10-18-the-offset-of-javascript-and-jquery.md" />
+        <option value="$PROJECT_DIR$/themes/yilia/layout/_partial/article.ejs" />
         <option value="$PROJECT_DIR$/source/_posts/2018-10-22-less-import.md" />
+        <option value="$PROJECT_DIR$/themes/yilia/source/main.b3331d.css" />
       </list>
     </option>
   </component>
@@ -237,7 +302,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -247,6 +311,108 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yilia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yilia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yilia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yilia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_partial" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-back-up" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -284,6 +450,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -471,18 +638,19 @@
       <workItem from="1540228279577" duration="1777000" />
       <workItem from="1540304987117" duration="2525000" />
       <workItem from="1540386928384" duration="1008000" />
-      <workItem from="1540395262684" duration="3004000" />
+      <workItem from="1540395262684" duration="3124000" />
+      <workItem from="1540480053689" duration="3648000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232839000" />
+    <option name="totallyTimeSpent" value="236607000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1366" height="681" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25931445" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15946348" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32844037" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32838285" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -511,20 +679,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/source/_posts/2017-07-21-angular-attr-directive.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2025">
-          <caret line="135" column="6" lean-forward="false" selection-start-line="135" selection-start-column="6" selection-end-line="135" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/source/_posts/2017-09-10-angular-zujiantonxing.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1770">
-          <caret line="118" column="17" lean-forward="false" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/2017-08-27-anular-http.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -781,7 +935,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="14" lean-forward="false" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -789,7 +942,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -853,7 +1005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3240">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -867,16 +1018,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/themes/hexo-theme-believe/layout/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-311">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/themes/yilia/layout/_partial/article.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="15" lean-forward="false" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/_posts/2018-10-22-less-import.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="458" column="18" lean-forward="true" selection-start-line="458" selection-start-column="18" selection-end-line="458" selection-end-column="18" />
+        <state relative-caret-position="253">
+          <caret line="421" column="0" lean-forward="false" selection-start-line="421" selection-start-column="0" selection-end-line="421" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/yilia/source/main.b3331d.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="0" column="30486" lean-forward="false" selection-start-line="0" selection-start-column="30486" selection-end-line="0" selection-end-column="30486" />
           <folding />
         </state>
       </provider>
