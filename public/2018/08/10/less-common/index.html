@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blueskyawen.com/2018/08/10/less-common/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="命令行用法使用命令行将.less文件编译为.css 安装npm install less -g -g选项代表安装全局，安装后可用于命令行。 如果需要安装特定版本或标记的less，可以在包名称之后添加@VERSION，例如">
-<meta property="og:updated_time" content="2018-10-17T13:26:03.399Z">
+<meta property="og:updated_time" content="2018-10-26T14:18:53.847Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="less.js用法（译）">
 <meta name="twitter:description" content="命令行用法使用命令行将.less文件编译为.css 安装npm install less -g -g选项代表安装全局，安装后可用于命令行。 如果需要安装特定版本或标记的less，可以在包名称之后添加@VERSION，例如">
@@ -167,7 +167,20 @@
           </div>
           <div id="js-content" class="content-ll">
             <!-- 目录内容 -->
-
+ <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:block"> <span class="btn-bg"></span> <span class="btn-text">文章导航</span> </p> <div id="toc-article" class="toc-article" style="display:none"> <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span> <strong class="toc-title">文章目录</strong> <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#命令行用法"><span class="toc-number">1.</span> <span class="toc-text">命令行用法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发本地安装"><span class="toc-number">1.2.</span> <span class="toc-text">开发本地安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lessc的Beta版本"><span class="toc-number">1.3.</span> <span class="toc-text">lessc的Beta版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务端命令行用法"><span class="toc-number">1.4.</span> <span class="toc-text">服务端命令行用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-number">1.4.1.</span> <span class="toc-text">用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lessc配置参数"><span class="toc-number">1.5.</span> <span class="toc-text">lessc配置参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#浏览器端用法"><span class="toc-number">2.</span> <span class="toc-text">浏览器端用法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置参数"><span class="toc-number">2.1.</span> <span class="toc-text">配置参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器环境支持"><span class="toc-number">2.2.</span> <span class="toc-text">浏览器环境支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-number">2.3.</span> <span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#监控模式"><span class="toc-number">2.4.</span> <span class="toc-text">监控模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量修改"><span class="toc-number">2.5.</span> <span class="toc-text">变量修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调试"><span class="toc-number">2.6.</span> <span class="toc-text">调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选项"><span class="toc-number">2.7.</span> <span class="toc-text">选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lessc配置参数-1"><span class="toc-number">2.8.</span> <span class="toc-text">lessc配置参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Less-js选项"><span class="toc-number">3.</span> <span class="toc-text">Less.js选项</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#跨平台选项"><span class="toc-number">3.1.</span> <span class="toc-text">跨平台选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源映射选项"><span class="toc-number">3.2.</span> <span class="toc-text">源映射选项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#预加载插件"><span class="toc-number">4.</span> <span class="toc-text">预加载插件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#预处理"><span class="toc-number">4.1.</span> <span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js使用"><span class="toc-number">4.2.</span> <span class="toc-text">Node.js使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用命令行"><span class="toc-number">4.2.1.</span> <span class="toc-text">使用命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过Less-js加载插件"><span class="toc-number">4.2.2.</span> <span class="toc-text">通过Less.js加载插件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编程使用"><span class="toc-number">5.</span> <span class="toc-text">编程使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#访问日志"><span class="toc-number">5.1.</span> <span class="toc-text">访问日志</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#为Less-js做贡献"><span class="toc-number">6.</span> <span class="toc-text">为Less.js做贡献</span></a></li></ol> </div> <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+  };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+  };
+</script> 
 <!-- 目录内容结束 -->
 
 <article id="post-less-common" class="article article-type-post " itemscope itemprop="blogPost">
@@ -203,17 +216,23 @@
 </code></pre><p>如果source设置为` - ‘（破折号或连字符减号），则从stdin读取输入。<br>例子：</p>
 <pre><code>lessc bootstrap.less bootstrap.css
 </code></pre><h2 id="lessc配置参数"><a href="#lessc配置参数" class="headerlink" title="lessc配置参数"></a>lessc配置参数</h2><p>想要获取更多的参数和用法，请参看<a href="https://less.bootcss.com/usage/#less-options" target="_blank" rel="external">Less Options</a></p>
-<h5 id="Silent"><a href="#Silent" class="headerlink" title="Silent"></a>Silent</h5><p>停止显示任何警告。</p>
+<p><strong>Silent</strong></p>
+<p>停止显示任何警告。</p>
 <pre><code>lessc -s lessc --silent
-</code></pre><h5 id="Version"><a href="#Version" class="headerlink" title="Version"></a>Version</h5><p>查看版本。</p>
+</code></pre><p><strong>Version</strong></p>
+<p>查看版本。</p>
 <pre><code>lessc -v  / lessc --version
-</code></pre><h5 id="help"><a href="#help" class="headerlink" title="help"></a>help</h5><p>打印包含可用选项和退出的帮助消息。</p>
+</code></pre><p><strong>help</strong></p>
+<p>打印包含可用选项和退出的帮助消息。</p>
 <pre><code>lessc --help / lessc -h
-</code></pre><h5 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h5><p>将导入到依赖关系列表的生成文件输出到stdout。</p>
+</code></pre><p><strong>Makefile</strong></p>
+<p>将导入到依赖关系列表的生成文件输出到stdout。</p>
 <pre><code>lessc -M
 lessc --depends
-</code></pre><h5 id="No-Color"><a href="#No-Color" class="headerlink" title="No Color"></a>No Color</h5><pre><code>lessc --no-color
-</code></pre><h5 id="Clean-CSS"><a href="#Clean-CSS" class="headerlink" title="Clean CSS"></a>Clean CSS</h5><p>在v2中，Clean CSS不再作为直接依赖项包含在内。 要使用Clean CSS，请使用clean css插件。</p>
+</code></pre><p><strong>No Color</strong></p>
+<pre><code>lessc --no-color
+</code></pre><p><strong>Clean CSS</strong></p>
+<p>在v2中，Clean CSS不再作为直接依赖项包含在内。 要使用Clean CSS，请使用clean css插件。</p>
 <h1 id="浏览器端用法"><a href="#浏览器端用法" class="headerlink" title="浏览器端用法"></a>浏览器端用法</h1><p>在浏览器中使用Less.js是最简单的入门方式，便于使用Less进行开发，但在生产中，当性能和可靠性很重要时，我们建议使用Node.js或许多第三方工具之一进行预编译<br>首先，将.less样式表与rel属性设置为“stylesheet / less”链接：</p>
 <pre><code>&lt;link rel =“stylesheet / less”type =“text / css”href =“styles.less”/&gt;
 </code></pre><p>然后，将less.js包含在页面head元素的<code>&lt;script&gt; &lt;/ script&gt;</code>标记中：</p>
@@ -280,10 +299,14 @@ lessc --depends
 &lt;/script&gt;
 &lt;script src=&quot;less.js&quot;&gt;&lt;/script&gt;
 </code></pre><h2 id="lessc配置参数-1"><a href="#lessc配置参数-1" class="headerlink" title="lessc配置参数"></a>lessc配置参数</h2><p>想要获取更多的参数和用法，请参看<a href="https://less.bootcss.com/usage/#less-options" target="_blank" rel="external">Less Options</a></p>
-<h5 id="异步async"><a href="#异步async" class="headerlink" title="异步async"></a>异步async</h5><p>类型：布尔值<br>默认值：false<br>是否使用async选项请求导入文件。请参阅fileAsync。</p>
-<h5 id="env运行环境"><a href="#env运行环境" class="headerlink" title="env运行环境"></a>env运行环境</h5><p>类型：字符串默认值：取决于页面URL，运行环境可以是开发或生产。<br>例如：less = {env：’production’};<br>在生产中，您的css缓存在本地存储中，信息消息不会输出到控制台。<br>如果文档的URL以file：//开头，或者在本地计算机上或具有非标准端口，则它将自动设置为开发。</p>
-<h5 id="errorReporting"><a href="#errorReporting" class="headerlink" title="errorReporting"></a>errorReporting</h5><p>类型：字符串<br>选项：html | console | function<br>默认值：html<br>编译失败时设置错误报告方法。</p>
-<h5 id="fileAsync"><a href="#fileAsync" class="headerlink" title="fileAsync"></a>fileAsync</h5><p>类型：布尔值<br>默认值：false<br>是否在具有文件协议的页面中异步请求导入。<br>函数（不推荐使用 - 使用@plugin）<br>类型：对象<br>用户功能，按名称键入。</p>
+<p><strong>异步async</strong></p>
+<p>类型：布尔值<br>默认值：false<br>是否使用async选项请求导入文件。请参阅fileAsync。</p>
+<p><strong>env运行环境</strong></p>
+<p>类型：字符串默认值：取决于页面URL，运行环境可以是开发或生产。<br>例如：less = {env：’production’};<br>在生产中，您的css缓存在本地存储中，信息消息不会输出到控制台。<br>如果文档的URL以file：//开头，或者在本地计算机上或具有非标准端口，则它将自动设置为开发。</p>
+<p><strong>errorReporting</strong></p>
+<p>类型：字符串<br>选项：html | console | function<br>默认值：html<br>编译失败时设置错误报告方法。</p>
+<p><strong>fileAsync</strong></p>
+<p>类型：布尔值<br>默认值：false<br>是否在具有文件协议的页面中异步请求导入。<br>函数（不推荐使用 - 使用@plugin）<br>类型：对象<br>用户功能，按名称键入。</p>
 <pre><code>less = {
     功能： {
         myfunc：function（）{
@@ -295,16 +318,23 @@ lessc --depends
 <pre><code>.myclass {
   border-width：unit（myfunc（），px）;
 }
-</code></pre><h5 id="logLevel"><a href="#logLevel" class="headerlink" title="logLevel"></a>logLevel</h5><p>类型：数字<br>默认值：2<br>2 - 信息和错误<br>1 - 错误<br>0 - 没什么<br>javascript控制台中的日志记录量。注意：如果您在生产环境中，则不会进行任何记录。</p>
-<h5 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h5><p>类型：整数<br>默认值：1000<br>处于监视模式时轮询之间的时间量（以毫秒为单位）。</p>
-<h5 id="relativeUrls"><a href="#relativeUrls" class="headerlink" title="relativeUrls"></a>relativeUrls</h5><p>类型：布尔值<br>默认值：false<br>（可选）将URL调整为相对。如果为false，则URL已经相对于entry-less文件</p>
-<h5 id="useFileCache"><a href="#useFileCache" class="headerlink" title="useFileCache"></a>useFileCache</h5><p>类型：布尔值<br>默认值：true（之前在v2之前为false）<br>是否使用每个会话文件缓存。这会缓存较少的文件，以便您可以调用modifyVars，并且它不会再次检索所有较少的文件。如果使用观察程序或使用reload设置为true调用refresh，则在运行之前将清除缓存。</p>
-<h1 id="Less-js选项"><a href="#Less-js选项" class="headerlink" title="Less.js选项"></a>Less.js选项</h1><h2 id="跨平台选项"><a href="#跨平台选项" class="headerlink" title="跨平台选项"></a>跨平台选项</h2><h5 id="包括路径"><a href="#包括路径" class="headerlink" title="包括路径"></a>包括路径</h5><pre><code>lessc --include-path = PATH1; PATH2 {paths：[&apos;PATH1&apos;，&apos;PATH2&apos;]}
+</code></pre><p><strong>logLevel</strong></p>
+<p>类型：数字<br>默认值：2<br>2 - 信息和错误<br>1 - 错误<br>0 - 没什么<br>javascript控制台中的日志记录量。注意：如果您在生产环境中，则不会进行任何记录。</p>
+<p><strong>poll</strong></p>
+<p>类型：整数<br>默认值：1000<br>处于监视模式时轮询之间的时间量（以毫秒为单位）。</p>
+<p><strong>relativeUrls</strong></p>
+<p>类型：布尔值<br>默认值：false<br>（可选）将URL调整为相对。如果为false，则URL已经相对于entry-less文件</p>
+<p><strong>useFileCache</strong></p>
+<p>类型：布尔值<br>默认值：true（之前在v2之前为false）<br>是否使用每个会话文件缓存。这会缓存较少的文件，以便您可以调用modifyVars，并且它不会再次检索所有较少的文件。如果使用观察程序或使用reload设置为true调用refresh，则在运行之前将清除缓存。</p>
+<h1 id="Less-js选项"><a href="#Less-js选项" class="headerlink" title="Less.js选项"></a>Less.js选项</h1><h2 id="跨平台选项"><a href="#跨平台选项" class="headerlink" title="跨平台选项"></a>跨平台选项</h2><p><strong>包括路径</strong></p>
+<pre><code>lessc --include-path = PATH1; PATH2 {paths：[&apos;PATH1&apos;，&apos;PATH2&apos;]}
 </code></pre><p>如果@import规则中的文件不存在于该确切位置，则Less将在传递给此选项的位置查找该文件。 例如，您可以使用它在Less文件中指定要引用库的相对路径。</p>
-<h5 id="Rootpath"><a href="#Rootpath" class="headerlink" title="Rootpath"></a>Rootpath</h5><pre><code>lessc -rp=resources/
+<p><strong>Rootpath</strong></p>
+<pre><code>lessc -rp=resources/
 lessc --rootpath=resources/    { rootpath: &apos;resources/&apos; }
 </code></pre><p>如果@import规则中的文件不存在于该确切位置，则Less将在传递给此选项的位置查找该文件。 例如，您可以使用它在Less文件中指定要引用库的相对路径。</p>
-<h5 id="相对URL"><a href="#相对URL" class="headerlink" title="相对URL"></a>相对URL</h5><pre><code>lessc -ru
+<p><strong>相对URL</strong></p>
+<pre><code>lessc -ru
 lessc --relative-urls {relativeUrls：true}
 </code></pre><p>默认情况下，URL保持原样，因此如果您在引用图像的子目录中导入文件，则将在css中输出完全相同的URL。此选项允许您在导入的文件中重写URL，以便URL始终相对于基本导入的文件。例如。</p>
 <pre><code>// main.less
@@ -322,7 +352,8 @@ lessc --relative-urls {relativeUrls：true}
   background-image：url（&apos;files / images / lamp-post.png&apos;）;
 }
 </code></pre><p>您可能还需要考虑使用data-uri函数而不是此选项，它会将图像嵌入到css中。</p>
-<h5 id="Strict-Math"><a href="#Strict-Math" class="headerlink" title="Strict Math"></a>Strict Math</h5><pre><code>lessc -sm = on
+<p><strong>Strict Math</strong></p>
+<pre><code>lessc -sm = on
 lessc --strict-math = on {strictMath：true}
 </code></pre><p>默认为off / false。<br>如果没有此选项，Less将尝试处理您的CSS中的所有数学，例如在：</p>
 <pre><code>.class {
@@ -341,46 +372,59 @@ lessc --strict-math = on {strictMath：true}
   width：42px;
 }
 </code></pre><p>我们原计划在未来将此默认为true，但它一直是一个有争议的选项，我们正在考虑我们是否以正确的方式解决了问题，或者Less是否应该只对有效或无效的实例有例外。</p>
-<h5 id="Strict-Units"><a href="#Strict-Units" class="headerlink" title="Strict Units"></a>Strict Units</h5><pre><code>lessc -su = on
+<p><strong>Strict Units</strong></p>
+<pre><code>lessc -su = on
 lessc --strict-units = on {strictUnits：true}
 </code></pre><p>默认为off / false。<br>如果没有此选项，则在数学运算时尝试猜测输出单位。例如</p>
 <pre><code>.class {
   property：1px * 2px;
 }
 </code></pre><p>在这种情况下，事情显然是不对的 - 长度乘以长度给出一个区域，但css不支持指定区域。所以我们假设用户意味着其中一个值是一个值，而不是长度单位，我们输出2px。<br>如果打开严格的单位，我们假设这是计算中的错误并抛出错误。</p>
-<h5 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h5><pre><code>lessc --global-var =“color1 = red”{globalVars：{color1：&apos;red&apos;}}
+<p><strong>全局变量</strong></p>
+<pre><code>lessc --global-var =“color1 = red”{globalVars：{color1：&apos;red&apos;}}
 </code></pre><p>此选项定义可由文件引用的变量。变量的声明放在基础Less文件的顶部，这意味着可以使用它，也可以覆盖它。</p>
-<h5 id="修改变量"><a href="#修改变量" class="headerlink" title="修改变量"></a>修改变量</h5><pre><code>lessc --modify-var =“color1 = red”{modifyVars：{color1：&apos;red&apos;}}
+<p><strong>修改变量</strong></p>
+<pre><code>lessc --modify-var =“color1 = red”{modifyVars：{color1：&apos;red&apos;}}
 </code></pre><p>与全局变量选项相反，这会将声明放在基本文件的末尾，这意味着它将覆盖Less文件中定义的任何内容。</p>
-<h5 id="修改变量-1"><a href="#修改变量-1" class="headerlink" title="修改变量"></a>修改变量</h5><pre><code>lessc --modify-var =“color1 = red”{modifyVars：{color1：&apos;red&apos;}}
-</code></pre><p>与全局变量选项相反，这会将声明放在基本文件的末尾，这意味着它将覆盖Less文件中定义的任何内容。</p>
-<h5 id="URL参数"><a href="#URL参数" class="headerlink" title="URL参数"></a>URL参数</h5><pre><code>lessc --url-args =“cache726357”{urlArgs：&apos;cache726357&apos;}
+<p><strong>URL参数</strong></p>
+<pre><code>lessc --url-args =“cache726357”{urlArgs：&apos;cache726357&apos;}
 </code></pre><p>此选项允许您指定要转到每个URL的参数。例如，这可以用于缓存清除。</p>
-<h5 id="预装插件"><a href="#预装插件" class="headerlink" title="预装插件"></a>预装插件</h5><p>请参阅：预加载插件</p>
-<h5 id="lint检查"><a href="#lint检查" class="headerlink" title="lint检查"></a>lint检查</h5><pre><code>lessc --lint -l {lint：true}
+<p><strong>预装插件</strong></p>
+<p>请参阅：预加载插件</p>
+<p><strong>lint检查</strong></p>
+<pre><code>lessc --lint -l {lint：true}
 </code></pre><p>运行较少的解析器，只报告错误而不输出任何内容。</p>
-<h5 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h5><pre><code>lessc --compress -x {compress：true}
+<p><strong>压缩</strong></p>
+<pre><code>lessc --compress -x {compress：true}
 </code></pre><p>使用较少的内置压缩进行压缩。这项工作做得不错，但没有利用专用css压缩的所有技巧。请随时通过pull请求改进我们的压缩输出。</p>
-<h5 id="允许从不安全的HTTPS主机导入"><a href="#允许从不安全的HTTPS主机导入" class="headerlink" title="允许从不安全的HTTPS主机导入"></a>允许从不安全的HTTPS主机导入</h5><pre><code>lessc --insecure {insecure：true}
+<p><strong>允许从不安全的HTTPS主机导入</strong></p>
+<pre><code>lessc --insecure {insecure：true}
 </code></pre><h2 id="源映射选项"><a href="#源映射选项" class="headerlink" title="源映射选项"></a>源映射选项</h2><p>大多数这些选项不适用于在浏览器中使用，因为您应该使用预编译的Less文件生成源映射。</p>
-<h5 id="生成源映射"><a href="#生成源映射" class="headerlink" title="生成源映射"></a>生成源映射</h5><pre><code>lessc --source-map {sourceMap：{}}
-</code></pre><h5 id="源映射输出文件名"><a href="#源映射输出文件名" class="headerlink" title="源映射输出文件名"></a>源映射输出文件名</h5><pre><code>lessc --source-map=file.map    { sourceMap: { outputFilename: &apos;file.map&apos; } }
-</code></pre><h5 id="源映射Rootpath"><a href="#源映射Rootpath" class="headerlink" title="源映射Rootpath"></a>源映射Rootpath</h5><p>lessc –source-map-rootpath=dev-files/    { sourceMap: { sourceMapRootpath: ‘dev-files/‘ } }</p>
-<p>指定添加前导路径到源映射内的每个less文件路径，以及输出css中指定的映射文件的路径.<br>由于basepath默认为输入较少文件的目录，因此根路径默认为从sourcemap输出文件到input less文件的基目录的路径。<br>例如，如果您在Web服务器的根目录中生成了css文件，但将源/ less / css / map文件放在不同的文件夹中，请使用此选项</p>
+<p><strong>生成源映射</strong></p>
+<pre><code>lessc --source-map {sourceMap：{}}
+</code></pre><p><strong>源映射输出文件名</strong></p>
+<pre><code>lessc --source-map=file.map    { sourceMap: { outputFilename: &apos;file.map&apos; } }
+</code></pre><p><strong>源映射Rootpath</strong></p>
+<pre><code>lessc --source-map-rootpath=dev-files/    { sourceMap: { sourceMapRootpath: &apos;dev-files/&apos; } }
+</code></pre><p>指定添加前导路径到源映射内的每个less文件路径，以及输出css中指定的映射文件的路径.<br>由于basepath默认为输入较少文件的目录，因此根路径默认为从sourcemap输出文件到input less文件的基目录的路径。<br>例如，如果您在Web服务器的根目录中生成了css文件，但将源/ less / css / map文件放在不同的文件夹中，请使用此选项</p>
 <pre><code>output.css
 dev-files/output.map
 dev-files/main.less
-</code></pre><h5 id="源映射Basepath"><a href="#源映射Basepath" class="headerlink" title="源映射Basepath"></a>源映射Basepath</h5><pre><code>lessc --source-map-basepath=less-files/    { sourceMap: { sourceMapBasepath: &apos;less-files/&apos; } }
+</code></pre><p><strong>源映射Basepath</strong></p>
+<pre><code>lessc --source-map-basepath=less-files/    { sourceMap: { sourceMapBasepath: &apos;less-files/&apos; } }
 </code></pre><p>这与rootpath选项相反，它指定应从输出路径中删除的路径。 例如，如果要编译less-files目录中的文件，但源文件将在根目录或当前目录中的Web服务器上可用，则可以指定此文件以删除路径中的其他less-files部分。<br>它默认为输入less文件的路径。</p>
-<h5 id="在源映射中包含less源文件"><a href="#在源映射中包含less源文件" class="headerlink" title="在源映射中包含less源文件"></a>在源映射中包含less源文件</h5><pre><code>lessc --source-map-include-source {sourceMap：{outputSourceFiles：true}}
+<p><strong>在源映射中包含less源文件</strong></p>
+<pre><code>lessc --source-map-include-source {sourceMap：{outputSourceFiles：true}}
 </code></pre><p>此选项指定将所有Less文件包含在sourcemap中。这意味着您只需要映射文件即可获得原始来源。<br>这可以与map inline选项一起使用，这样您根本不需要任何其他外部文件。</p>
-<h5 id="源映射内联"><a href="#源映射内联" class="headerlink" title="源映射内联"></a>源映射内联</h5><pre><code>lessc --source-map-inline {sourceMap：{sourceMapFileInline：true}}
+<p><strong>源映射内联</strong></p>
+<pre><code>lessc --source-map-inline {sourceMap：{sourceMapFileInline：true}}
 </code></pre><p>此选项指定映射文件应在输出内联CSS。这不建议用于生产，但是对于开发，它允许编译器在支持它的浏览器中生成单个输出文件，表现为使用的是编译后的css但显示的却是未编译的less源文件。</p>
-<h5 id="源映射URL"><a href="#源映射URL" class="headerlink" title="源映射URL"></a>源映射URL</h5><pre><code>lessc --source-map-url = .. / my-map.json {sourceMap：{sourceMapURL：&apos;.. / my-map.json&apos;}}
+<p><strong>源映射URL</strong></p>
+<pre><code>lessc --source-map-url = .. / my-map.json {sourceMap：{sourceMapURL：&apos;.. / my-map.json&apos;}}
 </code></pre><p>允许覆盖css中指向映文件的URL。这适用于rootpath和basepath选项未完全生成所需内容的情况。</p>
 <h1 id="预加载插件"><a href="#预加载插件" class="headerlink" title="预加载插件"></a>预加载插件</h1><p>在Less.js开始解析之前加载插件<br>虽然使用插件的最简单方法是使用<a href="https://less.bootcss.com/features/#plugin-atrules-feature" target="_blank" rel="external">@plugin-at-rule</a> ，但在Node.js环境中，您可以通过命令行预先加载全局Less.js插件，或者在Less选项中指定它。</p>
 <h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>如果要添加Less.js预处理器，则需要预加载插件。 也就是说，在解析之前会传递原始Less源并调用插件。 一个例子是Sass-To-Less预处理器插件。<br>注意：预评估插件不需要预加载（在解析Less源之后，但在评估之前）。</p>
-<h2 id="Node-js使用"><a href="#Node-js使用" class="headerlink" title="Node.js使用"></a>Node.js使用</h2><p>使用命令行<br>如果你使用lessc，你需要做的第一件事是安装该插件。 像NPM一样，我们建议使用“less-plugin-”前缀来注册Less.js插件（以便于搜索），尽管这不是必需的。 因此，对于自定义插件，您可以安装：</p>
+<h2 id="Node-js使用"><a href="#Node-js使用" class="headerlink" title="Node.js使用"></a>Node.js使用</h2><h3 id="使用命令行"><a href="#使用命令行" class="headerlink" title="使用命令行"></a>使用命令行</h3><p>如果你使用lessc，你需要做的第一件事是安装该插件。 像NPM一样，我们建议使用“less-plugin-”前缀来注册Less.js插件（以便于搜索），尽管这不是必需的。 因此，对于自定义插件，您可以安装：</p>
 <pre><code>npm install less-plugin-myplugin
 </code></pre><p>要使用该插件，只需编写代码即可在命令行上传递：</p>
 <pre><code>lessc --myplugin
@@ -389,7 +433,7 @@ dev-files/main.less
 </code></pre><p>要将选项传递给插件，您可以使用以下两种方式之一来编写它。</p>
 <pre><code>lessc --myplugin =“advanced”
 lessc --plugin = myplugin = advanced
-</code></pre><h2 id="通过Less-js加载插件"><a href="#通过Less-js加载插件" class="headerlink" title="通过Less.js加载插件"></a>通过Less.js加载插件</h2><p>在Node中，require插件时需要将其作为插件数组来传递less插件。 例如。</p>
+</code></pre><h3 id="通过Less-js加载插件"><a href="#通过Less-js加载插件" class="headerlink" title="通过Less.js加载插件"></a>通过Less.js加载插件</h3><p>在Node中，require插件时需要将其作为插件数组来传递less插件。 例如。</p>
 <pre><code>var LessPlugin = require(&apos;less-plugin-myplugin&apos;);
 less.render(myCSS, { plugins: [LessPlugin] })
   .then(

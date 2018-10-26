@@ -4,13 +4,14 @@ date: 2018-08-15 00:00:30
 tags: Less
 categories: 前端
 comments: true
+toc: true
 ---
 
 # 合并
 合并功能允许将多个属性中的值聚合到单个属性下的逗号或空格分隔列表中。 merge对于背景和变换等属性很有用。
 <!--more-->
 
-### 使用逗号附加属性值
+## 使用逗号附加属性值
 > Released v1.5.0
 
     .mixin() {
@@ -27,7 +28,7 @@ comments: true
       box-shadow: inset 0 0 10px #555, 0 0 20px black;
     }
 
-### 使用空格附加属性值
+## 使用空格附加属性值
 > Released v1.7.0
 
     .mixin() {
@@ -76,7 +77,7 @@ comments: true
     .a();
     .a;  // currently works, but deprecated; don't use
 
-### 不输出Mixin
+## 不输出Mixin
 如果你想创建一个mixin但你不希望mixin以代码形式出现在你的CSS输出中，请在mixin定义之后添加括号。
 
     .my-mixin {
@@ -100,7 +101,7 @@ comments: true
       background: white;
     }
 
-### Mixins中的选择器
+## Mixins中的选择器
 Mixins可以包含的不仅仅是属性，它们也可以包含选择器。
 
     .my-hover-mixin() {
@@ -126,7 +127,7 @@ Mixins可以包含的不仅仅是属性，它们也可以包含选择器。
       }
     }
 
-### 命名空间
+## 命名空间
 如果要在更复杂的选择器中混合属性，可以堆叠多个id或类选择器
 
     #outer() {
@@ -156,7 +157,7 @@ Mixins可以包含的不仅仅是属性，它们也可以包含选择器。
       #my-library.my-mixin();
     }
 
-### 受保护的命名空间
+## 受保护的命名空间
 如果命名空间是受保护的，则仅在保护条件返回true时才使用由其定义的mixins。 命名空间保护的计算方式与mixin的保护完全相同，因此以下两个mixin的工作方式相同：
 
     #namespace when (@mode = huge) {
@@ -174,7 +175,7 @@ Mixins可以包含的不仅仅是属性，它们也可以包含选择器。
       }
     }
 
-### !important关键字
+## !important关键字
 在mixin调用之后使用！important关键字将其继承的所有属性标记为！important：
 
     .foo (@bg: #f5f5f5, @color: #900) {
@@ -199,7 +200,7 @@ Mixins可以包含的不仅仅是属性，它们也可以包含选择器。
       color: #900 !important;
     }
 
-### 参数混合Mixin
+## 参数混合Mixin
 **如何将参数传递给mixins**
 Mixins也可以接受参数，这些参数是混合在一起时传递给选择器块的变量
 
@@ -254,6 +255,7 @@ Mixins也可以接受参数，这些参数是混合在一起时传递给选择�
     }
 
 **具有多个参数的混合**
+
 参数可以是分号或逗号分隔，建议使用分号。逗号具有双重含义：它可以解释为mixin参数分隔符或css列表分隔符。
 使用逗号作为mixin分隔符使得无法将逗号分隔列表创建为参数。另一方面，如果编译器在mixin调用或声明中看到至少一个分号，则它假定参数由分号分隔，并且所有逗号都属于css列表：
 
@@ -289,6 +291,7 @@ Mixins也可以接受参数，这些参数是混合在一起时传递给选择�
     }
 
 **命名参数**
+
 mixin参考可以通过其名称而不仅仅是位置来提供参数值。 任何参数都可以通过其名称引用，并且它们不必具有任何特殊顺序：
 
     .mixin(@color: black; @margin: 10px; @padding: 20px) {
@@ -317,6 +320,7 @@ mixin参考可以通过其名称而不仅仅是位置来提供参数值。 任�
     }
 
 **@arguments变量**
+
 @arguments在mixins中有一个特殊含义，它包含调用mixin时传递的所有参数。 如果您不想处理单个参数，这非常有用：
 
     .mixin(...) {        // matches 0-N arguments
@@ -330,7 +334,7 @@ mixin参考可以通过其名称而不仅仅是位置来提供参数值。 任�
        // @arguments is bound to all arguments
     }
 
-### 模式匹配
+## 模式匹配
 有时候，您可能希望根据传递给它的参数来更改mixin的行为，比如：
 
     .mixin(dark; @color) {
@@ -376,7 +380,7 @@ mixin参考可以通过其名称而不仅仅是位置来提供参数值。 任�
 
 现在如果我们用一个参数调用.mixin，我们将得到第一个定义的输出，但如果我们用两个参数调用它，我们将得到第二个定义，即@a淡化为@b。
 
-### 从mixin返回值
+## 从mixin返回值
 从mixin返回变量或mixins,从Less 3.5开始，您可以使用属性/变量访问器从mixin获取“返回值”，基本上像函数一样使用它。
 
     .average(@x, @y) {
@@ -457,7 +461,7 @@ mixin中定义的变量和mixin是可见的，可以在调用者的范围内使�
       declaration: 5;
     }
 
-### 递归混合
+## 递归混合
 在Less中，mixin可以自调用。 当与Guard表达式和模式匹配结合使用时，这种递归mixin可用于创建各种迭代/循环结构。
 
     .loop(@counter) when (@counter > 0) {
@@ -505,7 +509,7 @@ mixin中定义的变量和mixin是可见的，可以在调用者的范围内使�
       width: 100%;
     }
 
-### Mixin Guards
+## Mixin Guards
 当您想要匹配表达式而不是简单值或arity时，防护很有用。 如果您熟悉函数式编程，则可能已经遇到过它们。
 为了尽可能地保持CSS的声明性，Less选择通过受保护的mixins而不是if / else语句实现条件执行，这是@media查询功能规范的一部分。举个例子：
 
@@ -536,6 +540,7 @@ mixin中定义的变量和mixin是可见的，可以在调用者的范围内使�
     }
 
 **比较运算符**
+
 守卫中可用的比较运算符的完整列表是：>，> =，=，= <，<。 此外，关键字true是唯一的truthy值，使这两个mixin等效：
 
     .truth(@a) when (@a) { ... }
@@ -559,6 +564,7 @@ mixin中定义的变量和mixin是可见的，可以在调用者的范围内使�
 
 
 **逻辑运算符**
+
 您可以将逻辑运算符与守卫一起使用，语法基于CSS媒体查询。
 使用and关键字组合守卫：
 
@@ -573,6 +579,7 @@ mixin中定义的变量和mixin是可见的，可以在调用者的范围内使�
     .mixin(@b) when not (@b > 0) { ... }
 
 **类型检查方法**
+
 最后，如果要根据值类型匹配mixins，可以使用is函数：
 
     .mixin(@a; @b: 0) when (isnumber(@b)) { ... }
@@ -593,10 +600,11 @@ mixin中定义的变量和mixin是可见的，可以在调用者的范围内使�
 - isem
 - isunit
 
-### Mixins别名
+## Mixins别名
 > Released v3.5.0-beta.4
 
 **将mixin调用分配给变量**
+
 可以将Mixins分配给变量以作为变量调用来调用，或者可以将其用于映射查找。
 
     #theme.dark.navbar {
@@ -623,6 +631,7 @@ mixin中定义的变量和mixin是可见的，可以在调用者的范围内使�
     }
 
 **可变调用**
+
 整个mixin调用可以是别名并称为变量调用。 如：
 
     #library() {
@@ -805,12 +814,13 @@ mixin中定义的变量和mixin是可见的，可以在调用者的范围内使�
         color: @color; // syntax error
     }
 
-### 作用域
+## 作用域
 分离的规则集可访问变量和mixin的范围，包括定义它的位子以及调用它的位置。如果两个范围包含相同的变量或mixin，则声明范围值优先。
 声明范围是定义分离规则集主体的范围。 规则集仅通过引用访问，将分离的规则集从一个变量复制到另一个变量而不能修改其范围。
 最后，分离的规则集可以通过解锁（导入）到范围来获得对范围的访问。
 
 **定义范围可见性**
+
 分离的规则集可以看到调用者的变量和mixins：
 
     @detached-ruleset: {
@@ -856,6 +866,7 @@ mixin中定义的变量和mixin是可见的，可以在调用者的范围内使�
 
 
 **引用不会修改分离的规则集范围**
+
 规则集仅通过在那里引用而无法访问新范围：
 
     @detached-1: { scope-detached: @one @two; };
@@ -876,6 +887,7 @@ throws an error:
 *ERROR 1:32 The variable "@one" was not declared.*
 
 **解锁将修改分离的规则集范围**
+
 分离的规则集通过在作用域内解锁（导入）来获得访问权限：
 
     #space {

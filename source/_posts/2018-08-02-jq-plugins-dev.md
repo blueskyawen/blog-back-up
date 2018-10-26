@@ -4,12 +4,13 @@ date: 2018-09-12 23:04:55
 tags: Jquery
 categories: 前端
 comments: true
+toc: true
 ---
 
 在熟悉了jquery和插件写法之后，作者将之前使用原生js和jquery写的一些组件，封装成插件
 <!--more-->
 
-### switch开关
+# switch开关
 
 [插件代码](https://runjs.cn/code/0eao8cw2)
 
@@ -38,7 +39,7 @@ comments: true
 
 效果：[switch开关](https://sandbox.runjs.cn/show/0eao8cw2)
 
-### select下拉选择
+# select下拉选择
 
 [插件代码](https://runjs.cn/code/3gpjwzds)
 
@@ -74,7 +75,7 @@ comments: true
 
 效果：[下拉选择](https://sandbox.runjs.cn/show/3gpjwzds)
 
-### multilSelect多选下拉选择
+# multilSelect多选下拉选择
 
 [插件代码](https://runjs.cn/code/byn8l5d7)
 
@@ -150,7 +151,7 @@ comments: true
 
 效果：[multil多选下拉框](https://sandbox.runjs.cn/show/byn8l5d7)
 
-### transfer穿梭框
+# transfer穿梭框
 
 [插件代码](https://runjs.cn/code/szon4uz2)
 
@@ -185,7 +186,7 @@ comments: true
 
 效果：[transfer穿梭框](https://sandbox.runjs.cn/show/szon4uz2)
 
-### Info通知
+# Info通知
 
 [插件代码](https://runjs.cn/code/hckrhfgi)
 
@@ -215,7 +216,7 @@ comments: true
 
 效果：[Info通知](https://sandbox.runjs.cn/show/hckrhfgi)
 
-### Collapse折叠面板
+# Collapse折叠面板
 
 [插件代码](https://runjs.cn/code/lmfma6gm)
 
@@ -246,7 +247,7 @@ comments: true
 
 效果：[折叠面板](https://sandbox.runjs.cn/show/lmfma6gm)
 
-### 轮播图
+# 轮播图
 
 [插件代码](https://runjs.cn/code/tbziv3gx)
 
@@ -296,7 +297,7 @@ comments: true
 
 效果：[轮播图](https://sandbox.runjs.cn/show/tbziv3gx)
 
-### dropdown下拉菜单
+# dropdown下拉菜单
 
 [插件代码](https://runjs.cn/code/j5y0shd5)
 
@@ -336,7 +337,7 @@ comments: true
 
 效果：[dropdown下拉菜单](https://sandbox.runjs.cn/show/j5y0shd5)
 
-### TAB选项卡
+# TAB选项卡
 
 [插件代码](https://runjs.cn/code/0gamemrt)
 

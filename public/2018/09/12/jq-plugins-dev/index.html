@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blueskyawen.com/2018/09/12/jq-plugins-dev/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="在熟悉了jquery和插件写法之后，作者将之前使用原生js和jquery写的一些组件，封装成插件">
-<meta property="og:updated_time" content="2018-10-15T16:10:14.845Z">
+<meta property="og:updated_time" content="2018-10-26T14:28:57.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JQuery-自写插件集">
 <meta name="twitter:description" content="在熟悉了jquery和插件写法之后，作者将之前使用原生js和jquery写的一些组件，封装成插件">
@@ -167,7 +167,20 @@
           </div>
           <div id="js-content" class="content-ll">
             <!-- 目录内容 -->
-
+ <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:block"> <span class="btn-bg"></span> <span class="btn-text">文章导航</span> </p> <div id="toc-article" class="toc-article" style="display:none"> <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span> <strong class="toc-title">文章目录</strong> <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#switch开关"><span class="toc-number">1.</span> <span class="toc-text">switch开关</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#select下拉选择"><span class="toc-number">2.</span> <span class="toc-text">select下拉选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#multilSelect多选下拉选择"><span class="toc-number">3.</span> <span class="toc-text">multilSelect多选下拉选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#transfer穿梭框"><span class="toc-number">4.</span> <span class="toc-text">transfer穿梭框</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Info通知"><span class="toc-number">5.</span> <span class="toc-text">Info通知</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Collapse折叠面板"><span class="toc-number">6.</span> <span class="toc-text">Collapse折叠面板</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#轮播图"><span class="toc-number">7.</span> <span class="toc-text">轮播图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dropdown下拉菜单"><span class="toc-number">8.</span> <span class="toc-text">dropdown下拉菜单</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TAB选项卡"><span class="toc-number">9.</span> <span class="toc-text">TAB选项卡</span></a></li></ol> </div> <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+  };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+  };
+</script> 
 <!-- 目录内容结束 -->
 
 <article id="post-jq-plugins-dev" class="article article-type-post " itemscope itemprop="blogPost">
@@ -191,7 +204,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在熟悉了jquery和插件写法之后，作者将之前使用原生js和jquery写的一些组件，封装成插件<br><a id="more"></a></p>
-<h3 id="switch开关"><a href="#switch开关" class="headerlink" title="switch开关"></a>switch开关</h3><p><a href="https://runjs.cn/code/0eao8cw2" target="_blank" rel="external">插件代码</a></p>
+<h1 id="switch开关"><a href="#switch开关" class="headerlink" title="switch开关"></a>switch开关</h1><p><a href="https://runjs.cn/code/0eao8cw2" target="_blank" rel="external">插件代码</a></p>
 <p>使用方式：</p>
 <pre><code>&lt;div id=&quot;switch1&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;switch2&quot;&gt;&lt;/div&gt;
@@ -214,7 +227,7 @@ $(function() {
     });
 });
 </code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/0eao8cw2" target="_blank" rel="external">switch开关</a></p>
-<h3 id="select下拉选择"><a href="#select下拉选择" class="headerlink" title="select下拉选择"></a>select下拉选择</h3><p><a href="https://runjs.cn/code/3gpjwzds" target="_blank" rel="external">插件代码</a></p>
+<h1 id="select下拉选择"><a href="#select下拉选择" class="headerlink" title="select下拉选择"></a>select下拉选择</h1><p><a href="https://runjs.cn/code/3gpjwzds" target="_blank" rel="external">插件代码</a></p>
 <p>使用方式：</p>
 <pre><code>&lt;div id=&quot;select-normal&quot;&gt;&lt;/div&gt;   //正常下拉选择
 &lt;div id=&quot;select-small&quot;&gt;&lt;/div&gt;    //正常下拉选择--小尺寸
@@ -244,7 +257,7 @@ $(function() {
                                 disable: true});
 });
 </code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/3gpjwzds" target="_blank" rel="external">下拉选择</a></p>
-<h3 id="multilSelect多选下拉选择"><a href="#multilSelect多选下拉选择" class="headerlink" title="multilSelect多选下拉选择"></a>multilSelect多选下拉选择</h3><p><a href="https://runjs.cn/code/byn8l5d7" target="_blank" rel="external">插件代码</a></p>
+<h1 id="multilSelect多选下拉选择"><a href="#multilSelect多选下拉选择" class="headerlink" title="multilSelect多选下拉选择"></a>multilSelect多选下拉选择</h1><p><a href="https://runjs.cn/code/byn8l5d7" target="_blank" rel="external">插件代码</a></p>
 <p>使用方式：</p>
 <pre><code>&lt;div id=&quot;mutil-select01&quot;&gt;&lt;/div&gt;    //多选下拉选择框
 &lt;div id=&quot;mutil-select02&quot;&gt;&lt;/div&gt;    //禁止多选下拉选择
@@ -314,7 +327,7 @@ $(&quot;#mutil-big&quot;).bootMultilSelect({options: optionsss,
     var selection = $(&quot;#mutil-select01&quot;).bootMultilSelect(&apos;getSelection&apos;);
 });
 </code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/byn8l5d7" target="_blank" rel="external">multil多选下拉框</a></p>
-<h3 id="transfer穿梭框"><a href="#transfer穿梭框" class="headerlink" title="transfer穿梭框"></a>transfer穿梭框</h3><p><a href="https://runjs.cn/code/szon4uz2" target="_blank" rel="external">插件代码</a></p>
+<h1 id="transfer穿梭框"><a href="#transfer穿梭框" class="headerlink" title="transfer穿梭框"></a>transfer穿梭框</h1><p><a href="https://runjs.cn/code/szon4uz2" target="_blank" rel="external">插件代码</a></p>
 <p>使用方式：</p>
 <pre><code>&lt;div id=&quot;myTranfer&quot;&gt;&lt;/div&gt;
 
@@ -343,7 +356,7 @@ $(function() {
     $(&quot;#myTranfer&quot;).bootTransfer(&apos;getTarget&apos;);
 });
 </code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/szon4uz2" target="_blank" rel="external">transfer穿梭框</a></p>
-<h3 id="Info通知"><a href="#Info通知" class="headerlink" title="Info通知"></a>Info通知</h3><p><a href="https://runjs.cn/code/hckrhfgi" target="_blank" rel="external">插件代码</a></p>
+<h1 id="Info通知"><a href="#Info通知" class="headerlink" title="Info通知"></a>Info通知</h1><p><a href="https://runjs.cn/code/hckrhfgi" target="_blank" rel="external">插件代码</a></p>
 <p>使用方式：</p>
 <pre><code>&lt;div id=&quot;success&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;error&quot;&gt;&lt;/div&gt;
@@ -367,7 +380,7 @@ $(function() {
     $errorInfo.bootInfo(&apos;hide&apos;);
 });
 </code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/hckrhfgi" target="_blank" rel="external">Info通知</a></p>
-<h3 id="Collapse折叠面板"><a href="#Collapse折叠面板" class="headerlink" title="Collapse折叠面板"></a>Collapse折叠面板</h3><p><a href="https://runjs.cn/code/lmfma6gm" target="_blank" rel="external">插件代码</a></p>
+<h1 id="Collapse折叠面板"><a href="#Collapse折叠面板" class="headerlink" title="Collapse折叠面板"></a>Collapse折叠面板</h1><p><a href="https://runjs.cn/code/lmfma6gm" target="_blank" rel="external">插件代码</a></p>
 <p>使用方式：</p>
 <pre><code>&lt;div class=&quot;collapseset&quot; id=&quot;collapset1&quot;&gt;
     &lt;div class=&quot;collapse&quot;&gt;
@@ -392,7 +405,7 @@ $(function() {
     $(&quot;#collapset2&quot;).bootCollapse({type: &apos;eachOne&apos;});
 });
 </code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/lmfma6gm" target="_blank" rel="external">折叠面板</a></p>
-<h3 id="轮播图"><a href="#轮播图" class="headerlink" title="轮播图"></a>轮播图</h3><p><a href="https://runjs.cn/code/tbziv3gx" target="_blank" rel="external">插件代码</a></p>
+<h1 id="轮播图"><a href="#轮播图" class="headerlink" title="轮播图"></a>轮播图</h1><p><a href="https://runjs.cn/code/tbziv3gx" target="_blank" rel="external">插件代码</a></p>
 <p>使用方式：</p>
 <pre><code>&lt;div id=&quot;carousel-fade&quot;&gt;&lt;/div&gt;      //渐变
 &lt;div id=&quot;carousel-slide&quot;&gt;&lt;/div&gt;     //滑动
@@ -436,7 +449,7 @@ $(&quot;#carousel-slide&quot;).on(&quot;changed.bc.carousel&quot;,function() {
     count++;
 });
 </code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/tbziv3gx" target="_blank" rel="external">轮播图</a></p>
-<h3 id="dropdown下拉菜单"><a href="#dropdown下拉菜单" class="headerlink" title="dropdown下拉菜单"></a>dropdown下拉菜单</h3><p><a href="https://runjs.cn/code/j5y0shd5" target="_blank" rel="external">插件代码</a></p>
+<h1 id="dropdown下拉菜单"><a href="#dropdown下拉菜单" class="headerlink" title="dropdown下拉菜单"></a>dropdown下拉菜单</h1><p><a href="https://runjs.cn/code/j5y0shd5" target="_blank" rel="external">插件代码</a></p>
 <p>使用方式：</p>
 <pre><code>&lt;div class=&quot;dropdown&quot; id=&quot;dropdown1&quot;&gt;
     &lt;button class=&quot;dropbtn dropdown-toggle&quot;&gt;下拉菜单
@@ -470,7 +483,7 @@ $(&quot;#dropdown8&quot;).bootDropdown({type: &apos;hover&apos;,place:&apos;left
 $(&quot;#dropdown1&quot;).bootDropdown(&apos;toggle&apos;);
 });
 </code></pre><p>效果：<a href="https://sandbox.runjs.cn/show/j5y0shd5" target="_blank" rel="external">dropdown下拉菜单</a></p>
-<h3 id="TAB选项卡"><a href="#TAB选项卡" class="headerlink" title="TAB选项卡"></a>TAB选项卡</h3><p><a href="https://runjs.cn/code/0gamemrt" target="_blank" rel="external">插件代码</a></p>
+<h1 id="TAB选项卡"><a href="#TAB选项卡" class="headerlink" title="TAB选项卡"></a>TAB选项卡</h1><p><a href="https://runjs.cn/code/0gamemrt" target="_blank" rel="external">插件代码</a></p>
 <p>使用方式：</p>
 <pre><code>&lt;div class=&quot;nav-tabs&quot; id=&quot;tab1&quot;&gt;
     &lt;ul class=&quot;tab-bars&quot;&gt;

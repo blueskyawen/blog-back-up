@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blueskyawen.com/2018/08/15/lessjs-use-depth/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="合并合并功能允许将多个属性中的值聚合到单个属性下的逗号或空格分隔列表中。 merge对于背景和变换等属性很有用。">
-<meta property="og:updated_time" content="2018-10-22T14:34:10.536Z">
+<meta property="og:updated_time" content="2018-10-26T14:26:39.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="less深入指南二（译）">
 <meta name="twitter:description" content="合并合并功能允许将多个属性中的值聚合到单个属性下的逗号或空格分隔列表中。 merge对于背景和变换等属性很有用。">
@@ -167,7 +167,20 @@
           </div>
           <div id="js-content" class="content-ll">
             <!-- 目录内容 -->
-
+ <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:block"> <span class="btn-bg"></span> <span class="btn-text">文章导航</span> </p> <div id="toc-article" class="toc-article" style="display:none"> <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span> <strong class="toc-title">文章目录</strong> <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#合并"><span class="toc-number">1.</span> <span class="toc-text">合并</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用逗号附加属性值"><span class="toc-number">1.1.</span> <span class="toc-text">使用逗号附加属性值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用空格附加属性值"><span class="toc-number">1.2.</span> <span class="toc-text">使用空格附加属性值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mixins混合"><span class="toc-number">2.</span> <span class="toc-text">Mixins混合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#不输出Mixin"><span class="toc-number">2.1.</span> <span class="toc-text">不输出Mixin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mixins中的选择器"><span class="toc-number">2.2.</span> <span class="toc-text">Mixins中的选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名空间"><span class="toc-number">2.3.</span> <span class="toc-text">命名空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#受保护的命名空间"><span class="toc-number">2.4.</span> <span class="toc-text">受保护的命名空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#important关键字"><span class="toc-number">2.5.</span> <span class="toc-text">!important关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数混合Mixin"><span class="toc-number">2.6.</span> <span class="toc-text">参数混合Mixin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模式匹配"><span class="toc-number">2.7.</span> <span class="toc-text">模式匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#从mixin返回值"><span class="toc-number">2.8.</span> <span class="toc-text">从mixin返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#递归混合"><span class="toc-number">2.9.</span> <span class="toc-text">递归混合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mixin-Guards"><span class="toc-number">2.10.</span> <span class="toc-text">Mixin Guards</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mixins别名"><span class="toc-number">2.11.</span> <span class="toc-text">Mixins别名</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS守卫"><span class="toc-number">3.</span> <span class="toc-text">CSS守卫</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分离的规则集"><span class="toc-number">4.</span> <span class="toc-text">分离的规则集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域"><span class="toc-number">4.1.</span> <span class="toc-text">作用域</span></a></li></ol></li></ol> </div> <script type="text/javascript">
+  function showToc(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:block");
+    show_toc_btn.setAttribute("style","display:none");
+  };
+  function showBtn(){
+    var toc_article = document.getElementById("toc-article");
+    var show_toc_btn = document.getElementById("show-toc-btn");
+    toc_article.setAttribute("style","display:none");
+    show_toc_btn.setAttribute("style","display:block");
+  };
+</script> 
 <!-- 目录内容结束 -->
 
 <article id="post-lessjs-use-depth" class="article article-type-post " itemscope itemprop="blogPost">
@@ -191,7 +204,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h1><p>合并功能允许将多个属性中的值聚合到单个属性下的逗号或空格分隔列表中。 merge对于背景和变换等属性很有用。<br><a id="more"></a></p>
-<h3 id="使用逗号附加属性值"><a href="#使用逗号附加属性值" class="headerlink" title="使用逗号附加属性值"></a>使用逗号附加属性值</h3><blockquote>
+<h2 id="使用逗号附加属性值"><a href="#使用逗号附加属性值" class="headerlink" title="使用逗号附加属性值"></a>使用逗号附加属性值</h2><blockquote>
 <p>Released v1.5.0</p>
 </blockquote>
 <pre><code>.mixin() {
@@ -205,7 +218,7 @@
 <pre><code>.myclass {
   box-shadow: inset 0 0 10px #555, 0 0 20px black;
 }
-</code></pre><h3 id="使用空格附加属性值"><a href="#使用空格附加属性值" class="headerlink" title="使用空格附加属性值"></a>使用空格附加属性值</h3><blockquote>
+</code></pre><h2 id="使用空格附加属性值"><a href="#使用空格附加属性值" class="headerlink" title="使用空格附加属性值"></a>使用空格附加属性值</h2><blockquote>
 <p>Released v1.7.0</p>
 </blockquote>
 <pre><code>.mixin() {
@@ -245,7 +258,7 @@
 </code></pre><p>目前和历史上，mixin调用中的括号是可选的，但是不推荐使用可选括号，并且在将来的版本中将需要这些括号。</p>
 <pre><code>.a();
 .a;  // currently works, but deprecated; don&apos;t use
-</code></pre><h3 id="不输出Mixin"><a href="#不输出Mixin" class="headerlink" title="不输出Mixin"></a>不输出Mixin</h3><p>如果你想创建一个mixin但你不希望mixin以代码形式出现在你的CSS输出中，请在mixin定义之后添加括号。</p>
+</code></pre><h2 id="不输出Mixin"><a href="#不输出Mixin" class="headerlink" title="不输出Mixin"></a>不输出Mixin</h2><p>如果你想创建一个mixin但你不希望mixin以代码形式出现在你的CSS输出中，请在mixin定义之后添加括号。</p>
 <pre><code>.my-mixin {
   color: black;
 }
@@ -264,7 +277,7 @@
   color: black;
   background: white;
 }
-</code></pre><h3 id="Mixins中的选择器"><a href="#Mixins中的选择器" class="headerlink" title="Mixins中的选择器"></a>Mixins中的选择器</h3><p>Mixins可以包含的不仅仅是属性，它们也可以包含选择器。</p>
+</code></pre><h2 id="Mixins中的选择器"><a href="#Mixins中的选择器" class="headerlink" title="Mixins中的选择器"></a>Mixins中的选择器</h2><p>Mixins可以包含的不仅仅是属性，它们也可以包含选择器。</p>
 <pre><code>.my-hover-mixin() {
   &amp;:hover {
     border: 1px solid red;
@@ -283,7 +296,7 @@ button {
     border: 1px solid red;
   }
 }
-</code></pre><h3 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h3><p>如果要在更复杂的选择器中混合属性，可以堆叠多个id或类选择器</p>
+</code></pre><h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><p>如果要在更复杂的选择器中混合属性，可以堆叠多个id或类选择器</p>
 <pre><code>#outer() {
   .inner {
     color: red;
@@ -308,7 +321,7 @@ button {
 .class {
   #my-library.my-mixin();
 }
-</code></pre><h3 id="受保护的命名空间"><a href="#受保护的命名空间" class="headerlink" title="受保护的命名空间"></a>受保护的命名空间</h3><p>如果命名空间是受保护的，则仅在保护条件返回true时才使用由其定义的mixins。 命名空间保护的计算方式与mixin的保护完全相同，因此以下两个mixin的工作方式相同：</p>
+</code></pre><h2 id="受保护的命名空间"><a href="#受保护的命名空间" class="headerlink" title="受保护的命名空间"></a>受保护的命名空间</h2><p>如果命名空间是受保护的，则仅在保护条件返回true时才使用由其定义的mixins。 命名空间保护的计算方式与mixin的保护完全相同，因此以下两个mixin的工作方式相同：</p>
 <pre><code>#namespace when (@mode = huge) {
   .mixin() { /* */ }
 }
@@ -321,7 +334,7 @@ button {
     .mixin() when not(default()) { /* */ }
   }
 }
-</code></pre><h3 id="important关键字"><a href="#important关键字" class="headerlink" title="!important关键字"></a>!important关键字</h3><p>在mixin调用之后使用！important关键字将其继承的所有属性标记为！important：</p>
+</code></pre><h2 id="important关键字"><a href="#important关键字" class="headerlink" title="!important关键字"></a>!important关键字</h2><p>在mixin调用之后使用！important关键字将其继承的所有属性标记为！important：</p>
 <pre><code>.foo (@bg: #f5f5f5, @color: #900) {
   background: @bg;
   color: @color;
@@ -341,7 +354,7 @@ button {
   background: #f5f5f5 !important;
   color: #900 !important;
 }
-</code></pre><h3 id="参数混合Mixin"><a href="#参数混合Mixin" class="headerlink" title="参数混合Mixin"></a>参数混合Mixin</h3><p><strong>如何将参数传递给mixins</strong><br>Mixins也可以接受参数，这些参数是混合在一起时传递给选择器块的变量</p>
+</code></pre><h2 id="参数混合Mixin"><a href="#参数混合Mixin" class="headerlink" title="参数混合Mixin"></a>参数混合Mixin</h2><p><strong>如何将参数传递给mixins</strong><br>Mixins也可以接受参数，这些参数是混合在一起时传递给选择器块的变量</p>
 <pre><code>.border-radius(@radius) {
   -webkit-border-radius: @radius;
      -moz-border-radius: @radius;
@@ -380,7 +393,8 @@ pre { .wrap() }
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-</code></pre><p><strong>具有多个参数的混合</strong><br>参数可以是分号或逗号分隔，建议使用分号。逗号具有双重含义：它可以解释为mixin参数分隔符或css列表分隔符。<br>使用逗号作为mixin分隔符使得无法将逗号分隔列表创建为参数。另一方面，如果编译器在mixin调用或声明中看到至少一个分号，则它假定参数由分号分隔，并且所有逗号都属于css列表：</p>
+</code></pre><p><strong>具有多个参数的混合</strong></p>
+<p>参数可以是分号或逗号分隔，建议使用分号。逗号具有双重含义：它可以解释为mixin参数分隔符或css列表分隔符。<br>使用逗号作为mixin分隔符使得无法将逗号分隔列表创建为参数。另一方面，如果编译器在mixin调用或声明中看到至少一个分号，则它假定参数由分号分隔，并且所有逗号都属于css列表：</p>
 <ul>
 <li>两个参数，每个参数都包含以逗号分隔的列表：.name（1,2,3; some，else），</li>
 <li>三个参数，每个包含一个数字：.name（1,2,3），</li>
@@ -409,7 +423,8 @@ pre { .wrap() }
   color-2: #008000;
   padding-2: 2;
 }
-</code></pre><p><strong>命名参数</strong><br>mixin参考可以通过其名称而不仅仅是位置来提供参数值。 任何参数都可以通过其名称引用，并且它们不必具有任何特殊顺序：</p>
+</code></pre><p><strong>命名参数</strong></p>
+<p>mixin参考可以通过其名称而不仅仅是位置来提供参数值。 任何参数都可以通过其名称引用，并且它们不必具有任何特殊顺序：</p>
 <pre><code>.mixin(@color: black; @margin: 10px; @padding: 20px) {
   color: @color;
   margin: @margin;
@@ -432,7 +447,8 @@ pre { .wrap() }
   margin: 10px;
   padding: 40px;
 }
-</code></pre><p><strong>@arguments变量</strong><br>@arguments在mixins中有一个特殊含义，它包含调用mixin时传递的所有参数。 如果您不想处理单个参数，这非常有用：</p>
+</code></pre><p><strong>@arguments变量</strong></p>
+<p>@arguments在mixins中有一个特殊含义，它包含调用mixin时传递的所有参数。 如果您不想处理单个参数，这非常有用：</p>
 <pre><code>.mixin(...) {        // matches 0-N arguments
 .mixin() {           // matches exactly 0 arguments
 .mixin(@a: 1) {      // matches 0-1 arguments
@@ -443,7 +459,7 @@ pre { .wrap() }
    // @rest is bound to arguments after @a
    // @arguments is bound to all arguments
 }
-</code></pre><h3 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h3><p>有时候，您可能希望根据传递给它的参数来更改mixin的行为，比如：</p>
+</code></pre><h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><p>有时候，您可能希望根据传递给它的参数来更改mixin的行为，比如：</p>
 <pre><code>.mixin(dark; @color) {
   color: darken(@color, 10%);
 }
@@ -478,7 +494,7 @@ pre { .wrap() }
   color: fade(@a; @b);
 }
 </code></pre><p>现在如果我们用一个参数调用.mixin，我们将得到第一个定义的输出，但如果我们用两个参数调用它，我们将得到第二个定义，即@a淡化为@b。</p>
-<h3 id="从mixin返回值"><a href="#从mixin返回值" class="headerlink" title="从mixin返回值"></a>从mixin返回值</h3><p>从mixin返回变量或mixins,从Less 3.5开始，您可以使用属性/变量访问器从mixin获取“返回值”，基本上像函数一样使用它。</p>
+<h2 id="从mixin返回值"><a href="#从mixin返回值" class="headerlink" title="从mixin返回值"></a>从mixin返回值</h2><p>从mixin返回变量或mixins,从Less 3.5开始，您可以使用属性/变量访问器从mixin获取“返回值”，基本上像函数一样使用它。</p>
 <pre><code>.average(@x, @y) {
   @result: ((@x + @y) / 2);
 }
@@ -543,7 +559,7 @@ Results in:
 #namespace {
   declaration: 5;
 }
-</code></pre><h3 id="递归混合"><a href="#递归混合" class="headerlink" title="递归混合"></a>递归混合</h3><p>在Less中，mixin可以自调用。 当与Guard表达式和模式匹配结合使用时，这种递归mixin可用于创建各种迭代/循环结构。</p>
+</code></pre><h2 id="递归混合"><a href="#递归混合" class="headerlink" title="递归混合"></a>递归混合</h2><p>在Less中，mixin可以自调用。 当与Guard表达式和模式匹配结合使用时，这种递归mixin可用于创建各种迭代/循环结构。</p>
 <pre><code>.loop(@counter) when (@counter &gt; 0) {
   .loop((@counter - 1));    // next iteration
   width: (10px * @counter); // code for each iteration
@@ -584,7 +600,7 @@ Output:
 .column-4 {
   width: 100%;
 }
-</code></pre><h3 id="Mixin-Guards"><a href="#Mixin-Guards" class="headerlink" title="Mixin Guards"></a>Mixin Guards</h3><p>当您想要匹配表达式而不是简单值或arity时，防护很有用。 如果您熟悉函数式编程，则可能已经遇到过它们。<br>为了尽可能地保持CSS的声明性，Less选择通过受保护的mixins而不是if / else语句实现条件执行，这是@media查询功能规范的一部分。举个例子：</p>
+</code></pre><h2 id="Mixin-Guards"><a href="#Mixin-Guards" class="headerlink" title="Mixin Guards"></a>Mixin Guards</h2><p>当您想要匹配表达式而不是简单值或arity时，防护很有用。 如果您熟悉函数式编程，则可能已经遇到过它们。<br>为了尽可能地保持CSS的声明性，Less选择通过受保护的mixins而不是if / else语句实现条件执行，这是@media查询功能规范的一部分。举个例子：</p>
 <pre><code>.mixin(@a) when (lightness(@a) &gt;= 50%) {
   background-color: black;
 }
@@ -606,7 +622,8 @@ Output:
   background-color: white;
   color: #555;
 }
-</code></pre><p><strong>比较运算符</strong><br>守卫中可用的比较运算符的完整列表是：&gt;，&gt; =，=，= &lt;，&lt;。 此外，关键字true是唯一的truthy值，使这两个mixin等效：</p>
+</code></pre><p><strong>比较运算符</strong></p>
+<p>守卫中可用的比较运算符的完整列表是：&gt;，&gt; =，=，= &lt;，&lt;。 此外，关键字true是唯一的truthy值，使这两个mixin等效：</p>
 <pre><code>.truth(@a) when (@a) { ... }
 .truth(@a) when (@a = true) { ... }
 </code></pre><p>除关键字true之外的任何值都认为是false：</p>
@@ -621,13 +638,15 @@ Output:
 
 .max(@a; @b) when (@a &gt; @b) { width: @a }
 .max(@a; @b) when (@a &lt; @b) { width: @b }
-</code></pre><p><strong>逻辑运算符</strong><br>您可以将逻辑运算符与守卫一起使用，语法基于CSS媒体查询。<br>使用and关键字组合守卫：</p>
+</code></pre><p><strong>逻辑运算符</strong></p>
+<p>您可以将逻辑运算符与守卫一起使用，语法基于CSS媒体查询。<br>使用and关键字组合守卫：</p>
 <pre><code>.mixin(@a) when (isnumber(@a)) and (@a &gt; 0) { ... }
 </code></pre><p>您可以通过用逗号分隔守卫来模拟或运算符：</p>
 <pre><code>.mixin(@a) when (@a &gt; 10), (@a &lt; -10) { ... }
 </code></pre><p>使用not关键字否定条件：</p>
 <pre><code>.mixin(@b) when not (@b &gt; 0) { ... }
-</code></pre><p><strong>类型检查方法</strong><br>最后，如果要根据值类型匹配mixins，可以使用is函数：</p>
+</code></pre><p><strong>类型检查方法</strong></p>
+<p>最后，如果要根据值类型匹配mixins，可以使用is函数：</p>
 <pre><code>.mixin(@a; @b: 0) when (isnumber(@b)) { ... }
 .mixin(@a; @b: black) when (iscolor(@b)) { ... }
 </code></pre><p>常用的方法：</p>
@@ -645,10 +664,11 @@ Output:
 <li>isem</li>
 <li>isunit</li>
 </ul>
-<h3 id="Mixins别名"><a href="#Mixins别名" class="headerlink" title="Mixins别名"></a>Mixins别名</h3><blockquote>
+<h2 id="Mixins别名"><a href="#Mixins别名" class="headerlink" title="Mixins别名"></a>Mixins别名</h2><blockquote>
 <p>Released v3.5.0-beta.4</p>
 </blockquote>
-<p><strong>将mixin调用分配给变量</strong><br>可以将Mixins分配给变量以作为变量调用来调用，或者可以将其用于映射查找。</p>
+<p><strong>将mixin调用分配给变量</strong></p>
+<p>可以将Mixins分配给变量以作为变量调用来调用，或者可以将其用于映射查找。</p>
 <pre><code>#theme.dark.navbar {
   .colors(light) {
     primary: purple;
@@ -671,7 +691,8 @@ output:
   background: black;
   border: 1px solid grey;
 }
-</code></pre><p><strong>可变调用</strong><br>整个mixin调用可以是别名并称为变量调用。 如：</p>
+</code></pre><p><strong>可变调用</strong></p>
+<p>整个mixin调用可以是别名并称为变量调用。 如：</p>
 <pre><code>#library() {
   .rules() {
     background: green;
@@ -817,8 +838,9 @@ html.lt-ie9 header {
 .caller {
     color: @color; // syntax error
 }
-</code></pre><h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>分离的规则集可访问变量和mixin的范围，包括定义它的位子以及调用它的位置。如果两个范围包含相同的变量或mixin，则声明范围值优先。<br>声明范围是定义分离规则集主体的范围。 规则集仅通过引用访问，将分离的规则集从一个变量复制到另一个变量而不能修改其范围。<br>最后，分离的规则集可以通过解锁（导入）到范围来获得对范围的访问。</p>
-<p><strong>定义范围可见性</strong><br>分离的规则集可以看到调用者的变量和mixins：</p>
+</code></pre><h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>分离的规则集可访问变量和mixin的范围，包括定义它的位子以及调用它的位置。如果两个范围包含相同的变量或mixin，则声明范围值优先。<br>声明范围是定义分离规则集主体的范围。 规则集仅通过引用访问，将分离的规则集从一个变量复制到另一个变量而不能修改其范围。<br>最后，分离的规则集可以通过解锁（导入）到范围来获得对范围的访问。</p>
+<p><strong>定义范围可见性</strong></p>
+<p>分离的规则集可以看到调用者的变量和mixins：</p>
 <pre><code>@detached-ruleset: {
   caller-variable: @caller-variable; // variable is undefined here
   .caller-mixin(); // mixin is undefined here
@@ -853,7 +875,8 @@ selector {
 <pre><code>selector {
   variable: global;
 }
-</code></pre><p><strong>引用不会修改分离的规则集范围</strong><br>规则集仅通过在那里引用而无法访问新范围：</p>
+</code></pre><p><strong>引用不会修改分离的规则集范围</strong></p>
+<p>规则集仅通过在那里引用而无法访问新范围：</p>
 <pre><code>@detached-1: { scope-detached: @one @two; };
 .one {
   @one: visible;
@@ -868,7 +891,8 @@ selector {
   @detached-2();
 }
 </code></pre><p>throws an error:<br><em>ERROR 1:32 The variable “@one” was not declared.</em></p>
-<p><strong>解锁将修改分离的规则集范围</strong><br>分离的规则集通过在作用域内解锁（导入）来获得访问权限：</p>
+<p><strong>解锁将修改分离的规则集范围</strong></p>
+<p>分离的规则集通过在作用域内解锁（导入）来获得访问权限：</p>
 <pre><code>#space {
   .importer-1() {
     @detached: { scope-detached: @variable; }; // define detached ruleset

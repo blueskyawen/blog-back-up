@@ -4,6 +4,7 @@ date: 2018-08-10 00:00:15
 tags: Less
 categories: 前端
 comments: true
+toc: true
 ---
 
 # 命令行用法
@@ -42,32 +43,38 @@ comments: true
 
 ## lessc配置参数
 想要获取更多的参数和用法，请参看[Less Options][1]
-##### Silent
+
+**Silent**
+
 停止显示任何警告。
 
     lessc -s lessc --silent
 
-##### Version
+**Version**
+
 查看版本。
 
     lessc -v  / lessc --version
 
-##### help
+**help**
+
 打印包含可用选项和退出的帮助消息。
 
     lessc --help / lessc -h
 
-##### Makefile
+**Makefile**
+
 将导入到依赖关系列表的生成文件输出到stdout。
 
     lessc -M
     lessc --depends
 
-##### No Color
+**No Color**
 
     lessc --no-color
 
-##### Clean CSS
+**Clean CSS**
+
 在v2中，Clean CSS不再作为直接依赖项包含在内。 要使用Clean CSS，请使用clean css插件。
 
 # 浏览器端用法
@@ -167,21 +174,29 @@ Less.js支持所有现代浏览器（Chrome，Firefox，Safari，IE11 +和Edge�
 
 ## lessc配置参数
 想要获取更多的参数和用法，请参看[Less Options][1]
-##### 异步async
+
+**异步async**
+
 类型：布尔值
 默认值：false
 是否使用async选项请求导入文件。请参阅fileAsync。
-##### env运行环境
+
+**env运行环境**
+
 类型：字符串默认值：取决于页面URL，运行环境可以是开发或生产。
 例如：less = {env：'production'};
 在生产中，您的css缓存在本地存储中，信息消息不会输出到控制台。
 如果文档的URL以file：//开头，或者在本地计算机上或具有非标准端口，则它将自动设置为开发。
-##### errorReporting
+
+**errorReporting**
+
 类型：字符串
 选项：html | console | function
 默认值：html
 编译失败时设置错误报告方法。
-##### fileAsync
+
+**fileAsync**
+
 类型：布尔值
 默认值：false
 是否在具有文件协议的页面中异步请求导入。
@@ -202,40 +217,52 @@ Less.js支持所有现代浏览器（Chrome，Firefox，Safari，IE11 +和Edge�
     .myclass {
       border-width：unit（myfunc（），px）;
     }
-##### logLevel
+
+**logLevel**
+
 类型：数字
 默认值：2
 2 - 信息和错误
 1 - 错误
 0 - 没什么
 javascript控制台中的日志记录量。注意：如果您在生产环境中，则不会进行任何记录。
-##### poll
+
+**poll**
+
 类型：整数
 默认值：1000
 处于监视模式时轮询之间的时间量（以毫秒为单位）。
-##### relativeUrls
+
+**relativeUrls**
+
 类型：布尔值
 默认值：false
 （可选）将URL调整为相对。如果为false，则URL已经相对于entry-less文件
-##### useFileCache
+
+**useFileCache**
+
 类型：布尔值
 默认值：true（之前在v2之前为false）
 是否使用每个会话文件缓存。这会缓存较少的文件，以便您可以调用modifyVars，并且它不会再次检索所有较少的文件。如果使用观察程序或使用reload设置为true调用refresh，则在运行之前将清除缓存。
 
 # Less.js选项
 ## 跨平台选项
-##### 包括路径
+
+**包括路径**
 
     lessc --include-path = PATH1; PATH2 {paths：['PATH1'，'PATH2']}
 
 如果@import规则中的文件不存在于该确切位置，则Less将在传递给此选项的位置查找该文件。 例如，您可以使用它在Less文件中指定要引用库的相对路径。
-##### Rootpath
+
+**Rootpath**
 
     lessc -rp=resources/
     lessc --rootpath=resources/	{ rootpath: 'resources/' }
 
 如果@import规则中的文件不存在于该确切位置，则Less将在传递给此选项的位置查找该文件。 例如，您可以使用它在Less文件中指定要引用库的相对路径。
-##### 相对URL
+
+**相对URL**
+
     lessc -ru
     lessc --relative-urls {relativeUrls：true}
 
@@ -261,7 +288,9 @@ javascript控制台中的日志记录量。注意：如果您在生产环境中�
     }
 
 您可能还需要考虑使用data-uri函数而不是此选项，它会将图像嵌入到css中。
-##### Strict Math
+
+**Strict Math**
+
     lessc -sm = on
     lessc --strict-math = on {strictMath：true}
 
@@ -287,7 +316,9 @@ javascript控制台中的日志记录量。注意：如果您在生产环境中�
     }
 
 我们原计划在未来将此默认为true，但它一直是一个有争议的选项，我们正在考虑我们是否以正确的方式解决了问题，或者Less是否应该只对有效或无效的实例有例外。
-##### Strict Units
+
+**Strict Units**
+
     lessc -su = on
     lessc --strict-units = on {strictUnits：true}
 
@@ -300,46 +331,59 @@ javascript控制台中的日志记录量。注意：如果您在生产环境中�
 
 在这种情况下，事情显然是不对的 - 长度乘以长度给出一个区域，但css不支持指定区域。所以我们假设用户意味着其中一个值是一个值，而不是长度单位，我们输出2px。
 如果打开严格的单位，我们假设这是计算中的错误并抛出错误。
-##### 全局变量
+
+**全局变量**
+
     lessc --global-var =“color1 = red”{globalVars：{color1：'red'}}
 
 此选项定义可由文件引用的变量。变量的声明放在基础Less文件的顶部，这意味着可以使用它，也可以覆盖它。
-##### 修改变量
+
+**修改变量**
+
     lessc --modify-var =“color1 = red”{modifyVars：{color1：'red'}}
 
 与全局变量选项相反，这会将声明放在基本文件的末尾，这意味着它将覆盖Less文件中定义的任何内容。
-##### 修改变量
-    lessc --modify-var =“color1 = red”{modifyVars：{color1：'red'}}
 
-与全局变量选项相反，这会将声明放在基本文件的末尾，这意味着它将覆盖Less文件中定义的任何内容。
-##### URL参数
+**URL参数**
+
     lessc --url-args =“cache726357”{urlArgs：'cache726357'}
 
 此选项允许您指定要转到每个URL的参数。例如，这可以用于缓存清除。
-##### 预装插件
+
+**预装插件**
+
 请参阅：预加载插件
-##### lint检查
+
+**lint检查**
+
     lessc --lint -l {lint：true}
 
 运行较少的解析器，只报告错误而不输出任何内容。
-##### 压缩
+
+**压缩**
+
     lessc --compress -x {compress：true}
 
 使用较少的内置压缩进行压缩。这项工作做得不错，但没有利用专用css压缩的所有技巧。请随时通过pull请求改进我们的压缩输出。
-##### 允许从不安全的HTTPS主机导入
+
+**允许从不安全的HTTPS主机导入**
+
     lessc --insecure {insecure：true}
 
 ## 源映射选项
 大多数这些选项不适用于在浏览器中使用，因为您应该使用预编译的Less文件生成源映射。
-##### 生成源映射
+
+**生成源映射**
+
     lessc --source-map {sourceMap：{}}
 
-##### 源映射输出文件名
+**源映射输出文件名**
+
     lessc --source-map=file.map	{ sourceMap: { outputFilename: 'file.map' } }
 
-##### 源映射Rootpath
+**源映射Rootpath**
 
-lessc --source-map-rootpath=dev-files/	{ sourceMap: { sourceMapRootpath: 'dev-files/' } }
+    lessc --source-map-rootpath=dev-files/	{ sourceMap: { sourceMapRootpath: 'dev-files/' } }
 
 指定添加前导路径到源映射内的每个less文件路径，以及输出css中指定的映射文件的路径.
 由于basepath默认为输入较少文件的目录，因此根路径默认为从sourcemap输出文件到input less文件的基目录的路径。
@@ -349,25 +393,28 @@ lessc --source-map-rootpath=dev-files/	{ sourceMap: { sourceMapRootpath: 'dev-fi
     dev-files/output.map
     dev-files/main.less
 
-##### 源映射Basepath
+**源映射Basepath**
 
     lessc --source-map-basepath=less-files/	{ sourceMap: { sourceMapBasepath: 'less-files/' } }
 
 这与rootpath选项相反，它指定应从输出路径中删除的路径。 例如，如果要编译less-files目录中的文件，但源文件将在根目录或当前目录中的Web服务器上可用，则可以指定此文件以删除路径中的其他less-files部分。
 它默认为输入less文件的路径。
 
-##### 在源映射中包含less源文件
+**在源映射中包含less源文件**
+
     lessc --source-map-include-source {sourceMap：{outputSourceFiles：true}}
 
 此选项指定将所有Less文件包含在sourcemap中。这意味着您只需要映射文件即可获得原始来源。
 这可以与map inline选项一起使用，这样您根本不需要任何其他外部文件。
 
-##### 源映射内联
+**源映射内联**
+
     lessc --source-map-inline {sourceMap：{sourceMapFileInline：true}}
 
 此选项指定映射文件应在输出内联CSS。这不建议用于生产，但是对于开发，它允许编译器在支持它的浏览器中生成单个输出文件，表现为使用的是编译后的css但显示的却是未编译的less源文件。
 
-##### 源映射URL
+**源映射URL**
+
     lessc --source-map-url = .. / my-map.json {sourceMap：{sourceMapURL：'.. / my-map.json'}}
 
 允许覆盖css中指向映文件的URL。这适用于rootpath和basepath选项未完全生成所需内容的情况。
@@ -379,7 +426,7 @@ lessc --source-map-rootpath=dev-files/	{ sourceMap: { sourceMapRootpath: 'dev-fi
 如果要添加Less.js预处理器，则需要预加载插件。 也就是说，在解析之前会传递原始Less源并调用插件。 一个例子是Sass-To-Less预处理器插件。
 注意：预评估插件不需要预加载（在解析Less源之后，但在评估之前）。
 ## Node.js使用
-使用命令行
+### 使用命令行
 如果你使用lessc，你需要做的第一件事是安装该插件。 像NPM一样，我们建议使用“less-plugin-”前缀来注册Less.js插件（以便于搜索），尽管这不是必需的。 因此，对于自定义插件，您可以安装：
 
     npm install less-plugin-myplugin
@@ -398,7 +445,7 @@ lessc --source-map-rootpath=dev-files/	{ sourceMap: { sourceMapRootpath: 'dev-fi
     lessc --myplugin =“advanced”
     lessc --plugin = myplugin = advanced
 
-## 通过Less.js加载插件
+### 通过Less.js加载插件
 
 在Node中，require插件时需要将其作为插件数组来传递less插件。 例如。
 
