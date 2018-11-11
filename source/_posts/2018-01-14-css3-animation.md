@@ -22,6 +22,7 @@ transition是几个属性的简写：
     transition： property duration function delay;
 
 > 过渡的效果是一次性的，一次可以同时添加多个css属性的变化
+> 过渡需要事件的触发，包括：鼠标键盘事件，超时事件等
 
 点击这里有demo:[transition-demo](http://sandbox.runjs.cn/show/vyz5hhhk)
 
