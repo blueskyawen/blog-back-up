@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blueskyawen.com">
-  <title>Archives: 2018 | bluesky个人小站</title>
+  <title>自定义元素和动态组件 | bluesky个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="初涉前端，懵懂无知，且行且进">
-<meta property="og:type" content="website">
-<meta property="og:title" content="bluesky个人小站">
-<meta property="og:url" content="http://blueskyawen.com/archives/2018/index.html">
+  <meta name="description" content="在介绍正式内容之前先了解一下angular里支持的几种视图类型：模板元素和组件  模板元素，即Embedded Views，可以使用TemplateRef类型的createEmbeddedView()方法来创建，这在结构型指令中可以看到 组件，即Host View，包括应用中的所有类型的组件以及动态创建的组件">
+<meta name="keywords" content="angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义元素和动态组件">
+<meta property="og:url" content="http://blueskyawen.com/2018/12/14/custom-element-and-dynamic-component/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
-<meta property="og:description" content="初涉前端，懵懂无知，且行且进">
+<meta property="og:description" content="在介绍正式内容之前先了解一下angular里支持的几种视图类型：模板元素和组件  模板元素，即Embedded Views，可以使用TemplateRef类型的createEmbeddedView()方法来创建，这在结构型指令中可以看到 组件，即Host View，包括应用中的所有类型的组件以及动态创建的组件">
+<meta property="og:updated_time" content="2018-12-17T13:56:39.402Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bluesky个人小站">
-<meta name="twitter:description" content="初涉前端，懵懂无知，且行且进">
+<meta name="twitter:title" content="自定义元素和动态组件">
+<meta name="twitter:description" content="在介绍正式内容之前先了解一下angular里支持的几种视图类型：模板元素和组件  模板元素，即Embedded Views，可以使用TemplateRef类型的createEmbeddedView()方法来创建，这在结构型指令中可以看到 组件，即Host View，包括应用中的所有类型的组件以及动态创建的组件">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
   
@@ -164,85 +166,150 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+<article id="post-custom-element-and-dynamic-component" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/17/ng-template-ng-container-and-ng-content/" class="archive-article-date">
-  	<time datetime="2018-12-17T13:57:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/17/ng-template-ng-container-and-ng-content/">ng-template,ng-container和ng-content</a>
+    <h1 class="article-title" itemprop="name">
+      自定义元素和动态组件
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/14/custom-element-and-dynamic-component/" class="archive-article-date">
+        
+        <a href="/2018/12/14/custom-element-and-dynamic-component/" class="archive-article-date">
   	<time datetime="2018-12-14T14:11:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-14</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/14/custom-element-and-dynamic-component/">自定义元素和动态组件</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在介绍正式内容之前先了解一下angular里支持的几种视图类型：模板元素和组件</p>
+<ul>
+<li>模板元素，即Embedded Views，可以使用TemplateRef类型的createEmbeddedView()方法来创建，这在结构型指令中可以看到</li>
+<li>组件，即Host View，包括应用中的所有类型的组件以及动态创建的组件<a id="more"></a>
+</li>
+</ul>
+<h3 id="自定义元素"><a href="#自定义元素" class="headerlink" title="自定义元素"></a>自定义元素</h3><p>我们知道angular支持自定义标签元素，也就是组件。之前我们说过，组件是注册在注入器中的，由注入器在使用时自动注入实例。<br>同样，我们也可以手动的注册他们，在引用时得到实例并添加到视图中，便是所谓的“自定义元素”</p>
+<pre><code>import { Component, Injector } from &apos;@angular/core&apos;;
+import { createCustomElement } from &apos;@angular/elements&apos;;
+import { PopupComponent } from &apos;./popup.component&apos;;
 
-        <div class="article-info info-on-right">
-          
+@Component({
+  selector: &apos;app-root&apos;,
+  template: `
+    &lt;input #input value=&quot;Message&quot;&gt;
+    &lt;button (click)=&quot;showAsElement(input.value)&quot;&gt;Show as element&lt;/button&gt;
+  `,
+})
+export class AppComponent {
+  constructor(injector: Injector, public popup: PopupService) {
+    // Convert `PopupComponent` to a custom element.
+    const PopupElement = createCustomElement(PopupComponent, {injector});
+    // Register the custom element with the browser.
+    customElements.define(&apos;popup-element&apos;, PopupElement);
+  }
+
+  showAsElement(value : any) {
+     // Create element
+const popupEl: NgElement &amp; WithProperties&lt;PopupComponent&gt; = document.createElement(&apos;popup-element&apos;) as any;
+
+    // Listen to the close event
+    popupEl.addEventListener(&apos;closed&apos;, () =&gt; document.body.removeChild(popupEl));
+
+    // Set the message
+    popupEl.message = message;
+
+    // Add to the DOM
+    document.body.appendChild(popupEl);
+  }
+}
+</code></pre><h3 id="动态创建组件"><a href="#动态创建组件" class="headerlink" title="动态创建组件"></a>动态创建组件</h3><p>动态组件是更加自由的组件使用方式，不需要再模板中直接书写标签，只需要预留位置，然后通过脚本动态加载组件实例即可，非常适合于变化情况多的广告组件显示</p>
+<pre><code>@Component({
+  selector: &apos;app-root&apos;,
+  template: `
+    &lt;input #input value=&quot;Message&quot;&gt;
+    &lt;button (click)=&quot;showAsComponent(input.value)&quot;&gt;Show as component&lt;/button&gt;
+  `,
+})
+export class AppComponent {
+  constructor(injector: Injector, public popup: PopupService) {
+    // Convert `PopupComponent` to a custom element.
+    const PopupElement = createCustomElement(PopupComponent, {injector});
+    // Register the custom element with the browser.
+    customElements.define(&apos;popup-element&apos;, PopupElement);
+  }
+
+  showAsComponent(value : any) {
+    // Create element
+    const popup = document.createElement(&apos;popup-component&apos;);
+
+    // Create the component and wire it up with the element
+    const factory = this.componentFactoryResolver.resolveComponentFactory(PopupComponent);
+    const popupComponentRef = factory.create(this.injector, [], popup);
+
+    // Attach to the view so that the change detector knows to run
+    this.applicationRef.attachView(popupComponentRef.hostView);
+
+    // Listen to the close event
+    popupComponentRef.instance.closed.subscribe(() =&gt; {
+      document.body.removeChild(popup);
+      this.applicationRef.detachView(popupComponentRef.hostView);
+    });
+
+    // Set the message
+    popupComponentRef.instance.message = message;
+
+    // Add to the DOM
+    document.body.appendChild(popup);
+  }
+}
+</code></pre><p>参考：<br><a href="https://www.angular.cn/guide/elements" target="_blank" rel="external">Angular-自定义元素</a><br><a href="https://www.angular.cn/guide/dynamic-component-loader" target="_blank" rel="external">Angular-动态组件</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content" style="bottom: -150%;">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>请随意打赏<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/IMG_zhifubao.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/IMG_weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -254,7 +321,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -267,412 +334,100 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blueskyawen.com/2018/12/14/custom-element-and-dynamic-component/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/13/angular-elementRef-and-renderer/" class="archive-article-date">
-  	<time datetime="2018-12-13T14:49:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-13</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/13/angular-elementRef-and-renderer/">ElementRef和Renderer</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/12/12/angular-templateRef-and-viewContainerRef/" class="archive-article-date">
-  	<time datetime="2018-12-12T12:55:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/12/12/angular-templateRef-and-viewContainerRef/">templateRef和viewContainerRef</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/10/ng-shadow-cat-readme/" class="archive-article-date">
-  	<time datetime="2018-11-10T15:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/10/ng-shadow-cat-readme/">Ng-Shadow-Cat</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">angular，plugin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/26/jq-plugin-dev2/" class="archive-article-date">
-  	<time datetime="2018-09-26T15:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/26/jq-plugin-dev2/">前端插件包-BootShadow</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Jquery，plugin</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/09/12/jq-plugins-dev/" class="archive-article-date">
-  	<time datetime="2018-09-12T15:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/12/jq-plugins-dev/">JQuery-自写插件集</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Jquery</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/23/less-import/" class="archive-article-date">
-  	<time datetime="2018-08-22T16:00:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/23/less-import/">less深入指南三-@import导入（译）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Less</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/22/the-offset-of-javascript-and-jquery/" class="archive-article-date">
-  	<time datetime="2018-08-21T16:00:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/22/the-offset-of-javascript-and-jquery/">详解javascript和jquery里的各种尺寸和偏移</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/15/lessjs-use-depth/" class="archive-article-date">
-  	<time datetime="2018-08-14T16:00:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/15/lessjs-use-depth/">less深入指南二（译）</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Less</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <a href="/2018/12/17/ng-template-ng-container-and-ng-content/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ng-template,ng-container和ng-content
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/12/13/angular-elementRef-and-renderer/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ElementRef和Renderer</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2018/page/2/">2</a><a class="page-number" href="/archives/2018/page/3/">3</a><a class="extend next" rel="next" href="/archives/2018/page/2/">Next &raquo;</a>
-    </nav>
+  
+  <div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2146592"></script>
+<!-- UY END -->
+
+  
+
+  
+
   
 
 
@@ -696,8 +451,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
