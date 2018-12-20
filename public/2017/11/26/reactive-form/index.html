@@ -17,7 +17,7 @@
 <meta property="og:description" content="什么是响应式表单响应式表单主要是数据管理的方式不同，它是在类中显式的管理我们的数据流和数据模型，直接操作数据模型进行状态控制。同时，它还以可以直接在组件类中创建表单控件树，并绑定到相应的标签上来构建表单，简单方便。">
 <meta property="og:image" content="http://blueskyawen.com/images/reactiveForm1.png">
 <meta property="og:image" content="http://blueskyawen.com/images/reactiveForm2.png">
-<meta property="og:updated_time" content="2017-11-30T15:33:48.590Z">
+<meta property="og:updated_time" content="2018-12-20T14:29:52.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="表单-响应式构建表单">
 <meta name="twitter:description" content="什么是响应式表单响应式表单主要是数据管理的方式不同，它是在类中显式的管理我们的数据流和数据模型，直接操作数据模型进行状态控制。同时，它还以可以直接在组件类中创建表单控件树，并绑定到相应的标签上来构建表单，简单方便。">
@@ -697,9 +697,27 @@ export class ReactiveFormComponent implements OnInit {
 &lt;/form&gt;
 &lt;p&gt;{{myForm.value | json}}&lt;/p&gt;
 </code></pre><p>样子如下：<br><img src="/images/reactiveForm1.png" alt="reactiveForm1"><br><img src="/images/reactiveForm2.png" alt="reactiveForm2"></p>
-<h5 id="其他有用的东西："><a href="#其他有用的东西：" class="headerlink" title="其他有用的东西："></a>其他有用的东西：</h5><p>1 . 同步和异步更新</p>
+<h5 id="其他有用的东西："><a href="#其他有用的东西：" class="headerlink" title="其他有用的东西："></a>其他有用的东西：</h5><p><strong>1 . 同步和异步更新</strong></p>
 <p>响应式表单是同步的。<br>使用响应式表单，我们会在代码中创建整个表单控件树。 我们可以立即更新一个值或者深入到表单中的任意节点，因为所有的控件都始终是可用的。</p>
 <p>模板驱动表单是异步的。<br>模板驱动表单会委托指令来创建它们的表单控件。 为了消除“检查完后又变化了”的错误，这些指令需要消耗一个以上的变更检测周期来构建整个控件树。 这意味着在从组件类中操纵任何控件之前，我们都必须先等待一个节拍。<br>比如，如果我们用@ViewChild(NgForm)查询来注入表单控件，并在生命周期钩子ngAfterViewInit中检查它，就会发现它没有子控件。 我们必须使用setTimeout等待一个节拍才能从控件中提取值、测试有效性，或把它设置为新值。</p>
+<p><strong>2 . 模板驱动表单和响应式表单的区别</strong></p>
+<p><strong>模板驱动表单</strong></p>
+<ul>
+<li>数据更新是异步的，更新流程多，依赖于变更周期</li>
+<li>表单控件在模板中通过指令创建和更新操作，如：ngModel</li>
+<li>表单校验使用指令验证，指令包装校验函数</li>
+<li>每次数据更新只是更新部分值，在变更周期后触法</li>
+<li>难测试</li>
+</ul>
+<p><strong>响应式表单</strong></p>
+<ul>
+<li>数据更新是同步的，更新流程少</li>
+<li>表单控件在ts中直接创建和更新操作,如：FormControl</li>
+<li>表单校验使用校验函数进行验证</li>
+<li>每次数据更新都是返回一个新实例</li>
+<li>易测试</li>
+</ul>
+<p><a href="https://www.angular.cn/guide/forms-overview#data-flow-in-forms" target="_blank" rel="external">数据更新流程</a></p>
 
       
 
@@ -949,19 +967,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">写作</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">写作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Augular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -981,15 +999,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Jqury</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Jquery</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -997,11 +1011,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">angular，plugin</a>
+                <a href="javascript:void(0)" class="js-tag color2">Jquery</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">angular，plugin</a>
               </li>
              
               <li class="article-tag-list-item">
