@@ -552,6 +552,203 @@
 
 <!-- 目录内容结束 -->
 
+<article id="post-JavaScript-form-Api" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/16/JavaScript-form-Api/">JavaScript表单校验Api</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/16/JavaScript-form-Api/" class="archive-article-date">
+  	<time datetime="2018-06-16T12:00:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JavaScript表单元素提供了一些内置的验证方法和属性，来对用户输入进行校验和错误显示，比如</p>
+<ul>
+<li>checkValidity()，input 元素中的数据是合法的返回 true，否则返回 false</li>
+<li>设置 input 元素的 validationMessage属性，用于自定义错误提示信息的方法。<br>使用 setCustomValidity 设置了自定义提示后，validity.customError 就会变成true，则 checkValidity 总是会返回false</li>
+</ul>
+<p>例子：</p>
+<pre><code>&lt;input id=&quot;id1&quot; type=&quot;number&quot; min=&quot;100&quot; max=&quot;300&quot; required&gt;
+&lt;button onclick=&quot;myFunction()&quot;&gt;验证&lt;/button&gt;
+&lt;script&gt;
+function myFunction() {
+    var inpObj = document.getElementById(&quot;id1&quot;);
+    if (inpObj.checkValidity() == false) {
+        document.getElementById(&quot;demo&quot;).innerHTML = inpObj.validationMessage;
+    }
+}
+&lt;/script&gt;
+</code></pre><h3 id="验证-DOM-属性"><a href="#验证-DOM-属性" class="headerlink" title="验证 DOM 属性"></a>验证 DOM 属性</h3><h5 id="validity"><a href="#validity" class="headerlink" title="validity"></a>validity</h5><p>布尔属性值，返回 input 输入值是否合法<br>input元素的 validity属性包含一系列关于数据属性</p>
+<ul>
+<li>customError    设置为 true, 如果设置了自定义的 validity 信息。</li>
+<li>patternMismatch    设置为 true, 如果元素的值不匹配它的模式属性。</li>
+<li>rangeOverflow    设置为 true, 如果元素的值大于设置的最大值。</li>
+<li>rangeUnderflow    设置为 true, 如果元素的值小于它的最小值。</li>
+<li>stepMismatch    设置为 true, 如果元素的值不是按照规定的 step 属性设置。</li>
+<li>tooLong    设置为 true, 如果元素的值超过了 maxLength 属性设置的长度。</li>
+<li>typeMismatch    设置为 true, 如果元素的值不是预期相匹配的类型。</li>
+<li>valueMissing    设置为 true，如果元素 (required 属性) 没有值。</li>
+<li>valid    设置为 true，如果元素的值是合法的。</li>
+</ul>
+<p>例子：</p>
+<pre><code>&lt;input id=&quot;id1&quot; type=&quot;number&quot; max=&quot;100&quot;&gt;
+&lt;button onclick=&quot;myFunction()&quot;&gt;验证&lt;/button&gt;
+&lt;script&gt;
+function myFunction() {
+    var txt = &quot;&quot;;
+    if (document.getElementById(&quot;id1&quot;).validity.rangeOverflow) {
+       txt = &quot;输入的值太大了&quot;;
+    }
+    document.getElementById(&quot;demo&quot;).innerHTML = txt;
+}
+&lt;/script&gt;
+</code></pre><h5 id="validationMessage"><a href="#validationMessage" class="headerlink" title="validationMessage"></a>validationMessage</h5><p>浏览器错误提示信息<br>使用setCustomValidity（error : string）来设置validationMessage，并可手动取消他们</p>
+<pre><code>setCustomValidity(&apos;&apos;)；
+setCustomValidity(null)
+setCustomValidity(undefined)
+</code></pre><h5 id="willValidate"><a href="#willValidate" class="headerlink" title="willValidate"></a>willValidate</h5><p>表示input 是否需要验证<br>比如,如果表单元素设置了required特性或pattern特性，则willValidate属性的值为true</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/16/JavaScript-form-Api/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
+<article id="post-HTMLCollection-and-NodeList" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/06/HTMLCollection-and-NodeList/">HTMLCollection 与 NodeList 的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/06/HTMLCollection-and-NodeList/" class="archive-article-date">
+  	<time datetime="2018-06-06T12:00:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用js原生方法获取Dom的涉及到很多的都是集合，只是根据方法不同集合类型也有不同</p>
+<ul>
+<li>HTMLCollection：HTML 元素的集合。<br>比如：document.getElementsByTagName(“p”)获取的集合</li>
+<li>NodeList 是一个文档节点的集合。<br>比如：document.querySelectorAll(“p”);document.getElementsByClassName()；获取的集合
+        
+          <a class="article-more-a" href="/2018/06/06/HTMLCollection-and-NodeList/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/06/HTMLCollection-and-NodeList/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->
+
 <article id="post-javascipt-bibao-and-this" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -776,162 +973,6 @@
 
 
   
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-<article id="post-design-pattern-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/18/design-pattern-3/">设计模式三</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/18/design-pattern-3/" class="archive-article-date">
-  	<time datetime="2018-03-18T12:08:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本节介绍几种结构型模式，看着比较相似，比较容易混淆，在此描述希望有所区分<br>
-        
-          <a class="article-more-a" href="/2018/03/18/design-pattern-3/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">设计</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/后端/" class="article-tag-list-link color3">后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/18/design-pattern-3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <!-- 目录内容 -->
-
-<!-- 目录内容结束 -->
-
-<article id="post-design-pattern-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/17/design-pattern-2/">设计模式二</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/17/design-pattern-2/" class="archive-article-date">
-  	<time datetime="2018-03-17T13:39:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>设计模式作为软件设计的经验总结，有三大原则需要遵守：</p>
-<ul>
-<li>类对象职责单一，即在封装数据时尽量使类的功能单一，各类之间通过消息或者接口组合在一起</li>
-<li>开放-闭合原则，即对扩展的开放，对修改的闭合</li>
-<li>依赖倒转原则，对象抽象时应该依赖于抽象，而不应该依赖于细节，即面向接口编程
-        
-          <a class="article-more-a" href="/2018/03/17/design-pattern-2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">设计</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/后端/" class="article-tag-list-link color3">后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/17/design-pattern-2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1028,11 +1069,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">写作</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1040,7 +1081,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">写作</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1056,6 +1097,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">设计</a>
               </li>
              
@@ -1064,7 +1109,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color2">Jquery</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1072,15 +1117,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Jquery</a>
+                <a href="javascript:void(0)" class="js-tag color5">angular，plugin</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">angular，plugin</a>
               </li>
              
               <li class="article-tag-list-item">
