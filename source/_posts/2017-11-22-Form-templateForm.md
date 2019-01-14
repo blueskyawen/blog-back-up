@@ -1,5 +1,5 @@
 ---
-title: 表单-模板驱动构建表单
+title: 表单-模板驱动构建表单和校验
 date: 2017-11-22 00:36:58
 tags: Augular
 categories: 前端
@@ -320,5 +320,47 @@ angular会将两个校验属性转化成函数来处理
         Name can not has @ $ & and number!!</p>
     </div>
 
-响应式表单的校验在后面介绍
+
+**3）跨字段交叉验证**
+
+例子要实现：输入文本不能包含特殊字符@ ￥ & 和 数字，否则提示错误
+
+校验函数，有检查的字符就返回响应字符值，否则返回空：
+
+    import { AbstractControl, ValidatorFn } from '@angular/forms';
+
+    export const identityRevealedValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+      const name = control.get('name');
+      const alterEgo = control.get('alterEgo');
+
+      return name && alterEgo && name.value === alterEgo.value ? { 'identityRevealed': true } : null;
+    };
+
+     //跨字段校验器不能用到单个控件上，一般用在控件组上，比如表单
+    const heroForm = new FormGroup({
+      'name': new FormControl(),
+      'alterEgo': new FormControl(),
+      'power': new FormControl()
+    }, { validators: identityRevealedValidator });
+
+在模板驱动表单中使用需要转换成属性指令：
+
+    import { Directive, Input } from '@angular/core';
+    import { AbstractControl, NG_VALIDATORS, Validator, Validators } from '@angular/forms';
+
+    @Directive({
+      selector: '[appIdentityRevealed]',
+      providers: [{ provide: NG_VALIDATORS, useExisting: IdentityRevealedValidatorDirective, multi: true }]
+    })
+    export class IdentityRevealedValidatorDirective implements Validator {
+      validate(control: AbstractControl): ValidationErrors {
+        return identityRevealedValidator(control)
+      }
+    }
+
+    <form #heroForm="ngForm" appIdentityRevealed>
+    ...
+    </form>
+
+自定义异步验证器可以参看官方文档
 
