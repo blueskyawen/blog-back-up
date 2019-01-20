@@ -136,3 +136,9 @@ angular支持自定义标签元素，也就是组件。之前我们说过，组�
     <popup-element></popup-element>
 
 点击[这里](http://blueskyawen.com/angular-work-cook/main/basic/comp/customEle)查看自定义元素的一个例子
+
+##### 3. 浏览器支持
+由于自定义元素要求浏览器有web component特性，目前支持的有：Chrome/Opera/Safari，Firefox在63版本以上支持
+如果使用中出现以下错误，请检查下浏览器版本
+
+    ERROR TypeError: this.ngElementStrategy is undefined

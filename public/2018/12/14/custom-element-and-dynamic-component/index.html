@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blueskyawen.com">
-  <title>自定义元素和动态组件 | bluesky个人小站</title>
+  <title>动态组件 | bluesky个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在介绍正式内容之前先了解一下angular里支持的几种视图类型：模板元素和组件  模板元素，即Embedded Views，可以使用TemplateRef类型的createEmbeddedView()方法来创建，这在结构型指令中可以看到 组件，即Host View，包括应用中的所有类型的组件以及动态创建的组件">
 <meta name="keywords" content="angular">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义元素和动态组件">
+<meta property="og:title" content="动态组件">
 <meta property="og:url" content="http://blueskyawen.com/2018/12/14/custom-element-and-dynamic-component/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="在介绍正式内容之前先了解一下angular里支持的几种视图类型：模板元素和组件  模板元素，即Embedded Views，可以使用TemplateRef类型的createEmbeddedView()方法来创建，这在结构型指令中可以看到 组件，即Host View，包括应用中的所有类型的组件以及动态创建的组件">
-<meta property="og:updated_time" content="2018-12-17T13:56:39.402Z">
+<meta property="og:updated_time" content="2019-01-20T09:28:09.393Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自定义元素和动态组件">
+<meta name="twitter:title" content="动态组件">
 <meta name="twitter:description" content="在介绍正式内容之前先了解一下angular里支持的几种视图类型：模板元素和组件  模板元素，即Embedded Views，可以使用TemplateRef类型的createEmbeddedView()方法来创建，这在结构型指令中可以看到 组件，即Host View，包括应用中的所有类型的组件以及动态创建的组件">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
@@ -177,7 +177,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      自定义元素和动态组件
+      动态组件
     </h1>
   
 
@@ -196,81 +196,49 @@
 <li>组件，即Host View，包括应用中的所有类型的组件以及动态创建的组件<a id="more"></a>
 </li>
 </ul>
-<h3 id="自定义元素"><a href="#自定义元素" class="headerlink" title="自定义元素"></a>自定义元素</h3><p>我们知道angular支持自定义标签元素，也就是组件。之前我们说过，组件是注册在注入器中的，由注入器在使用时自动注入实例。<br>同样，我们也可以手动的注册他们，在引用时得到实例并添加到视图中，便是所谓的“自定义元素”</p>
-<pre><code>import { Component, Injector } from &apos;@angular/core&apos;;
-import { createCustomElement } from &apos;@angular/elements&apos;;
+<p>动态组件是更加自由的组件使用方式，不需要再模板中直接书写标签，只需要预留位置，然后通过脚本动态加载组件实例即可，非常适合于变化情况多的广告组件显示<br>动态组件创建步骤：</p>
+<ul>
+<li>创建待插入文档的组件元素，如果已经预留的位置的话这一步可以略过，比如：使用了ng-template预留了元素位置</li>
+<li>使用 ComponentFactoryResolver 来为组件解析ComponentFactory， 它会为组件创建一个实例</li>
+<li>为组件添加变更检测和事件处理</li>
+<li>设置组件属性</li>
+<li>添加组件到模板中，对于ng-template的情况只需要关联组件实例即可</li>
+</ul>
+<p>下面是一个简单代码段</p>
+<pre><code>import { Component, Injector，ApplicationRef, ComponentFactoryResolver, Injectable, Injector } from &apos;@angular/core&apos;;
 import { PopupComponent } from &apos;./popup.component&apos;;
 
 @Component({
-  selector: &apos;app-root&apos;,
-  template: `
-    &lt;input #input value=&quot;Message&quot;&gt;
-    &lt;button (click)=&quot;showAsElement(input.value)&quot;&gt;Show as element&lt;/button&gt;
-  `,
-})
-export class AppComponent {
-  constructor(injector: Injector, public popup: PopupService) {
-    // Convert `PopupComponent` to a custom element.
-    const PopupElement = createCustomElement(PopupComponent, {injector});
-    // Register the custom element with the browser.
-    customElements.define(&apos;popup-element&apos;, PopupElement);
-  }
-
-  showAsElement(value : any) {
-     // Create element
-const popupEl: NgElement &amp; WithProperties&lt;PopupComponent&gt; = document.createElement(&apos;popup-element&apos;) as any;
-
-    // Listen to the close event
-    popupEl.addEventListener(&apos;closed&apos;, () =&gt; document.body.removeChild(popupEl));
-
-    // Set the message
-    popupEl.message = message;
-
-    // Add to the DOM
-    document.body.appendChild(popupEl);
-  }
-}
-</code></pre><h3 id="动态创建组件"><a href="#动态创建组件" class="headerlink" title="动态创建组件"></a>动态创建组件</h3><p>动态组件是更加自由的组件使用方式，不需要再模板中直接书写标签，只需要预留位置，然后通过脚本动态加载组件实例即可，非常适合于变化情况多的广告组件显示</p>
-<pre><code>@Component({
-  selector: &apos;app-root&apos;,
-  template: `
+selector: &apos;app-root&apos;,
+template: `
     &lt;input #input value=&quot;Message&quot;&gt;
     &lt;button (click)=&quot;showAsComponent(input.value)&quot;&gt;Show as component&lt;/button&gt;
-  `,
+    `
 })
 export class AppComponent {
-  constructor(injector: Injector, public popup: PopupService) {
-    // Convert `PopupComponent` to a custom element.
-    const PopupElement = createCustomElement(PopupComponent, {injector});
-    // Register the custom element with the browser.
-    customElements.define(&apos;popup-element&apos;, PopupElement);
-  }
+    constructor(injector: Injector) {
+    }
 
-  showAsComponent(value : any) {
-    // Create element
-    const popup = document.createElement(&apos;popup-component&apos;);
+    showAsComponent(value : any) {
+        //创建元素
+        const popup = document.createElement(&apos;popup-component&apos;);
+        //创建组件实例
+        const factory = this.componentFactoryResolver.resolveComponentFactory(PopupComponent);
+        const popupComponentRef = factory.create(this.injector, [], popup);
+         //添加变更检测
+         this.applicationRef.attachView(popupComponentRef.hostView);
+         //添加事件
+        popupComponentRef.instance.closed.subscribe(() =&gt; {
+            document.body.removeChild(popup);
+            this.applicationRef.detachView(popupComponentRef.hostView);
+        });
 
-    // Create the component and wire it up with the element
-    const factory = this.componentFactoryResolver.resolveComponentFactory(PopupComponent);
-    const popupComponentRef = factory.create(this.injector, [], popup);
-
-    // Attach to the view so that the change detector knows to run
-    this.applicationRef.attachView(popupComponentRef.hostView);
-
-    // Listen to the close event
-    popupComponentRef.instance.closed.subscribe(() =&gt; {
-      document.body.removeChild(popup);
-      this.applicationRef.detachView(popupComponentRef.hostView);
-    });
-
-    // Set the message
-    popupComponentRef.instance.message = message;
-
-    // Add to the DOM
-    document.body.appendChild(popup);
-  }
+        //设置组件属性
+        popupComponentRef.instance.message = message;
+        document.body.appendChild(popup);
+    }
 }
-</code></pre><p>参考：<br><a href="https://www.angular.cn/guide/elements" target="_blank" rel="external">Angular-自定义元素</a><br><a href="https://www.angular.cn/guide/dynamic-component-loader" target="_blank" rel="external">Angular-动态组件</a></p>
+</code></pre><p>点击<a href="http://blueskyawen.com/angular-work-cook/main/basic/comp/dynamic">这里</a>查看动态组件的一个例子,广告的动态推送</p>
 
       
 
@@ -520,11 +488,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">写作</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -532,7 +500,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">写作</a>
               </li>
              
               <li class="article-tag-list-item">
