@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://blueskyawen.com">
-  <title>about me | bluesky个人小站</title>
+  <title>angular-新特性 | bluesky个人小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="LIUXUWEN">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about me">
-<meta property="og:url" content="http://blueskyawen.com/about-me/index.html">
+  <meta name="description" content="依赖注入在新版本中，注入提供了providedIn字段，可以指定某个服务属于根注入器，下面两种方式效果是一样的：像下面这样写标记服务注入根注入器： @Injectable({   providedIn: &amp;apos;root&amp;apos;, }) 但是要注意的几点是：">
+<meta name="keywords" content="angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angular-新特性">
+<meta property="og:url" content="http://blueskyawen.com/2019/01/23/angular-new-fetures/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
-<meta property="og:description" content="LIUXUWEN">
-<meta property="og:updated_time" content="2017-05-30T04:15:39.183Z">
+<meta property="og:description" content="依赖注入在新版本中，注入提供了providedIn字段，可以指定某个服务属于根注入器，下面两种方式效果是一样的：像下面这样写标记服务注入根注入器： @Injectable({   providedIn: &amp;apos;root&amp;apos;, }) 但是要注意的几点是：">
+<meta property="og:updated_time" content="2019-01-23T16:02:38.794Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about me">
-<meta name="twitter:description" content="LIUXUWEN">
+<meta name="twitter:title" content="angular-新特性">
+<meta name="twitter:description" content="依赖注入在新版本中，注入提供了providedIn字段，可以指定某个服务属于根注入器，下面两种方式效果是一样的：像下面这样写标记服务注入根注入器： @Injectable({   providedIn: &amp;apos;root&amp;apos;, }) 但是要注意的几点是：">
   
     <link rel="alternative" href="/atom.xml" title="bluesky个人小站" type="application/atom+xml">
   
@@ -169,28 +170,110 @@
 
 <!-- 目录内容结束 -->
 
-<article id="page-undefined" class="article article-type-page " itemscope itemprop="blogPost">
+<article id="post-angular-new-fetures" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      about me
+      angular-新特性
     </h1>
   
 
         
-        <a href="/about-me/index.html" class="archive-article-date">
-  	<time datetime="2017-05-30T08:19:03.089Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-30</time>
+        <a href="/2019/01/23/angular-new-fetures/" class="archive-article-date">
+  	<time datetime="2019-01-23T15:30:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>LIUXUWEN</p>
+        <h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><p>在新版本中，注入提供了providedIn字段，可以指定某个服务属于根注入器，下面两种方式效果是一样的：<br>像下面这样写标记服务注入根注入器：</p>
+<pre><code>@Injectable({
+  providedIn: &apos;root&apos;,
+})
+</code></pre><p>但是要注意的几点是：<br><a id="more"></a></p>
+<p>1) providedIn主要应用于懒加载模块，由于懒加载模块存在自己的子注入器，有时候服务的实例会存在多份，providedIn可用于将懒加载模块内的服务声明为注入到根注入器，从而全局单实例，及时服务本身是懒加载的<br>2) providedIn也可以用在懒加载模块内的服务的供应商的声明，比如：providedIn: UserModule,和在@NgModule的providers数组声明效果一样<br>3) 非懒加载模块，即直接import进根模块的特性模块，服务的供应商不能使用：providedIn：模块名 来声明，否则会报错找不到provider;原因是这种模块的供应商天然是注入懂啊根注入器的，所以应该像下面这样写：</p>
+<p>理论上，通过“providedIn”服务可以指定限制模块内，比如下面两种写法效果是一致的：</p>
+<pre><code>//方式一
+providedIn: &apos;root&apos; 或 在@NgModule的providers数组声明
 
+import { Injectable } from &apos;@angular/core&apos;;
+import { UserModule } from &apos;./user.module&apos;;
+
+@Injectable({
+  providedIn: UserModule,
+})
+export class UserService {
+}
+
+//方式二
+import { Injectable } from &apos;@angular/core&apos;;
+import { UserModule } from &apos;./user.module&apos;;
+
+@Injectable()
+export class UserService {
+}
+
+import { NgModule } from &apos;@angular/core&apos;;
+import { UserService } from &apos;./user.service&apos;;
+
+@NgModule({
+  providers: [UserService],
+})
+export class UserModule {
+}
+</code></pre><p>官方推荐采用方法一，是因为指定了固定模块生效，当没有人注入它时，该服务就可以被摇树优化掉。<br>但是在实践试用的过程中，这样使用极易出现模块的循环引入，导致出错，不推荐使用！</p>
+<h3 id="RXJS"><a href="#RXJS" class="headerlink" title="RXJS"></a>RXJS</h3><h5 id="pipe"><a href="#pipe" class="headerlink" title="pipe()"></a>pipe()</h5><p>pipe函数可以组合observer的各自操作符的链式调用，下面两种方式效果相同</p>
+<pre><code>const squareOdd = Observer.of(1, 2, 3, 4, 5)
+  .pipe(
+    filter(n =&gt; n % 2 !== 0),
+    map(n =&gt; n * n)
+  );
+
+const squareOdd = Observer.of(1, 2, 3, 4, 5)
+.filter(n =&gt; n % 2 !== 0)
+.map(n =&gt; n * n);
+</code></pre><h5 id="catchError"><a href="#catchError" class="headerlink" title="catchError()"></a>catchError()</h5><p>新版使用catchError方法来捕捉错误，使用retry来重试</p>
+<pre><code>ajax(&apos;/api/data&apos;).pipe(
+    retry(3),
+    map(res =&gt; {
+        if (!res.response) {
+            throw new Error(&apos;Value expected!&apos;);
+        }
+        return res.response;
+    }),
+    catchError(err =&gt; of([]))
+);
+</code></pre><h3 id="组件样式"><a href="#组件样式" class="headerlink" title="组件样式"></a>组件样式</h3><p>CSS 标准中用于 “刺穿 Shadow DOM” 的组合器已经被废弃，并将这个特性从主流浏览器和工具中移除，Angular将移除对它们的支持（包括 /deep/、&gt;&gt;&gt; 和 ::ng-deep）。 目前，建议先统一使用 ::ng-deep，以便兼容将来的工具。</p>
+<h3 id="单例导入"><a href="#单例导入" class="headerlink" title="单例导入"></a>单例导入</h3><pre><code>static forRoot(config: UserServiceConfig): ModuleWithProviders {
+  return {
+    ngModule: CoreModule,
+    providers: [
+      {provide: UserServiceConfig, useValue: config }
+    ]
+  };
+}
+</code></pre><p>8.模仿路由模块，实现模块的单例导入</p>
+<pre><code>static forRoot(config: UserServiceConfig): ModuleWithProviders {
+  return {
+    ngModule: CoreModule,
+    providers: [
+      {provide: UserServiceConfig, useValue: config }
+    ]
+  };
+}
+</code></pre><h3 id="安全访问操作符和非空断言操作符"><a href="#安全访问操作符和非空断言操作符" class="headerlink" title="安全访问操作符和非空断言操作符"></a>安全访问操作符和非空断言操作符</h3><blockquote>
+<p>安全访问操作符 ?. 保护出现在属性路径中 null 和 undefined 值,比如：hero?.name</p>
+<p>非空断言操作符 !. 明确告诉类型检查器，访问的属性它不会为空，比如：hero!.name</p>
+</blockquote>
+<h3 id="类型转换函数-any"><a href="#类型转换函数-any" class="headerlink" title="类型转换函数 $any"></a>类型转换函数 $any</h3><p>使用方式： $any(&lt;表达式&gt;）<br>绑定表达式可能会报类型错误，并且它不能或很难指定类型。要消除这种报错，你可以使用 $any 转换函数来把表达式转换成 any 类型</p>
+<pre><code>&lt;div&gt;
+  The hero&apos;s marker is {{$any(hero).marker}}
+&lt;/div
+</code></pre>
       
 
       
@@ -229,7 +312,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端/" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -279,7 +384,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://blueskyawen.com/about-me/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://blueskyawen.com/2019/01/23/angular-new-fetures/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,9 +396,32 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2019/01/20/angular-custom-element/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">自定义元素</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
+
+
+  
+
+  
+  <div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2146592"></script>
+<!-- UY END -->
+
+  
+
+  
+
+  
 
 
           </div>
@@ -316,7 +444,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

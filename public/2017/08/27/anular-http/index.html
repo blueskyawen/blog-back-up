@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blueskyawen.com/2017/08/27/anular-http/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="前端应用需要通过http协议与后端服务器通讯,现代浏览器支持使用两种不同的 API 发起 HTTP 请求：XMLHttpRequest 接口和 fetch() API。">
-<meta property="og:updated_time" content="2017-08-27T04:29:05.781Z">
+<meta property="og:updated_time" content="2019-01-29T13:19:40.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular-Http">
 <meta name="twitter:description" content="前端应用需要通过http协议与后端服务器通讯,现代浏览器支持使用两种不同的 API 发起 HTTP 请求：XMLHttpRequest 接口和 fetch() API。">
@@ -202,86 +202,149 @@
 })
 export class AppModule {}
 </code></pre><p>引入之后，在应用的各个组件和服务里就可以通过依赖注入来使用此服务了</p>
-<h3 id="基本的应用"><a href="#基本的应用" class="headerlink" title="基本的应用"></a>基本的应用</h3><p><strong>（1）获取数据</strong><br>基本格式：</p>
-<pre><code>http.get&lt;ItemsResponse&gt;(url).subscribe(
-             // Successful responses call the first callback.
+<h3 id="基本应用"><a href="#基本应用" class="headerlink" title="基本应用"></a>基本应用</h3><h5 id="（1）获取数据"><a href="#（1）获取数据" class="headerlink" title="（1）获取数据"></a>（1）获取数据</h5><p><strong>基本格式</strong></p>
+<pre><code>import {Observable} from &quot;rxjs/Observable&quot;;
+import {HttpClient} from &quot;@angular/common/http&quot;;
+
+http.get(url).pipe(
+    map(...),
+    catchError(...)
+).subscribe(
     data =&gt; {...},
-            // Errors will call this callback instead:
     err =&gt; {
       console.log(&apos;Something went wrong!&apos;);
     }
-  });
-</code></pre><p>比如：</p>
-<pre><code>this.http.get(&apos;/api/items&apos;).subscribe(data =&gt; {
-  this.results = data[&apos;results&apos;];
 });
-</code></pre><p>限制强类型参数，可直接使用.好获取响应体</p>
+</code></pre><p>比如：</p>
+<pre><code>this.http.get(&apos;/api/items&apos;).pipe(
+    map(res =&gt; res.items || []),
+).subscribe(data =&gt; {
+    this.results = data[&apos;results&apos;];
+});
+</code></pre><p><strong>限制强类型参数</strong></p>
+<pre><code>http.get&lt;Config&gt;(url).subscribe((data : Config) =&gt; {
+  this.results = data.results;
+});
+
+或
+
+http.get&lt;Config&gt;(url).subscribe((data : Config) =&gt; {
+  this.result = {...data};
+});
+</code></pre><p>比如：</p>
 <pre><code>interface ItemsResponse {
   results: string[];
 }
-http.get&lt;ItemsResponse&gt;(&apos;/api/items&apos;).subscribe(data =&gt; {
-  this.results = data.results;
-});
-</code></pre><p>读取完整的响应体，包括特殊的响应头或状态码</p>
-<pre><code>http.get&lt;MyJsonData&gt;(&apos;/data.json&apos;, {observe: &apos;response&apos;})
-  .subscribe(resp =&gt; {
-    // Here, resp is of type HttpResponse&lt;MyJsonData&gt;.
-    // You can inspect its headers:
-    console.log(resp.headers.get(&apos;X-Custom-Header&apos;));
-    // And access the body directly, which is typed as MyJsonData as requested.
-    console.log(resp.body.someField);
-  });
-</code></pre><p>获取错误信息</p>
-<pre><code>http.get&lt;ItemsResponse&gt;(&apos;/api/items&apos;).subscribe(
-      data =&gt; {...},
-    (err: HttpErrorResponse) =&gt; {
-      if (err.error instanceof Error) {
-        // A client-side or network error occurred..
-        console.log(&apos;An error occurred:&apos;, err.error.message);
-      } else {
-        // The backend returned an unsuccessful response code.
-        // The response body may contain clues as to what went wrong,
-        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-      }
-    }
-  });
-</code></pre><p>请求重试</p>
-<pre><code>import &apos;rxjs/add/operator/retry&apos;;
-http.get&lt;ItemsResponse&gt;(&apos;/api/items&apos;)
-  // Retry this request up to 3 times.
-  .retry(3)
-  // Any errors after the 3rd retry will fall through to the app.
-  .subscribe(...)
-</code></pre><p>请求非 JSON 数据</p>
-<pre><code>http.get(&apos;/textfile.txt&apos;, {responseType: &apos;text&apos;})
-  // The Observable returned by get() is of type Observable&lt;string&gt;
-  // because a text response was specified. There&apos;s no need to pass
-  // a &lt;string&gt; type parameter to get().
-  .subscribe(data =&gt; console.log(data));
-</code></pre><p><strong>（2）设置数据</strong></p>
-<pre><code>const body = {name: &apos;Brad&apos;};
 
-http.post(&apos;/api/developers/add&apos;, body)
-  .subscribe(...);
-</code></pre><p>注意这个subscribe()方法。 所有从HttpClient返回的可观察对象都是冷的（cold），也就是说，它们只是发起请求的蓝图而已。在我们调用subscribe()之前，什么都不会发生，而当我们每次调用subscribe()时，就会独立发起一次请求。下列代码会使用同样的数据发送两次同样的 POST 请求：</p>
-<pre><code>const req = http.post(&apos;/api/items/add&apos;, body);
-req.subscribe();
-req.subscribe();
-</code></pre><p>请求中添加一个Authorization头</p>
-<p>http.post(‘/api/items/add’, body, {<br>    headers: new HttpHeaders().set(‘Authorization’, ‘my-auth-token’),<br>  })<br>  .subscribe();</p>
-<p>URL携带参数</p>
-<p>http.post(‘/api/items/add’, body, {<br>    params: new HttpParams().set(‘id’, ‘3’),<br>  })<br>  .subscribe();</p>
-<p>同下</p>
-<pre><code>http.post(&apos;/api/items/add?id=3&apos;, body)
+this.http.get&lt;ItemsResponse&gt;(&apos;/api/items&apos;).pipe(
+    map((res : ItemsResponse) =&gt; res.results || []),
+).subscribe(data =&gt; {
+    this.results = data;
+});
+
+或
+
+getItems(url) : Observable&lt;ItemsResponse&gt; {
+    return this.http.get&lt;ItemsResponse&gt;(&apos;/api/items&apos;).pipe(
+        map((res : ItemsResponse) =&gt; res.results || []);
+}
+</code></pre><p><strong>读取完整的响应体</strong><br>读取完整的响应体，包括特殊的响应头或状态码</p>
+<pre><code>//get返回对象Observable&lt;HttpResponse&lt;Config&gt;&gt;
+http.get&lt;Config&gt;(url, {observe: &apos;response&apos;})
+  .subscribe(resp =&gt; {
+    console.log(resp.headers.get(&apos;X-Custom-Header&apos;));
+    console.log(resp.body.someField);
+});
+</code></pre><p>比如：</p>
+<pre><code>this.http.get&lt;ItemsResponse&gt;(&apos;/api/items&apos;，{observe: &apos;response&apos;})
+    .subscribe(resp =&gt; {
+        console.log(resp.headers.get(&apos;X-Custom-Header&apos;));
+        this.results = resp.body;
+});
+</code></pre><p><strong>错误处理和失败重试</strong></p>
+<pre><code>handleError(error: HttpErrorResponse) {
+    ...
+    return of([]);
+}
+</code></pre><p>比如：</p>
+<pre><code>private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error(&apos;An error occurred:&apos;, error.error.message);
+    } else {
+      console.error(`Backend returned code ${error.status}, ` +`body was: ${error.error}`);
+    }
+    return throwError(&apos;Something bad happened！&apos;);
+};
+
+this.http.get(&apos;/api/items&apos;).pipe(
+    retry(3),
+    catchError(handleError)
+).subscribe(data =&gt; {
+    this.results = data[&apos;results&apos;];
+},error =&gt; {
+    console.error(&apos;error is &apos;+error);
+});
+</code></pre><p><strong>请求非 JSON 数据</strong></p>
+<pre><code>this.http.get(url, {responseType: &apos;text&apos;})
+   .pipe(
+     tap(
+       data =&gt; this.log(filename, data),
+       error =&gt; this.logError(filename, error)
+     )
+   );
+</code></pre><p>比如：</p>
+<pre><code>this.http.get(&apos;assets/not-json.txt&apos;, {responseType: &apos;text&apos;})
+   .pipe(
+     tap(
+       data =&gt; this.log(filename, data),
+       error =&gt; this.logError(filename, error)
+     )
+   ).subscribe(data =&gt; {
+       this.content = data;
+   });
+</code></pre><h5 id="（2）添加数据"><a href="#（2）添加数据" class="headerlink" title="（2）添加数据"></a>（2）添加数据</h5><p><strong>基本格式</strong></p>
+<pre><code>http.post(url, body, {headers: new HttpHeaders()})
+    .pipe(
+        map(...),
+        catchError(...)
+    ).subscribe(...);
+</code></pre><p>比如：</p>
+<pre><code>const body = {name: &apos;Brad&apos;};
+const url = &apos;/api/developers/add&apos;;
+http.post(url, body, {headers: new HttpHeaders()})
+    .pipe(
+        catchError(this.handeError)
+    ).subscribe(data =&gt; {
+        this.data = data
+    });
+</code></pre><p><strong>添加请求头配置</strong></p>
+<pre><code>import {HttpHeaders} from &quot;@angular/common/http&quot;;
+
+http.post(url, body,
+    {headers: new HttpHeaders().set(‘Authorization’, ‘my-auth-token’)})
+    .pipe(
+        catchError(this.handeError)
+    ).subscribe(...);
+</code></pre><p><strong>携带附加参数</strong></p>
+<pre><code>import {HttpParams} from &quot;@angular/common/http&quot;;
+
+http.post(url, body,
+    {params: new HttpParams().set(&apos;id&apos;, &apos;3&apos;)})
+    .subscribe(...);
+</code></pre><p>效果同下</p>
+<pre><code>http.post(url+&apos;?id=3&apos;, body)
   .subscribe();
-</code></pre><p><strong>（3）删除数据</strong></p>
-<pre><code>http.delete(&apos;/api/developers&apos;, id)
-  .subscribe(...);
-</code></pre><h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><p>@angular/common/http的主要特性之一是拦截器，它能声明一些拦截器，拦在应用和后端之间。当应用程序发起一个请求时，拦截器可以在请求被发往服务器之前先转换这个请求。并且在应用看到服务器发回来的响应之前，转换这个响应。这对于处理包括认证和记录日志在内的一系列工作都非常有用</p>
+</code></pre><h5 id="（3）修改数据"><a href="#（3）修改数据" class="headerlink" title="（3）修改数据"></a>（3）修改数据</h5><p>与post类似，只是换成了put而已</p>
+<pre><code>http.put(url, body,
+    {headers: new HttpHeaders().set(‘Authorization’, ‘my-auth-token’)})
+    .pipe(
+        catchError(this.handeError)
+    ).subscribe(...);
+</code></pre><h5 id="（4）删除数据"><a href="#（4）删除数据" class="headerlink" title="（4）删除数据"></a>（4）删除数据</h5><p>http.delete(url, id)<br>  .pipe(<br>        catchError(this.handeError)<br>    ).subscribe();</p>
 <blockquote>
-<p>可同事拦截请求消息和响应消息</p>
+<p>注意：delete操作虽然返回没什么可处理的，但是subscribe必须要有，否则不会执行</p>
 </blockquote>
-<p>具体可参考文档<a href="https://www.angular.cn/guide/http" target="_blank" rel="external">HttpClient 库</a></p>
+<p>参考示例：<br><a href="http://blueskyawen.com/angular-work-cook/main/advance/http/config">config</a><br><a href="http://blueskyawen.com/angular-work-cook/main/advance/http/textloader">TextLoad</a></p>
 
       
 
@@ -531,7 +594,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">写作</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,7 +602,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">写作</a>
               </li>
              
               <li class="article-tag-list-item">

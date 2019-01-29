@@ -25,120 +25,191 @@ comments: true
 
 引入之后，在应用的各个组件和服务里就可以通过依赖注入来使用此服务了
 
-### 基本的应用
-**（1）获取数据**
-基本格式：
+### 基本应用
+##### （1）获取数据
+**基本格式**
 
-    http.get<ItemsResponse>(url).subscribe(
-                 // Successful responses call the first callback.
+    import {Observable} from "rxjs/Observable";
+    import {HttpClient} from "@angular/common/http";
+
+    http.get(url).pipe(
+        map(...),
+        catchError(...)
+    ).subscribe(
         data => {...},
-                // Errors will call this callback instead:
         err => {
           console.log('Something went wrong!');
         }
-      });
+    });
 
 比如：
 
-    this.http.get('/api/items').subscribe(data => {
-      this.results = data['results'];
+    this.http.get('/api/items').pipe(
+        map(res => res.items || []),
+    ).subscribe(data => {
+        this.results = data['results'];
     });
 
-限制强类型参数，可直接使用.好获取响应体
+**限制强类型参数**
+
+    http.get<Config>(url).subscribe((data : Config) => {
+      this.results = data.results;
+    });
+
+    或
+
+    http.get<Config>(url).subscribe((data : Config) => {
+      this.result = {...data};
+    });
+
+比如：
 
     interface ItemsResponse {
       results: string[];
     }
-    http.get<ItemsResponse>('/api/items').subscribe(data => {
-      this.results = data.results;
+
+    this.http.get<ItemsResponse>('/api/items').pipe(
+        map((res : ItemsResponse) => res.results || []),
+    ).subscribe(data => {
+        this.results = data;
     });
 
+    或
+
+    getItems(url) : Observable<ItemsResponse> {
+        return this.http.get<ItemsResponse>('/api/items').pipe(
+            map((res : ItemsResponse) => res.results || []);
+    }
+
+**读取完整的响应体**
 读取完整的响应体，包括特殊的响应头或状态码
 
-    http.get<MyJsonData>('/data.json', {observe: 'response'})
+    //get返回对象Observable<HttpResponse<Config>>
+    http.get<Config>(url, {observe: 'response'})
       .subscribe(resp => {
-        // Here, resp is of type HttpResponse<MyJsonData>.
-        // You can inspect its headers:
         console.log(resp.headers.get('X-Custom-Header'));
-        // And access the body directly, which is typed as MyJsonData as requested.
         console.log(resp.body.someField);
-      });
+    });
 
-获取错误信息
+比如：
 
-    http.get<ItemsResponse>('/api/items').subscribe(
-      	data => {...},
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            // A client-side or network error occurred..
-            console.log('An error occurred:', err.error.message);
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-          }
+    this.http.get<ItemsResponse>('/api/items'，{observe: 'response'})
+        .subscribe(resp => {
+            console.log(resp.headers.get('X-Custom-Header'));
+            this.results = resp.body;
+    });
+
+**错误处理和失败重试**
+
+    handleError(error: HttpErrorResponse) {
+        ...
+        return of([]);
+    }
+
+比如：
+
+    private handleError(error: HttpErrorResponse) {
+        if (error.error instanceof ErrorEvent) {
+          console.error('An error occurred:', error.error.message);
+        } else {
+          console.error(`Backend returned code ${error.status}, ` +`body was: ${error.error}`);
         }
-      });
+        return throwError('Something bad happened！');
+    };
 
-请求重试
+    this.http.get('/api/items').pipe(
+        retry(3),
+        catchError(handleError)
+    ).subscribe(data => {
+        this.results = data['results'];
+    },error => {
+        console.error('error is '+error);
+    });
 
-    import 'rxjs/add/operator/retry';
-    http.get<ItemsResponse>('/api/items')
-      // Retry this request up to 3 times.
-      .retry(3)
-      // Any errors after the 3rd retry will fall through to the app.
-      .subscribe(...)
+**请求非 JSON 数据**
 
-请求非 JSON 数据
+     this.http.get(url, {responseType: 'text'})
+        .pipe(
+          tap(
+            data => this.log(filename, data),
+            error => this.logError(filename, error)
+          )
+        );
 
-    http.get('/textfile.txt', {responseType: 'text'})
-      // The Observable returned by get() is of type Observable<string>
-      // because a text response was specified. There's no need to pass
-      // a <string> type parameter to get().
-      .subscribe(data => console.log(data));
+比如：
+
+     this.http.get('assets/not-json.txt', {responseType: 'text'})
+        .pipe(
+          tap(
+            data => this.log(filename, data),
+            error => this.logError(filename, error)
+          )
+        ).subscribe(data => {
+            this.content = data;
+        });
 
 
-**（2）设置数据**
+##### （2）添加数据
+**基本格式**
+
+    http.post(url, body, {headers: new HttpHeaders()})
+        .pipe(
+            map(...),
+            catchError(...)
+        ).subscribe(...);
+
+比如：
 
     const body = {name: 'Brad'};
+    const url = '/api/developers/add';
+    http.post(url, body, {headers: new HttpHeaders()})
+        .pipe(
+            catchError(this.handeError)
+        ).subscribe(data => {
+            this.data = data
+        });
 
-    http.post('/api/developers/add', body)
-      .subscribe(...);
+**添加请求头配置**
 
-注意这个subscribe()方法。 所有从HttpClient返回的可观察对象都是冷的（cold），也就是说，它们只是发起请求的蓝图而已。在我们调用subscribe()之前，什么都不会发生，而当我们每次调用subscribe()时，就会独立发起一次请求。下列代码会使用同样的数据发送两次同样的 POST 请求：
+    import {HttpHeaders} from "@angular/common/http";
 
-    const req = http.post('/api/items/add', body);
-    req.subscribe();
-    req.subscribe();
+    http.post(url, body,
+        {headers: new HttpHeaders().set(‘Authorization’, ‘my-auth-token’)})
+        .pipe(
+            catchError(this.handeError)
+        ).subscribe(...);
 
-请求中添加一个Authorization头
+**携带附加参数**
 
-http.post('/api/items/add', body, {
-    headers: new HttpHeaders().set('Authorization', 'my-auth-token'),
-  })
-  .subscribe();
+    import {HttpParams} from "@angular/common/http";
 
-URL携带参数
+    http.post(url, body,
+        {params: new HttpParams().set('id', '3')})
+        .subscribe(...);
 
-http.post('/api/items/add', body, {
-    params: new HttpParams().set('id', '3'),
-  })
-  .subscribe();
+效果同下
 
-同下
-
-    http.post('/api/items/add?id=3', body)
+    http.post(url+'?id=3', body)
       .subscribe();
 
+##### （3）修改数据
+与post类似，只是换成了put而已
 
-**（3）删除数据**
+    http.put(url, body,
+        {headers: new HttpHeaders().set(‘Authorization’, ‘my-auth-token’)})
+        .pipe(
+            catchError(this.handeError)
+        ).subscribe(...);
 
-    http.delete('/api/developers', id)
-      .subscribe(...);
+##### （4）删除数据
 
-### 拦截器
-@angular/common/http的主要特性之一是拦截器，它能声明一些拦截器，拦在应用和后端之间。当应用程序发起一个请求时，拦截器可以在请求被发往服务器之前先转换这个请求。并且在应用看到服务器发回来的响应之前，转换这个响应。这对于处理包括认证和记录日志在内的一系列工作都非常有用
+    http.delete(url, id)
+      .pipe(
+            catchError(this.handeError)
+        ).subscribe();
 
-> 可同事拦截请求消息和响应消息
+> 注意：delete操作虽然返回没什么可处理的，但是subscribe必须要有，否则不会执行
 
-具体可参考文档[HttpClient 库](https://www.angular.cn/guide/http)
+参考示例：
+[config](http://blueskyawen.com/angular-work-cook/main/advance/http/config)
+[TextLoad](http://blueskyawen.com/angular-work-cook/main/advance/http/textloader)

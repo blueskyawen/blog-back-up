@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://blueskyawen.com/images/app-module-jimu.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/module-tree.jpg">
 <meta property="og:image" content="http://blueskyawen.com/images/app-construct.jpg">
-<meta property="og:updated_time" content="2017-08-27T10:52:31.320Z">
+<meta property="og:updated_time" content="2019-01-23T15:39:17.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular-模块">
 <meta name="twitter:description" content="Angular采用模块的形式来组织应用，将相关业务功能或者有内部联系的部分进行内聚化设计，封装成单独的模块，而整个应该则由多个模块来构成 应用模块化模块化是一种设计模式，有着明显的优点:">
@@ -273,6 +273,11 @@ constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
 </ul>
 <p>我们并不需要显式的引用这些组件,虽然引用了也没坏处。</p>
 <p>16 . 引导组件是入口组件的一种。 它是被Angular的引导（应用启动）过程加载到DOM中的入口组件。 其它入口组件则是被其它方式动态加载的，比如被路由器加载。<br>@NgModule.bootstrap属性告诉编译器这是一个入口组件，同时它应该生成一些代码来用该组件引导此应用。<br>不需要把组件同时列在bootstrap和entryComponent列表中 —— 虽然这样做也没坏处</p>
+<p>17 . 虽然你可以使用惰性加载模块来提供实例，但不是所有的服务都能惰性加载。比如，像路由之类的模块只能在根模块中使用。路由器需要使用浏览器中的全局对象 location 进行工作</p>
+<p>18 . 在应用搭建中根据实际需要可作不同的划分</p>
+<blockquote>
+<p>(1) 根据功能不同可分为：根模块，特性模块，懒加载模块，路由模块，服务模块，库模块<br>(2) 根据代码组织不同还可以分为：根模块，核心模块，共享模块，路由模块，服务模块，特性模块</p>
+</blockquote>
 
       
 
@@ -522,7 +527,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">写作</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -530,7 +535,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">写作</a>
               </li>
              
               <li class="article-tag-list-item">
