@@ -179,6 +179,11 @@ comments: true
             catchError(this.handeError)
         ).subscribe(...);
 
+你无法直接修改前述配置对象中的现有头，因为HttpHeaders实例是不可变的，如果需要增加或修改头配置，则clone一份即可
+
+    headers =
+      new HttpHeaders().set('AuthToken', 'a123456');
+
 **携带附加参数**
 
     import {HttpParams} from "@angular/common/http";
@@ -191,6 +196,11 @@ comments: true
 
     http.post(url+'?id=3', body)
       .subscribe();
+
+同样的，HttpParams实例是不可变的，如果需要增加或修改配置，需要clone一份
+
+    params =
+      new HttpParams().set('name', 'a123456');
 
 ##### （3）修改数据
 与post类似，只是换成了put而已
