@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://blueskyawen.com/2017/08/27/anular-http/index.html">
 <meta property="og:site_name" content="bluesky个人小站">
 <meta property="og:description" content="前端应用需要通过http协议与后端服务器通讯,现代浏览器支持使用两种不同的 API 发起 HTTP 请求：XMLHttpRequest 接口和 fetch() API。">
-<meta property="og:updated_time" content="2019-01-29T13:22:13.335Z">
+<meta property="og:updated_time" content="2019-01-29T13:34:16.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular-Http">
 <meta name="twitter:description" content="前端应用需要通过http协议与后端服务器通讯,现代浏览器支持使用两种不同的 API 发起 HTTP 请求：XMLHttpRequest 接口和 fetch() API。">
@@ -325,6 +325,9 @@ http.post(url, body,
     .pipe(
         catchError(this.handeError)
     ).subscribe(...);
+</code></pre><p>你无法直接修改前述配置对象中的现有头，因为HttpHeaders实例是不可变的，如果需要增加或修改头配置，则clone一份即可</p>
+<pre><code>headers =
+  new HttpHeaders().set(&apos;AuthToken&apos;, &apos;a123456&apos;);
 </code></pre><p><strong>携带附加参数</strong></p>
 <pre><code>import {HttpParams} from &quot;@angular/common/http&quot;;
 
@@ -334,6 +337,9 @@ http.post(url, body,
 </code></pre><p>效果同下</p>
 <pre><code>http.post(url+&apos;?id=3&apos;, body)
   .subscribe();
+</code></pre><p>同样的，HttpParams实例是不可变的，如果需要增加或修改配置，需要clone一份</p>
+<pre><code>params =
+  new HttpParams().set(&apos;name&apos;, &apos;a123456&apos;);
 </code></pre><h5 id="（3）修改数据"><a href="#（3）修改数据" class="headerlink" title="（3）修改数据"></a>（3）修改数据</h5><p>与post类似，只是换成了put而已</p>
 <pre><code>http.put(url, body,
     {headers: new HttpHeaders().set(‘Authorization’, ‘my-auth-token’)})
