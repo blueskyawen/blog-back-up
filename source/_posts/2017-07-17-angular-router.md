@@ -4,6 +4,7 @@ date: 2017-07-17 00:56:10
 tags: Augular
 categories: 前端
 comments: true
+toc: true
 ---
 
 路由与导航是组织多页面应用的基本需求，也是angular最重要的几个特性之一。Angular提供了强大的路由机制来保证页面之间的跳转，根据配置的地址导航对应视图页面，并将地址值更新到浏览器地址栏中，将应用的所以页面有机的组织在了一起
@@ -176,6 +177,8 @@ switchMap允许你在Observable的当前值上执行一个动作，并将它映�
         return this.service.getHeroes();
       });
 
+通常，对于强制性的值（比如用于区分两个路由路径的）使用必备参数；当这个值是可选的、复杂的或多值的时，使用可选参数。  
+
 ## 路由视图目标出口的选择
 理由器在为组件选择显示出口的时候，是以距离最近为原则，就是选择距离组件最近的上层outlet目标进行呈现，比如：
 
@@ -317,5 +320,40 @@ a. 使用方式不同：navigate([]) ; navigateByUrl(url)
   比如下面两个效果是一样:
   navigate([url, 123]);navigateByUrl('url/123');
 b. navigate可以实现相对路由，而navigateByUrl不行
+
+7 ) 导航事件
+在每次导航中，Router 都会通过 Router.events 属性发布一些导航事件:
+
+- NavigationStart,导航开始时触发
+- RouteConfigLoadStart,惰性加载某个路由配置之前触发。
+- RouteConfigLoadEnd,惰性加载了某个路由后触发。
+- RoutesRecognized,在路由器解析完 URL，并识别出了相应的路由时触发
+- GuardsCheckStart,在路由器开始 Guard 阶段之前触发。
+- ChildActivationStart,路由器开始激活路由的子路由时触发。
+- ActivationStart,路由器开始激活某个路由时触发。
+- GuardsCheckEnd,路由器成功完成了 Guard 阶段时触发。
+- ResolveStart,开始解析（Resolve）阶段时触发。
+- ResolveEnd,路由器成功完成了路由的解析（Resolve）阶段时触发。
+- ChildActivationEnd,路由器激活了路由的子路由时触发。
+- ActivationEnd,路由器激活了某个路由时触发。
+- NavigationEnd,导航成功结束之后触发。
+- NavigationCancel,导航被取消之后触发
+- NavigationError,导航由于意料之外的错误而失败时触发。
+- Scroll,一个滚动事件
+
+想要看到这些事件，可以使用路由器默认配置中的 enableTracing 选项，它会把每个导航生命周期中的事件输出到浏览器的控制台，**一般只用于调试**
+
+    @NgModule({
+      imports: [
+        RouterModule.forRoot(
+          appRoutes,
+          { enableTracing: true } 
+        )
+        ...
+      ],
+      ...
+    })
+ 
+
 
 
