@@ -443,5 +443,5 @@ Router内置了两种预加载策略：
     })
     export class AppRoutingModule {}
 
-
-
+> 在分层路由的每个级别上，你都可以设置多个守卫。 路由器会先按照从最深的子路由由下往上检查的顺序来检查 CanDeactivate() 和 CanActivateChild() 守卫。 然后它会按照从上到下的顺序检查 CanActivate() 守卫。   
+如果特性模块是异步加载的，在加载它之前还会检查 CanLoad() 守卫。
