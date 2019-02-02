@@ -69,6 +69,12 @@ angular使用pushState方式构造url，必须设置基准地址，pushState才�
 （3）路由匹配是第一次最先匹配即停止原则，所以声明顺序很重要，建议顺序：具体路由->空路由->通配路由，通配path(`**`)可放置在最后作为错误url的默认页面提示
 （4）注册路由方式：RouterModule.forRoot只能用于根模块；RouterModule.forChild用于特性模块
 
+> 路由器在每一层的路由配置中只会处理一次重定向，既单级不能出现多次的重定向，比如
+>
+>    '' -> '/main' -> 'admin' -> ..
+>    
+> 这样可以防止出现无限循环的重定向。
+
 #### 3. 路由导航
 导航的声明方式有链接式和命令式导航两种：
 - 链接式，`routerLink="{{'/hero/' + crisis.id}}"`
@@ -312,6 +318,21 @@ CrisisListComponent的outlet位置，不行再往上匹配
   表现形式：url?id=123
   提取方式：
   this.activateRoute.queryParams.subscribe((params: queryParams)) => { let id = params['id']; });
+
+- 片段
+使用方式：
+
+    router.navigate([url], {fragment: 'anchor'});  
+    [routerLink]="[url]" [fragment]="'anchor'"
+
+表现形式：url?fragment=anchor
+提取方式：
+
+    this.activateRoute.fragment.subscribe((fragment: any) => { 
+        let fragment = fragment || 'None';
+    });
+  
+> 查询参数和片段经常用来携带需要持久化的信息，来为每个页面都提供的信息，如认证令牌或会话的 ID 等。
 
 6 ) navigate和navigateByUrl
 相同点：底层都是调用的相同的方法router.scheduleNavigation()进行处理和导航
