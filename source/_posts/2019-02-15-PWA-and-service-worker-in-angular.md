@@ -41,7 +41,7 @@ PWA的几个关键技术的应用，保证了PWA能够提供期望的性能体�
 - Push Notification – 消息推送
 
 ####  Manifest
-Manifest是一个JSON文件，定义了此Web应用的基本配置、图标、启动画面和主题颜色等，甚至可以设置横/竖屏、全屏显示
+Manifest是一个JSON文件，定义了此Web应用的基本配置、主题颜色等，甚至可以设置横/竖屏、全屏显示
 
     {
       "name": "PWA Website",
@@ -97,6 +97,10 @@ Manifest是一个JSON文件，定义了此Web应用的基本配置、图标、�
 - orientation，优先旋转方向，可选的值有：any, natural, landscape等
 - display，显示方式，fullscreen（无Chrome），standalone（和原生应用一样），minimal-ui（最小的一套UI控件集）或者  browser（最古老的使用浏览器标签显示）
 - icons，所有图片的数组，每个元素包含了图片的URL，大小和类型
+
+通过manifest.json文件配置，可以设置应用的启动画面、背景图、应用名称，还可以支持应用在主屏桌面上添加一个快捷方式，以方便用户快速访问，
+用户访问web应用时，直接在界面中提示添加到主屏桌面，但是目前支持此功能的浏览器不多，安卓手机上须使用57版本以上的谷歌浏览器可以支持该功能，而
+移动端IOS系统的支持并不好
 
 ####  Service Worker
 Service Worker是PWA中必不可少的一个服务，主要提供资源缓存、离线访问等功能，并可动态进行数据更新  
