@@ -108,7 +108,7 @@ Service Worker是PWA中必不可少的一个服务，主要提供资源缓存、
 简单来说，Service Worker 就是一段运行在 Web 浏览器中，并为应用管理缓存的脚本，会拦截所有由应用发出的 HTTP 请求，并选择如何给出响应  
 下图展示普通Web App与添加了Service Worker的Web App的差异: 
 
-![service worker2](/images/service-worker2.jpg) 
+![service worker2](/images/service-worker2.png) 
 
 其中,Service Worker充当了一个“客户端代理”角色
 
