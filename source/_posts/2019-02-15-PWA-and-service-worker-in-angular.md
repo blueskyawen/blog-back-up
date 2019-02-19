@@ -106,6 +106,12 @@ Manifest是一个JSON文件，定义了此Web应用的基本配置、主题颜�
 ####  Service Worker
 Service Worker是PWA中必不可少的一个服务，主要提供资源缓存、离线访问等功能，并可动态进行数据更新  
 简单来说，Service Worker 就是一段运行在 Web 浏览器中，并为应用管理缓存的脚本，会拦截所有由应用发出的 HTTP 请求，并选择如何给出响应  
+下图展示普通Web App与添加了Service Worker的Web App的差异: 
+
+![service worker2](/images/service-worker2.jpg) 
+
+其中,Service Worker充当了一个“客户端代理”角色
+
 Service Worker是可编程的，我们可以注册他
 
     window.addEventListener('DOMContentLoaded', function() {
@@ -118,9 +124,15 @@ Service Worker是可编程的，我们可以注册他
                 });
         }
     });
- 
-Service Worker有三个事件：install，activate和fetch，是编写SW必须的，使用它们可以方便的拦截请求和访问缓存  
-这里有一篇比较详细的文章介绍SW的[Service Worker全面进阶](https://www.villainhr.com/page/2017/01/08/Service%20Worker%20%E5%85%A8%E9%9D%A2%E8%BF%9B%E9%98%B6#%E7%BC%93%E5%AD%98%E6%8D%95%E8%8E%B7)  
+
+注册了Service Worker后，它会经历生命周期的各个阶段，同时会触发相应的事件。
+整个生命周期包括：  
+
+    installing --> installed --> activating --> activated --> redundant。
+
+用户可以介入周期过程，比如使用event.waitUntil()方法在install事件前处理一些事情，并返回Primise通知服务继续下一阶段；此外，SW还有事件fetch，使用它可以方便的拦截请求和访问缓存  
+具体不详述，这里有一篇比较详细的文章介绍SW的[Service Worker全面进阶](https://www.villainhr.com/page/2017/01/08/Service%20Worker%20%E5%85%A8%E9%9D%A2%E8%BF%9B%E9%98%B6#%E7%BC%93%E5%AD%98%E6%8D%95%E8%8E%B7)  
+
 
 #### Push Notification
 Push 和 Notification 是两个不同的功能，涉及到两个 API， Notification 是浏览器发出的通知消息。
