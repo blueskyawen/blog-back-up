@@ -40,7 +40,7 @@ PWA的几个关键技术的应用，保证了PWA能够提供期望的性能体�
 - Manifest，定义APP图标、标题栏颜色和主题等信息
 - Service Worker，管理缓存，离线开发，地理位置信息处理以及app更新等
 - App Shell，先显示APP的主结构，再填充主数据，更快显示更好体验
-- Push Notification – 消息推送
+- Push & Notification – 消息推送和通知
 
 ####  Manifest
 Manifest是一个JSON文件，定义了此Web应用的基本配置、主题颜色等，甚至可以设置横/竖屏、全屏显示
@@ -134,11 +134,13 @@ Service Worker是可编程的，我们可以注册他
 具体不详述，这里有一篇比较详细的文章介绍SW的[Service Worker全面进阶](https://www.villainhr.com/page/2017/01/08/Service%20Worker%20%E5%85%A8%E9%9D%A2%E8%BF%9B%E9%98%B6#%E7%BC%93%E5%AD%98%E6%8D%95%E8%8E%B7)  
 
 
-#### Push Notification
-Push 和 Notification 是两个不同的功能，涉及到两个 API， Notification 是浏览器发出的通知消息。
+#### Push & Notification
+Push 和 Notification 是两个不同的功能，涉及到两个 API， 不过将两者相结合是一种常见的使用模式。
 
 - Push：服务器端将更新的信息传递给 SW 
 - Notification： SW 将更新的信息推送给用户。
+
+这个能力让我们可以从服务端向用户推送各类消息并引导用户触发相应交互
 
 #### APP Shell
 App Shell架构是构建 PWA 应用的一种方式，它通常提供了一个最基本的 Web App 框架，包括应用的头部、底部、菜单栏等结构  
@@ -158,10 +160,11 @@ PWA由谷歌和W3C强力推广，在国外已经是百花齐放，众多的公�
 - 国内互联网巨头BAT的挑战，比如：微信小程序，支付宝小程序，凭借强大的用户群体，推广起来非常顺畅
 - 移动硬件设备的升级，网络的完善以及随处可见的wifi，使得用户对PWA的需求并没有那么的强烈
 
-虽然在国内有好知名网站和APP已经陆续有了PWA版本，但是根据个人的使用来讲，真正的PWA应用很少，大部分也只是实现了部分的PWA技术，比如service worker,大家在访问一些网站是可以在开发者工具看到一些运行中的service worker  
+虽然在国内知名网站和APP已经陆续有了PWA版本，但是根据个人的使用来讲，真正的PWA应用很少，大部分也只是实现了部分的PWA技术，比如service worker,大家在访问一些网站是可以在开发者工具看到一些运行中的service worker  
   
 ![service workers](/images/service-workers.jpg)  
 
+但是,只有service worker,没有支持Manifest,消息推送通知等其他技术;目前支持最好最全的应该是[新浪微博](https://m.weibo.cn/beta?pwa=1)  
 总之，在国内的发展仍然挑战很大             
 
 ### 应用体验
