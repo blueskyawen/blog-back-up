@@ -164,6 +164,10 @@ Push Service还有一个非常重要的功能：当用户离线时，可以帮�
 
 通过消息推送API能实现跟原生APP一样消息的体验，但是，国内的PWA应用还不支持这种即时推送，在国外像Facebook、Twitter就做的非常好。  
 
+**2. Notification**  
+Notification通知的功能与消息push类似，但更为简单，只要设置好通知消息，调用sw的相同通知接口即可，甚至可以可以带操作，但目前浏览器的支持并不好，火狐支持部分功能，不支持操作action    
+可以试用[图书搜索demo](https://github.com/blueskyawen/book-pwa-demo)，通过页面按钮添加提醒通知  
+Notification api可以单独使用，也可以和push一块使用，两者虽然相似，并不矛盾
 
 #### APP Shell
 App Shell架构是构建 PWA 应用的一种方式，它通常提供了一个最基本的 Web App 框架，包括应用的头部、底部、菜单栏等结构  
@@ -187,8 +191,8 @@ PWA由谷歌和W3C强力推广，在国外已经是百花齐放，众多的公�
   
 ![service workers](/images/service-workers.jpg)  
 
-但是,只有service worker,没有支持Manifest,消息推送通知等其他技术;目前支持最好最全的应该是[新浪微博](https://m.weibo.cn/beta?pwa=1)  
-总之，在国内的发展仍然挑战很大             
+但是,只有service worker,没有支持Manifest,消息推送通知等，而且大部分浏览器对即时通知等技术的支持并不好  
+目前支持最好最全的应该是[新浪微博](https://m.weibo.cn/beta?pwa=1)，总之，在国内的发展仍然挑战很大             
 
 ### 应用体验
     
