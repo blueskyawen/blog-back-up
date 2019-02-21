@@ -142,6 +142,25 @@ Push 和 Notification 是两个不同的功能，涉及到两个 API， 不过�
 
 这个能力让我们可以从服务端向用户推送各类消息并引导用户触发相应交互
 
+**1. Push**  
+根据Web Push协议草案描述，整个Push流程是这样的
+
+![push service2](/images/push-service2.png) 
+
+其中，“UA”就是我们的用户客户端，也就是浏览器；“Application Server”是后端服务；“Push Service”作为中间代理商，扮演着核心角色。  
+Push Service接收客户端的消息订阅，维护管理“客户端url-公钥”对的列表，并将订阅和私钥信息发送给服务器进行存储；此外，它后续还得接收服务端的推送消息，校验并发送给对象的客户端进行展示。
+Push Service还有一个非常重要的功能：当用户离线时，可以帮我们保存消息队列，直到用户联网后再发送给他们。目前，不同的浏览器厂商使用了不同的Push Service，chrome使用了自家的FCM，firefox也是使用自家的服务，不同push服务遵循共同的Web Push协议，具有标准的调用方式。  
+但是，目前chrome的FCM在国内不可访问，因此我是使用firefox来调试demo的，在 firefox开发者工具的“service workers”里可以看到对应的Push Service  
+
+![push service1](/images/push-service.jpg) 
+
+点“start”启动，“调试”进去开发调试，可以试用这个demo,最后的效果是这样的  
+
+== img === 
+
+通过消息推送API能实现跟原生APP一样消息的体验，但是，国内的PWA应用还不支持这种即时推送，在国外像Facebook、Twitter就做的非常好。  
+
+
 #### APP Shell
 App Shell架构是构建 PWA 应用的一种方式，它通常提供了一个最基本的 Web App 框架，包括应用的头部、底部、菜单栏等结构  
 顾名思义，我们可以把它理解成应用的一个「空壳」，这个「空壳」仅包含页面框架所需的最基本的 HTML 片段，CSS 和 javaScript，这样一来，用户重复打开应用时就能迅速地看到 Web App 的基本界面，只需要从网络中请求、加载必要的内容。  
