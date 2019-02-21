@@ -102,6 +102,7 @@ Manifest是一个JSON文件，定义了此Web应用的基本配置、主题颜�
 
 通过manifest.json文件配置，可以设置应用的启动画面、背景图、应用名称，还可以支持应用在主屏桌面上添加一个快捷方式，以方便用户快速访问，
 用户访问web应用时，直接在界面中提示添加到主屏桌面，但是目前支持此功能的浏览器不多，安卓手机上须使用57版本以上的谷歌浏览器可以支持该功能，而移动端IOS系统的支持并不好
+参考可访问[pwa-demo](https://github.com/blueskyawen/pwa-demo2)
 
 ####  Service Worker
 Service Worker是PWA中必不可少的一个服务，主要提供资源缓存、离线访问等功能，并可动态进行数据更新  
@@ -132,7 +133,7 @@ Service Worker是可编程的，我们可以注册他
 
 用户可以介入周期过程，比如使用event.waitUntil()方法在install事件前处理一些事情，并返回Primise通知服务继续下一阶段；此外，SW还有事件fetch，使用它可以方便的拦截请求和访问缓存  
 具体不详述，这里有一篇比较详细的文章介绍SW的[Service Worker全面进阶](https://www.villainhr.com/page/2017/01/08/Service%20Worker%20%E5%85%A8%E9%9D%A2%E8%BF%9B%E9%98%B6#%E7%BC%93%E5%AD%98%E6%8D%95%E8%8E%B7)  
-
+参考可访问[pwa-demo](https://github.com/blueskyawen/pwa-demo2)
 
 #### Push & Notification
 Push 和 Notification 是两个不同的功能，涉及到两个 API， 不过将两者相结合是一种常见的使用模式。
@@ -152,11 +153,14 @@ Push Service接收客户端的消息订阅，维护管理“客户端url-公钥�
 Push Service还有一个非常重要的功能：当用户离线时，可以帮我们保存消息队列，直到用户联网后再发送给他们。目前，不同的浏览器厂商使用了不同的Push Service，chrome使用了自家的FCM，firefox也是使用自家的服务，不同push服务遵循共同的Web Push协议，具有标准的调用方式。  
 但是，目前chrome的FCM在国内不可访问，因此我是使用firefox来调试demo的，在 firefox开发者工具的“service workers”里可以看到对应的Push Service  
 
-![push service1](/images/push-service.jpg) 
+![push service1](/images/push-service3.png) 
 
-点“start”启动，“调试”进去开发调试，可以试用这个demo,最后的效果是这样的  
+点“start”启动，“调试”进去开发调试，可以试用这个[图书搜索demo](https://github.com/blueskyawen/book-pwa-demo),
+通过restclient模拟后端发送推送消息，最后的效果是这样的  
 
-== img === 
+![push msg1](/images/push-msg1.png)   
+
+![push msg2](/images/push-msg2.png) 
 
 通过消息推送API能实现跟原生APP一样消息的体验，但是，国内的PWA应用还不支持这种即时推送，在国外像Facebook、Twitter就做的非常好。  
 
