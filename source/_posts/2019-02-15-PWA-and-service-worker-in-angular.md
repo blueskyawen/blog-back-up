@@ -1,5 +1,5 @@
 ---
-title: PWA与angular的Service Worker
+title: PWA与angular中的Service Worker
 date: 2019-02-15 19:14:09
 tags: angular
 categories: 前端
@@ -12,10 +12,10 @@ PWA，全称Progressive Web Apps，是一种接近原生用户体验的渐进增
 优化我们的Web App  
 PWA不是某一项技术,而是一系列Web技术与标准的集合与应用,由Google在2015年提出，旨在渐进增强，不是替代现有的移动App，
 而是让web应用有媲美原生应用的体验，更加对移动环境友好  
+<!--more-->
 
 ### 应用场景
 PWA主要应用于移动应用的开发，当前APP对设备内存等资源的需求量越来越大，PWA是颠覆者，旨解决移动设备的硬件限制，以及网络状况不佳下的服务访问
-<!--more-->
 
 ### 技术特点
 PWA之所以能够成为未来的趋势，被广大开发者推崇，还是因为其具有一些优秀的技术特点：
@@ -186,7 +186,7 @@ App Shell架构是构建 PWA 应用的一种方式，它通常提供了一个最
 
 - 将动态内容与 Shell 分离
 - 尽可能使用较少的数据，实现快速加载
-    - 使用本地缓存中的静态资源
+- 使用本地缓存中的静态资源
 
 ### PWA的发展现状及挑战
 PWA由谷歌和W3C强力推广，在国外已经是百花齐放，众多的公共应用和知名APP都提供了PWA的版本，比如：推特，Instagram，Flipboard等，并且据说用户体验与原生App相差不大
@@ -223,8 +223,7 @@ PWA由谷歌和W3C强力推广，在国外已经是百花齐放，众多的公�
 
 # Angular的Service Worker实现
 
-Service Worker是PWA中必不可少的一部分，可提供资源缓存、离线访问等功能  
-Service Worker会在首次访问时加载，之后可直接访问，即使关闭了浏览器标签 
+Service Worker是PWA中必不可少的一部分，可提供资源缓存、离线访问等功能,Service Worker会在首次访问时加载，之后可直接访问，即使关闭了浏览器标签 
 使用Service Worker主要是为了改善应用对网络的依赖，提高用户体验  
 
 ### 应用
