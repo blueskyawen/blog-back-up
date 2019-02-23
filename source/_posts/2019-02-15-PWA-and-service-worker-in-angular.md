@@ -173,7 +173,7 @@ Notification api可以单独使用，也可以和push一块使用，两者虽然
 后台同步是Service Worker的一个子功能，用于在终端弱网或无王情况下同步后台的数据或继续前端的请求消息  
 由于SW在浏览器关闭后仍然运行着，所以即使用户没有网络或关闭客户端，SW仍会存储相应的请求，并在有可用网络连接时发起数据同步，同步的浏览大概是这样的  
 
-==img==
+![sw-sync](/images/sw-sync.jpg)  
 
 可以看到，当浏览器触发了sync事件后，剩下的就交给SW了，比较常用的一个场景：当用户离开时页面（unload）时在client端触发sync事件。详细的文章介绍SW的[Service Worker全面进阶](https://www.villainhr.com/page/2017/01/08/Service%20Worker%20%E5%85%A8%E9%9D%A2%E8%BF%9B%E9%98%B6#%E7%BC%93%E5%AD%98%E6%8D%95%E8%8E%B7)  
 试用这个[图书搜索demo](https://github.com/blueskyawen/book-pwa-demo),目前支持后台的客户端很少，只有chorme支持  
