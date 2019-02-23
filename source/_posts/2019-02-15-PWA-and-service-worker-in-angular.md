@@ -192,7 +192,7 @@ PWA由谷歌和W3C强力推广，在国外已经是百花齐放，众多的公�
 ![service workers](/images/service-workers.jpg)  
 
 但是,只有service worker,没有支持Manifest,消息推送通知等，而且大部分浏览器对即时通知等技术的支持并不好  
-目前支持最好最全的应该是[新浪微博](https://m.weibo.cn/beta?pwa=1)，总之，在国内的发展仍然挑战很大             
+目前支持最好最全的应该是[新浪微博](https://m.weibo.cn/beta?pwa=1)，而且在使用上个人感觉和APP还是有一点差距的总之，在国内的发展仍然挑战很大             
 
 ### 应用体验
     
