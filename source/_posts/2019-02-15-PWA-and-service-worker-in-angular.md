@@ -169,6 +169,15 @@ Notification通知的功能与消息push类似，但更为简单，只要设置�
 可以试用[图书搜索demo](https://github.com/blueskyawen/book-pwa-demo)，通过页面按钮添加提醒通知  
 Notification api可以单独使用，也可以和push一块使用，两者虽然相似，并不矛盾
 
+**3. 后台同步**  
+后台同步是Service Worker的一个子功能，用于在终端弱网或无王情况下同步后台的数据或继续前端的请求消息  
+由于SW在浏览器关闭后仍然运行着，所以即使用户没有网络或关闭客户端，SW仍会存储相应的请求，并在有可用网络连接时发起数据同步，同步的浏览大概是这样的  
+
+==img==
+
+可以看到，当浏览器触发了sync事件后，剩下的就交给SW了，比较常用的一个场景：当用户离开时页面（unload）时在client端触发sync事件。详细的文章介绍SW的[Service Worker全面进阶](https://www.villainhr.com/page/2017/01/08/Service%20Worker%20%E5%85%A8%E9%9D%A2%E8%BF%9B%E9%98%B6#%E7%BC%93%E5%AD%98%E6%8D%95%E8%8E%B7)  
+试用这个[图书搜索demo](https://github.com/blueskyawen/book-pwa-demo),目前支持后台的客户端很少，只有chorme支持  
+
 #### APP Shell
 App Shell架构是构建 PWA 应用的一种方式，它通常提供了一个最基本的 Web App 框架，包括应用的头部、底部、菜单栏等结构  
 顾名思义，我们可以把它理解成应用的一个「空壳」，这个「空壳」仅包含页面框架所需的最基本的 HTML 片段，CSS 和 javaScript，这样一来，用户重复打开应用时就能迅速地看到 Web App 的基本界面，只需要从网络中请求、加载必要的内容。  
@@ -192,7 +201,7 @@ PWA由谷歌和W3C强力推广，在国外已经是百花齐放，众多的公�
 ![service workers](/images/service-workers.jpg)  
 
 但是,只有service worker,没有支持Manifest,消息推送通知等，而且大部分浏览器对即时通知等技术的支持并不好  
-目前支持最好最全的应该是[新浪微博](https://m.weibo.cn/beta?pwa=1)，而且在使用上个人感觉和APP还是有一点差距的总之，在国内的发展仍然挑战很大             
+目前支持最好最全的应该是[新浪微博](https://m.weibo.cn/beta?pwa=1)，而且在使用上个人感觉和APP还是有一点差距的,总之，在国内的发展仍然挑战很大             
 
 ### 应用体验
     
@@ -200,7 +209,17 @@ PWA由谷歌和W3C强力推广，在国外已经是百花齐放，众多的公�
     - 国内大厂的APP：阿里巴巴 http://m.alibaba.com，新浪微博 https://m.weibo.cn/beta?pwa=1
 
 ### PWA的实现
-实现 PWA 所需要的特性，主要是围绕着 Service Workers 的基于事件的 cache 系统和消息推送的一套新的 API，此外还需要定义 manifest.json 来定义安装行为或是样式等
+实现一个PWA主要是实现它所需的特性，实现Service Workers基于事件的cache 系统和消息推送的一套新的API，此外还需要定义 manifest.json 来定义安装行为或是样式等  
+个人在学习中输出了一些demo:
+
+1. [pwa-demo2](https://github.com/blueskyawen/pwa-demo2)  
+2. [PWA-demo](https://github.com/blueskyawen/PWA-demo)  
+3. [book-pwa-demo](https://github.com/blueskyawen/book-pwa-demo)  
+
+此外，还把boot-shadow插件库的demo网页进行了PWA改造，支持离线访问  
+[boot-shadow(pwa)](https://blueskyawen.com/boot-shadow)  
+
+以上均可以再移动端和桌面客户端访问
 
 # Angular的Service Worker实现
 
