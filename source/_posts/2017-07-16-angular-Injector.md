@@ -26,6 +26,13 @@ comments: true
 多级注入器树由这些不同的注入器构成，树的结构与模块/组件的组织有着相似的层级和对应关系，下图是一个简单的注入器树示意：
 ![injector-tree](/images/injector-tree.jpg)
 
+> 为什么惰性加载模块会创建一个子注入器？
+
+原因来自于 Angular 依赖注入系统的一个基本特征： 在注入器还没有被第一次使用之前，可以不断为其添加提供商。 一旦注入器已经创建和开始交付服务，它的提供商列表就被冻结了，不再接受新的提供商。
+当应用启动时，Angular 会首先使用所有主动加载模块中的提供商来配置根注入器，这发生在它创建第一个组件以及注入任何服务之前。 一旦应用开始工作，应用的根注入器就不再接受新的提供商了。
+之后，应用逻辑开始惰性加载某个模块，Angular 必须把这个惰性加载模块中的提供商添加到某个注入器中。 但是它无法将它们添加到应用的根注入器中，因为根注入器已经不再接受新的提供商了。 于是，Angular 在惰性加载模块的上下文中创建了一个新的子注入器。
+对于组件内的子注入器原理也一样。。  
+
 
 ## 二.服务的注入
 angular应用中配置使用注入服务需要定义可注入服务，注册供应商，服务请求等几个步骤，下面描述一下：
@@ -272,3 +279,92 @@ hero可直接作为变量应用于模板表达式中
         return { provide: parentType || Parent, useExisting: forwardRef(() => component) };
       };
     providers:  [ provideParent(BethComponent, DifferentParent) ]
+
+11 . 类接口令牌
+一个组件不能使用基类当做令牌，却可以使用类接口当做令牌，类接口是一个抽象类
+
+    export abstract class Parent { name: string; }
+    
+    @Component({
+      selector:   'barry',
+      template:   templateB,
+      providers:  [{ provide: Parent, useExisting: forwardRef(() => BarryComponent) }]
+    })
+    export class BarryComponent implements Parent {
+      name = 'Barry';
+      constructor( @SkipSelf() @Optional() public parent: Parent ) { }
+    }
+    
+    //这种使用方式不行
+    export class BarryComponent extends Parent {
+      name = 'Barry';
+      constructor( @SkipSelf() @Optional() public parent: Parent ) { }
+    }  
+
+12 . 工厂提供商
+useFactory 提供了一个键，让你可以通过调用一个工厂函数来创建依赖实例，使用这项技术，可以用包含了一些依赖服务和本地状态输入的工厂函数来建立一个依赖对象,比如下面这个例子：
+
+    export function runnersUpFactory(take: number) {
+      return (winner: Hero, heroService: HeroService): string => {
+        ...
+      };
+    };
+    
+    { provide: RUNNERS_UP, 
+      useFactory:  runnersUpFactory(2), deps: [Hero, HeroService] }  
+
+注入器通过调用你用 useFactory 键指定的工厂函数来提供该依赖的值。
+> 注意，提供商的这种形态还有第三个键 deps，它指定了供 useFactory 函数使用的那些依赖。
+
+13 . 使用 @Inject 指定自定义提供商
+自定义提供商让你可以为隐式依赖提供一个具体的实现，比如下面这个例子，使用 InjectionToken 来提供 localStorage，将其作为 BrowserStorageService 的依赖项。
+
+    import { Inject, Injectable, InjectionToken } from '@angular/core';
+     
+    export const BROWSER_STORAGE = new InjectionToken<Storage>('Browser Storage', {
+      providedIn: 'root',
+      factory: () => localStorage
+    });
+     
+    @Injectable({
+      providedIn: 'root'
+    })
+    export class BrowserStorageService {
+      constructor(@Inject(BROWSER_STORAGE) public storage: Storage) {}
+     
+      get(key: string) {
+        this.storage.getItem(key);
+      }
+     
+      set(key: string, value: string) {
+        this.storage.setItem(key, value);
+      }
+     
+      remove(key: string) {
+        this.storage.removeItem(key);
+      }
+     
+      clear() {
+        this.storage.clear();
+      }
+    }
+    
+现在，就可以在测试期间使用 localStorage 的 Mock API 来覆盖这个提供商了，而不必与真实的浏览器 API 进行交互。
+
+14 . @Self 装饰
+使用 @Self 装饰器时，注入器只在该组件的注入器中查找提供商。@SkipSelf 装饰器可以让你跳过局部注入器，并在注入器树中向上查找，以发现哪个提供商满足该依赖。
+这两个结合起来能组合很有趣的服务注入：
+  providers: [
+    BrowserStorageService,
+    { provide: BROWSER_STORAGE, useFactory: () => sessionStorage }
+  ]
+
+  constructor(
+    @Self() private sessionStorageService: BrowserStorageService,
+    @SkipSelf() private localStorageService: BrowserStorageService,
+  ) { }
+
+这样就会只使用当前层次声明的服务，但是要注意处理异常。  
+在组件的继承中，当父子组件都拥有ngOnInit方法时，初始化的时候
+Angular 会先调用派生类的 ngOnInit，后调用基类的 ngOnInit   
+
