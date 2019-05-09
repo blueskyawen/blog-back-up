@@ -34,7 +34,7 @@ comments: true
  1. 根据color克隆一个和原始元素相同尺寸的元素“覆盖”其上
  2. 根据spread-radius向四周增加对应颜色的阴影，类似于“边框”
  3. 然后根据指定的x-shadow 和 x-shadow 将克隆出来的元素进行偏移
- 4. 根据指定的blur-radius设置模糊半径，一般是依据高斯算法进行模糊处理，本质上是在阴影边缘将阴影色往纯透明色之间进行颜色过渡，所以看到是模糊是逐渐变淡并向外扩散的
+ 4. 根据指定的blur-radius设置模糊半径，一般是依据高斯算法进行模糊处理，本质上是在阴影边缘将阴影色往纯透明色之间进行颜色过渡，所以看到是模糊是逐渐变淡的；而且据了解blur是沿边缘线两边各一半距离，并从里向外扩散
  5. 最后，将克隆元素与原始原属的交集“剪切”去，剩余部分便是最终阴影效果
 
 各步大概的图示如下：
@@ -45,10 +45,10 @@ comments: true
 
 最终的阴影尺寸为：
 
-- top阴影: spread-radius - y-shadow + blur-radius
-- left阴影: spread-radius - x-shadow + blur-radius
-- bottom阴影: spread-radius + y-shadow + blur-radius
-- right阴影: spread-radius + x-shadow + blur-radius
+- top阴影: spread-radius - y-shadow + blur-radius/2
+- left阴影: spread-radius - x-shadow + blur-radius/2
+- bottom阴影: spread-radius + y-shadow + blur-radius/2
+- right阴影: spread-radius + x-shadow + blur-radius/2
 
 > 当模糊距离为0，只有spread-radius时，效果相当于border，但这并不是真正的border，盒子模型计算时宽高不会被计算在内
 
@@ -73,10 +73,10 @@ comments: true
 
 最终的阴影尺寸为：
  
-- top阴影: spread-radius + y-shadow + blur-radius
-- left阴影: spread-radius + x-shadow + blur-radius
-- bottom阴影: spread-radius - y-shadow + blur-radius
-- right阴影: spread-radius - x-shadow + blur-radius
+- top阴影: spread-radius + y-shadow + blur-radius/2
+- left阴影: spread-radius + x-shadow + blur-radius/2
+- bottom阴影: spread-radius - y-shadow + blur-radius/2
+- right阴影: spread-radius - x-shadow + blur-radius/2
 
 ## 3 多个阴影及层级关系
 **1） 多个阴影**
