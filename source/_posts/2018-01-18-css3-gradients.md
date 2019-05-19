@@ -6,10 +6,22 @@ categories: 前端
 comments: true
 ---
 
+渐变是css3新增加的一种属性，分线性渐变和径向渐变，可渲染出一些复杂的效果，比如： 
+
+    background: linear-gradient(angle角度，color1-stop,color2-stop,...);
+    
+渐变其实是一种特殊的背景图片，因此可以像背景图一样使用，并配合背景底色
+
+    background-image: linear-gradient(angle角度，color1-stop,color2-stop,...);
+    background-color: #f2f2f2;
+
+> 渐变至少要两个色标
+
+<!--more-->
+
 # 线性渐变
 线性渐变是几个颜色沿着一定角度的“发射线”而形成的颜色过渡效果
 线性渐变声明方式：
-<!--more-->
 
     linear-gradient(angle角度，color1-stop,color2-stop,...)
 
@@ -26,8 +38,6 @@ comments: true
     to top right -> 45deg
     to bottom left -> -135deg(或225deg)
     to bottom right -> 135deg
-
-效果见Demo:[linear-gradient-demo](http://sandbox.runjs.cn/show/mqjc0fli)
 
 ##### 2. 色标
 色标就是上面的color-stop，指的是每个颜色的结束位置，包括颜色和位置，比如：
@@ -51,7 +61,6 @@ linear-gradient(red n%, blue m%)表示：
 
 表示：0%->30%，red;30%->30%，red到green,一般显示一条边界线;30%->50%，green;50%->100%,blue
 
-效果见Demo:[linear-gradient-demo](http://sandbox.runjs.cn/show/mqjc0fli)
 
 ##### 3. 重复渐变
 当首尾两颜色位置不在0%或100%时，可以进行重复渐变,使色标在渐变线方向上无限重复,形成特殊的排列效果
@@ -63,14 +72,14 @@ linear-gradient(red n%, blue m%)表示：
 #####4. 多次渐变组合背景
 颜色渐变可以定义多次，这些渐变效果将会重叠在一起，合理使用背景的其他属性，比如：size,repeat，可以构造处多个渐变的组合效果，这里不缀述，可以参考后面的demo
 
-本文所有的效果见:[linear-gradient-demo](http://sandbox.runjs.cn/show/mqjc0fli)
+本文所有的效果见:[linear-gradient-demo](http://blueskyawen.com/angular-work-cook/main/other/css3/box-back/gradient)
 
 参考文章：[深入理解线性渐变](https://www.cnblogs.com/xiaohuochai/archive/2016/04/12/5370446.html)
 
 # 径向渐变
 径向渐变从圆心点以椭圆形状向外扩散，渐变的实现由两部分组成：位置，形状，size和色标
 
-    radial-gradient(shape size ?at position ? color-stop，..)
+    radial-gradient(shape size ?at position, color-stop，..)
 
 #####1.位置
 位置指的是径向椭圆的中心点的位置，可以使用关键字/百分比/整数来定义，比如：
@@ -89,10 +98,9 @@ linear-gradient(red n%, blue m%)表示：
 
 #####2.形状
 形状指的是圆形还是椭圆：circle/ellipse，默认是椭圆，可以不用书写;
-不过好像circle不能和at position一起用，不知道怎么回事
 
 #####3.size
 这个主要是径向渐变发散的半径不同，可以参考文档：
 [深入理解径性渐变](http://www.cnblogs.com/xiaohuochai/p/5383285.html)
 
-本节所有demo可见：[径向渐变-demo](http://sandbox.runjs.cn/show/rnfvcray)
+本节所有demo可见：[径向渐变-demo](http://blueskyawen.com/angular-work-cook/main/other/css3/box-back/gradient)

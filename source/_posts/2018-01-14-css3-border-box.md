@@ -49,7 +49,7 @@ comments: true
     border-bottom-left-radius   //定义了左下角的弧度
     
 
-具体Demo请点击此处：[border-radius-demo](http://sandbox.runjs.cn/show/7vitapay)
+具体Demo请点击此处：[border-radius-demo](http://blueskyawen.com/angular-work-cook/main/other/css3/text-box/border-radius)
 
 ###### box-shadow
 向框添加一个或多个阴影
@@ -63,12 +63,12 @@ comments: true
 - color，阴影的颜色
 - 将外部阴影 (outset) 改为内部阴影
 
-具体Demo请点击此处：[box-shadow-demo](http://sandbox.runjs.cn/show/qcbishon)
+具体Demo请点击此处：[box-shadow-demo](http://blueskyawen.com/angular-work-cook/main/other/boxShadow/lizi)
 
 ###### border-image
 图片边框,几种属性的简写
 
-    border-image：border-image-source border-image-slice border-image-width fill border-image-outset border-image-repeat
+    border-image：border-image-source border-image-slice / border-image-width / border-image-outset fill border-image-repeat
 
 其中：
 - border-image-source，用在边框的图片的路径
@@ -80,7 +80,7 @@ comments: true
 
 简单写来：
 
-    border-image：image-source (slice1 slice2 slice3 slice) (width1 width2 width3 width4) fill outset repeat;
+    border-image：image-source slice1 slice2 slice3 slice / width1 width2 width3 width4 / outset1 outset2 outset3 outset4 fill repeat;
 
 其中：
 **width1-4**是“上右下左”顺序四个图片边框的宽度，省略时以对面为准，同border其他属性的设置方式
@@ -88,6 +88,37 @@ comments: true
 ![border-image](/images/2018-01-08_border-images.jpg)
 
 四个角用作图边框的角，四边切出来的图片用作image边框4边的填充图
+
+具体Demo请点击此处：[border-image-demo](http://blueskyawen.com/angular-work-cook/main/other/css3/text-box/border-image)
+
+### 背景
+##### 背景色
+
+    background-color: color;
+    background-clip: border-box;
+    或
+    background: color border-box;
+
+其中clip为背景绘制区域，有border-box/padding-box/content-box几种类型值
+
+##### 背景图片
+
+    background-image: url(***.jpg);
+    background-position: left top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-attach: scroll;
+    或
+    background: image position / size repeat attach;
+
+其中:
+
+- background-origin，是背景图片的定位方式，有border-box/padding-box/content-box取值，类似与背景的clip
+- background-attach，定义背景图是否随着页面内容滚动而滚动，取值scroll/fixed，但是这个属性是针对于整个页面生效的，对单个盒子是不生效的
+
+具体Demo请点击此处：[background-demo](http://blueskyawen.com/angular-work-cook/main/other/css3/box-back/background)
+
 
 ### 文本
 ###### white-space
@@ -109,7 +140,7 @@ comments: true
 - blur，可选，模糊的距离
 - color，阴影的颜色
 
-具体Demo请点击此处：[text-shadow](http://sandbox.runjs.cn/show/zapn5yh5)
+具体Demo请点击此处：[text-shadow](http://blueskyawen.com/angular-work-cook/main/other/css3/text-box/text-shadow)
 
 ###### text-overflow
 规定当文本溢出包含元素时发生的事情
