@@ -34,6 +34,7 @@ div.imgs .img-container img:hover {
     <div class="img-container"><img src="/images/IMG_1426.JPG" alt="图片文本描述"></div>
     <div class="img-container"><img src="/images/IMG_1494.JPG" alt="图片文本描述"></div>
     <div class="img-container"><img src="/images/IMG_1497.JPG" alt="图片文本描述"></div>
+    <div class="img-container"><img src="/images/IMG_14262.jpg" alt="图片文本描述"></div>
 </div>
 
 <div style="clear: left;"></div>
