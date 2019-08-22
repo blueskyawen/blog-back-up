@@ -6,6 +6,15 @@ categories: 前端
 comments: true
 ---
 
+<style>
+.mixin-lizi {
+    margin-top: -30px;
+}
+.mixin-lizi figure {
+    max-height: 500px;
+}
+</style>
+
 在vue里面，混入（mixin）是一种特殊的使用方式。一个混入对象可以包含任意的组件选项，可根据需求随意“封装”组件的可复用单元，并在使用时根据一定的策略合并到组件的选项当中，使用时与组件自身选项无异。  
 官方文档对mixin介绍比较少，不能了解甚少，于是便想研究下源码对它混入做个研究和总结
 > 本文基于Vue源码2.x版本  
@@ -42,14 +51,9 @@ const defaultStrat = function (parentVal: any, childVal: any): any {
 ```
 其中childVal和parentVal是每一次合并中的两个源和目标对象，比如：vm.options.xx和mixin.options.xx，下面用一个例子和图示进行说明  
 ***示例代码：***  
-<pre style="min-height:200px;max-height:420px;overflow-y:auto;">
-<script> 
+<div class="mixin-lizi">
+```javascript
 import Vue from 'vue'
-
-Vue.filter('globalFilter', function (value) {
-  if (!value) return ''
-  return value + ' global'
-})
 
 Vue.mixin({
   data () {
@@ -271,8 +275,8 @@ export default {
     }
   }
 }
-</script>
-</pre>
+```
+</div>
 其中合并后的data和输出如下，
 ```javascript
 vm.$data:
