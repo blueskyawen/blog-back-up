@@ -329,6 +329,8 @@ getMsg5: getMsg5 全局混入1!!
 ```javascript
  src/core/util/options.js
 
+const strats = config.optionMergeStrategies
+
 if (process.env.NODE_ENV !== 'production') {
   strats.el = strats.propsData = function (parent, child, vm, key) {
     if (!vm) {
@@ -608,5 +610,27 @@ strats.provide = mergeDataOrFn
 ```
 provide的合并策略和data类似  
 
-
 ## 选项合并策略
+
+如上，对于mixin和组件的每个选项都有对应的合并策略，你可以像下面这样改变默认的合并策略
+```javascript
+const strats = Vue.config.optionMergeStrategies
+strats.methods = strats.data
+```
+但是对于默认选项不建议这么做，会引起合并错误，虽然提供了手段  
+对于新增的选项，比如vuex，myVOption，也需要什么合并策略，可以使用现有的策略，比如：
+```javascript
+Vue.config.optionMergeStrategies.myVOption = strats.methods
+```
+也可以自定义策略
+```javascript
+Vue.config.optionMergeStrategies.myVOption = function(
+  parentVal: ?Object,
+  childVal: ?Object,
+): ?Object {
+    if (!parentVal) return childVal
+    if (!childVal) return parentVal
+    return extend(parentVal, childVal)
+}
+```
+> 注意：全局混入将对所有的vue实例有效，尽量不要使用；但可以用于插件的发布，比如发布一个画图插件，并提供若干绘画方法
