@@ -4,13 +4,14 @@ date: 2017-08-27 12:26:40
 tags: Augular
 categories: 前端
 comments: true
+toc: true
 ---
 
 前端应用需要通过http协议与后端服务器通讯,现代浏览器支持使用两种不同的 API 发起 HTTP 请求：XMLHttpRequest 接口和 fetch() API。
 <!--more-->
 @angular/common/http中的HttpClient类(旧版的时Http)，Angular 为应用程序提供了一个简化的 API 来实现 HTTP 功能。它基于浏览器提供的XMLHttpRequest接口。 HttpClient带来的其它优点包括：可测试性、强类型的请求和响应对象、发起请求与接收响应时的拦截器支持，以及更好的、基于可观察（Observable）对象的错误处理机制
 
-### 引入Http模块
+# 引入Http模块
 在应用根模块引入一次即可，这样可在全应用范围内可用
 
     import {HttpClientModule} from '@angular/common/http';
@@ -25,8 +26,8 @@ comments: true
 
 引入之后，在应用的各个组件和服务里就可以通过依赖注入来使用此服务了
 
-### 基本应用
-##### （1）获取数据
+# 基本应用
+## （1）获取数据
 **基本格式**
 
     import {Observable} from "rxjs/Observable";
@@ -149,7 +150,7 @@ comments: true
         });
 
 
-##### （2）添加数据
+## （2）添加数据
 **基本格式**
 
     http.post(url, body, {headers: new HttpHeaders()})
@@ -202,7 +203,7 @@ comments: true
     params =
       new HttpParams().set('name', 'a123456');
 
-##### （3）修改数据
+## （3）修改数据
 与post类似，只是换成了put而已
 
     http.put(url, body,
@@ -211,7 +212,7 @@ comments: true
             catchError(this.handeError)
         ).subscribe(...);
 
-##### （4）删除数据
+## （4）删除数据
 
     http.delete(url, id)
       .pipe(

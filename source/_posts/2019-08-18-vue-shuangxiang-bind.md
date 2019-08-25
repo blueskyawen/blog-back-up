@@ -4,13 +4,14 @@ date: 2019-07-08 12:09:53
 tags: Vue
 categories: 前端
 comments: true
+toc: true
 ---
 
 与angular一样，vue也可以进行数据的双向绑定并拥有多种实现形式，可用于基础组件的封装。  
 下面以`Switch基础组件`为例介绍vuejs里面双向绑定的几种方式，组件实现的基本效果[像这样](http://blueskyawen.com/ng-shadow-cat/components/switch)，可点击查看 
 <!--more-->
 
-## 1. 使用value-input
+# 一 使用value-input
 vue的绑定指令v-model本质上的是value输入和input事假组成的语法糖，
 
 - 绑定数据值到value的props上
@@ -110,7 +111,7 @@ export default {
 <vc-switch v-model="isAggre"></vc-switch>
 ```
 
-## 2. 自定义v-model
+# 二 自定义v-model
 虽然可以通过value和input来实现双向绑定，但是这两个属性用在普通元素上仍然怪异，可以自定义v-model来实现新的语法糖，比如
 
 - 绑定数据值到switch
@@ -169,7 +170,7 @@ export default {
 </script>
 ```
 
-## 3. 使用.sync
+# 三 使用.sync
 通过新增的.sync修饰符和update:propName一样实现双向绑定的语法糖，虽然官方文档比较推荐这个，且陈述了理由，但真正用下来区别不大  
 下面还是以switch组件为例，只修改js即可
 

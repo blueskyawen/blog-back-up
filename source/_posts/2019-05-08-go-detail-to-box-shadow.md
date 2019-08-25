@@ -4,6 +4,7 @@ date: 2019-01-18 01:55:32
 tags: CSS
 categories: 前端
 comments: true
+toc: true
 ---
 
 之前有介绍过box-shadow这个属性，目的为框盒子添加阴影，也了解一些使用方式，使用起来也不是十分复杂。但是最近在开展单位的前端cop项目时，发现此属性不简单，还可以这样用，而且会发现一些看似复杂好玩的东西竟然是用box-shadow实现的。  
@@ -23,7 +24,7 @@ comments: true
 - color：阴影的颜色，参数可选，不设置便使用浏览器的默认色，因为各浏览器的默认色不同，推荐还是设置一下
 - type：阴影类型，参数可选，不设置默认outset（外部阴影）， 还有inset（内部阴影）
 
-## 外部阴影
+# 外部阴影
 当type不设置或设置为outset时，是为外部阴影，例如：
 
     box-shadow: 5px 5px 5px 5px #ccc;
@@ -52,7 +53,7 @@ comments: true
 
 > 当模糊距离为0，只有spread-radius时，效果相当于border，但这并不是真正的border，盒子模型计算时宽高不会被计算在内
 
-## 2 内部阴影
+# 内部阴影
 当type设置为inset时，是为内部阴影，例如：
 
     box-shadow: 5px 5px 5px 5px #ccc inset;
@@ -78,7 +79,7 @@ comments: true
 - bottom阴影: spread-radius - y-shadow + blur-radius/2
 - right阴影: spread-radius - x-shadow + blur-radius/2
 
-## 3 多个阴影及层级关系
+# 多个阴影及层级关系
 **1） 多个阴影**
 当多个阴影重叠时，声明在前面会覆盖后面的，比如：
 

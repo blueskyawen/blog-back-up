@@ -6,7 +6,7 @@ categories: 前端
 comments: true
 ---
 
-## AOT预编译
+# AOT预编译
 
 使用AOT，编译器仅仅使用一组库在构建期间运行一次；使用JIT，编译器在每个用户的每次运行期间都要用不同的库运行一次，更适合实时开发
 AOT编译的好处：
@@ -23,7 +23,7 @@ AOT编译器在构建过程中检测和报告模板绑定错误，避免用户�
 - 更安全
 AOT编译远在HTML模版和组件被服务到客户端之前，将它们编译到JavaScript文件。 没有模版可以阅读，没有高风险客户端HTML或JavaScript可利用，所以注入攻击的机会较少。
 
-### Aot设置
+## Aot设置
 
 首先,使用git clone https://github.com/angular/quickstart.git quickstart 设置本地简单的项目开发环境
 在项目根目录/quickstart，安装依赖
@@ -79,7 +79,7 @@ ngc希望-p选项指向一个tsconfig.json文件，或者一个包含tsconfig.js
 
 重新编译应用
 
-### Rollup摇树优化
+## Rollup摇树优化
 
 Rollup会通过跟踪import和export语句来对本应用进行静态分析。 它所生成的最终代码捆中会排除那些被导出过但又从未被导入的代码。
 Rollup只能对ES2015模块摇树，因为那里有import和export语句

@@ -4,12 +4,13 @@ date: 2018-07-27 22:23:04
 tags: Jqury
 categories: 前端
 comments: true
+toc: true
 ---
 
 JQurey是一个javascript库，用与简化开发人员的工作，感兴趣的同学可进一步去学习和使用
 <!--more-->
 
-### JQurey的特点
+# JQurey的特点
 
 简化js操作文档的复杂度，写的更少，做的更多，这得益于jqurey的几大特点：
 
@@ -25,7 +26,7 @@ JQurey是一个javascript库，用与简化开发人员的工作，感兴趣的�
         .addClass("active")
         .click(function() {...});
 
-### 关于$
+# 关于$
 $符号是JQurey的标志，所有的jq操作都已$开始，就连开发者对JQurey对象的命名也是以$开头，比如：
 
     var $volume = $("p");
@@ -35,7 +36,7 @@ $只是JQurey的代号，使用$的地方都可以使用JQurey代替，比如：
     $("p") 同 JQurey("p")
     $.ajax() 同 JQurey.ajax()
 
-### JQurey对象和Dom对象
+# JQurey对象和Dom对象
 JQurey是对js操作的封装库，JQurey对象自然也是Dom对象的封装，两种可以相互转换
 Dom对象 --> JQ对象：
 
@@ -54,12 +55,12 @@ JQ对象方法多样，可以完成大部分Dom操作，但是有时候也有判
         alert('页面没有这个元素');
     }
 
-### JQurey的核心操作
+# JQurey的核心操作
 JQurey的核心操作，我觉得就是三个方面的内容：
 - 元素获取
 - 元素操作
 
-###### 1 元素获取
+## 1) 元素获取
 主要通过选择器和各种遍历方法来获取元素的个体或集合，比如：
 
     $("p")
@@ -83,7 +84,7 @@ JQurey的核心操作，我觉得就是三个方面的内容：
 
 使用$(”table div input“)无法匹配到input元素,但是$(”div input“)可以
 
-###### 2 元素操作
+## 2) 元素操作
 
 （1）事件、动画的添加
 
@@ -153,7 +154,7 @@ JQurey的核心操作，我觉得就是三个方面的内容：
 
     $("p span").wrap("<div></div>");
 
-### 3 Ajax
+# Ajax
 javascript中的ajax书写复杂，而且在不同浏览器之间有差异，开发者要详细考虑兼容各个浏览器的写法
 在JQuery中，封装了这种差异，提供了统一的ajax方法，简单易用
 

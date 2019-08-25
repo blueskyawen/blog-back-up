@@ -4,6 +4,7 @@ date: 2017-12-27 22:47:10
 tags: rxjs
 categories: 前端
 comments: true
+toc: true
 ---
 
 操作符是 Observable 类型上的方法，比如map(...)、.filter(...)、.merge(...)，等等。当操作符被调用时，它们不会改变已经存在的 Observable 实例。相反，它们返回一个新的 Observable ，它的 subscription 逻辑基于第一个 Observable
@@ -36,7 +37,7 @@ comments: true
     30
     40
 
-### 操作符分类
+# 操作符分类
 
 **实例操作符**
 通常提到操作符时，我们指的是实例操作符，它是 Observable 实例上的方法。举例来说，如果上面的 multiplyByTen 是官方提供的实例操作符，它看起来大致是这个样子的：
@@ -70,11 +71,11 @@ comments: true
         var obj2 = data[1];
     });
 
-### 常用操作符
+# 常用操作符
 
 Observable的操作符很多，详细可参考官网：[Rxjs-opertors](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html)，里面有一节叫“选择操作符”很有用，指导你选择需要的操作符
 
-##### 1)  创建
+## 1)  创建
 create，empty，from，fromEvent，fromEventPattern，fromPromise，generate，interval，never，of，repeat，range，throw，timer等
 
     //每隔1秒发出自增的数字，3秒后开始发送。
@@ -93,7 +94,7 @@ create，empty，from，fromEvent，fromEventPattern，fromPromise，generate，
     //每1秒发出一个自增数
     var numbers = Rx.Observable.interval(1000);
 
-#### 2)  转换
+## 2)  转换
 **map**
 map(function),根据条件函数对每个源方式值进行数据处理，输出到输出Observable
 *a.数据序列二次处理*
@@ -290,7 +291,7 @@ mergeAll(number),打平高阶 Observable，将高阶 Observable 转换成一阶 
 *switchMapTo = switch + mapTo*
 效果与concatMapTo类似
 
-#### 3)  过滤
+## 3)  过滤
 **filter**
 filter(function..),通过只发送源 Observable 的中满足指定 predicate 函数的项来进行过滤
 
@@ -417,7 +418,7 @@ last(predicate: function),只发出由源 Observable 所发出的值中最后一
 **skipLast**
 skipLast(count: number),跳过源 Observable 最后发出的的N个值
 
-#### 4)  组合
+## 4)  组合
 **zip**
 zip(observable,observable,..),将多个 Observable 组合以创建一个，该 Observable的值是由所有输入 Observables 的值按顺序计算而来的
 如果最后一个参数是函数, 这个函数被用来计算最终发出的值.否则, 返回一个顺序包含所有输入值的数组
@@ -475,13 +476,13 @@ startWith(s),返回的 Observable 会先发出s项，然后再发出由源 Obser
     输出：999  1  2  3
 
 
-#### 5)  多播
+## 5)  多播
 **multicast**
 
 **publish**
 
 
-#### 6)  错误处理
+## 6)  错误处理
 **catch**
 catch(selector: function),捕获 observable 中的错误，可以通过返回一个新的 observable 或者抛出错误对象来处理
 
@@ -503,7 +504,7 @@ catch(selector: function),捕获 observable 中的错误，可以通过返回一
 **retry**
 retry(count: number)，返回一个 Observable， 该 Observable 是源 Observable 不包含错误异常的镜像。 如果源 Observable 发生错误, 这个方法不会传播错误而是会不 断的重新订阅源 Observable 直到达到最大重试次数：count
 
-#### 7)  条件
+## 7)  条件
 **delay**
 delay(number|Date),通过给定的超时或者直到一个给定的日期来延迟源 Observable 的发送
 
@@ -541,7 +542,7 @@ delayWhen(delayDurationSelector: function(value: T): Observable, subscriptionDel
                  .then((value) => console.log('Value: %s', value))
                  .catch((err) => console.log('Error: %s', err));
 
-#### 工具
+## 工具
 **defaultIfEmpty**
 defaultIfEmpty(defaultValue: any)，如果源 Observable 在完成之前没有发出任何 next 值，则发出给定的值，否则返回 Observable 的镜像
 
@@ -580,7 +581,7 @@ isEmpty(),如果源 Observable 是空的话，它返回一个发出 true 的 Obs
                       .subscribe(v => {this.valueList.push(v);});
     //输出 false
 
-#### 数学
+## 数学
 **count**
 count(predicate: function),发出源值的个数或满足函数条件的值个数
 

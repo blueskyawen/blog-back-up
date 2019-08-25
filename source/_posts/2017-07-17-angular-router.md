@@ -10,19 +10,19 @@ toc: true
 路由与导航是组织多页面应用的基本需求，也是angular最重要的几个特性之一。Angular提供了强大的路由机制来保证页面之间的跳转，根据配置的地址导航对应视图页面，并将地址值更新到浏览器地址栏中，将应用的所以页面有机的组织在了一起
 <!--more-->
 
-## 路由树
+# 路由树
 路由树是angular三大基本树结构之一，有着自己的配置方式，一般以单独的路由模块提供，伴随着模块的导入和导出，形成树状路由，如下图时一个典型的伴随着模块的组织而形成的路由树状结构：
 ![route-tree](/images/route-tree.jpg)
 
-## 路由路径导航
+# 路由路径导航
 模块直接导入之后，相应的路由模块的配置与准入模块的路由进行了合并，成为树的同级枝丫，下面是根据上一节路由树所描绘处理的导航示意图，以及形成的URL与组件的对应关系：
 ![route-url-tree](/images/route-url-tree.jpg)
 如图所示，每一个url路径对应一个组件，路由器会根据在浏览器地址栏输入的地址或者代码里命令形式导航的地址去匹配相应的url，渲染对应组件的视图
 
-## 路由配置
+# 路由配置
 关于angular路由请点击[这里](https://www.angular.cn/docs/ts/latest/guide/hierarchical-dependency-injection.html "angular-多级注入器")查看官方指导文档
 基本的路由配置就几个步骤：
-#### 1. 基准地址配置
+## 1 基准地址配置
 angular使用pushState方式构造url，必须设置基准地址，pushState才能正常工作
 **设置方式：**
 
@@ -38,7 +38,7 @@ angular使用pushState方式构造url，必须设置基准地址，pushState才�
 - 方便引用CSS文件、脚本和图片，浏览器会用基准地址的值作为相对URL的前缀
 
 
-#### 2. 路由列表配置
+## 2 路由列表配置
 路由列表以路由模块的方式来提供，下面是一个典型的简单路由列表：
 
     import { NgModule }              from '@angular/core';
@@ -75,7 +75,7 @@ angular使用pushState方式构造url，必须设置基准地址，pushState才�
 >    
 > 这样可以防止出现无限循环的重定向。
 
-#### 3. 路由导航
+## 3 路由导航
 导航的声明方式有链接式和命令式导航两种：
 - 链接式，`routerLink="{{'/hero/' + crisis.id}}"`
 - 命令式，`this.router.navigate(['/hero', hero.id])`
@@ -105,9 +105,9 @@ angular使用pushState方式构造url，必须设置基准地址，pushState才�
         </button>
     </div>
 
-#### 4. 路由参数提取
+## 4 路由参数提取
 
-##### (1) 参数提取对象
+### (1) 参数提取对象
 ActivatedRoute，可以通过注入此路由服务来获取路由的路径和参数，它有很多有用的信息：
 
     url //路由路径的Observable对象，它的值是一个由路径中各个部件组成的字符串数组
@@ -132,7 +132,7 @@ ActivatedRoute，可以通过注入此路由服务来获取路由的路径和参
 > - key --> 获取所以键值数组，[key,...] / []
 > 比如：router.snapshot.params.get('id');
 
-##### （2）提取参数的方式
+### （2）提取参数的方式
 使用可观察对象订阅的方式，下面两种方式效果相同
 **switchMap**
 switchMap允许你在Observable的当前值上执行一个动作，并将它映射一个新的Observable,然后再使用subscribe方法解析Observable对象获取值
@@ -185,7 +185,7 @@ switchMap允许你在Observable的当前值上执行一个动作，并将它映�
 
 通常，对于强制性的值（比如用于区分两个路由路径的）使用必备参数；当这个值是可选的、复杂的或多值的时，使用可选参数。  
 
-## 路由视图目标出口的选择
+# 路由视图目标出口的选择
 理由器在为组件选择显示出口的时候，是以距离最近为原则，就是选择距离组件最近的上层outlet目标进行呈现，比如：
 
     {
@@ -220,7 +220,7 @@ switchMap允许你在Observable的当前值上执行一个动作，并将它映�
 若距离最近的父组件没有outlet，则往上匹配，在更上一级父组件的outlet；举个例子，如果把path: 'compose'放在于crisis-center同级，将直接匹配appcomponent的outlet位置；同理，如果放在于CrisisDetail同级作为list的子路由，则将优先匹配
 CrisisListComponent的outlet位置，不行再往上匹配
 
-## 相对路由
+# 相对路由
 特性模块内部应该优先考试使用相对路由，以减少对上层路由的依赖
 **“目录式”语法**
 - ./或无前导斜线形式是相对于当前级别的。
@@ -237,7 +237,7 @@ CrisisListComponent的outlet位置，不行再往上匹配
     <a [routerLink]="[crisis.id]">
 
 
-##### 最后，一些好东西：
+# 最后，一些好东西：
 1 ) RouterLinkActive指令会基于当前的RouterState对象来为激活的RouterLink切换CSS类,这会一直沿着路由树往下进行级联处理，所以父路由链接和子路由链接可能会同时激活。使用routerLinkActiveOptions属性可以改变这种行为，比如：
 
     <a routerLink="/contact" routerLinkActive="Active"

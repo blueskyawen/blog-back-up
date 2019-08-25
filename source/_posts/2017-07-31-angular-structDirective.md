@@ -4,6 +4,7 @@ date: 2017-07-31 01:11:43
 tags: Augular
 categories: 前端
 comments: true
+toc: true
 ---
 
 结构型指令可以很方便的DOM结构树，Angular有一个强力的模板引擎来支持这一些，比如：添加、移除或维护DOM元素
@@ -12,7 +13,7 @@ comments: true
 
     <div *ngIf="hero" >{{hero.name}}</div>
 
-## 内置结构指令
+# 内置结构指令
 **（1）NgIf**
 
     <div *ngIf="hero" >{{hero.name}}</div>
@@ -87,7 +88,7 @@ NgSwitch不是结构指令，只是属性指令，用来接受“状态值”；
 > - 模板输入变量时一个模块实例的变量值，可以使用到当前实例中；而模板引用变量时引用的元素，代表的时那个元素本身，可在当前整个文档中使用；两种有不同的命名空间
 > - 一个元素不同时使用两个结构型实例
 
-## ng-template/ng-container
+# ng-template/ng-container
 **（1）ng-template**
 `<ng-template>`是一类html标签，是angular用来解释渲染结构性指令的一种方式，不会直接显示在html,最后会替换成同意义的注释；比如ngif中，当条件为false，angular将移除相应分支元素，取而代之的时一段注释
 这个标签直接单独使用的时候也有次效果，比如：
@@ -117,7 +118,7 @@ NgSwitch不是结构指令，只是属性指令，用来接受“状态值”；
     </select>
 会根据heros动态显示option,而所有的ng-container标签最后都会移除，否则会影响option显示
 
-## 自定义结构指令
+# 自定义结构指令
 指令作用：使用数字来控制元素的增加和移除，类似于ngIf，接受源字符串，当输入是数字时添加；输入是非数字或空串，移除宿主元素
 
     import { Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
@@ -156,7 +157,7 @@ NgSwitch不是结构指令，只是属性指令，用来接受“状态值”；
 
 <img src="/images/construct-directive01.png"><img src="/images/construct-directive02.png">
 
-##### 其他，一些好东西：
+# 其他一些好东西：
 1 . 自定义结构指令里头，有几个新的概念，这里简单说一下
 - embedview,内嵌视图
 - TemplateRef，内嵌视图创建模板，存有指令宿主元素模板

@@ -4,20 +4,21 @@ date: 2019-02-15 19:14:09
 tags: angular
 categories: 前端
 comments: true
+toc: true
 ---
 
 # PWA
-### 是什么
+## 是什么
 PWA，全称Progressive Web Apps，是一种接近原生用户体验的渐进增强的 Web 应用，利用现代浏览器特性从安全、性能和体验三个方面，
 优化我们的Web App  
 PWA不是某一项技术,而是一系列Web技术与标准的集合与应用,由Google在2015年提出，旨在渐进增强，不是替代现有的移动App，
 而是让web应用有媲美原生应用的体验，更加对移动环境友好  
 <!--more-->
 
-### 应用场景
+## 应用场景
 PWA主要应用于移动应用的开发，当前APP对设备内存等资源的需求量越来越大，PWA是颠覆者，旨解决移动设备的硬件限制，以及网络状况不佳下的服务访问
 
-### 技术特点
+## 技术特点
 PWA之所以能够成为未来的趋势，被广大开发者推崇，还是因为其具有一些优秀的技术特点：
 
 - 安全，通过 HTTPS 来提供服务来防止网络窥探，保证内容不被篡改
@@ -34,7 +35,7 @@ PWA之所以能够成为未来的趋势，被广大开发者推崇，还是因�
 
 这些技术特点足以让PWA媲美任何一种原生技术开发的移动app，甚至体验更好。除了优秀的使用特点之外，由于PWA属于web应用，对于开发者也带来极大的好处，降低了开发门槛
 
-### PWA的核心技术
+## PWA的核心技术
 PWA的几个关键技术的应用，保证了PWA能够提供期望的性能体验
 
 - Manifest，定义APP图标、标题栏颜色和主题等信息
@@ -42,7 +43,7 @@ PWA的几个关键技术的应用，保证了PWA能够提供期望的性能体�
 - App Shell，先显示APP的主结构，再填充主数据，更快显示更好体验
 - Push & Notification – 消息推送和通知
 
-####  Manifest
+###  Manifest
 Manifest是一个JSON文件，定义了此Web应用的基本配置、主题颜色等，甚至可以设置横/竖屏、全屏显示
 
     {
@@ -104,7 +105,7 @@ Manifest是一个JSON文件，定义了此Web应用的基本配置、主题颜�
 用户访问web应用时，直接在界面中提示添加到主屏桌面，但是目前支持此功能的浏览器不多，安卓手机上须使用57版本以上的谷歌浏览器可以支持该功能，而移动端IOS系统的支持并不好
 参考可访问[pwa-demo](https://github.com/blueskyawen/pwa-demo2)
 
-####  Service Worker
+###  Service Worker
 Service Worker是PWA中必不可少的一个服务，主要提供资源缓存、离线访问等功能，并可动态进行数据更新  
 简单来说，Service Worker 就是一段运行在 Web 浏览器中，并为应用管理缓存的脚本，会拦截所有由应用发出的 HTTP 请求，并选择如何给出响应  
 下图展示普通Web App与添加了Service Worker的Web App的差异: 
@@ -178,7 +179,7 @@ Notification api可以单独使用，也可以和push一块使用，两者虽然
 可以看到，当浏览器触发了sync事件后，剩下的就交给SW了，比较常用的一个场景：当用户离开时页面（unload）时在client端触发sync事件。详细的文章介绍SW的[Service Worker全面进阶](https://www.villainhr.com/page/2017/01/08/Service%20Worker%20%E5%85%A8%E9%9D%A2%E8%BF%9B%E9%98%B6#%E7%BC%93%E5%AD%98%E6%8D%95%E8%8E%B7)  
 试用这个[图书搜索demo](https://github.com/blueskyawen/book-pwa-demo),目前支持后台的客户端很少，只有chorme支持  
 
-#### APP Shell
+### APP Shell
 App Shell架构是构建 PWA 应用的一种方式，它通常提供了一个最基本的 Web App 框架，包括应用的头部、底部、菜单栏等结构  
 顾名思义，我们可以把它理解成应用的一个「空壳」，这个「空壳」仅包含页面框架所需的最基本的 HTML 片段，CSS 和 javaScript，这样一来，用户重复打开应用时就能迅速地看到 Web App 的基本界面，只需要从网络中请求、加载必要的内容。  
 我们使用 Service Worker 对 App Shell 做离线缓存，以便它可以在离线时正常展现，达到类似 Native App 的体验。
@@ -188,7 +189,7 @@ App Shell架构是构建 PWA 应用的一种方式，它通常提供了一个最
 - 尽可能使用较少的数据，实现快速加载
 - 使用本地缓存中的静态资源
 
-### PWA的发展现状及挑战
+## PWA的发展现状及挑战
 PWA由谷歌和W3C强力推广，在国外已经是百花齐放，众多的公共应用和知名APP都提供了PWA的版本，比如：推特，Instagram，Flipboard等，并且据说用户体验与原生App相差不大
 但是目前在国内的发展并不明显，主要有几个原因
 
@@ -203,12 +204,12 @@ PWA由谷歌和W3C强力推广，在国外已经是百花齐放，众多的公�
 但是,只有service worker,没有支持Manifest,消息推送通知等，而且大部分浏览器对即时通知等技术的支持并不好  
 目前支持最好最全的应该是[新浪微博](https://m.weibo.cn/beta?pwa=1)，而且在使用上个人感觉和APP还是有一点差距的,总之，在国内的发展仍然挑战很大             
 
-### 应用体验
+## 应用体验
     
     - 手机登录 https://pwa.rocks/，这个网址有很多pwa应用
     - 国内大厂的APP：阿里巴巴 http://m.alibaba.com，新浪微博 https://m.weibo.cn/beta?pwa=1
 
-### PWA的实现
+## PWA的实现
 实现一个PWA主要是实现它所需的特性，实现Service Workers基于事件的cache 系统和消息推送的一套新的API，此外还需要定义 manifest.json 来定义安装行为或是样式等  
 个人在学习中输出了一些demo:
 
@@ -226,11 +227,11 @@ PWA由谷歌和W3C强力推广，在国外已经是百花齐放，众多的公�
 Service Worker是PWA中必不可少的一部分，可提供资源缓存、离线访问等功能,Service Worker会在首次访问时加载，之后可直接访问，即使关闭了浏览器标签 
 使用Service Worker主要是为了改善应用对网络的依赖，提高用户体验  
 
-### 应用
+## 应用
 Angular的Service Worker会从服务器上下载一个manifest文件，这个 文件描述了要缓存的资源，并包含每个文件内容的哈希值。     当发布了应用的一个新版本时，manifest的内容就会改变，通知 Service Worker 应该下载并缓存应用的一个新版本了  
 Angular使用文件ngsw-config.json来配置Service Worker，指定需呀缓存那些资源以及其它的行为设定，而本应该最终要缓存的资源会记录到生成的ngsw.json文件里
 
-### 使用
+## 使用
 在Angular中使用Service Worker像引入一个 NgModule 一样简单  
 
     import { BrowserModule } from '@angular/platform-browser';
@@ -282,10 +283,10 @@ Angular使用文件ngsw-config.json来配置Service Worker，指定需呀缓存�
       }
     }
 
-### 更新
+## 更新
 由于Service Worker使得应用是可以离线运行的，即使本地停止了服务，故应用的版本和清单文件可以随时更新变动。  
 而当用户打开或刷新应用程序时，通过查看清单（manifest）文件 “ngsw.json” 的更新来检查该应用程序的更新。如果找到了更新，就会自动下载并缓存这个版本，并在下次加载应用程序时提供。  
 此外，用户也手动可以新版本的检查和激活，或定时进行类似操作，确保更新的内容能及时获得，就像上面做的一样  
 
-### ngsw-config配置
+## ngsw-config配置
 Angular使用文件ngsw-config.json来管理应用的缓存，可以配置它来处理相应的资源存储，详细参考官网[Service Worker 配置](https://www.angular.cn/guide/service-worker-config "Service Worker 配置")  

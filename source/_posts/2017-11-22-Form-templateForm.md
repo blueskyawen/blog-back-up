@@ -4,14 +4,15 @@ date: 2017-11-22 00:36:58
 tags: Augular
 categories: 前端
 comments: true
+toc: true
 ---
 
-## 什么是模板驱动表单
+# 什么是模板驱动表单
 
 模板驱动表单是angular构建表单的一种方式，特点是使用常用html标签来构建表单框架，而内部的逻辑由angular自动完成，比如：form,会自动创建ngForm指令，来表单整体的数据和校验处理
 <!--more-->
 
-## 构建结构
+# 构建结构
 
 模板驱动表单构建包含输入，校验，提交等一些常用的交互，主要结构图如下：
 ![template_form](/images/template_form.jpg)
@@ -114,7 +115,7 @@ comments: true
 - touch --> ng-touched  ng-untouched
 
 
-## 完整表单例子
+# 完整表单例子
 
 上面描述了模板驱动表单的一些东西，下面是一个完整的构建例子，代码如下：
 
@@ -265,7 +266,7 @@ Component.html
 效果如下：
 ![templateform](/images/templateform.png)
 
-## 自定义校验规则
+# 自定义校验规则
 
 **1）校验的内部**
 表单的校验本质上是校验函数的调用，包括内置校验函数和自定义校验，比如:

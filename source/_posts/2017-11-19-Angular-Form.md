@@ -4,6 +4,7 @@ date: 2017-11-19 22:28:04
 tags: Augular
 categories: 前端
 comments: true
+toc: true
 ---
 
 <style>
@@ -26,11 +27,11 @@ comments: true
 }
 </style>
 
-### 什么是表单
+# 什么是表单
 表单主要是数据交互，主要变现为用户的输入和交互，应用场景十分广泛。我们的网络生活中几乎离不开表单，比如：用户注册，用户登录，问卷调查，等等都是表单使用的场景。
 Angular在表单构建这块很强大，它封装了很多表单相关的控件和指令，使得开发者可以很方便的构建一个复杂的表单，这也是很多网站软件在框架选型的时候选择angular的一个原因。
 <!--more-->
-### 表单特征
+# 表单特征
 
 表单一般都具备一些和用户交互的特点，比如：
 - 输入
@@ -42,17 +43,17 @@ Angular在表单构建这块很强大，它封装了很多表单相关的控件�
 
 后面将基于这些特点来个构建完整的表单
 
-### 表单构建方式
+# 表单构建方式
 
 Augular提供了两种构建表单的方式：模板驱动表单和响应式驱动表单，主要区别如下：
 - 模板驱动表单：使用angular内置的构建指令和校验指令来构建，比如：NgForm,NgModel;主要工作在模板搭建，一些指令实例化和校验的工作angular内部已经实现
 - 响应型驱动表单：使用angular提供的自定义表单额校验指令自由的进行构建，比如：FormGroup,FormControl等，主要工作在ts逻辑代码
 
-### 常用表单控件
+# 常用表单控件
 
 下面是一些常用表单控件的简单实现，后续将做成单独的控件
 
-###### 1.普通输入
+## 1.普通输入
 
     <div class="form-group">
       <label>姓名</label>
@@ -68,7 +69,7 @@ Augular提供了两种构建表单的方式：模板驱动表单和响应式驱�
   </div>
 </div>
 
-###### 2.单选项-Radio
+## 2.单选项-Radio
 
     sexs : any[] = [{'name':'女','value':'famale'},
                     {'name':'男','value':'male'}];
@@ -92,7 +93,7 @@ Augular提供了两种构建表单的方式：模板驱动表单和响应式驱�
     </div>
 </div>
 
-###### 3.复选框-Checkbox
+## 3.复选框-Checkbox
 
     likes : any[] = [{'name':'看电视','value':'Watch Tv','isChecked':false},
                      {'name':'读书','value':'Book','isChecked':false}];
@@ -115,7 +116,7 @@ Augular提供了两种构建表单的方式：模板驱动表单和响应式驱�
     </div>
 </div>
 
-###### 4.数字输入框-Number
+## 4.数字输入框-Number
 
     <div class="form-group">
       <label>Age</label>
@@ -131,7 +132,7 @@ Augular提供了两种构建表单的方式：模板驱动表单和响应式驱�
   </div>
 </div>
 
-###### 5.日期选择-Date
+## 5.日期选择-Date
 
     <div class="form-group">
       <label>生日</label>
@@ -147,7 +148,7 @@ Augular提供了两种构建表单的方式：模板驱动表单和响应式驱�
   </div>
 </div>
 
-###### 6.下拉选择-Select
+## 6.下拉选择-Select
 
     phones : any[] = [{'name':'Apple','value':'Apple'},
                         {'name':'Oppo','value':'Oppo'},
@@ -183,7 +184,7 @@ Augular提供了两种构建表单的方式：模板驱动表单和响应式驱�
 
 > [value]和[ngValue]的区别在于select最后返回ngModel数据的不同，value是得到值，ngValue的话得到的是所选择的整条记录
 
-###### 7.多选择-MutilSelect
+## 7.多选择-MutilSelect
 
     <div class="form-group">
       <label>Phones</label>
@@ -205,7 +206,7 @@ Augular提供了两种构建表单的方式：模板驱动表单和响应式驱�
   </div>
 </div>
 
-###### 8.颜色选择-color
+## 8.颜色选择-color
 
     <div class="form-group">
       <label>Phones</label>
@@ -223,7 +224,7 @@ Augular提供了两种构建表单的方式：模板驱动表单和响应式驱�
   </div>
 </div>
 
-###### 9.文件选择-file
+## 9.文件选择-file
 
     <div class="form-group">
       <label>生日</label>
@@ -239,7 +240,7 @@ Augular提供了两种构建表单的方式：模板驱动表单和响应式驱�
   </div>
 </div>
 
-###### 10.数字范围-Range
+## 10.数字范围-Range
 
     <div class="form-group">
       <label>生日</label>

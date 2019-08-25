@@ -4,6 +4,7 @@ date: 2019-07-16 12:09:53
 tags: Vue
 categories: 前端
 comments: true
+toc: true
 ---
 
 <style>
@@ -21,7 +22,7 @@ comments: true
 
 <!--more-->
 
-## 说在前面
+# 说在前面
 在分析mixin之前，先看看两个方法，它们在混入的合并过程中扮演着重要的角色  
 
 **（1） Vue.extend()**  
@@ -40,7 +41,7 @@ extend(target, source)
 ```
 其中source对象将合并到target对象，如果source和target的key值相同，则直接覆盖，否则属性添加；作用类似于Object.assgin()和underscore的_.extend(destination, *sources)   
 
-## 合并图示
+# 合并图示
 通过对vue源码的研究，我发现混入对于选项的“合并”并不是一步到位的，而是两两合并，并通过合并策略和优先级向一定的方向逐步进行合并操作，最终才得到合并的结果，就像默认的选项合并策略：
 ```javascript
 const defaultStrat = function (parentVal: any, childVal: any): any {
@@ -319,7 +320,7 @@ getMsg5: getMsg5 全局混入1!!
 - 先合并的"优先级"低，后合并的"优先级"高，也就是组件的options合并优先级最高
 - 不同的选项根据自身的混入策略合并方向不一样，这个在下面会有说
 
-## 选项合并
+# 选项合并
 
 混入对象的混入是每个对象选项和组件选项的“混入合并”，比如：options.data、options.props等，根据不同选项合并策略的不同，各类选项会以不同的方式和方向进行“合并”操作  
 **（1） el，propsData**  
@@ -610,7 +611,7 @@ strats.provide = mergeDataOrFn
 ```
 provide的合并策略和data类似  
 
-## 选项合并策略
+# 选项合并策略
 
 如上，对于mixin和组件的每个选项都有对应的合并策略，你可以像下面这样改变默认的合并策略
 ```javascript
