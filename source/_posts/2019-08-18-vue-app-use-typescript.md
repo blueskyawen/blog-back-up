@@ -650,7 +650,7 @@ export default class CapLock extends Vue {
 }
 </script>
 ```
-例子的效果查看[property decorator实例](http://blueskyawen.com/vue-start/#/hello/innerDirective)  
+例子的效果查看[property decorator实例](http://blueskyawen.com/vue-demo-for-ts/#/help)  
 
 **注意事项：**  
 1. @Prop设置的同名参数值优先级高于component装饰器函数里设置的props
