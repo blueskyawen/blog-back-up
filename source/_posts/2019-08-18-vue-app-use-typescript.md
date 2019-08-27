@@ -569,3 +569,90 @@ class MyComp extends Vue {
 }
 ```
 
+ # 引入vue-property-decorator
+ 
+ vue-class-component对组件选择的支持度不够，且限制较多；而vue-property-decorator在vue-class-component的基础上进行了增强版，支持更多的选项和装饰器，先安装它  
+ 
+    npm i -S vue-property-decorator
+ 
+插件目前支持以下装饰器，配合上一节介绍的component，几乎能够支持大部分的组件选项:
+
+- @Prop，声明props输入参数
+- @PropSync，声明类似v-bind:prop.sync的双向绑定
+- @Model，声明类似v-model双向绑定
+- @Watch，声明观察器
+- @Provide/@Inject，声明依赖注入
+- @ProvideReactive/@InjectReactive，声明@Provide/@Inject的响应式版本
+- @Emit，声明事件的发射，若无指定事件名，将使用函数名作为事件名
+- @Ref，支持子组件的直接引用
+
+关于这些装饰器的介绍和用法在[vue-property-decorator](https://github.com/kaorun343/vue-property-decorator)里有详细的描述，可以进去学习  
+下面是个例子，应用了绝大部分装饰器：
+```javascript
+<template>
+  <div class="capLock">
+    <h3>name: {{name}}, age: {{age}}, isMan: {{isMan}}, country: {{country}}</h3>
+    <div>
+      <button class="oper-butn" @click="changeCity">syncedCity</button>
+      <button class="oper-butn" @click="changeWeight">changeWeight</button>
+    </div>
+    <h3>syncedCity: {{syncedCity}}; weight: {{weight}}kg</h3>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue, PropSync, Model, Watch, Emit } from 'vue-property-decorator'
+import { mixins } from 'vue-class-component'
+
+@Component({
+  props: {
+    age: {
+      type: Number,
+      default: 20
+    },
+    country: {
+      type: String,
+      default: 'China'
+    }
+  }
+})
+export default class CapLock extends Vue {
+  @Prop(String) readonly name: string | undefined
+  @Prop({ type: Number, default: 18 }) readonly age: number | undefined
+  @Prop([String, Boolean]) readonly isMan: string | boolean | undefined
+  @PropSync('city', { type: String }) syncedCity!: string
+  // use !: allow initializer and not definitely assign in the constructor
+  @Model('change', { type: Number }) readonly weight!: number
+
+  changeCity () {
+    let citys = ['北京', '上海', '广州', '深圳', '成都', '杭州', '苏州', '西安', '天津']
+    this.syncedCity = citys[Math.floor(Math.random() * 10)]
+  }
+
+  changeWeight () {
+    // this.$emit('change', Math.round(Math.random() * 100))
+    this.sendWeight(Math.round(Math.random() * 100)) // equire to above
+  }
+
+  @Emit('change')
+  sendWeight (val: number) {
+  }
+
+  @Watch('city')
+  onChildChanged (val: string, oldVal: string) {
+    console.log('curCity: ' + val + '** oldCity: ' + oldVal)
+  }
+
+  @Watch('weight', { immediate: true })
+  onPersonChanged1 (val: number, oldVal: number) {
+    console.log('curWeight: ' + val + '** oldWeight: ' + oldVal)
+  }
+}
+</script>
+```
+例子的效果查看[property decorator实例](http://blueskyawen.com/vue-start/#/hello/innerDirective)  
+
+**注意事项：**  
+1. @Prop设置的同名参数值优先级高于component装饰器函数里设置的props
+    
+
