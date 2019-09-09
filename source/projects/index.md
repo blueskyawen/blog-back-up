@@ -31,6 +31,9 @@ comments: false
   - 访问地址: <a href="http://blueskyawen.com/vc-shadow-cat/" target="_blank">vcCat</a>
   - Github: <a href="http://blueskyawen.com/vc-shadow-cat" target="_blank">vc-shadow-cat</a>
 
+  适配移动端，可扫描二维码查看:
+
+<img class="project-img" src="/images/vcCat.png" alt="vcCat">
 
 ## Trip-爱彼迎
   一个模仿著名民宿网站-爱彼迎的实现，组件使用了自己的ngCat前端开发库，后台模拟http请求并Mock网页数据，
