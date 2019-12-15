@@ -1,5 +1,5 @@
 ---
-title: javascipt-闭包/作用域和this
+title: Javascipt-闭包/作用域和this
 date: 2018-05-06 20:00:23
 tags: js
 categories: 前端
