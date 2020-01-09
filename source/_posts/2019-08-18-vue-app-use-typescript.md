@@ -43,7 +43,7 @@ vue-cli已经在创建应用提供了是否支持ts的选项，
      ◯ Unit Testing
      ◯ E2E Testing
 
-悬着是否使用class类的component语法
+选择是否使用class类的component语法
 
     ? Check the features needed for your project: Babel, TS
     ? Use class-style component syntax? (Y/n) Y
@@ -459,9 +459,9 @@ export default class AboutMe extends mixins(YourMixin, MyMixin) {
 ```
 可以看到，mixin也可以通过component的形式书写，而通过mixins(YourMixin, MyMixin)可以将多个mixin混入到组件中，效果同在组件中直接这么写相同：
 
-    mixins(MyMixin，YourMixin)
+    mixins: [YourMixin, MyMixin]
 
-可以看到使用类继承形式的书写顺序刚好相反，即在选项合并的时候，MyMixin为parent，YourMixin为child，具体的合并策略可查看前面的文章[Vue-源码详解mixin混入和合并策略](http://blueskyawen.com/2019/07/16/vue-learn-in-minix/)
+即在选项合并的时候，MyMixin为parent，YourMixin为child，具体的合并策略可查看前面的文章[Vue-源码详解mixin混入和合并策略](http://blueskyawen.com/2019/07/16/vue-learn-in-minix/)
 
 ### 3）自定义装饰器
 您可以通过创建自己的装饰器来扩展此库的功能，插件提供createDecorator帮助器来创建自定义装饰器。createDecorator期望将回调函数作为第一个参数，并且回调将接收以下参数：
