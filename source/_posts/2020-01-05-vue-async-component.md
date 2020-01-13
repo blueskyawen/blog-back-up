@@ -1,5 +1,5 @@
 ---
-title: Vue-双向绑定的几种支持方式
+title: Vue-详细说说异步组件和源码解析
 date: 2019-10-25 12:09:53
 tags: Vue
 categories: 前端
@@ -17,9 +17,9 @@ import('./utils').then(utils => { ... });
 <!--more-->
 对于现代的打包器，比如Webpack（从version2开始）会将这种语法理解为自动为该模块创建一个单独的文件，然后在需要时进行加载。在Vue里也提供了按需加载的功能，叫异步组件，下面将从使用方式、源码等几个角度来说明。
 从组件的使用方式来将，可以有：**直接渲染异步组件和路由异步组件**；而直接渲染异步组件一般是通过component的 is 属性和v-if来动态切换实现。
-# 1、直接渲染异步组件
+# 一 直接渲染异步组件
 顾名思义就是在模版直接使用的组件，一般公共组件和应用子组件大都是这种用法，只不是加载的方式是按需加载
-## 1.1 使用方法
+##  使用方法
 Vue文档里提供了3中使用异步组件的方法，也是核心代码里内置实现的，这个后面再说，这三种方式如下：
 ```javascript
 import Vue from 'vue'
@@ -92,7 +92,7 @@ export default {
 </script>
 ```
 想查看loading效果可以打开devTools-network-presets改为**slow 3G**，查看加载错误可设置为**Offline**。
-## 1.2 看源码
+## 看源码
 看源码能更好的理解异步组件的内部实现，从而更好的使用它们。
 异步组件实现的本质是 2 次渲染，除了 0 delay 的高级异步组件第一次直接渲染成 loading 组件外，其它都是第一次渲染生成一个注释节点，当异步获取组件成功后，再通过 forceRender 强制重新渲染，这样就能正确渲染出异步加载的组件了。
 异步组件也要create组件实例，但是由于其定义形式是工厂函数而不是对象，不会直接extend实例构造函数，而是走异步工厂那一套，如下，源文件在：vue/src/core/vdom/create-component.js,
@@ -281,7 +281,7 @@ export function resolveAsyncComponent (
 }
 ```
 这个方法比较复杂，它处理了上文说到的3 种异步组件的创建方式，具体直接看上面的代码中已标好的注释。
-## 1.3 封装动态异步组件
+## 封装动态异步组件
 封装一个可以根据配置动态加载任意组件的公共组件，这是在某些时候是有需要的。
 在vue中动态组件的典型方式是通过该component和is属性来实现，而动态异步组件就是动态+异步，就是这个思路实现而来。
 示例如下：
@@ -424,10 +424,19 @@ export default {
 }
 </script>
 ```
-# 2、路由异步组件
+实例效果可进入[vc-async-component](http://blueskyawen.com/vue-start/#/basic)的异步组件-动态异步组件，组件名目前就下面几个有
+效组件，可随意切换加载查看
+- components/basic/componentss/async-component-a
+- components/basic/componentss/async-component-b
+- components/basic/componentss/async-component-c
+- components/basic/componentss/async-component-d
+
+输入其他不可识别的组件名就会加载错误，显示error-component
+
+# 二 路由异步组件
 在vue-router中同样需要路由组件的懒加载，把不同路由对应的组件分割成不同的代码块，然后当路由被访问的时候才加载对应组件，这样更加高效。
 结合上面说的Vue的异步组件和Webpack的代码分割功能，可以轻松实现路由组件的懒加载。
-## 2.1 普通异步组件的路由懒加载
+## 普通异步组件的路由懒加载
 ```javascript
 const routes = [
   { path: '/', redirect: '/hello' },
@@ -437,7 +446,7 @@ const routes = [
   }
 ]
 ```
-## 2.2 高级异步组件的路由懒加载
+## 高级异步组件的路由懒加载
 ```javascript
 import asyncLoading from '@/components/vc-cat/vc-async-loading.vue'
 import asyncError from '@/components/vc-cat/vc-async-error.vue'
