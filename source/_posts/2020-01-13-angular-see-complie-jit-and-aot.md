@@ -178,7 +178,7 @@ $ npm run bundle-report-aot
 ```
 执行后代码如下：
 
-![ng-build-aot-stats](/images/angular-ngc-01.jpg)
+![ng-build-aot-stats](/images/angular-ngc-01.png)
 
 可以看到，ngc编译的输出文件目录结构和真正的项目目录结构一样，只是每个component会多几个文件，还是child.component.ts为例，编译出来的文件有好几个
 
