@@ -1,5 +1,5 @@
 ---
-title: vue-use-jest-unit-test
+title: Vue-使用Jest进行组件单元测试
 date: 2019-08-25 22:15:51
 tags: Vue
 categories: 前端
