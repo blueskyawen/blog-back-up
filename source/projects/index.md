@@ -46,6 +46,16 @@ comments: false
 
 <img class="project-img" src="/images/aibiying.png" alt="Trip-爱彼迎">
 
+## ng-admin-portal
+  一套简易的资源管理系统，前端使用angular技术栈，后端使用express和mongodb。
+
+  - 访问地址: <a href="http://113.31.117.206" target="_blank">http://113.31.117.206</a>
+  - Github: <a href="https://github.com/blueskyawen/ng-admin-portal" target="_blank">ng-admin-portal</a>
+
+  适配移动端，可扫描二维码查看:
+
+<img class="project-img" src="/images/ng-admin-portal.png" alt="ng-admin-portal">
+
 ## bootShadow
 一套Jquery插件集合，封装了常用的一些UI组件，安装方便，使用简单。
 
