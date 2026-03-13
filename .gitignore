@@ -3,3 +3,4 @@ node_modules/
 db.json
 themes/
 themes/yilia/
+.deploy_git/
