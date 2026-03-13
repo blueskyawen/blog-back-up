@@ -31,9 +31,9 @@ comments: false
   - 访问地址: <a href="https://zeithink.xyz/vc-shadow-cat/" target="_blank">vcCat</a>
   - Github: <a href="https://github.com/blueskyawen/vc-shadow-cat" target="_blank">vc-shadow-cat</a>
 
-  适配移动端，可扫描二维码查看:
+<!--   适配移动端，可扫描二维码查看:
 
-<img class="project-img" src="/images/vcCat.png" alt="vcCat">
+<img class="project-img" src="/images/vcCat.png" alt="vcCat"> -->
 
 ## Trip-爱彼迎
   一个模仿著名民宿网站-爱彼迎的实现，组件使用了自己的ngCat前端开发库，后台模拟http请求并Mock网页数据，
@@ -42,9 +42,9 @@ comments: false
   - 访问地址: <a href="https://zeithink.xyz/ng-trip-aibiying/" target="_blank">Trip-爱彼迎</a>
   - Github: <a href="https://github.com/blueskyawen/ng-trip-aibiying" target="_blank">trip-aibiying</a>
 
-  适配移动端，可扫描二维码查看:
+<!--   适配移动端，可扫描二维码查看:
 
-<img class="project-img" src="/images/aibiying.png" alt="Trip-爱彼迎">
+<img class="project-img" src="/images/aibiying.png" alt="Trip-爱彼迎"> -->
 
 <!-- ## ng-admin-portal -->
 <!--   一套简易的资源管理系统，前端使用angular技术栈，后端使用express和mongodb。
