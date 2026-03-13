@@ -18,7 +18,7 @@ comments: false
   一套前端组件库的Angular实现，包括珊格系统，模式以及各种开箱即用的通用组件。
 
   - 访问地址: <a href="https://zeithink.xyz/ng-shadow-cat/" target="_blank">ngCat</a>
-  - Github: <a href="https://github.com/blueskyawen//ng-shadow-cat" target="_blank">ng-shadow-cat</a>
+  - Github: <a href="https://github.com/blueskyawen/ng-shadow-cat" target="_blank">ng-shadow-cat</a>
 
 <!--   适配移动端，可扫描二维码查看:
 
